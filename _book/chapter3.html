@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 One-Way ANOVA | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 3 One-Way ANOVA | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 One-Way ANOVA | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -55,7 +55,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -91,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,10 +119,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -228,7 +233,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.10" data-path="chapter5.html"><a href="chapter5.html#section5-10"><i class="fa fa-check"></i><b>5.10</b> Is cheating and lying related in students?</a></li>
 <li class="chapter" data-level="5.11" data-path="chapter5.html"><a href="chapter5.html#section5-11"><i class="fa fa-check"></i><b>5.11</b> Analyzing a stratified random sample of California schools</a></li>
 <li class="chapter" data-level="5.12" data-path="chapter5.html"><a href="chapter5.html#section5-12"><i class="fa fa-check"></i><b>5.12</b> Chapter summary</a></li>
-<li class="chapter" data-level="5.13" data-path="chapter5.html"><a href="chapter5.html#section5-13"><i class="fa fa-check"></i><b>5.13</b> Summary of important R commands</a></li>
+<li class="chapter" data-level="5.13" data-path="chapter5.html"><a href="chapter5.html#section5-13"><i class="fa fa-check"></i><b>5.13</b> Summary of important R code</a></li>
 <li class="chapter" data-level="5.14" data-path="chapter5.html"><a href="chapter5.html#section5-14"><i class="fa fa-check"></i><b>5.14</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="chapter6.html"><a href="chapter6.html"><i class="fa fa-check"></i><b>6</b> Correlation and Simple Linear Regression</a>
@@ -335,11 +340,11 @@ results valid called <strong><em>Tukey’s Honest Significant Difference</em></s
 <p>To make this more concrete, we return to the original overtake data, making
 a pirate-plot (Figure <a href="chapter3.html#fig:Figure3-1">3.1</a>) as well as
 summarizing the overtake distances by the seven groups using <code>favstats</code>.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="chapter3.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
-<span id="cb224-2"><a href="chapter3.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb224-3"><a href="chapter3.html#cb224-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(yarrr)</span>
-<span id="cb224-4"><a href="chapter3.html#cb224-4" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv&quot;</span>)</span>
-<span id="cb224-5"><a href="chapter3.html#cb224-5" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Condition =</span> <span class="fu">factor</span>(Condition))</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="chapter3.html#cb224-1" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb224-2"><a href="chapter3.html#cb224-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb224-3"><a href="chapter3.html#cb224-3" tabindex="-1"></a><span class="fu">library</span>(yarrr)</span>
+<span id="cb224-4"><a href="chapter3.html#cb224-4" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv&quot;</span>)</span>
+<span id="cb224-5"><a href="chapter3.html#cb224-5" tabindex="-1"></a>dd <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Condition =</span> <span class="fu">factor</span>(Condition))</span></code></pre></div>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-1"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-1-1.png" alt="Pirate-plot of the overtake distances for the seven groups with group mean (bold lines with boxes indicating 95% confidence intervals) and the overall sample mean (dashed line) of 117.1 cm added." width="75%" />
@@ -348,10 +353,10 @@ Figure 3.1: Pirate-plot of the overtake distances for the seven groups with grou
 </p>
 </div>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="chapter3.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pirateplot</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd, <span class="at">inf.method =</span> <span class="st">&quot;ci&quot;</span>, <span class="at">inf.disp =</span> <span class="st">&quot;line&quot;</span>)</span>
-<span id="cb225-2"><a href="chapter3.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">mean</span>(dd<span class="sc">$</span>Distance), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># Adds overall mean to plot</span></span>
-<span id="cb225-3"><a href="chapter3.html#cb225-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb225-4"><a href="chapter3.html#cb225-4" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="chapter3.html#cb225-1" tabindex="-1"></a><span class="fu">pirateplot</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd, <span class="at">inf.method =</span> <span class="st">&quot;ci&quot;</span>, <span class="at">inf.disp =</span> <span class="st">&quot;line&quot;</span>)</span>
+<span id="cb225-2"><a href="chapter3.html#cb225-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">mean</span>(dd<span class="sc">$</span>Distance), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># Adds overall mean to plot</span></span>
+<span id="cb225-3"><a href="chapter3.html#cb225-3" tabindex="-1"></a></span>
+<span id="cb225-4"><a href="chapter3.html#cb225-4" tabindex="-1"></a><span class="fu">favstats</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd)</span></code></pre></div>
 <pre><code>##   Condition min    Q1 median  Q3 max     mean       sd   n missing
 ## 1    casual  17 100.0    117 134 245 117.6110 29.86954 779       0
 ## 2   commute   8  98.0    116 132 222 114.6079 29.63166 857       0
@@ -433,7 +438,7 @@ the hypotheses focus on the means, the model also contains assumptions about the
 distribution of the responses – specifically that the distributions are normal
 and that all the groups have the same variability, which do not appear to be clearly violated in this situation.
 </p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="chapter3.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dd<span class="sc">$</span>Distance)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="chapter3.html#cb227-1" tabindex="-1"></a><span class="fu">mean</span>(dd<span class="sc">$</span>Distance)</span></code></pre></div>
 <pre><code>## [1] 117.126</code></pre>
 <p>There is a second way to write out the One-Way ANOVA model
 that provides a framework
@@ -463,8 +468,8 @@ cell means coding except that they are defined in terms of the deviations,
 <span class="math inline">\({\color{purple}{\boldsymbol{\tau_j}}}\)</span>. The null hypothesis is that there is
 no deviation from the baseline for any group – that all the <span class="math inline">\({\color{purple}{\boldsymbol{\tau_j\text{&#39;s}}}} = 0\)</span>,</p>
 <p><span class="math display">\[\boldsymbol{H_0: \tau_2 = \ldots = \tau_J = 0}.\]</span></p>
-<p>The alternative hypothesis is that at least one of the deviations is not 0,</p>
-<p><span class="math display">\[\boldsymbol{H_A:} \textbf{ Not all } \boldsymbol{\tau_j} \textbf{ equal } \bf{0}.\]</span></p>
+<p>The alternative hypothesis is that at least one of the deviations (<span class="math inline">\(j = 2, \ldots, J\)</span>) is not 0,</p>
+<p><span class="math display">\[\boldsymbol{H_A:} \textbf{ Not all } \boldsymbol{\tau_j} \textbf{ equal } \bf{0} \textbf{, for }\boldsymbol{j = 2, \ldots, J.}\]</span></p>
 <p>In this chapter, you are welcome to use either version (unless we instruct you
 otherwise) but we have to use the reference-coding in subsequent chapters. The
 next task is to learn how to use R’s linear model, <code>lm</code>, function to get
@@ -485,7 +490,7 @@ the groups.</p></li>
 <ul>
 <li><p><span class="math inline">\(H_0: \color{purple}{\boldsymbol{\tau_2 = \ldots = \tau_J = 0}}\)</span>
         
-<span class="math inline">\(H_A: \color{purple}{\text{ Not all } \tau_j \text{ equal 0}}\)</span></p></li>
+<span class="math inline">\(H_A: \color{purple}{\text{ Not all } \tau_j \text{ equal 0, for }j = 2, \ldots, J }\)</span></p></li>
 <li><p>Null hypothesis in words: No deviation of the true mean for any groups from the
 baseline group.</p></li>
 <li><p>Null model: <span class="math inline">\(y_{ij} = \boldsymbol{\alpha} + \varepsilon_{ij}\)</span>
@@ -515,8 +520,8 @@ The output contains columns for an estimate (<code>Estimate</code>), standard er
 explore which of these are of interest in these models below, but focus
 on the estimates of the parameters that the function provides in the first
 column (“Estimate”) of the coefficient table and compare these results to what was found using <code>favstats</code>.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="chapter3.html#cb229-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Distance <span class="sc">~</span> Condition <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> dd)</span>
-<span id="cb229-2"><a href="chapter3.html#cb229-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="chapter3.html#cb229-1" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Distance <span class="sc">~</span> Condition <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> dd)</span>
+<span id="cb229-2"><a href="chapter3.html#cb229-2" tabindex="-1"></a><span class="fu">summary</span>(lm1)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##                  Estimate Std. Error  t value Pr(&gt;|t|)
 ## Conditioncasual  117.6110   1.071873 109.7248        0
 ## Conditioncommute 114.6079   1.021931 112.1484        0
@@ -541,8 +546,8 @@ directly match the <code>favstats</code> results presented previously.</p>
 giving the same results once we understand what it is doing. It uses a different
 parameterization to accomplish this, so has different model output. Here is the model
 summary:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="chapter3.html#cb231-1" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd)</span>
-<span id="cb231-2"><a href="chapter3.html#cb231-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm2)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="chapter3.html#cb231-1" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd)</span>
+<span id="cb231-2"><a href="chapter3.html#cb231-2" tabindex="-1"></a><span class="fu">summary</span>(lm2)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##                     Estimate Std. Error     t value    Pr(&gt;|t|)
 ## (Intercept)      117.6110398   1.071873 109.7247845 0.000000000
 ## Conditioncommute  -3.0031051   1.480964  -2.0278039 0.042626835
@@ -619,7 +624,7 @@ a pertinent deviation as shown in Table <a href="chapter3.html#tab:Table3-1">3.1
 </table>
 <p>We can also visualize the results of our linear models using what are called
 <strong><em>term-plots</em></strong> or <strong><em>effect-plots</em></strong>
-(from the <code>effects</code> package; <span class="citation">(<a href="#ref-R-effects" role="doc-biblioref">Fox et al. 2022</a>)</span>)
+(from the <code>effects</code> package; <span class="citation">(<a href="#ref-R-effects">Fox et al. 2022</a>)</span>)
 as displayed in Figure <a href="chapter3.html#fig:Figure3-2">3.2</a>. We don’t want to use the word
 “effect” for these model components unless we have random assignment in the study
 design so we generically call these <strong><em>term-plots</em></strong> as they display terms or
@@ -632,8 +637,8 @@ find the correspondence between the displayed means and the estimates that were
 constructed in Table <a href="chapter3.html#tab:Table3-1">3.1</a>.
 </p>
 
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="chapter3.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
-<span id="cb233-2"><a href="chapter3.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(lm2))</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="chapter3.html#cb233-1" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
+<span id="cb233-2"><a href="chapter3.html#cb233-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(lm2))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-2"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-2-1.png" alt="Plot of the estimated group mean distances from the reference-coded model for the overtake data from the effects package." width="75%" />
 <p class="caption">
@@ -665,8 +670,8 @@ the model formula and just include a “1”. The <code>(Intercept)</code> row o
 provides the estimate for the mean-only model as a reduced model from either the
 cell means or reference-coded models when we assume that the mean is the same
 for all groups:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="chapter3.html#cb234-1" aria-hidden="true" tabindex="-1"></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Distance <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dd)</span>
-<span id="cb234-2"><a href="chapter3.html#cb234-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm3)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="chapter3.html#cb234-1" tabindex="-1"></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Distance <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dd)</span>
+<span id="cb234-2"><a href="chapter3.html#cb234-2" tabindex="-1"></a><span class="fu">summary</span>(lm3)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##             Estimate Std. Error t value Pr(&gt;|t|)
 ## (Intercept)  117.126  0.3977533 294.469        0</code></pre>
 <p>This model provides an estimate of the common mean for all observations of
@@ -770,8 +775,8 @@ what is called an <strong><em>ANOVA table</em></strong>.
 The ANOVA table is generated using the
 <code>anova</code> function applied to the reference-coded model, <code>lm2</code>:
 </p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="chapter3.html#cb236-1" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd)</span>
-<span id="cb236-2"><a href="chapter3.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm2)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="chapter3.html#cb236-1" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd)</span>
+<span id="cb236-2"><a href="chapter3.html#cb236-2" tabindex="-1"></a><span class="fu">anova</span>(lm2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: Distance
@@ -784,7 +789,7 @@ for the grouping variable (we’ll generally refer to this as explanatory variab
 labeled <code>Residuals</code>, which is synonymous with “Error”. The Sums of Squares
 (SS) are available in the <code>Sum Sq</code> column. It doesn’t show a row for “Total” but
 the <span class="math inline">\(\textbf{SS}_{\textbf{Total}} \mathbf{=} \textbf{SS}_\textbf{A} \mathbf{+} \textbf{SS}_\textbf{E} = 5,121,246\)</span>.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="chapter3.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="dv">34948</span> <span class="sc">+</span> <span class="dv">5086298</span></span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="chapter3.html#cb238-1" tabindex="-1"></a><span class="dv">34948</span> <span class="sc">+</span> <span class="dv">5086298</span></span></code></pre></div>
 <pre><code>## [1] 5121246</code></pre>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-4"></span>
@@ -836,7 +841,7 @@ number from the ANOVA table that <code>anova</code> produces with
 <code>anova(lm(Distance ~ Condition, data = dd))[1, 2]</code>. We’ll store the observed value
 of <span class="math inline">\(\text{SS}_A\)</span> in <code>Tobs</code>, reusing some ideas from Chapter <a href="chapter2.html#chapter2">2</a>.
 </p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="chapter3.html#cb240-1" aria-hidden="true" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd))[<span class="dv">1</span>,<span class="dv">2</span>]; Tobs</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="chapter3.html#cb240-1" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd))[<span class="dv">1</span>,<span class="dv">2</span>]; Tobs</span></code></pre></div>
 <pre><code>## [1] 34948.43</code></pre>
 <p>The following code performs the permutations <code>B = 1,000</code> times using the
 <code>shuffle</code> function, builds up a vector of results in <code>Tobs</code>, and then makes
@@ -848,19 +853,19 @@ a plot of the resulting permutation distribution:</p>
 Figure 3.5: Histogram and density curve of permutation distribution of <span class="math inline">\(\text{SS}_A\)</span> with the observed value of <span class="math inline">\(\text{SS}_A\)</span> displayed as a bold, vertical line. The proportion of results that are as large or larger than the observed value of <span class="math inline">\(\text{SS}_A\)</span> provides an estimate of the p-value.
 </p>
 </div>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="chapter3.html#cb242-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb242-2"><a href="chapter3.html#cb242-2" aria-hidden="true" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
-<span id="cb242-3"><a href="chapter3.html#cb242-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
-<span id="cb242-4"><a href="chapter3.html#cb242-4" aria-hidden="true" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(Distance <span class="sc">~</span> <span class="fu">shuffle</span>(Condition), <span class="at">data =</span> dd))[<span class="dv">1</span>,<span class="dv">2</span>]</span>
-<span id="cb242-5"><a href="chapter3.html#cb242-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb242-6"><a href="chapter3.html#cb242-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
-<span id="cb242-7"><a href="chapter3.html#cb242-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb242-8"><a href="chapter3.html#cb242-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
-<span id="cb242-9"><a href="chapter3.html#cb242-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb242-10"><a href="chapter3.html#cb242-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
-<span id="cb242-11"><a href="chapter3.html#cb242-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb242-12"><a href="chapter3.html#cb242-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>, </span>
-<span id="cb242-13"><a href="chapter3.html#cb242-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="chapter3.html#cb242-1" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb242-2"><a href="chapter3.html#cb242-2" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
+<span id="cb242-3"><a href="chapter3.html#cb242-3" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
+<span id="cb242-4"><a href="chapter3.html#cb242-4" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(Distance <span class="sc">~</span> <span class="fu">shuffle</span>(Condition), <span class="at">data =</span> dd))[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb242-5"><a href="chapter3.html#cb242-5" tabindex="-1"></a>  }</span>
+<span id="cb242-6"><a href="chapter3.html#cb242-6" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<span id="cb242-7"><a href="chapter3.html#cb242-7" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb242-8"><a href="chapter3.html#cb242-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
+<span id="cb242-9"><a href="chapter3.html#cb242-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb242-10"><a href="chapter3.html#cb242-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb242-11"><a href="chapter3.html#cb242-11" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb242-12"><a href="chapter3.html#cb242-12" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>, </span>
+<span id="cb242-13"><a href="chapter3.html#cb242-13" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
 <p>The right-skewed distribution (Figure <a href="chapter3.html#fig:Figure3-5">3.5</a>) contains the
 distribution of <span class="math inline">\(\text{SS}^*_A\text{&#39;s}\)</span> under permutations (where
 all the groups are assumed to be equivalent under the null hypothesis). The observed result is larger than all of the <span class="math inline">\(\text{SS}^*_A\text{&#39;s}\)</span>. The proportion
@@ -868,7 +873,7 @@ of permuted results that exceed the observed value is found using <code>pdata</c
 as before, except only for the area to the right of the observed result. We know
 that <code>Tobs</code> will always be positive so no absolute values are required here.
 </p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="chapter3.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdata</span>(Tstar, Tobs, <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="chapter3.html#cb243-1" tabindex="-1"></a><span class="fu">pdata</span>(Tstar, Tobs, <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>Because there were no permutations that exceeded the observed value, the p-value should be reported as p-value &lt; 0.001 (less than 1 in 1,000) and not 0. This suggests very strong evidence
 against the null hypothesis of no difference in the true means. We would interpret
@@ -967,7 +972,8 @@ Squares</th>
 <td align="left">Variable A</td>
 <td align="left"><span class="math inline">\(J-1\)</span></td>
 <td align="left"><span class="math inline">\(\text{SS}_A\)</span></td>
-<td align="left"><span class="math inline">\(\text{MS}_A = \text{SS}_A/(J-1)\)</span></td>
+<td align="left"><span class="math inline">\(\text{MS}_A =
+\text{SS}_A/(J-1)\)</span></td>
 <td align="left"><span class="math inline">\(F = \text{MS}_A/\text{MS}_E\)</span></td>
 <td align="left">Right tail of <span class="math inline">\(F(J-1,N-J)\)</span></td>
 </tr>
@@ -975,7 +981,8 @@ Squares</th>
 <td align="left">Residuals</td>
 <td align="left"><span class="math inline">\(N-J\)</span></td>
 <td align="left"><span class="math inline">\(\text{SS}_E\)</span></td>
-<td align="left"><span class="math inline">\(\text{MS}_E = \text{SS}_E/(N-J)\)</span></td>
+<td align="left"><span class="math inline">\(\text{MS}_E =
+\text{SS}_E/(N-J)\)</span></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -994,7 +1001,7 @@ components. The output from R is similar although it does not provide the last r
 and sometimes switches the order of columns in different functions we will use. The R version of the table for the type
 of outfit effect (<code>Condition</code>) with <span class="math inline">\(J = 7\)</span> levels and <span class="math inline">\(N = 5,690\)</span> observations, repeated
 from above, is:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="chapter3.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm2)</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="chapter3.html#cb245-1" tabindex="-1"></a><span class="fu">anova</span>(lm2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: Distance
@@ -1011,7 +1018,7 @@ specified <span class="math inline">\(F\)</span>-distribution with the <code>df1
 numerator <em>df</em> and <code>df2</code> as the denominator <em>df</em> and <code>lower.tail = F</code> reflecting
 our desire for a right tailed area.
 </p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="chapter3.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="fl">6.51</span>, <span class="at">df1 =</span> <span class="dv">6</span>, <span class="at">df2 =</span> <span class="dv">5683</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="chapter3.html#cb247-1" tabindex="-1"></a><span class="fu">pf</span>(<span class="fl">6.51</span>, <span class="at">df1 =</span> <span class="dv">6</span>, <span class="at">df2 =</span> <span class="dv">5683</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 0.0000007353832</code></pre>
 <p>The result from the <span class="math inline">\(F\)</span>-distribution using this parametric procedure is similar to
 the p-value obtained using permutations with the test statistic of the
@@ -1026,24 +1033,24 @@ for the
 The only change in the code involves moving from extracting <span class="math inline">\(\text{SS}_A\)</span> to
 extracting the <span class="math inline">\(F\)</span>-ratio which is in the 4<sup>th</sup> column of the <code>anova</code>
 output:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="chapter3.html#cb249-1" aria-hidden="true" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd))[<span class="dv">1</span>,<span class="dv">4</span>]; Tobs</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="chapter3.html#cb249-1" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd))[<span class="dv">1</span>,<span class="dv">4</span>]; Tobs</span></code></pre></div>
 <pre><code>## [1] 6.508071</code></pre>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="chapter3.html#cb251-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb251-2"><a href="chapter3.html#cb251-2" aria-hidden="true" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
-<span id="cb251-3"><a href="chapter3.html#cb251-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
-<span id="cb251-4"><a href="chapter3.html#cb251-4" aria-hidden="true" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(Distance <span class="sc">~</span> <span class="fu">shuffle</span>(Condition), <span class="at">data =</span> dd))[<span class="dv">1</span>,<span class="dv">4</span>]</span>
-<span id="cb251-5"><a href="chapter3.html#cb251-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb251-6"><a href="chapter3.html#cb251-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-7"><a href="chapter3.html#cb251-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pdata</span>(Tstar, Tobs, <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="chapter3.html#cb251-1" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb251-2"><a href="chapter3.html#cb251-2" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
+<span id="cb251-3"><a href="chapter3.html#cb251-3" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
+<span id="cb251-4"><a href="chapter3.html#cb251-4" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(Distance <span class="sc">~</span> <span class="fu">shuffle</span>(Condition), <span class="at">data =</span> dd))[<span class="dv">1</span>,<span class="dv">4</span>]</span>
+<span id="cb251-5"><a href="chapter3.html#cb251-5" tabindex="-1"></a>}</span>
+<span id="cb251-6"><a href="chapter3.html#cb251-6" tabindex="-1"></a></span>
+<span id="cb251-7"><a href="chapter3.html#cb251-7" tabindex="-1"></a><span class="fu">pdata</span>(Tstar, Tobs, <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="chapter3.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
-<span id="cb253-2"><a href="chapter3.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb253-3"><a href="chapter3.html#cb253-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
-<span id="cb253-4"><a href="chapter3.html#cb253-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb253-5"><a href="chapter3.html#cb253-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
-<span id="cb253-6"><a href="chapter3.html#cb253-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb253-7"><a href="chapter3.html#cb253-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>, </span>
-<span id="cb253-8"><a href="chapter3.html#cb253-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="chapter3.html#cb253-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<span id="cb253-2"><a href="chapter3.html#cb253-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb253-3"><a href="chapter3.html#cb253-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
+<span id="cb253-4"><a href="chapter3.html#cb253-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb253-5"><a href="chapter3.html#cb253-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-6"><a href="chapter3.html#cb253-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb253-7"><a href="chapter3.html#cb253-7" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>, </span>
+<span id="cb253-8"><a href="chapter3.html#cb253-8" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-7"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-7-1.png" alt="Histogram and density curve of the permutation distribution of the F-statistic with bold, vertical line for the observed value of the test statistic of 6.51." width="75%" />
@@ -1111,8 +1118,8 @@ clearly assess potential violations of the assumptions.
 any linear model object that we have fit. To get all the plots together in four
 panels we need to add the <code>par(mfrow = c(2,2))</code> command to tell R to make a graph
 with 4 panels<a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a>.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="chapter3.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb254-2"><a href="chapter3.html#cb254-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm2, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="chapter3.html#cb254-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb254-2"><a href="chapter3.html#cb254-2" tabindex="-1"></a><span class="fu">plot</span>(lm2, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
 <p>There are two plots in Figure <a href="chapter3.html#fig:Figure3-9">3.9</a> with useful information for assessing the
 equal variance assumption. The “Residuals vs Fitted” panel in the top left panel displays the residuals <span class="math inline">\((e_{ij} = y_{ij}-\widehat{y}_{ij})\)</span> on the y-axis and the fitted values
 <span class="math inline">\((\widehat{y}_{ij})\)</span> on the x-axis.
@@ -1171,16 +1178,16 @@ histograms and/or density plots of the residuals and to see how that maps into
 this new display. We can obtain the residuals from the linear model using the
 <code>residuals</code> function on any linear model object. Figure <a href="chapter3.html#fig:Figure3-10">3.10</a> makes both a histogram and density curve of these residuals. It shows that they have a subtle right skew present (right half of the distribution is a little more spread out than the left, so the skew is to the right) once we accounted for the different means in the groups but there are no apparent outliers.</p>
 
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="chapter3.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb255-2"><a href="chapter3.html#cb255-2" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">eij =</span> <span class="fu">residuals</span>(lm2)) <span class="co">#Adds residuals to dd</span></span>
-<span id="cb255-3"><a href="chapter3.html#cb255-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb255-4"><a href="chapter3.html#cb255-4" aria-hidden="true" tabindex="-1"></a>dd <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> eij)) <span class="sc">+</span> </span>
-<span id="cb255-5"><a href="chapter3.html#cb255-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">25</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span></span>
-<span id="cb255-6"><a href="chapter3.html#cb255-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
-<span id="cb255-7"><a href="chapter3.html#cb255-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb255-8"><a href="chapter3.html#cb255-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>,</span>
-<span id="cb255-9"><a href="chapter3.html#cb255-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Residuals&quot;</span>,</span>
-<span id="cb255-10"><a href="chapter3.html#cb255-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Histogram of residuals&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="chapter3.html#cb255-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb255-2"><a href="chapter3.html#cb255-2" tabindex="-1"></a>dd <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">eij =</span> <span class="fu">residuals</span>(lm2)) <span class="co">#Adds residuals to dd</span></span>
+<span id="cb255-3"><a href="chapter3.html#cb255-3" tabindex="-1"></a></span>
+<span id="cb255-4"><a href="chapter3.html#cb255-4" tabindex="-1"></a>dd <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> eij)) <span class="sc">+</span> </span>
+<span id="cb255-5"><a href="chapter3.html#cb255-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">25</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span></span>
+<span id="cb255-6"><a href="chapter3.html#cb255-6" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
+<span id="cb255-7"><a href="chapter3.html#cb255-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb255-8"><a href="chapter3.html#cb255-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>,</span>
+<span id="cb255-9"><a href="chapter3.html#cb255-9" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Residuals&quot;</span>,</span>
+<span id="cb255-10"><a href="chapter3.html#cb255-10" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Histogram of residuals&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-10"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-10-1.png" alt="Histogram and density curve of the linear model raw residuals from the overtake data linear model." width="75%" />
 <p class="caption">
@@ -1203,18 +1210,18 @@ a normal distribution”. Be specific about the type of deviation
 you are detecting (right or left skew, heavy tails, multi-modal, etc.) and how clear or obvious that deviation is. And to do that, we need to practice interpreting some
 QQ-plots.</p>
 
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="chapter3.html#cb256-1" aria-hidden="true" tabindex="-1"></a>qq1 <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> eij)) <span class="sc">+</span></span>
-<span id="cb256-2"><a href="chapter3.html#cb256-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>() <span class="sc">+</span></span>
-<span id="cb256-3"><a href="chapter3.html#cb256-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
-<span id="cb256-4"><a href="chapter3.html#cb256-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb256-5"><a href="chapter3.html#cb256-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;QQ-Plot of residuals&quot;</span>)</span>
-<span id="cb256-6"><a href="chapter3.html#cb256-6" aria-hidden="true" tabindex="-1"></a>den1 <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> eij)) <span class="sc">+</span> </span>
-<span id="cb256-7"><a href="chapter3.html#cb256-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;darkcyan&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb256-8"><a href="chapter3.html#cb256-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Density plot of residuals&quot;</span>, </span>
-<span id="cb256-9"><a href="chapter3.html#cb256-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>, </span>
-<span id="cb256-10"><a href="chapter3.html#cb256-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="sc">+</span></span>
-<span id="cb256-11"><a href="chapter3.html#cb256-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb256-12"><a href="chapter3.html#cb256-12" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(qq1, den1, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="chapter3.html#cb256-1" tabindex="-1"></a>qq1 <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> eij)) <span class="sc">+</span></span>
+<span id="cb256-2"><a href="chapter3.html#cb256-2" tabindex="-1"></a>  <span class="fu">geom_qq</span>() <span class="sc">+</span></span>
+<span id="cb256-3"><a href="chapter3.html#cb256-3" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
+<span id="cb256-4"><a href="chapter3.html#cb256-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb256-5"><a href="chapter3.html#cb256-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;QQ-Plot of residuals&quot;</span>)</span>
+<span id="cb256-6"><a href="chapter3.html#cb256-6" tabindex="-1"></a>den1 <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> eij)) <span class="sc">+</span> </span>
+<span id="cb256-7"><a href="chapter3.html#cb256-7" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;darkcyan&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb256-8"><a href="chapter3.html#cb256-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Density plot of residuals&quot;</span>, </span>
+<span id="cb256-9"><a href="chapter3.html#cb256-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>, </span>
+<span id="cb256-10"><a href="chapter3.html#cb256-10" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="sc">+</span></span>
+<span id="cb256-11"><a href="chapter3.html#cb256-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb256-12"><a href="chapter3.html#cb256-12" tabindex="-1"></a><span class="fu">grid.arrange</span>(qq1, den1, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-11"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-11-1.png" alt="QQ-plot and density plot of residuals from the overtake data linear model." width="75%" />
 <p class="caption">
@@ -1227,18 +1234,18 @@ We know from looking at the histogram that this is a
 (very) slightly right skewed distribution. Either version of the QQ-plots we will work with place the observed residuals on the y-axis and the expected results for a normal distribution on the x-axis. In some plots, the <strong><em>standardized</em></strong><a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a> <strong><em>residuals</em></strong> are used (Figure <a href="chapter3.html#fig:Figure3-9">3.9</a>) and in others the raw residuals are used (Figure <a href="chapter3.html#fig:Figure3-11">3.11</a>) to compare the residual distribution to a normal (Gaussian) one. Both the upper and lower tails (upper tail in the upper right and the lower tail in the lower right of the plot) show some separation from the 1-1 line. The separation in the upper tail is more clear and these positive residuals are higher than the line “predicts” if the distribution had been normal. Being higher than the line in the right tail means being bigger than expected and so more spread out in that direction than a normal distribution should be. The left tail for the negative residuals also shows some separation from the line to have more extreme (here more negative) than expected, suggesting a little extra spread in the lower tail than suggested by a normal distribution. If the two sides had been similarly far from the 1-1 line, then we would have a symmetric and <strong><em>heavy-tailed</em></strong> distribution. Here, the slight difference in the two sides suggests that the right tail is more spread out than the left and we should be concerned about a minor violation of the normality assumption. If the distribution had followed the
 normal distribution here, there would be no clear pattern of deviation from the 1-1 line (not all points need to be on the line!) and the standardized residuals would not have quite so many extreme results (over 5 in both tails). Note that the diagnostic plots will label a few points (3 by default) that might be of interest for further exploration. These identifications are not to be used for any other purpose – this is not the software identifying outliers or other problematic points – that is your responsibility to assess using these plots. For example, the point “2709” is identified in Figure <a href="chapter3.html#fig:Figure3-9">3.9</a> (the 2709<sup>th</sup>
 observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is a great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a <em>novice</em> vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the <code>fitted</code> function on the estimated <code>lm</code> – which here is just the sample mean of the group of the observations (<em>novice</em>) of 116.94 cm. The residual is stored in the 2,709<sup>th</sup> value of <code>eij</code> or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the <code>Distance</code> variable), it is not too surprising that it ends up as the largest positive residual. </p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="chapter3.html#cb257-1" aria-hidden="true" tabindex="-1"></a>dd[<span class="dv">2709</span>, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="chapter3.html#cb257-1" tabindex="-1"></a>dd[<span class="dv">2709</span>, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)]</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##   Condition Distance
 ##   &lt;fct&gt;        &lt;dbl&gt;
 ## 1 novice         274</code></pre>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="chapter3.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fitted</span>(lm2)[<span class="dv">2709</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="chapter3.html#cb259-1" tabindex="-1"></a><span class="fu">fitted</span>(lm2)[<span class="dv">2709</span>]</span></code></pre></div>
 <pre><code>##     2709 
 ## 116.9405</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="chapter3.html#cb261-1" aria-hidden="true" tabindex="-1"></a>dd<span class="sc">$</span>eij[<span class="dv">2709</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="chapter3.html#cb261-1" tabindex="-1"></a>dd<span class="sc">$</span>eij[<span class="dv">2709</span>]</span></code></pre></div>
 <pre><code>##     2709 
 ## 157.0595</code></pre>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="chapter3.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="dv">274</span> <span class="sc">-</span> <span class="fl">116.9405</span></span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="chapter3.html#cb263-1" tabindex="-1"></a><span class="dv">274</span> <span class="sc">-</span> <span class="fl">116.9405</span></span></code></pre></div>
 <pre><code>## [1] 157.0595</code></pre>
 <p>Generally, when both tails deviate on the same side of the line (forming a
 sort of quadratic curve, especially in more extreme cases), that indicates
@@ -1315,21 +1322,21 @@ observations on two variables that is used in Chapter <a href="chapter5.html#cha
 a single variable, we use <code>tally(~ x, data = ...)</code>:
 </p>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="chapter3.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
-<span id="cb265-2"><a href="chapter3.html#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span> Condition, <span class="at">data =</span> dd)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="chapter3.html#cb265-1" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb265-2"><a href="chapter3.html#cb265-2" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span> Condition, <span class="at">data =</span> dd)</span></code></pre></div>
 <pre><code>## Condition
 ##  casual commute   hiviz  novice  police  polite   racer 
 ##     779     857     737     807     790     868     852</code></pre>
 <p>So the sample sizes do vary among the groups and the design is not
 balanced, but all the sample sizes are between 737 and 868 so it is (in percentage terms at least) not too far from balanced. It is better then having, say, 50 in one group and 1,200 in another. This
 tells us that the <span class="math inline">\(F\)</span>-test should have some resistance to violations of
-assumptions. We also get more resistance to violation of assumptions as our sample sizes increase. With such as large data set here and only minor concerns with the normality assumption, the inferences generated for the means should be trustworthy and we will get similar results from parametric and nonparametric procedures. If we had only 15 observations per group and a slightly skewed residual distribution, then we might want to appeal to the permutation approach to have more trustworthy results, even if the design were balanced.</p>
+assumptions. We also get more resistance to violation of assumptions as our sample sizes increase. With such a large data set here and only minor concerns with the normality assumption, the inferences generated for the means should be trustworthy and we will get similar results from parametric and nonparametric procedures. If we had only 15 observations per group and a slightly skewed residual distribution, then we might want to appeal to the permutation approach to have more trustworthy results, even if the design were balanced.</p>
 </div>
 <div id="section3-5" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example<a href="chapter3.html#section3-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A second example of the One-way ANOVA methods involves a study of length of
 odontoblasts (cells that are responsible for tooth growth) in 60 Guinea Pigs
-(measured in microns) from <span class="citation">Crampton (<a href="#ref-Crampton1947" role="doc-biblioref">1947</a>)</span> and is available in base R using <code>data(ToothGrowth)</code>. <span class="math inline">\(N = 60\)</span> Guinea Pigs were obtained
+(measured in microns) from <span class="citation">Crampton (<a href="#ref-Crampton1947">1947</a>)</span> and is available in base R using <code>data(ToothGrowth)</code>. <span class="math inline">\(N = 60\)</span> Guinea Pigs were obtained
 from a local breeder and each received one of three dosages (0.5, 1, or
 2 mg/day) of Vitamin C via one of two delivery methods, Orange Juice (<em>OJ</em>) or
 ascorbic acid (the stuff in vitamin C capsules, called <span class="math inline">\(\text{VC}\)</span> below) as the source
@@ -1347,25 +1354,25 @@ we called <code>Treat</code> using the <code>interaction</code> function that pr
 ANOVA to compare the combinations of treatments. To get a sense of the pattern of
 observations in the data set, the counts in <code>supp</code> (supplement type) and
 <code>dose</code> are provided and then the counts in the new categorical explanatory variable, <code>Treat</code>.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="chapter3.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ToothGrowth) <span class="co">#Available in Base R</span></span>
-<span id="cb267-2"><a href="chapter3.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb267-3"><a href="chapter3.html#cb267-3" aria-hidden="true" tabindex="-1"></a>ToothGrowth <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ToothGrowth) <span class="co">#Convert data.frame to tibble</span></span>
-<span id="cb267-4"><a href="chapter3.html#cb267-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="chapter3.html#cb267-1" tabindex="-1"></a><span class="fu">data</span>(ToothGrowth) <span class="co">#Available in Base R</span></span>
+<span id="cb267-2"><a href="chapter3.html#cb267-2" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb267-3"><a href="chapter3.html#cb267-3" tabindex="-1"></a>ToothGrowth <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ToothGrowth) <span class="co">#Convert data.frame to tibble</span></span>
+<span id="cb267-4"><a href="chapter3.html#cb267-4" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span></code></pre></div>
 <!-- \newpage -->
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="chapter3.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span> supp, <span class="at">data =</span> ToothGrowth) <span class="co">#Supplement Type (VC or OJ)</span></span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="chapter3.html#cb268-1" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span> supp, <span class="at">data =</span> ToothGrowth) <span class="co">#Supplement Type (VC or OJ)</span></span></code></pre></div>
 <pre><code>## supp
 ## OJ VC 
 ## 30 30</code></pre>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="chapter3.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span> dose, <span class="at">data =</span> ToothGrowth) <span class="co">#Dosage level</span></span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="chapter3.html#cb270-1" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span> dose, <span class="at">data =</span> ToothGrowth) <span class="co">#Dosage level</span></span></code></pre></div>
 <pre><code>## dose
 ## 0.5   1   2 
 ##  20  20  20</code></pre>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="chapter3.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates a new variable Treat with 6 levels using mutate and interaction:</span></span>
-<span id="cb272-2"><a href="chapter3.html#cb272-2" aria-hidden="true" tabindex="-1"></a>ToothGrowth <span class="ot">&lt;-</span> ToothGrowth <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Treat =</span> <span class="fu">interaction</span>(supp, dose))</span>
-<span id="cb272-3"><a href="chapter3.html#cb272-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb272-4"><a href="chapter3.html#cb272-4" aria-hidden="true" tabindex="-1"></a><span class="co"># New variable that combines supplement type and dosage</span></span>
-<span id="cb272-5"><a href="chapter3.html#cb272-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth) </span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="chapter3.html#cb272-1" tabindex="-1"></a><span class="co"># Creates a new variable Treat with 6 levels using mutate and interaction:</span></span>
+<span id="cb272-2"><a href="chapter3.html#cb272-2" tabindex="-1"></a>ToothGrowth <span class="ot">&lt;-</span> ToothGrowth <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Treat =</span> <span class="fu">interaction</span>(supp, dose))</span>
+<span id="cb272-3"><a href="chapter3.html#cb272-3" tabindex="-1"></a></span>
+<span id="cb272-4"><a href="chapter3.html#cb272-4" tabindex="-1"></a><span class="co"># New variable that combines supplement type and dosage</span></span>
+<span id="cb272-5"><a href="chapter3.html#cb272-5" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth) </span></code></pre></div>
 <pre><code>## Treat
 ## OJ.0.5 VC.0.5   OJ.1   VC.1   OJ.2   VC.2 
 ##     10     10     10     10     10     10</code></pre>
@@ -1377,7 +1384,7 @@ were measured in each treatment combination.</p>
 <p>With the variable <code>Treat</code> prepared, the first task is to visualize the results
 using pirate-plots<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a> (Figure <a href="chapter3.html#fig:Figure3-14">3.14</a>) and generate some summary statistics for
 each group using <code>favstats</code>.</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="chapter3.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="chapter3.html#cb274-1" tabindex="-1"></a><span class="fu">favstats</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth)</span></code></pre></div>
 <pre><code>##    Treat  min     Q1 median     Q3  max  mean       sd  n missing
 ## 1 OJ.0.5  8.2  9.700  12.25 16.175 21.5 13.23 4.459709 10       0
 ## 2 VC.0.5  4.2  5.950   7.15 10.900 11.5  7.98 2.746634 10       0
@@ -1386,8 +1393,8 @@ each group using <code>favstats</code>.</p>
 ## 5   OJ.2 22.4 24.575  25.95 27.075 30.9 26.06 2.655058 10       0
 ## 6   VC.2 18.5 23.375  25.95 28.800 33.9 26.14 4.797731 10       0</code></pre>
 
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="chapter3.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pirateplot</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth, <span class="at">inf.method =</span> <span class="st">&quot;ci&quot;</span>, <span class="at">inf.disp =</span> <span class="st">&quot;line&quot;</span>,</span>
-<span id="cb276-2"><a href="chapter3.html#cb276-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">&quot;Odontoblast Growth in microns&quot;</span>, <span class="at">point.o =</span> .<span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="chapter3.html#cb276-1" tabindex="-1"></a><span class="fu">pirateplot</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth, <span class="at">inf.method =</span> <span class="st">&quot;ci&quot;</span>, <span class="at">inf.disp =</span> <span class="st">&quot;line&quot;</span>,</span>
+<span id="cb276-2"><a href="chapter3.html#cb276-2" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">&quot;Odontoblast Growth in microns&quot;</span>, <span class="at">point.o =</span> .<span class="dv">7</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-14"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-14-1.png" alt="Pirate-plot of odontoblast growth responses for the six treatment level combinations." width="75%" />
 <p class="caption">
@@ -1452,9 +1459,9 @@ variability among the groups in the pirate-plots but the sample
 size was small in each group. We need to fit the linear model to get
 the other diagnostic plots to make an overall assessment.</li>
 </ul>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="chapter3.html#cb277-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth)</span>
-<span id="cb277-2"><a href="chapter3.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb277-3"><a href="chapter3.html#cb277-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m2, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="chapter3.html#cb277-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth)</span>
+<span id="cb277-2"><a href="chapter3.html#cb277-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb277-3"><a href="chapter3.html#cb277-3" tabindex="-1"></a><span class="fu">plot</span>(m2, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-15"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-15-1.png" alt="Diagnostic plots for the odontoblast growth model." width="75%" />
 <p class="caption">
@@ -1485,8 +1492,8 @@ with the normality assumption based on the upper right panel of Figure <a href="
 <ul>
 <li>The ANOVA table for our model follows, providing an <span class="math inline">\(F\)</span>-statistic of 41.557:</li>
 </ul>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="chapter3.html#cb278-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth)</span>
-<span id="cb278-2"><a href="chapter3.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="chapter3.html#cb278-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth)</span>
+<span id="cb278-2"><a href="chapter3.html#cb278-2" tabindex="-1"></a><span class="fu">anova</span>(m2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: len
@@ -1520,24 +1527,24 @@ to the null hypothesis. As suggested previously, the parametric and
 nonparametric approaches should be similar here and they were.</p></li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="chapter3.html#cb280-1" aria-hidden="true" tabindex="-1"></a>    Tobs <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth))[<span class="dv">1</span>,<span class="dv">4</span>]; Tobs</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="chapter3.html#cb280-1" tabindex="-1"></a>    Tobs <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth))[<span class="dv">1</span>,<span class="dv">4</span>]; Tobs</span></code></pre></div>
 <pre><code>## [1] 41.55718</code></pre>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="chapter3.html#cb282-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb282-2"><a href="chapter3.html#cb282-2" aria-hidden="true" tabindex="-1"></a>    B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb282-3"><a href="chapter3.html#cb282-3" aria-hidden="true" tabindex="-1"></a>    Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
-<span id="cb282-4"><a href="chapter3.html#cb282-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
-<span id="cb282-5"><a href="chapter3.html#cb282-5" aria-hidden="true" tabindex="-1"></a>      Tstar[b] <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(len <span class="sc">~</span> <span class="fu">shuffle</span>(Treat), <span class="at">data =</span> ToothGrowth))[<span class="dv">1</span>,<span class="dv">4</span>]</span>
-<span id="cb282-6"><a href="chapter3.html#cb282-6" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb282-7"><a href="chapter3.html#cb282-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pdata</span>(Tstar, Tobs, <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="chapter3.html#cb282-1" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb282-2"><a href="chapter3.html#cb282-2" tabindex="-1"></a>    B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb282-3"><a href="chapter3.html#cb282-3" tabindex="-1"></a>    Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
+<span id="cb282-4"><a href="chapter3.html#cb282-4" tabindex="-1"></a>    <span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
+<span id="cb282-5"><a href="chapter3.html#cb282-5" tabindex="-1"></a>      Tstar[b] <span class="ot">&lt;-</span> <span class="fu">anova</span>(<span class="fu">lm</span>(len <span class="sc">~</span> <span class="fu">shuffle</span>(Treat), <span class="at">data =</span> ToothGrowth))[<span class="dv">1</span>,<span class="dv">4</span>]</span>
+<span id="cb282-6"><a href="chapter3.html#cb282-6" tabindex="-1"></a>    }</span>
+<span id="cb282-7"><a href="chapter3.html#cb282-7" tabindex="-1"></a>    <span class="fu">pdata</span>(Tstar, Tobs, <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="chapter3.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
-<span id="cb284-2"><a href="chapter3.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">25</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb284-3"><a href="chapter3.html#cb284-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
-<span id="cb284-4"><a href="chapter3.html#cb284-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb284-5"><a href="chapter3.html#cb284-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
-<span id="cb284-6"><a href="chapter3.html#cb284-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb284-7"><a href="chapter3.html#cb284-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">25</span>, </span>
-<span id="cb284-8"><a href="chapter3.html#cb284-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="chapter3.html#cb284-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<span id="cb284-2"><a href="chapter3.html#cb284-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">25</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb284-3"><a href="chapter3.html#cb284-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
+<span id="cb284-4"><a href="chapter3.html#cb284-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb284-5"><a href="chapter3.html#cb284-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb284-6"><a href="chapter3.html#cb284-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb284-7"><a href="chapter3.html#cb284-7" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">25</span>, </span>
+<span id="cb284-8"><a href="chapter3.html#cb284-8" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-16"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-16-1.png" alt="Histogram and density curve of permutation distribution for $F$-statistic for odontoblast growth data. Observed test statistic in bold, vertical line at 41.56." width="75%" />
 <p class="caption">
@@ -1592,7 +1599,7 @@ more natural to discuss the true means since we can’t extend the results to th
 interpretations. The default model parameterization uses reference-coding.
 Running the model <code>summary</code> function on <code>m2</code> provides the estimated
 coefficients:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="chapter3.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="chapter3.html#cb285-1" tabindex="-1"></a><span class="fu">summary</span>(m2)<span class="sc">$</span>coefficients</span></code></pre></div>
 <!-- \newpage -->
 <pre><code>##             Estimate Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept)    13.23   1.148353 11.520847 3.602548e-16
@@ -1608,7 +1615,7 @@ used by considering which level is not displayed in the output. The
 <code>levels</code> function can list the groups in a categorical variable and their
 coding in the data set. The first level is usually the baseline category but
 you should check this in the model summary as well.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="chapter3.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(ToothGrowth<span class="sc">$</span>Treat)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="chapter3.html#cb287-1" tabindex="-1"></a><span class="fu">levels</span>(ToothGrowth<span class="sc">$</span>Treat)</span></code></pre></div>
 <pre><code>## [1] &quot;OJ.0.5&quot; &quot;VC.0.5&quot; &quot;OJ.1&quot;   &quot;VC.1&quot;   &quot;OJ.2&quot;   &quot;VC.2&quot;</code></pre>
 <p>There is a <code>VC.0.5</code> in the second row of the model summary, but there is no row for
 <code>0J.0.5</code> and so this must be the baseline category. That means that the fitted value
@@ -1633,8 +1640,8 @@ example, we can find our estimate of 7.98 microns for the VC0.5 group in the
 output and Figure <a href="chapter3.html#fig:Figure3-17">3.17</a>. Also note that Figure
 <a href="chapter3.html#fig:Figure3-17">3.17</a> is the same whether you plot the results from
 <code>m2</code> or <code>m3</code>.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="chapter3.html#cb289-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(len <span class="sc">~</span> Treat <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> ToothGrowth)</span>
-<span id="cb289-2"><a href="chapter3.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="chapter3.html#cb289-1" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(len <span class="sc">~</span> Treat <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> ToothGrowth)</span>
+<span id="cb289-2"><a href="chapter3.html#cb289-2" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = len ~ Treat - 1, data = ToothGrowth)
@@ -1662,10 +1669,12 @@ output and Figure <a href="chapter3.html#fig:Figure3-17">3.17</a>. Also note tha
 Figure 3.17: Effect plot of the One-Way ANOVA model for the odontoblast growth data, with rotated x-axis text for enhanced readability of the levels of the predictor variable.
 </p>
 </div>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="chapter3.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m2), <span class="at">rotx =</span> <span class="dv">45</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="chapter3.html#cb291-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m2), <span class="at">rotx =</span> <span class="dv">45</span>)</span></code></pre></div>
+<!-- \sectionmark{Multiple (pair-wise) comparisons using Tukey's HSD and CLD} -->
 </div>
 <div id="section3-6" class="section level2 hasAnchor" number="3.6">
 <h2><span class="header-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display<a href="chapter3.html#section3-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<!-- \sectionmark{Multiple (pair-wise) comparisons using Tukey's HSD and CLD} -->
 <p>With evidence against all the true means being equal and concluding that not all are equal, many researchers
 want to explore which groups show evidence of differing from one another. This
 provides information on the source of the overall difference that was
@@ -1694,15 +1703,15 @@ tests is based on the number of pairs. We can calculate the number of tests usin
 size 2 that we can make out of <span class="math inline">\(J\)</span> individual treatment levels. We don’t need to
 explore the combinatorics formula for this, as the <code>choose</code> function in R can give us the
 answers:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="chapter3.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">3</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="chapter3.html#cb292-1" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">3</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="chapter3.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">4</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="chapter3.html#cb294-1" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">4</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="chapter3.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">5</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="chapter3.html#cb296-1" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">5</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="chapter3.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">6</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="chapter3.html#cb298-1" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">6</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="chapter3.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">7</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="chapter3.html#cb300-1" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">7</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 21</code></pre>
 <p>So if you have three groups (the smallest number where we have to worry about more than one pair), there are three unique pairs to
 compare. For six groups, like in the Guinea Pig study, we have to consider 15 tests to compare all the unique pairs of groups and with seven groups, there are 21 tests. Once there are more than two groups to compare, it seems like we
@@ -1737,7 +1746,7 @@ regular <span class="math inline">\(t^*\)</span> from our two-sample <span class
 Chapter <a href="chapter2.html#chapter2">2</a>. The formula otherwise is very similar to the one used in Chapter <a href="chapter2.html#chapter2">2</a> with the SE for the difference in the means based on a measure of residual variance (here <span class="math inline">\(MS_E\)</span>) times <span class="math inline">\(\left(\frac{1}{n_j}+\frac{1}{n_{j&#39;}}\right)\)</span> which weights the results based on the relative sample sizes in the groups.</p>
 <p>We will use the <code>confint</code>, <code>cld</code>, and <code>plot</code> functions
 applied to output from the <code>glht</code> function (all from the <code>multcomp</code> package;
-<span class="citation">Hothorn, Bretz, and Westfall (<a href="#ref-Hothorn2008" role="doc-biblioref">2008a</a>)</span>, <span class="citation">(<a href="#ref-R-multcomp" role="doc-biblioref">Hothorn, Bretz, and Westfall 2022</a>)</span>) to get the required comparisons from our
+<span class="citation">Hothorn, Bretz, and Westfall (<a href="#ref-Hothorn2008">2008</a>)</span>, <span class="citation">(<a href="#ref-R-multcomp">Hothorn, Bretz, and Westfall 2024</a>)</span>) to get the required comparisons from our
 ANOVA model.
 Unfortunately, its code format is a little complicated – but there are
 just two places to modify the code: include the model name and after <code>mcp</code>
@@ -1754,10 +1763,10 @@ can help to compactly write up these complicated results. The following code pro
 and graphical<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a> results of applying Tukey’s HSD
 to the linear model for the Guinea Pig data:</p>
 
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="chapter3.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
-<span id="cb302-2"><a href="chapter3.html#cb302-2" aria-hidden="true" tabindex="-1"></a>Tm2 <span class="ot">&lt;-</span> <span class="fu">glht</span>(m2, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Treat =</span> <span class="st">&quot;Tukey&quot;</span>))</span>
-<span id="cb302-3"><a href="chapter3.html#cb302-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb302-4"><a href="chapter3.html#cb302-4" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(Tm2)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="chapter3.html#cb302-1" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb302-2"><a href="chapter3.html#cb302-2" tabindex="-1"></a>Tm2 <span class="ot">&lt;-</span> <span class="fu">glht</span>(m2, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Treat =</span> <span class="st">&quot;Tukey&quot;</span>))</span>
+<span id="cb302-3"><a href="chapter3.html#cb302-3" tabindex="-1"></a></span>
+<span id="cb302-4"><a href="chapter3.html#cb302-4" tabindex="-1"></a><span class="fu">confint</span>(Tm2)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Confidence Intervals
 ## 
@@ -1787,8 +1796,8 @@ to the linear model for the Guinea Pig data:</p>
 ## OJ.2 - VC.1 == 0       9.2900   4.4910  14.0890
 ## VC.2 - VC.1 == 0       9.3700   4.5710  14.1690
 ## VC.2 - OJ.2 == 0       0.0800  -4.7190   4.8790</code></pre>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="chapter3.html#cb304-1" aria-hidden="true" tabindex="-1"></a>old.par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mai =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co">#Makes room on the plot for the group names</span></span>
-<span id="cb304-2"><a href="chapter3.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Tm2)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="chapter3.html#cb304-1" tabindex="-1"></a>old.par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mai =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co">#Makes room on the plot for the group names</span></span>
+<span id="cb304-2"><a href="chapter3.html#cb304-2" tabindex="-1"></a><span class="fu">plot</span>(Tm2)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-18"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-18-1.png" alt="Graphical display of pair-wise comparisons from Tukey’s HSD for the Guinea Pig data. Any confidence intervals that do not contain 0 provide strong evidence against the null hypothesis of no difference in the true means for that pair of groups." width="75%" />
 <p class="caption">
@@ -1805,7 +1814,7 @@ there is strong evidence against the null hypothesis of no difference in this pa
 dosage level. We can go further and say that we are 95% confident that the difference
 in the true mean tooth growth between VC.0.5 and OJ.0.5 (VC.0.5-OJ.0.5) is between
 -10.05 and -0.45 microns, after adjusting for comparing all the pairs of groups. The center of this CI is -5.25 which is <span class="math inline">\(\widehat{\tau}_2\)</span> and the estimate difference between VC.0.5 and the baseline category of OJ.0.5. That means we can get an un-adjusted 95% confidence interval from the <code>confint</code> function to compare to this adjusted CI. The interval that does not account for all the comparisons goes from -8.51 to -1.99 microns (second row out <code>confint</code> output), showing the increased width needed in Tukey’s interval to control the family-wise error rate when many pairs are being compared. With 14 other intervals, we obviously can’t give them all this much attention…</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="chapter3.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="chapter3.html#cb305-1" tabindex="-1"></a><span class="fu">confint</span>(m2)</span></code></pre></div>
 <pre><code>##                  2.5 %    97.5 %
 ## (Intercept) 10.9276907 15.532309
 ## TreatVC.0.5 -8.5059571 -1.994043
@@ -1830,14 +1839,14 @@ different groups and the story is not as clear as it is in this case. An
 example of this sort of overlap is seen in the next section.</p>
 <p>There is a method that many researchers use to more efficiently generate and
 report these sorts of results that is called a <strong><em>compact letter display</em></strong>
-(CLD, <span class="citation">Piepho (<a href="#ref-Piepho2004" role="doc-biblioref">2004</a>)</span>)<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>. The <code>cld</code> function can be applied to the results from
+(CLD, <span class="citation">Piepho (<a href="#ref-Piepho2004">2004</a>)</span>)<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>. The <code>cld</code> function can be applied to the results from
 <code>glht</code> to generate the CLD that we can use to provide a “simple” summary of
 the sets of groups. In this discussion, we define a <strong>set as a union of different
 groups that can contain one or more members</strong> and the member of these groups are
 the different treatment levels.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="chapter3.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(Tm2)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="chapter3.html#cb307-1" tabindex="-1"></a><span class="fu">cld</span>(Tm2)</span></code></pre></div>
 <pre><code>## OJ.0.5 VC.0.5   OJ.1   VC.1   OJ.2   VC.2 
-##    &quot;b&quot;    &quot;a&quot;    &quot;c&quot;    &quot;b&quot;    &quot;c&quot;    &quot;c&quot;</code></pre>
+##    &quot;a&quot;    &quot;b&quot;    &quot;c&quot;    &quot;a&quot;    &quot;c&quot;    &quot;c&quot;</code></pre>
 <!-- \newpage -->
 <p>Groups with the same letter are not detectably different (are in the same set)
 and groups that are detectably different get different letters (are in
@@ -1863,14 +1872,14 @@ ease of getting to the story of the Tukey’s HSD results from a plot like this
 explains why it is common to report results using these methods instead of
 reporting 15 confidence intervals for all the pair-wise differences, either in a table or the plot.</p>
 
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="chapter3.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Options theme = 2,inf.f.o = 0,point.o = .5 added to focus on CLD</span></span>
-<span id="cb309-2"><a href="chapter3.html#cb309-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pirateplot</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth, <span class="at">ylab =</span> <span class="st">&quot;Growth (microns)&quot;</span>, <span class="at">inf.method =</span> <span class="st">&quot;ci&quot;</span>,</span>
-<span id="cb309-3"><a href="chapter3.html#cb309-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">inf.disp =</span> <span class="st">&quot;line&quot;</span>, <span class="at">theme =</span> <span class="dv">2</span>, <span class="at">inf.f.o =</span> <span class="fl">0.3</span>, <span class="at">point.o =</span> .<span class="dv">5</span>) </span>
-<span id="cb309-4"><a href="chapter3.html#cb309-4" aria-hidden="true" tabindex="-1"></a><span class="co"># CLD added to second bean (x = 2) at height of y = 10</span></span>
-<span id="cb309-5"><a href="chapter3.html#cb309-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">10</span>,<span class="st">&quot;a&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb309-6"><a href="chapter3.html#cb309-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Adds &quot;b&quot; to first and fourth bean</span></span>
-<span id="cb309-7"><a href="chapter3.html#cb309-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">18</span>), <span class="st">&quot;b&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb309-8"><a href="chapter3.html#cb309-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">28</span>,<span class="dv">28</span>), <span class="st">&quot;c&quot;</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>) <span class="co">#Add &quot;c&quot; to three beans</span></span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="chapter3.html#cb309-1" tabindex="-1"></a><span class="co"># Options theme = 2,inf.f.o = 0,point.o = .5 added to focus on CLD</span></span>
+<span id="cb309-2"><a href="chapter3.html#cb309-2" tabindex="-1"></a><span class="fu">pirateplot</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth, <span class="at">ylab =</span> <span class="st">&quot;Growth (microns)&quot;</span>, <span class="at">inf.method =</span> <span class="st">&quot;ci&quot;</span>,</span>
+<span id="cb309-3"><a href="chapter3.html#cb309-3" tabindex="-1"></a>           <span class="at">inf.disp =</span> <span class="st">&quot;line&quot;</span>, <span class="at">theme =</span> <span class="dv">2</span>, <span class="at">inf.f.o =</span> <span class="fl">0.3</span>, <span class="at">point.o =</span> .<span class="dv">5</span>) </span>
+<span id="cb309-4"><a href="chapter3.html#cb309-4" tabindex="-1"></a><span class="co"># CLD added to second bean (x = 2) at height of y = 10</span></span>
+<span id="cb309-5"><a href="chapter3.html#cb309-5" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">10</span>,<span class="st">&quot;a&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb309-6"><a href="chapter3.html#cb309-6" tabindex="-1"></a><span class="co"># Adds &quot;b&quot; to first and fourth bean</span></span>
+<span id="cb309-7"><a href="chapter3.html#cb309-7" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">18</span>), <span class="st">&quot;b&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb309-8"><a href="chapter3.html#cb309-8" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">28</span>,<span class="dv">28</span>), <span class="st">&quot;c&quot;</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>) <span class="co">#Add &quot;c&quot; to three beans</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-19"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-19-1.png" alt="Pirate-plot of odontoblast growth by group with Tukey’s HSD compact letter display. Note some extra pirate-plot options are used to enhance focus on the CLD results." width="75%" />
 <p class="caption">
@@ -1893,7 +1902,7 @@ constant variance will push the method in the other direction, potentially
 making the technique dangerously liberal. Nonparametric approaches to this
 problem are also possible, but will not be considered here.</p>
 <p>Tukey’s HSD results can also be displayed as p-values for each pair-wise test result. This is a little less common but can allow you to directly assess the strength of evidence for a particular pair instead of using the detected/not result that the family-wise CIs provide. But the family-wise CIs are useful for exploring the size of the differences in the pairs and we need to simplify things to detect/not in these situations because there are so many tests. But if you want to see the Tukey HSD p-values, you can use</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="chapter3.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Tm2)</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="chapter3.html#cb310-1" tabindex="-1"></a><span class="fu">summary</span>(Tm2)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -1935,17 +1944,17 @@ HSD when there is not much evidence against the overall null hypothesis. If you 
 led to a conclusion that there is some difference in the true means across the
 seven groups with a p-value &lt; 0.001 giving very strong evidence against the null hypothesis of them all being equal. The original authors followed up their overall <span class="math inline">\(F\)</span>-test with comparing every pair of outfits using one of the other methods for multiple testing adjustments available in the <code>p.adjust</code> function and detected differences between the <em>police</em> outfit and all others except for <em>hiviz</em> and no other pairs had p-values less than 0.05 using their approach. We will employ the Tukey’s HSD approach to address the same exploration and get basically the same results as they obtained, as well as estimated differences in the means in all the pairs of groups.</p>
 <p>The code is similar<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a> to the previous example focusing on the <code>Condition</code> variable for the 21 pairs to compare. To make these results easier to read and generally to make all the results with seven groups easier to understand, we can sort the levels of the explanatory based on the values in the response, using something like the means or medians of the responses for the groups. This does not change the analyses (the <span class="math inline">\(F\)</span>-statistic and all pair-wise comparisons are the same), it just sorts them to be easier to discuss. Note that it might change the baseline group so would impact the reference-coded model even though the fitted values are the same. Specifically, we can use the <code>reorder</code> function based on the mean using something like <code>reorder(FACTORVARIABLE, RESPONSEVARIABLE, FUN = mean)</code>, with our pipe and <code>mutate</code> functions used to modify the <code>Condition</code> variable. I like to put this “reordered” factor into a new variable so I can always go back to the other version if I want it but you could also re-write the original version with this modification – this only impacts the underlying order of the factor levels, not the entries for the observations themselves. The code here creates <code>Condition2</code> and checks the levels for it and the original <code>Condition</code> variable, which shows the change in the order of the levels of the two factor variables:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="chapter3.html#cb312-1" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Condition2 =</span> <span class="fu">reorder</span>(Condition, Distance, <span class="at">FUN =</span> mean))</span>
-<span id="cb312-2"><a href="chapter3.html#cb312-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb312-3"><a href="chapter3.html#cb312-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(dd<span class="sc">$</span>Condition)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="chapter3.html#cb312-1" tabindex="-1"></a>dd <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Condition2 =</span> <span class="fu">reorder</span>(Condition, Distance, <span class="at">FUN =</span> mean))</span>
+<span id="cb312-2"><a href="chapter3.html#cb312-2" tabindex="-1"></a></span>
+<span id="cb312-3"><a href="chapter3.html#cb312-3" tabindex="-1"></a><span class="fu">levels</span>(dd<span class="sc">$</span>Condition)</span></code></pre></div>
 <pre><code>## [1] &quot;casual&quot;  &quot;commute&quot; &quot;hiviz&quot;   &quot;novice&quot;  &quot;police&quot;  &quot;polite&quot;  &quot;racer&quot;</code></pre>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="chapter3.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(dd<span class="sc">$</span>Condition2)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="chapter3.html#cb314-1" tabindex="-1"></a><span class="fu">levels</span>(dd<span class="sc">$</span>Condition2)</span></code></pre></div>
 <pre><code>## [1] &quot;polite&quot;  &quot;commute&quot; &quot;racer&quot;   &quot;novice&quot;  &quot;casual&quot;  &quot;hiviz&quot;   &quot;police&quot;</code></pre>
 <p>And to verify that this worked, we can compare the means based on <code>Condition</code> and <code>Condition2</code>, and now it is even more clear which groups have the smallest and largest mean passing distances:</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="chapter3.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="chapter3.html#cb316-1" tabindex="-1"></a><span class="fu">mean</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> dd)</span></code></pre></div>
 <pre><code>##   casual  commute    hiviz   novice   police   polite    racer 
 ## 117.6110 114.6079 118.4383 116.9405 122.1215 114.0518 116.7559</code></pre>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="chapter3.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Distance <span class="sc">~</span> Condition2, <span class="at">data =</span> dd)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="chapter3.html#cb318-1" tabindex="-1"></a><span class="fu">mean</span>(Distance <span class="sc">~</span> Condition2, <span class="at">data =</span> dd)</span></code></pre></div>
 <pre><code>##   polite  commute    racer   novice   casual    hiviz   police 
 ## 114.0518 114.6079 116.7559 116.9405 117.6110 118.4383 122.1215</code></pre>
 <p>In Figure <a href="chapter3.html#fig:Figure3-20">3.20</a>, the 95% family-wise confidence intervals are displayed. There are only five pairs that have confidence intervals that do not contain 0 and all contain comparisons of the <em>police</em> group with others. So there is a detectable difference between <em>police</em> and <em>polite</em>, <em>commute</em>, <em>racer</em>, <em>novice</em>, and <em>casual</em>. The <em>police</em> versus <em>casual</em> comparison is hard to see whether 0 is in the interval or not in the plot, but the confidence interval goes from 0.06 to 8.97 cm (look at the results from <code>confint</code>), so suggests sufficient evidence to detect a difference in these groups (barely!) at the 5% family-wise significance level.</p>
@@ -1956,10 +1965,10 @@ seven groups with a p-value &lt; 0.001 giving very strong evidence against the n
 Figure 3.20: Tukey’s HSD confidence interval results at the 95% family-wise confidence level for the overtake distances linear model using the new <code>Condition2</code> explanatory variable.
 </p>
 </div>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="chapter3.html#cb320-1" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Distance <span class="sc">~</span> Condition2, <span class="at">data =</span> dd)</span>
-<span id="cb320-2"><a href="chapter3.html#cb320-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
-<span id="cb320-3"><a href="chapter3.html#cb320-3" aria-hidden="true" tabindex="-1"></a>TmOV <span class="ot">&lt;-</span> <span class="fu">glht</span>(lm2, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Condition2 =</span> <span class="st">&quot;Tukey&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="chapter3.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(TmOv)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="chapter3.html#cb320-1" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Distance <span class="sc">~</span> Condition2, <span class="at">data =</span> dd)</span>
+<span id="cb320-2"><a href="chapter3.html#cb320-2" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb320-3"><a href="chapter3.html#cb320-3" tabindex="-1"></a>TmOV <span class="ot">&lt;-</span> <span class="fu">glht</span>(lm2, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Condition2 =</span> <span class="st">&quot;Tukey&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="chapter3.html#cb321-1" tabindex="-1"></a><span class="fu">confint</span>(TmOv)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Confidence Intervals
 ## 
@@ -1995,23 +2004,23 @@ Figure 3.20: Tukey’s HSD confidence interval results at the 95% family-wise co
 ## hiviz - casual == 0    0.82722 -3.70570  5.36015
 ## police - casual == 0   4.51048  0.05637  8.96458
 ## police - hiviz == 0    3.68326 -0.83430  8.20081</code></pre>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="chapter3.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(TmOv, <span class="at">abseps =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="chapter3.html#cb323-1" tabindex="-1"></a><span class="fu">cld</span>(TmOv, <span class="at">abseps =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <pre><code>##  polite commute   racer  novice  casual   hiviz  police 
 ##     &quot;a&quot;     &quot;a&quot;     &quot;a&quot;     &quot;a&quot;     &quot;a&quot;    &quot;ab&quot;     &quot;b&quot;</code></pre>
 <!-- \newpage -->
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="chapter3.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Makes room on the plot for the group names, the second number of 2.5 is most </span></span>
-<span id="cb325-2"><a href="chapter3.html#cb325-2" aria-hidden="true" tabindex="-1"></a><span class="co"># often adjusted: larger values provide more room on the left of the plot.</span></span>
-<span id="cb325-3"><a href="chapter3.html#cb325-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Order is Bottom, Left, Top, Right (clockwise starting from the bottom).</span></span>
-<span id="cb325-4"><a href="chapter3.html#cb325-4" aria-hidden="true" tabindex="-1"></a>old.par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mai =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="dv">1</span>)) </span>
-<span id="cb325-5"><a href="chapter3.html#cb325-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(TmOv)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="chapter3.html#cb325-1" tabindex="-1"></a><span class="co"># Makes room on the plot for the group names, the second number of 2.5 is most </span></span>
+<span id="cb325-2"><a href="chapter3.html#cb325-2" tabindex="-1"></a><span class="co"># often adjusted: larger values provide more room on the left of the plot.</span></span>
+<span id="cb325-3"><a href="chapter3.html#cb325-3" tabindex="-1"></a><span class="co"># Order is Bottom, Left, Top, Right (clockwise starting from the bottom).</span></span>
+<span id="cb325-4"><a href="chapter3.html#cb325-4" tabindex="-1"></a>old.par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mai =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="dv">1</span>)) </span>
+<span id="cb325-5"><a href="chapter3.html#cb325-5" tabindex="-1"></a><span class="fu">plot</span>(TmOv)</span></code></pre></div>
 <p>The CLD also reinforces the previous discussion of which levels were detected as different and elucidates the other aspects of the results. Specifically, <em>police</em> is in a group with <em>hiviz</em> only (group “b”, not detectably different). But <em>hiviz</em> is also in a group with all the other levels so also is in group “a”. Figure <a href="chapter3.html#fig:Figure3-21">3.21</a> adds the CLD to the pirate-plot with the sorted means to help visually present these results with the original data, reiterating the benefits of sorting factor levels to make these plots easier to read. To wrap up this example (finally), we can see that we found that there was clear evidence against the null hypothesis of no difference in the true means, so concluded that there was some difference. The follow-up explorations show that we can really only suggest that the <em>police</em> outfit has detectably different mean distances and that is only for five of the six other levels. So if you are bike commuter (in the UK near London?), you are left to consider the size of this difference. The biggest estimated mean difference was 8.07 cm (3.2 inches) between <em>police</em> and <em>polite</em>. Do you think it is worth this potential extra average distance, especially given the wide variability in the distances, to make and then wear this vest? It is interesting that this result is found but it also is a fairly minimal size of a difference. It required an extremely large data set to detect these differences because the differences in the means are not very large relative to the variability in the responses. It seems like there might be many other reasons for why overtake distances vary that were not included our suite of predictors (they explored traffic volume in the paper as one other factor but we don’t have that in our data set) or maybe it is just unexplainably variable. But it makes me wonder whether it matters what I wear when I bike and whether it has an impact that matters for average overtake distances – even in the face of these “statistically significant” results. But maybe there is an impact on the “close calls” as you can see some differences in the lower tails of the distributions across the groups. The authors looked at the rates of “closer” overtakes by classifying the distances as either less than 100 cm (39.4 inches) as <em>closer</em> or not and also found some interesting results. Chapter <a href="chapter5.html#chapter5">5</a> discusses a method called a Chi-square test of Homogeneity that would be appropriate here and allow for an analysis of the rates of closer passes and this study is revisited in the Practice Problems (Section <a href="chapter5.html#section5-14">5.14</a>) there. It ends up showing that rates of “closer passes” are smallest in the <em>police</em> group.</p>
 
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="chapter3.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pirateplot</span>(Distance <span class="sc">~</span> Condition2, <span class="at">data =</span> dd, <span class="at">ylab =</span> <span class="st">&quot;Distance (cm)&quot;</span>, <span class="at">inf.method =</span> <span class="st">&quot;ci&quot;</span>,</span>
-<span id="cb326-2"><a href="chapter3.html#cb326-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">inf.disp =</span> <span class="st">&quot;line&quot;</span>, <span class="at">theme =</span> <span class="dv">2</span>) </span>
-<span id="cb326-3"><a href="chapter3.html#cb326-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="at">y =</span> <span class="dv">200</span>,<span class="st">&quot;a&quot;</span>,<span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,<span class="at">cex =</span> <span class="fl">1.5</span>) <span class="co">#CLD added</span></span>
-<span id="cb326-4"><a href="chapter3.html#cb326-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fl">5.9</span>,<span class="at">y =</span> <span class="dv">210</span>,<span class="st">&quot;a&quot;</span>,<span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,<span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb326-5"><a href="chapter3.html#cb326-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fl">6.1</span>,<span class="at">y =</span> <span class="dv">210</span>,<span class="st">&quot;b&quot;</span>,<span class="at">col =</span> <span class="st">&quot;red&quot;</span>,<span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb326-6"><a href="chapter3.html#cb326-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">7</span>,<span class="at">y =</span> <span class="dv">215</span>,<span class="st">&quot;b&quot;</span>,<span class="at">col =</span> <span class="st">&quot;red&quot;</span>,<span class="at">cex =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="chapter3.html#cb326-1" tabindex="-1"></a><span class="fu">pirateplot</span>(Distance <span class="sc">~</span> Condition2, <span class="at">data =</span> dd, <span class="at">ylab =</span> <span class="st">&quot;Distance (cm)&quot;</span>, <span class="at">inf.method =</span> <span class="st">&quot;ci&quot;</span>,</span>
+<span id="cb326-2"><a href="chapter3.html#cb326-2" tabindex="-1"></a>           <span class="at">inf.disp =</span> <span class="st">&quot;line&quot;</span>, <span class="at">theme =</span> <span class="dv">2</span>) </span>
+<span id="cb326-3"><a href="chapter3.html#cb326-3" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="at">y =</span> <span class="dv">200</span>,<span class="st">&quot;a&quot;</span>,<span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,<span class="at">cex =</span> <span class="fl">1.5</span>) <span class="co">#CLD added</span></span>
+<span id="cb326-4"><a href="chapter3.html#cb326-4" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fl">5.9</span>,<span class="at">y =</span> <span class="dv">210</span>,<span class="st">&quot;a&quot;</span>,<span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,<span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb326-5"><a href="chapter3.html#cb326-5" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fl">6.1</span>,<span class="at">y =</span> <span class="dv">210</span>,<span class="st">&quot;b&quot;</span>,<span class="at">col =</span> <span class="st">&quot;red&quot;</span>,<span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb326-6"><a href="chapter3.html#cb326-6" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">7</span>,<span class="at">y =</span> <span class="dv">215</span>,<span class="st">&quot;b&quot;</span>,<span class="at">col =</span> <span class="st">&quot;red&quot;</span>,<span class="at">cex =</span> <span class="fl">1.5</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-21"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-21-1.png" alt="Pirate-plot of overtake distances by group, sorted by sample means with Tukey’s HSD CLD displayed." width="75%" />
 <p class="caption">
@@ -2122,11 +2131,11 @@ letter display information. </p></li>
 <p>3.1. <strong>Cholesterol Analysis</strong> For the first practice problems, you will work with the cholesterol data set from
 the <code>multcomp</code> package that was used to generate the Tukey’s HSD results. To
 load the data set and learn more about the study, use the following code:</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="chapter3.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
-<span id="cb327-2"><a href="chapter3.html#cb327-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cholesterol)</span>
-<span id="cb327-3"><a href="chapter3.html#cb327-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb327-4"><a href="chapter3.html#cb327-4" aria-hidden="true" tabindex="-1"></a>cholesterol <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(cholesterol)</span>
-<span id="cb327-5"><a href="chapter3.html#cb327-5" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(cholesterol)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="chapter3.html#cb327-1" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb327-2"><a href="chapter3.html#cb327-2" tabindex="-1"></a><span class="fu">data</span>(cholesterol)</span>
+<span id="cb327-3"><a href="chapter3.html#cb327-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb327-4"><a href="chapter3.html#cb327-4" tabindex="-1"></a>cholesterol <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(cholesterol)</span>
+<span id="cb327-5"><a href="chapter3.html#cb327-5" tabindex="-1"></a><span class="fu">help</span>(cholesterol)</span></code></pre></div>
 <p>3.1.1. Graphically explore the differences in the changes in Cholesterol levels for
 the five levels using pirate-plots.</p>
 <p>3.1.2. Is the design balanced? Generate R output to support this assessment. </p>
@@ -2141,15 +2150,15 @@ good, so are there any levels you would recommend or that might provide similar
 reductions?</p>
 <p>3.1.6. Find and interpret the CLD and compare that to your interpretation of results
 from 3.1.5.</p>
-<p>3.2. <strong>Sting Location Analysis</strong> These data come from <span class="citation">(<a href="#ref-Smith2014" role="doc-biblioref">Smith 2014</a>)</span> where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at <a href="https://peerj.com/articles/338/" class="uri">https://peerj.com/articles/338/</a>. The following code gets the data prepared for analysis by removing the observations he took each day on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. This is done with a negation (using “!” of the <code>%in%</code> which identifies rows related to the two daily forearm locations (<code>Forearm</code> and <code>Forearm1</code>) to leave all the rows in the data set for any levels of <code>Body_Location</code> that were not in these two levels. This is easier than trying to list all 24 other levels, then <code>Body_Location</code> variable is re-factored to clean out its unused levels, and finally the <code>reorder</code> function is used to order the levels based on the sample mean pain rating – and the results of these steps are stored in the <code>sd_fixedR</code> tibble.</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="chapter3.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb328-2"><a href="chapter3.html#cb328-2" aria-hidden="true" tabindex="-1"></a>sd_fixed <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/stingdata_fixed.csv&quot;</span>)</span>
-<span id="cb328-3"><a href="chapter3.html#cb328-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb328-4"><a href="chapter3.html#cb328-4" aria-hidden="true" tabindex="-1"></a>sd_fixedR <span class="ot">&lt;-</span> sd_fixed <span class="sc">%&gt;%</span> </span>
-<span id="cb328-5"><a href="chapter3.html#cb328-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(<span class="sc">!</span>(Body_Location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Forearm&quot;</span>, <span class="st">&quot;Forearm1&quot;</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb328-6"><a href="chapter3.html#cb328-6" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">Body_Location =</span> <span class="fu">factor</span>(Body_Location),</span>
-<span id="cb328-7"><a href="chapter3.html#cb328-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">Body_Location =</span> <span class="fu">reorder</span>(Body_Location, Rating, <span class="at">FUN =</span> mean)</span>
-<span id="cb328-8"><a href="chapter3.html#cb328-8" aria-hidden="true" tabindex="-1"></a>                    )</span></code></pre></div>
+<p>3.2. <strong>Sting Location Analysis</strong> These data come from <span class="citation">(<a href="#ref-Smith2014">Smith 2014</a>)</span> where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at <a href="https://peerj.com/articles/338/" class="uri">https://peerj.com/articles/338/</a>. The following code gets the data prepared for analysis by removing the observations he took each day on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. This is done with a negation (using “!” of the <code>%in%</code> which identifies rows related to the two daily forearm locations (<code>Forearm</code> and <code>Forearm1</code>) to leave all the rows in the data set for any levels of <code>Body_Location</code> that were not in these two levels. This is easier than trying to list all 24 other levels, then <code>Body_Location</code> variable is re-factored to clean out its unused levels, and finally the <code>reorder</code> function is used to order the levels based on the sample mean pain rating – and the results of these steps are stored in the <code>sd_fixedR</code> tibble.</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="chapter3.html#cb328-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb328-2"><a href="chapter3.html#cb328-2" tabindex="-1"></a>sd_fixed <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/stingdata_fixed.csv&quot;</span>)</span>
+<span id="cb328-3"><a href="chapter3.html#cb328-3" tabindex="-1"></a></span>
+<span id="cb328-4"><a href="chapter3.html#cb328-4" tabindex="-1"></a>sd_fixedR <span class="ot">&lt;-</span> sd_fixed <span class="sc">%&gt;%</span> </span>
+<span id="cb328-5"><a href="chapter3.html#cb328-5" tabindex="-1"></a>              <span class="fu">filter</span>(<span class="sc">!</span>(Body_Location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Forearm&quot;</span>, <span class="st">&quot;Forearm1&quot;</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb328-6"><a href="chapter3.html#cb328-6" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">Body_Location =</span> <span class="fu">factor</span>(Body_Location),</span>
+<span id="cb328-7"><a href="chapter3.html#cb328-7" tabindex="-1"></a>                     <span class="at">Body_Location =</span> <span class="fu">reorder</span>(Body_Location, Rating, <span class="at">FUN =</span> mean)</span>
+<span id="cb328-8"><a href="chapter3.html#cb328-8" tabindex="-1"></a>                    )</span></code></pre></div>
 <p>3.2.1. Graphically explore the differences in the pain ratings (<code>Rating</code>) across the different <code>Body_Location</code> levels using boxplots and pirate-plots. How are boxplots misleading for representing these data? <strong>Hint</strong>: look for discreteness in the responses.</p>
 <p>3.2.2. Is the design balanced?</p>
 <p>3.2.3. How does taking 3 measurements that are of interest each day lead to a violation of the independence assumption here?</p>
@@ -2164,18 +2173,18 @@ p-value to the permutation test results.</p>
 </div>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-Crampton1947" class="csl-entry">
 Crampton, E. 1947. <span>“The Growth of the Odontoblast of the Incisor Teeth as a Criterion of Vitamin c Intake of the Guinea Pig.”</span> <em>The Journal of Nutrition</em> 33 (5): 491–504. <a href="http://jn.nutrition.org/content/33/5/491.full.pdf">http://jn.nutrition.org/content/33/5/491.full.pdf</a>.
 </div>
 <div id="ref-R-effects" class="csl-entry">
-Fox, John, Sanford Weisberg, Brad Price, Michael Friendly, and Jangman Hong. 2022. <em>Effects: Effect Displays for Linear, Generalized Linear, and Other Models</em>. <a href="https://CRAN.R-project.org/package=effects">https://CRAN.R-project.org/package=effects</a>.
+Fox, John, Sanford Weisberg, Brad Price, Michael Friendly, and Jangman Hong. 2022. <em>Effects: Effect Displays for Linear, Generalized Linear, and Other Models</em>. <a href="https://www.r-project.org">https://www.r-project.org</a>.
 </div>
 <div id="ref-Hothorn2008" class="csl-entry">
-Hothorn, Torsten, Frank Bretz, and Peter Westfall. 2008a. <span>“Simultaneous Inference in General Parametric Models.”</span> <em>Biometrical Journal</em> 50 (3): 346–63.
+Hothorn, Torsten, Frank Bretz, and Peter Westfall. 2008. <span>“Simultaneous Inference in General Parametric Models.”</span> <em>Biometrical Journal</em> 50 (3): 346–63.
 </div>
 <div id="ref-R-multcomp" class="csl-entry">
-———. 2022. <em>Multcomp: Simultaneous Inference in General Parametric Models</em>. <a href="https://CRAN.R-project.org/package=multcomp">https://CRAN.R-project.org/package=multcomp</a>.
+———. 2024. <em>Multcomp: Simultaneous Inference in General Parametric Models</em>. <a href="http://multcomp.R-forge.R-project.org">http://multcomp.R-forge.R-project.org</a>.
 </div>
 <div id="ref-Piepho2004" class="csl-entry">
 Piepho, Hans-Peter. 2004. <span>“An Algorithm for a Letter-Based Representation of All-Pairwise Comparisons.”</span> <em>Journal of Computational and Graphical Statistics</em> 13 (2): 456–66.
@@ -2312,7 +2321,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

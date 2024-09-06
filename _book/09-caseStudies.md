@@ -3,11 +3,6 @@ output:
   pdf_document: 
     keep_tex: yes
   html_document: default
-header-includes:
-- \usepackage{amsmath}
-- \usepackage{color}
-- \usepackage{ulem}
-- \usepackage{amsfonts}
 ---
 
 # Case studies {#chapter9}
@@ -28,14 +23,10 @@ response variables.
 
 (ref:fig9-1) Schematic of methods covered. 
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{chapter9_files/decisiontree} 
-
-}
-
-\caption{(ref:fig9-1)}(\#fig:Figure9-1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="chapter9_files/decisiontree.jpg" alt="(ref:fig9-1)" width="75%" />
+<p class="caption">(\#fig:Figure9-1)(ref:fig9-1)</p>
+</div>
 
 \indent Every scenario with a quantitative response variable was handled using linear
 models. The last material on multiple linear regression modeling tied back to
@@ -133,24 +124,20 @@ biological applications because most come from a particular journal (*Biology Le
 our re-analyses possible. Use these sections to review the methods 
 from earlier in the book and to see some hints about possible extensions of the methods you have learned.
 
-\sectionmark{The impact of simulated chronic nitrogen deposition}
+<!-- \sectionmark{The impact of simulated chronic nitrogen deposition} -->
 
 ## The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations	{#section9-2}
 
-\sectionmark{The impact of simulated chronic nitrogen deposition}
+<!-- \sectionmark{The impact of simulated chronic nitrogen deposition} -->
 
 
 
 (ref:fig9-2) Pirate-plot of biomass responses by treatment and species. 
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-2-1} 
-
-}
-
-\caption{(ref:fig9-2)}(\#fig:Figure9-2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-2-1.png" alt="(ref:fig9-2)" width="75%" />
+<p class="caption">(\#fig:Figure9-2)(ref:fig9-2)</p>
+</div>
 
 In a 16-year experiment, @Gundale2013 studied the impacts
 of Nitrogen (N) additions on the mass of two feather moss species 
@@ -189,14 +176,14 @@ and more variability in the *PS* responses than for the *HS* responses.
 \small
 
 
-```r
+``` r
 gdn <- read_csv("http://www.math.montana.edu/courses/s217/documents/gundalebachnordin_2.csv")
 ```
 
 \normalsize
 
 
-```r
+``` r
 gdn <- gdn %>% mutate(Species = factor(Species),
                       Treatment = factor(Treatment)
                       )
@@ -219,19 +206,15 @@ quite different based on this plot as well.
 
 (ref:fig9-3) Interaction plot of biomass responses by treatment and species. 
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-3-1} 
-
-}
-
-\caption{(ref:fig9-3)}(\#fig:Figure9-3)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-3-1.png" alt="(ref:fig9-3)" width="75%" />
+<p class="caption">(\#fig:Figure9-3)(ref:fig9-3)</p>
+</div>
 
 <!-- \newpage -->
 
 
-```r
+``` r
 library(catstats) #Or directly using:
 #source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v3.R")
 intplotarray(Massperha ~ Species * Treatment, data = gdn, col = viridis(4)[1:3],
@@ -245,7 +228,7 @@ the diagnostic plots to verify that we have a problem.
 (ref:fig9-4) Diagnostic plots of treatment by species interaction model for Biomass.
 
 
-```r
+``` r
 m1 <- lm(Massperha ~ Species * Treatment, data = gdn)
 summary(m1)
 ```
@@ -273,20 +256,16 @@ summary(m1)
 ## F-statistic: 11.97 on 5 and 30 DF,  p-value: 2.009e-06
 ```
 
-```r
+``` r
 par(mfrow = c(2,2), oma = c(0,0,2,0))
 plot(m1, pch = 16, sub.caption = "")
 title(main="Initial Massperha 2-WAY model", outer=TRUE)
 ```
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-4-1} 
-
-}
-
-\caption{(ref:fig9-4)}(\#fig:Figure9-4)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-4-1.png" alt="(ref:fig9-4)" width="75%" />
+<p class="caption">(\#fig:Figure9-4)(ref:fig9-4)</p>
+</div>
 
 There is a clear problem with non-constant variance showing up in a fanning 
 shape^[Instructors often get asked what a problem with 
@@ -317,7 +296,7 @@ account for these other issues.
 that the responses are strictly greater than 0**:
 
 
-```r
+``` r
 summary(gdn$Massperha)
 ```
 
@@ -332,7 +311,7 @@ the response variable (*Biomass*) and repeat the previous plots:
 (ref:fig9-5) Pirate-plot and interaction plot of the log-Biomass responses by treatment and species.
 
 
-```r
+``` r
 gdn <- gdn %>% mutate(logMassperha = log(Massperha))
 par(mfrow = c(2,1))
 pirateplot(logMassperha ~ Species + Treatment, data = gdn, inf.method = "ci", 
@@ -342,14 +321,10 @@ intplot(logMassperha ~ Species * Treatment, data = gdn, col = viridis(4)[1:3],
         lwd = 2, main = "(b)")
 ```
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-5-1} 
-
-}
-
-\caption{(ref:fig9-5)}(\#fig:Figure9-5)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-5-1.png" alt="(ref:fig9-5)" width="75%" />
+<p class="caption">(\#fig:Figure9-5)(ref:fig9-5)</p>
+</div>
 
 The variability in the pirate-plot in Figure \@ref(fig:Figure9-5)(a) appears to be
 more consistent across the groups but the lines appear to be a little less 
@@ -380,7 +355,7 @@ species.
 (ref:fig9-6) Diagnostic plots of treatment by species interaction model for log-Biomass. 
 
 
-```r
+``` r
 m2 <- lm(logMassperha ~ Species * Treatment, data = gdn)
 summary(m2)
 ```
@@ -408,7 +383,7 @@ summary(m2)
 ## F-statistic: 23.96 on 5 and 30 DF,  p-value: 1.204e-09
 ```
 
-```r
+``` r
 library(car)
 Anova(m2)
 ```
@@ -424,20 +399,16 @@ Anova(m2)
 ## Residuals         2.4208 30
 ```
 
-```r
+``` r
 par(mfrow = c(2,2), oma = c(0,0,2,0))
 plot(m2, pch = 16, sub.caption = "")
 title(main="log-Massperha 2-WAY model", outer=TRUE)
 ```
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-6-1} 
-
-}
-
-\caption{(ref:fig9-6)}(\#fig:Figure9-6)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-6-1.png" alt="(ref:fig9-6)" width="75%" />
+<p class="caption">(\#fig:Figure9-6)(ref:fig9-6)</p>
+</div>
 
 \indent The researchers actually applied a $\log(y+1)$ transformation to all the 
 variables. This was used because one of their many variables had a value of 0
@@ -468,19 +439,15 @@ important interactions.
 (ref:fig9-7) Term-plot of the interaction model for log-biomass.
 
 
-```r
+``` r
 library(effects)
 plot(allEffects(m2), multiline = T, lty = c(1,2), ci.style = "bars", grid = T)
 ```
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-7-1} 
-
-}
-
-\caption{(ref:fig9-7)}(\#fig:Figure9-7)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-7-1.png" alt="(ref:fig9-7)" width="75%" />
+<p class="caption">(\#fig:Figure9-7)(ref:fig9-7)</p>
+</div>
 
 <!-- \newpage -->
 
@@ -506,7 +473,7 @@ One-Way ANOVA test, the pair-wise comparisons should be of interest.
 <!-- \newpage -->
 
 
-```r
+``` r
 # Create new variable:
 gdn <- gdn %>% mutate(SpTrt = interaction(Species, Treatment))
 levels(gdn$SpTrt)
@@ -517,7 +484,7 @@ levels(gdn$SpTrt)
 ## [6] "PS.N50"
 ```
 
-```r
+``` r
 newm2 <- lm(logMassperha ~ SpTrt, data = gdn)
 Anova(newm2)
 ```
@@ -534,7 +501,7 @@ Anova(newm2)
 \vspace{22pt}
 
 
-```r
+``` r
 library(multcomp)
 PWnewm2 <- glht(newm2, linfct = mcp(SpTrt = "Tukey"))
 confint(PWnewm2)
@@ -557,18 +524,18 @@ confint(PWnewm2)
 ##                              Estimate lwr      upr     
 ## PS.Control - HS.Control == 0  0.39210 -0.10682  0.89102
 ## HS.N12.5 - HS.Control == 0   -0.42277 -0.92169  0.07615
-## PS.N12.5 - HS.Control == 0    0.21064 -0.28827  0.70956
+## PS.N12.5 - HS.Control == 0    0.21064 -0.28828  0.70957
 ## HS.N50 - HS.Control == 0     -1.19994 -1.69886 -0.70102
 ## PS.N50 - HS.Control == 0     -0.14620 -0.64512  0.35272
-## HS.N12.5 - PS.Control == 0   -0.81487 -1.31379 -0.31596
-## PS.N12.5 - PS.Control == 0   -0.18146 -0.68037  0.31746
+## HS.N12.5 - PS.Control == 0   -0.81487 -1.31379 -0.31595
+## PS.N12.5 - PS.Control == 0   -0.18146 -0.68038  0.31746
 ## HS.N50 - PS.Control == 0     -1.59204 -2.09096 -1.09312
 ## PS.N50 - PS.Control == 0     -0.53830 -1.03722 -0.03938
 ## PS.N12.5 - HS.N12.5 == 0      0.63342  0.13450  1.13234
-## HS.N50 - HS.N12.5 == 0       -0.77717 -1.27608 -0.27825
+## HS.N50 - HS.N12.5 == 0       -0.77717 -1.27609 -0.27824
 ## PS.N50 - HS.N12.5 == 0        0.27657 -0.22235  0.77549
 ## HS.N50 - PS.N12.5 == 0       -1.41058 -1.90950 -0.91166
-## PS.N50 - PS.N12.5 == 0       -0.35685 -0.85576  0.14207
+## PS.N50 - PS.N12.5 == 0       -0.35685 -0.85577  0.14208
 ## PS.N50 - HS.N50 == 0          1.05374  0.55482  1.55266
 ```
 
@@ -576,13 +543,13 @@ We can also generate the Compact Letter Display (CLD) to help us group up the
 results. \index{compact letter display}
 
 
-```r
+``` r
 cld(PWnewm2)
 ```
 
 ```
 ## HS.Control PS.Control   HS.N12.5   PS.N12.5     HS.N50     PS.N50 
-##       "bd"        "d"        "b"       "cd"        "a"       "bc"
+##       "ab"        "a"        "b"       "ac"        "d"       "bc"
 ```
 
 And we can add the CLD to an interaction plot to create Figure 
@@ -595,19 +562,15 @@ different. The following code creates the plot of these results using our
 (ref:fig9-8) Interaction plot for log-biomass with CLD from Tukey's HSD for all pairwise comparisons.
 
 
-```r
+``` r
 intplot(logMassperha ~ Species * Treatment, cld = T, cldshift = 0.16, data = gdn, lwd = 2, 
         main = "Interaction Plot with CLD from Tukey's HSD on One-Way ANOVA")
 ```
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-8-1} 
-
-}
-
-\caption{(ref:fig9-8)}(\#fig:Figure9-8)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-8-1.png" alt="(ref:fig9-8)" width="75%" />
+<p class="caption">(\#fig:Figure9-8)(ref:fig9-8)</p>
+</div>
 
 \indent These results suggest that *HS-N50* is detectably different from all the other
 groups (letter "a"). The rest of the story is more complicated since many of
@@ -625,11 +588,11 @@ intervals in the Tukey's HSD results printed above. Because these results are fo
 
 <!-- \newpage -->
 
-\sectionmark{Ants learn to rely on more informative attributes}
+<!-- \sectionmark{Ants learn to rely on more informative attributes} -->
 
 ## Ants learn to rely on more informative attributes during decision-making	{#section9-3}
 
-\sectionmark{Ants learn to rely on more informative attributes}
+<!-- \sectionmark{Ants learn to rely on more informative attributes} -->
 
 In @Sasaki2013, a set of ant colonies were randomly assigned to one
 of two treatments to study whether the ants could be "trained" to have a
@@ -653,7 +616,7 @@ is appropriate here and that we can make causal statements about the effects of 
 \small
 
 
-```r
+``` r
 sasakipratt <- read_csv("http://www.math.montana.edu/courses/s217/documents/sasakipratt.csv")
 ```
 
@@ -664,7 +627,7 @@ sasakipratt <- read_csv("http://www.math.montana.edu/courses/s217/documents/sasa
 (ref:fig9-9) Stacked bar chart for Ant Colony results.
 
 
-```r
+``` r
 sasakipratt <- sasakipratt %>% mutate(group = factor(group),
                                       after = factor(after),
                                       before = factor(before)
@@ -675,17 +638,13 @@ levels(sasakipratt$before) <- c("SmallBright", "LargeDark")
 plot(after ~ group, data = sasakipratt, col = cividis(2))
 ```
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-9-1} 
-
-}
-
-\caption{(ref:fig9-9)}(\#fig:Figure9-9)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-9-1.png" alt="(ref:fig9-9)" width="75%" />
+<p class="caption">(\#fig:Figure9-9)(ref:fig9-9)</p>
+</div>
 
 
-```r
+``` r
 library(mosaic)
 tally(~ group + after, data = sasakipratt)
 ```
@@ -697,7 +656,7 @@ tally(~ group + after, data = sasakipratt)
 ##   Entrance           9        17
 ```
 
-```r
+``` r
 table1 <- tally(~ group + after, data = sasakipratt, margins = F)
 ```
 
@@ -714,7 +673,7 @@ function from slightly modifying the statistic used that occurs when overall
 sample sizes are small. 
 
 
-```r
+``` r
 chisq.test(table1, correct = F)$expected
 ```
 
@@ -729,7 +688,7 @@ Our expected cell count condition is met, so we can proceed to explore the
 results of the parametric test:
 
 
-```r
+``` r
 chisq.test(table1, correct = F)
 ```
 
@@ -755,7 +714,7 @@ studied by these researchers because they were not randomly selected.
 some situations, although here they are similar for all the cells:
 
 
-```r
+``` r
 chisq.test(table1, correct = F)$residuals
 ```
 
@@ -791,11 +750,11 @@ of statistics if you continue exploring.
 
 <!-- \newpage -->
 
-\sectionmark{understanding vertebrate diversification in deep time}
+<!-- \sectionmark{understanding vertebrate diversification in deep time} -->
 
 ## Multi-variate models are essential for understanding vertebrate diversification in deep time	{#section9-4}
 
-\sectionmark{understanding vertebrate diversification in deep time}
+<!-- \sectionmark{understanding vertebrate diversification in deep time} -->
 
 @Benson2012 published a paleontology study that considered
 modeling the diversity of *Sauropodomorphs* across $n = 26$ "stage-level" time
@@ -861,7 +820,7 @@ research questions involve whether *DBF* or *DBC* are better predictor
 variables. 
 
 
-```r
+``` r
 bm <- read_csv("http://www.math.montana.edu/courses/s217/documents/bensonmanion.csv")
 ```
 
@@ -870,7 +829,7 @@ bm <- read_csv("http://www.math.montana.edu/courses/s217/documents/bensonmanion.
 (ref:fig9-10) Scatterplot of *log-biodiversity* vs *log-DBCs* by *TJK*.
 
 
-```r
+``` r
 bm <- bm %>% mutate(logSpecies = log(Species),
                     logDBCs = log(DBCs),
                     logDBFs = log(DBFs),
@@ -885,14 +844,10 @@ bm %>% ggplot(mapping = aes(x = logDBCs, y = logSpecies, color = TJK, shape = TJ
   scale_color_colorblind()
 ```
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-10-1} 
-
-}
-
-\caption{(ref:fig9-10)}(\#fig:Figure9-10)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-10-1.png" alt="(ref:fig9-10)" width="75%" />
+<p class="caption">(\#fig:Figure9-10)(ref:fig9-10)</p>
+</div>
 
 <!-- \newpage -->
 
@@ -927,7 +882,7 @@ model selection results from the first full model using:
 
 
 
-```r
+``` r
 bd1 <- lm(logSpecies ~ logDBCs + TJK, data = bm)
 library(MuMIn)
 options(na.action = "na.fail")
@@ -950,7 +905,7 @@ dredge(bd1, rank = "AIC",
 And from the second model:
 
 
-```r
+``` r
 bd2 <- lm(logSpecies ~ logDBFs + TJK, data = bm)
 dredge(bd2, rank = "AIC",
        extra = c("R^2", adjRsq = function(x) summary(x)$adj.r.squared))
@@ -1037,19 +992,15 @@ assumptions first as AICs are not valid if the model assumptions are clearly vio
 (ref:fig9-11) Diagnostic plots for the top AIC model.
 
 
-```r
+``` r
 par(mfrow = c(2,2), oma = c(0,0,2,0))
 plot(bd1, pch = 16)
 ```
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-11-1} 
-
-}
-
-\caption{(ref:fig9-11)}(\#fig:Figure9-11)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-11-1.png" alt="(ref:fig9-11)" width="75%" />
+<p class="caption">(\#fig:Figure9-11)(ref:fig9-11)</p>
+</div>
 
 \indent The constant variance, linearity, and assessment of influence do not
 suggest any problems with those assumptions. This is reinforced in the partial
@@ -1095,7 +1046,7 @@ question of interest involves the differences between the periods. The change
 in the y-intercepts of -0.76 suggests that the Cretaceous has a lower average
 log-biodiversity by 0.75 log-count, after controlling for the log-sampling 
 effort. This suggests that the *Cretaceous* had a lower corrected mean
-log-Sauropodomorph biodiversity $(t_{23} = -3.41;\text{\sout{p-value = 0.0024}})$ than the combined
+log-Sauropodomorph biodiversity $\require{enclose} (t_{23} = -3.41;\enclose{horizontalstrike}{\text{p-value} = 0.0024})$ than the combined
 results for the Triassic and Jurassic. On the original count scale, this 
 suggests $\exp(-0.76) = 0.47$ times (53% drop in) the median biodiversity count 
 per stage for Cretaceous versus the prior time period, after correcting for
@@ -1104,7 +1055,7 @@ log-sampling effort in each stage.
 <!-- \newpage -->
 
 
-```r
+``` r
 summary(bd1)
 ```
 
@@ -1131,18 +1082,14 @@ summary(bd1)
 (ref:fig9-12) Term-plots for the top AIC model with partial residuals.
 
 
-```r
+``` r
 plot(allEffects(bd1, residuals = T), grid = T)
 ```
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-12-1} 
-
-}
-
-\caption{(ref:fig9-12)}(\#fig:Figure9-12)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-12-1.png" alt="(ref:fig9-12)" width="75%" />
+<p class="caption">(\#fig:Figure9-12)(ref:fig9-12)</p>
+</div>
 
 
 \indent Their study shows some interesting contrasts between methods. They tried to use
@@ -1190,11 +1137,11 @@ access the results of interest; inaccurate usage of statistical models can
 provide inaccurate conclusions. They seemed to mostly get the right answers
 despite a suite of errors in their work. 
 
-\sectionmark{didgeridoos and sleepiness}
+<!-- \sectionmark{didgeridoos and sleepiness} -->
 
 ## What do didgeridoos really do about sleepiness?	{#section9-5}
 
-\sectionmark{didgeridoos and sleepiness}
+<!-- \sectionmark{didgeridoos and sleepiness} -->
 
 In the practice problems at the end of Chapter 4, a study (@Puhan2006) related
 to a pre-post, two group comparison of the sleepiness ratings of subjects was
@@ -1232,7 +1179,7 @@ subjects that seemed to drop a bit on average.
 \small
 
 
-```r
+``` r
 epworthdata <- read_csv("http://www.math.montana.edu/courses/s217/documents/epworthdata.csv")
 ```
 
@@ -1243,7 +1190,7 @@ epworthdata <- read_csv("http://www.math.montana.edu/courses/s217/documents/epwo
 (ref:fig9-13) Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time.
 
 
-```r
+``` r
 epworthdata <- epworthdata %>% mutate(Time = factor(Time),
                                       Group = factor(Group)
                                       )
@@ -1258,14 +1205,10 @@ epworthdata %>%
   scale_color_colorblind()
 ```
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-13-1} 
-
-}
-
-\caption{(ref:fig9-13)}(\#fig:Figure9-13)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-13-1.png" alt="(ref:fig9-13)" width="75%" />
+<p class="caption">(\#fig:Figure9-13)(ref:fig9-13)</p>
+</div>
 
 \indent This plot seems to contradict the result from the following Two-Way 
 ANOVA (that is a repeat of what you would have seen had you done the practice 
@@ -1284,7 +1227,7 @@ disappear in responses simulated from the estimated Two-Way ANOVA model (that
 assumes all observations are independent).
 
 
-```r
+``` r
 library(car)
 lm_int <- lm(Epworth ~ Time * Group, data = epworthdata)
 Anova(lm_int)
@@ -1294,32 +1237,22 @@ Anova(lm_int)
 
 (ref:fig9-14) Plot of simulated data from the Two-Way ANOVA model that does not assume observations are on repeated measures on subjects to compare to the real data set. Even though the treatment levels seem to decrease on average, there is a much less clear relationship between the starting and ending values in the individuals.
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-14-1} 
-
-}
-
-\caption{(ref:fig9-14)}(\#fig:Figure9-14)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-14-1.png" alt="(ref:fig9-14)" width="75%" />
+<p class="caption">(\#fig:Figure9-14)(ref:fig9-14)</p>
+</div>
 
 (ref:tab9-2) ANOVA table from Two-Way ANOVA interaction model.
 
-\begin{table}
 
-\caption{(\#tab:Table9-2)(ref:tab9-2)}
-\centering
-\begin{tabular}[t]{lrrrr}
-\toprule
-  & Sum Sq & Df & F value & Pr(>F)\\
-\midrule
-Time & 120.746 & 1 & 5.653 & 0.022\\
-Group & 8.651 & 1 & 0.405 & 0.528\\
-Time:Group & 29.265 & 1 & 1.370 & 0.248\\
-Residuals & 982.540 & 46 &  & \\
-\bottomrule
-\end{tabular}
-\end{table}
+Table: (\#tab:Table9-2)(ref:tab9-2)
+
+|           |  Sum Sq| Df| F value| Pr(>F)|
+|:----------|-------:|--:|-------:|------:|
+|Time       | 120.746|  1|   5.653|  0.022|
+|Group      |   8.651|  1|   0.405|  0.528|
+|Time:Group |  29.265|  1|   1.370|  0.248|
+|Residuals  | 982.540| 46|        |       |
 
 \indent If the issue is failing to account for differences in subjects, then 
 why not add "Subject" to the model? There are two things to consider. First, 
@@ -1348,7 +1281,7 @@ notably different result from what we observed in the Two-Way ANOVA
 interaction model that didn't account for repeated measures on the subjects and matches the results in the original paper closely. 
 
 
-```r
+``` r
 epworthdata <- epworthdata %>% mutate(Subject = factor(Subject))
 lm_int_wsub <- lm(Epworth ~ Time * Group + Subject, data = epworthdata)
 Anova(lm_int_wsub)
@@ -1356,22 +1289,16 @@ Anova(lm_int_wsub)
 
 (ref:tab9-3) ANOVA table from Two-Way ANOVA interaction model.
 
-\begin{table}
 
-\caption{(\#tab:Table9-3)(ref:tab9-3)}
-\centering
-\begin{tabular}[t]{lrrrr}
-\toprule
-  & Sum Sq & Df & F value & Pr(>F)\\
-\midrule
-Time & 120.746 & 1 & 22.410 & 0.000\\
-Group &  & 0 &  & \\
-Subject & 858.615 & 23 & 6.929 & 0.000\\
-Time:Group & 29.265 & 1 & 5.431 & 0.029\\
-Residuals & 123.924 & 23 &  & \\
-\bottomrule
-\end{tabular}
-\end{table}
+Table: (\#tab:Table9-3)(ref:tab9-3)
+
+|           |  Sum Sq| Df| F value| Pr(>F)|
+|:----------|-------:|--:|-------:|------:|
+|Time       | 120.746|  1|  22.410|  0.000|
+|Group      |        |  0|        |       |
+|Subject    | 858.615| 23|   6.929|  0.000|
+|Time:Group |  29.265|  1|   5.431|  0.029|
+|Residuals  | 123.924| 23|        |       |
 
 \indent With this result, we would usually explore the term-plots from this 
 model to get a sense of the pattern of the changes over time in the treatment 
@@ -1390,7 +1317,7 @@ interest should resonate with the methods we have been exploring while hinting
 at more possibilities if you learn more statistical methods.
 
 
-```r
+``` r
 library(nlme)
 lme_int <- lme(Epworth ~ Time * Group, random = ~1|Subject, data = epworthdata)
 anova(lme_int)
@@ -1405,7 +1332,7 @@ anova(lme_int)
 ```
 
 
-```r
+``` r
 plot(allEffects(lme_int), multiline = T, lty = c(1,2), ci.style = "bars", grid = T)
 ```
 
@@ -1413,14 +1340,10 @@ plot(allEffects(lme_int), multiline = T, lty = c(1,2), ci.style = "bars", grid =
 
 (ref:fig9-15) Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model.
 
-\begin{figure}[ht!]
-
-{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-15-1} 
-
-}
-
-\caption{(ref:fig9-15)}(\#fig:Figure9-15)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="09-caseStudies_files/figure-html/Figure9-15-1.png" alt="(ref:fig9-15)" width="75%" />
+<p class="caption">(\#fig:Figure9-15)(ref:fig9-15)</p>
+</div>
 
 \newpage
 

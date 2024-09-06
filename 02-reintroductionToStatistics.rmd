@@ -3,9 +3,6 @@ output:
   pdf_document: 
     keep_tex: yes
   html_document: default
-header-includes:
-- \usepackage{amsmath}
-- \usepackage{color}
 tablenos-cleveref: On
 tablenos-plus-name: Tab.
 ---

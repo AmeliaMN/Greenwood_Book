@@ -1,9 +1,4 @@
 ---
-header-includes:
-- \usepackage{amsmath}
-- \usepackage{color}
-- \usepackage{sistyle}
-- \SIthousandsep{,}
 output:
   html_document: default
   pdf_document:

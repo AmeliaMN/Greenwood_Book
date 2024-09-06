@@ -6,6 +6,7 @@ output:
   bookdown::pdf_book: 
     keep_tex: yes
     latex_engine: pdflatex
+    in_header: "preamble.tex"
   bookdown::html_book:
     css: toc.css
     toc: yes
@@ -24,9 +25,6 @@ bibliography:
 - packages.bib
 site: bookdown::bookdown_site
 biblio-style: plainnat
-header-includes:
-- \usepackage{amsmath}
-- \usepackage{color}
 ---
 
 ```{r echo=F}

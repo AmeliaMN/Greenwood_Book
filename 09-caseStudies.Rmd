@@ -3,11 +3,6 @@ output:
   pdf_document: 
     keep_tex: yes
   html_document: default
-header-includes:
-- \usepackage{amsmath}
-- \usepackage{color}
-- \usepackage{ulem}
-- \usepackage{amsfonts}
 ---
 
 # Case studies {#chapter9}

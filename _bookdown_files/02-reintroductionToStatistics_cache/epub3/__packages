@@ -1,4 +1,3 @@
-base
 pander
 dplyr
 lattice
@@ -12,3 +11,17 @@ readr
 beanplot
 car
 heplots
+jpeg
+coda
+BayesFactor
+circlize
+yarrr
+tidyverse
+tibble
+tidyr
+purrr
+stringr
+forcats
+lubridate
+carData
+broom
