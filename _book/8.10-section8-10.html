@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -331,17 +327,17 @@ expect that there would be a relationship between the upper tolerance levels of
 the subjects before and after treatment. But maybe the treatments impact that
 relationship? We can use our indicator approach to see if the
 treatments provide a shift to higher tolerances after accounting for the
-relationship between the two measurements<a href="#fn151" class="footnote-ref" id="fnref151"><sup>151</sup></a>. The scatterplot<a href="#fn152" class="footnote-ref" id="fnref152"><sup>152</sup></a> of the results
+relationship between the two measurements<a href="#fn144" class="footnote-ref" id="fnref144"><sup>144</sup></a>. The scatterplot<a href="#fn145" class="footnote-ref" id="fnref145"><sup>145</sup></a> of the results
 in Figure <a href="8.10-section8-10.html#fig:Figure8-26">8.26</a> shows some variation in the slopes and the
 intercepts for the groups although the variation in intercepts seems more
 prominent than differences in slopes. Note that the <code>fct_relevel</code> function was
 applied to the <code>treatment</code> variable with an option of <code>"Control"</code> to make
 the <em>Control</em> category the baseline category as the person who created the data
 set had set <code>T1</code> as the baseline in the <code>treatment</code> variable.</p>
-<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="8.10-section8-10.html#cb808-1" tabindex="-1"></a><span class="fu">library</span>(heplots)</span>
-<span id="cb808-2"><a href="8.10-section8-10.html#cb808-2" tabindex="-1"></a><span class="fu">data</span>(Headache)</span>
-<span id="cb808-3"><a href="8.10-section8-10.html#cb808-3" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(Headache)</span>
-<span id="cb808-4"><a href="8.10-section8-10.html#cb808-4" tabindex="-1"></a>Headache</span></code></pre></div>
+<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="8.10-section8-10.html#cb760-1" tabindex="-1"></a><span class="fu">library</span>(heplots)</span>
+<span id="cb760-2"><a href="8.10-section8-10.html#cb760-2" tabindex="-1"></a><span class="fu">data</span>(Headache)</span>
+<span id="cb760-3"><a href="8.10-section8-10.html#cb760-3" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(Headache)</span>
+<span id="cb760-4"><a href="8.10-section8-10.html#cb760-4" tabindex="-1"></a>Headache</span></code></pre></div>
 <pre><code>## # A tibble: 98 × 6
 ##    type    treatment    u1   du1    u2   du2
 ##    &lt;fct&gt;   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -358,18 +354,18 @@ set had set <code>T1</code> as the baseline in the <code>treatment</code> variab
 ## # ℹ 88 more rows</code></pre>
 <!-- \newpage -->
 
-<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="8.10-section8-10.html#cb810-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">factor</span>(treatment),</span>
-<span id="cb810-2"><a href="8.10-section8-10.html#cb810-2" tabindex="-1"></a>                                <span class="at">treatment =</span> <span class="fu">fct_relevel</span>(treatment, <span class="st">&quot;Control&quot;</span>)</span>
-<span id="cb810-3"><a href="8.10-section8-10.html#cb810-3" tabindex="-1"></a>                                )</span>
-<span id="cb810-4"><a href="8.10-section8-10.html#cb810-4" tabindex="-1"></a><span class="co"># Make treatment a factor and Control the baseline category</span></span>
-<span id="cb810-5"><a href="8.10-section8-10.html#cb810-5" tabindex="-1"></a>Headache <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> du1, <span class="at">y =</span> du2, <span class="at">color =</span> treatment, </span>
-<span id="cb810-6"><a href="8.10-section8-10.html#cb810-6" tabindex="-1"></a>                                  <span class="at">shape =</span> treatment)) <span class="sc">+</span></span>
-<span id="cb810-7"><a href="8.10-section8-10.html#cb810-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span> </span>
-<span id="cb810-8"><a href="8.10-section8-10.html#cb810-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
-<span id="cb810-9"><a href="8.10-section8-10.html#cb810-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb810-10"><a href="8.10-section8-10.html#cb810-10" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.85</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb810-11"><a href="8.10-section8-10.html#cb810-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Maximum DB tolerance before &amp; </span></span>
-<span id="cb810-12"><a href="8.10-section8-10.html#cb810-12" tabindex="-1"></a><span class="st">       after treatment (by treatment)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="8.10-section8-10.html#cb762-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">factor</span>(treatment),</span>
+<span id="cb762-2"><a href="8.10-section8-10.html#cb762-2" tabindex="-1"></a>                                <span class="at">treatment =</span> <span class="fu">fct_relevel</span>(treatment, <span class="st">&quot;Control&quot;</span>)</span>
+<span id="cb762-3"><a href="8.10-section8-10.html#cb762-3" tabindex="-1"></a>                                )</span>
+<span id="cb762-4"><a href="8.10-section8-10.html#cb762-4" tabindex="-1"></a><span class="co"># Make treatment a factor and Control the baseline category</span></span>
+<span id="cb762-5"><a href="8.10-section8-10.html#cb762-5" tabindex="-1"></a>Headache <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> du1, <span class="at">y =</span> du2, <span class="at">color =</span> treatment, </span>
+<span id="cb762-6"><a href="8.10-section8-10.html#cb762-6" tabindex="-1"></a>                                  <span class="at">shape =</span> treatment)) <span class="sc">+</span></span>
+<span id="cb762-7"><a href="8.10-section8-10.html#cb762-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span> </span>
+<span id="cb762-8"><a href="8.10-section8-10.html#cb762-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb762-9"><a href="8.10-section8-10.html#cb762-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb762-10"><a href="8.10-section8-10.html#cb762-10" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.85</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb762-11"><a href="8.10-section8-10.html#cb762-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Maximum DB tolerance before &amp; </span></span>
+<span id="cb762-12"><a href="8.10-section8-10.html#cb762-12" tabindex="-1"></a><span class="st">       after treatment (by treatment)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-26"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-26-1.png" alt="Scatterplot of post-treatment decibel tolerance (du2) vs pre-treatment tolerance (du1) by treatment level (4 groups)." width="75%" />
 <p class="caption">
@@ -530,8 +526,8 @@ In Figure <a href="8.10-section8-10.html#fig:Figure8-26">8.26</a>, there are som
 differences in slopes – we investigate that further in the next section. For
 now, we can proceed with fitting the additive model with different intercepts
 for the four levels of <code>treatment</code> and the quantitative explanatory variable, <code>du1</code>.</p>
-<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="8.10-section8-10.html#cb811-1" tabindex="-1"></a>head1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(du2 <span class="sc">~</span> du1 <span class="sc">+</span> treatment, <span class="at">data =</span> Headache)</span>
-<span id="cb811-2"><a href="8.10-section8-10.html#cb811-2" tabindex="-1"></a><span class="fu">summary</span>(head1)</span></code></pre></div>
+<div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb763-1"><a href="8.10-section8-10.html#cb763-1" tabindex="-1"></a>head1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(du2 <span class="sc">~</span> du1 <span class="sc">+</span> treatment, <span class="at">data =</span> Headache)</span>
+<span id="cb763-2"><a href="8.10-section8-10.html#cb763-2" tabindex="-1"></a><span class="fu">summary</span>(head1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = du2 ~ du1 + treatment, data = Headache)
@@ -609,7 +605,7 @@ if any patterns in residuals look different in different groups, like linearity
 or non-constant variance, when we are fitting models that might contain multiple
 groups.</p>
 
-<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="8.10-section8-10.html#cb813-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(head1, <span class="at">residuals =</span> T), <span class="at">grid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb765"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb765-1"><a href="8.10-section8-10.html#cb765-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(head1, <span class="at">residuals =</span> T), <span class="at">grid =</span> T)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-28"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-28-1.png" alt="Term-plots of the additive decibel tolerance model with partial residuals." width="75%" />
 <p class="caption">
@@ -625,10 +621,10 @@ the Residuals vs. Fitted and Scale-Location plots show some fanning out for
 higher values but this is a minor issue. There are no influential points here
 since all the Cook’s D values are less than 0.5. </p>
 
-<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="8.10-section8-10.html#cb814-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">0</span>))</span>
-<span id="cb814-2"><a href="8.10-section8-10.html#cb814-2" tabindex="-1"></a><span class="fu">plot</span>(head1, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb814-3"><a href="8.10-section8-10.html#cb814-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Plot of diagnostics for additive model with du1 and </span></span>
-<span id="cb814-4"><a href="8.10-section8-10.html#cb814-4" tabindex="-1"></a><span class="st">     treatment for du2&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="8.10-section8-10.html#cb766-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">0</span>))</span>
+<span id="cb766-2"><a href="8.10-section8-10.html#cb766-2" tabindex="-1"></a><span class="fu">plot</span>(head1, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb766-3"><a href="8.10-section8-10.html#cb766-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Plot of diagnostics for additive model with du1 and </span></span>
+<span id="cb766-4"><a href="8.10-section8-10.html#cb766-4" tabindex="-1"></a><span class="st">     treatment for du2&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-29"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-29-1.png" alt="Diagnostic plots for the additive decibel tolerance model." width="75%" />
 <p class="caption">
@@ -655,17 +651,17 @@ this example, there are no additional patterns identified by making this plot
 although we do see some minor deviations in the fitted lines for each group,
 but it is a good additional check in these multi-group situations.</p>
 
-<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="8.10-section8-10.html#cb815-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">resids =</span> <span class="fu">residuals</span>(head1),</span>
-<span id="cb815-2"><a href="8.10-section8-10.html#cb815-2" tabindex="-1"></a>                                <span class="at">fits =</span> <span class="fu">fitted</span>(head1)</span>
-<span id="cb815-3"><a href="8.10-section8-10.html#cb815-3" tabindex="-1"></a>                                )</span>
-<span id="cb815-4"><a href="8.10-section8-10.html#cb815-4" tabindex="-1"></a>Headache <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fits, <span class="at">y =</span> resids, </span>
-<span id="cb815-5"><a href="8.10-section8-10.html#cb815-5" tabindex="-1"></a>                                  <span class="at">color =</span> treatment, <span class="at">shape =</span> treatment)) <span class="sc">+</span></span>
-<span id="cb815-6"><a href="8.10-section8-10.html#cb815-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb815-7"><a href="8.10-section8-10.html#cb815-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
-<span id="cb815-8"><a href="8.10-section8-10.html#cb815-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb815-9"><a href="8.10-section8-10.html#cb815-9" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.85</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span></span>
-<span id="cb815-10"><a href="8.10-section8-10.html#cb815-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Residuals vs Fitted by Treatment Group&quot;</span>) <span class="sc">+</span></span>
-<span id="cb815-11"><a href="8.10-section8-10.html#cb815-11" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(treatment))</span></code></pre></div>
+<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb767-1"><a href="8.10-section8-10.html#cb767-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">resids =</span> <span class="fu">residuals</span>(head1),</span>
+<span id="cb767-2"><a href="8.10-section8-10.html#cb767-2" tabindex="-1"></a>                                <span class="at">fits =</span> <span class="fu">fitted</span>(head1)</span>
+<span id="cb767-3"><a href="8.10-section8-10.html#cb767-3" tabindex="-1"></a>                                )</span>
+<span id="cb767-4"><a href="8.10-section8-10.html#cb767-4" tabindex="-1"></a>Headache <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fits, <span class="at">y =</span> resids, </span>
+<span id="cb767-5"><a href="8.10-section8-10.html#cb767-5" tabindex="-1"></a>                                  <span class="at">color =</span> treatment, <span class="at">shape =</span> treatment)) <span class="sc">+</span></span>
+<span id="cb767-6"><a href="8.10-section8-10.html#cb767-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb767-7"><a href="8.10-section8-10.html#cb767-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb767-8"><a href="8.10-section8-10.html#cb767-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb767-9"><a href="8.10-section8-10.html#cb767-9" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.85</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span></span>
+<span id="cb767-10"><a href="8.10-section8-10.html#cb767-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Residuals vs Fitted by Treatment Group&quot;</span>) <span class="sc">+</span></span>
+<span id="cb767-11"><a href="8.10-section8-10.html#cb767-11" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(treatment))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-30"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-30-1.png" alt="Faceted scatterplot of residuals versus fitted values by treatment group from the additive decibel tolerance model." width="75%" />
 <p class="caption">
@@ -680,7 +676,7 @@ variables due to multicollinearity with other predictors</strong>. In this model
 SE for the quantitative predictor <code>du1</code> is 1.009 times larger due to multicollinearity with other
 predictors and the SEs for the indicator variables for the four-level categorical <code>treatment</code> predictor are 1.003
 times larger due to multicollinearity, both compared to what they would have been with no shared information in the predictors in the model. Neither are large, so multicollinearity is not a problem in this model.</p>
-<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="8.10-section8-10.html#cb816-1" tabindex="-1"></a><span class="fu">vif</span>(head1)</span></code></pre></div>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="8.10-section8-10.html#cb768-1" tabindex="-1"></a><span class="fu">vif</span>(head1)</span></code></pre></div>
 <pre><code>##              GVIF Df GVIF^(1/(2*Df))
 ## du1       1.01786  1        1.008891
 ## treatment 1.01786  3        1.002955</code></pre>
@@ -691,9 +687,9 @@ how to use ANOVA <em>F</em>-tests to help us ask general questions about includi
 categorical predictor in the model. But we can compare adjusted <strong><em>R</em></strong><sup>2</sup>
 values with and without <em>Treatment</em> to see if including the categorical
 variable was “worth it”:</p>
-<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb818-1"><a href="8.10-section8-10.html#cb818-1" tabindex="-1"></a>head1R <span class="ot">&lt;-</span> <span class="fu">lm</span>(du2 <span class="sc">~</span> du1, <span class="at">data =</span> Headache)</span></code></pre></div>
+<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="8.10-section8-10.html#cb770-1" tabindex="-1"></a>head1R <span class="ot">&lt;-</span> <span class="fu">lm</span>(du2 <span class="sc">~</span> du1, <span class="at">data =</span> Headache)</span></code></pre></div>
 <!-- \newpage -->
-<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="8.10-section8-10.html#cb819-1" tabindex="-1"></a><span class="fu">summary</span>(head1R)</span></code></pre></div>
+<div class="sourceCode" id="cb771"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb771-1"><a href="8.10-section8-10.html#cb771-1" tabindex="-1"></a><span class="fu">summary</span>(head1R)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = du2 ~ du1, data = Headache)
@@ -729,15 +725,15 @@ Garnier, Simon. 2024. <em>Viridis: Colorblind-Friendly Color Maps for r</em>. <a
 </div>
 <div class="footnotes">
 <hr />
-<ol start="151">
-<li id="fn151"><p>Models like this with a categorical
+<ol start="144">
+<li id="fn144"><p>Models like this with a categorical
 variable and quantitative variable are often called <em>ANCOVA</em> or <em>analysis of
 covariance</em> models but really are just versions of our linear models we’ve been
-using throughout this material.<a href="8.10-section8-10.html#fnref151" class="footnote-back">↩︎</a></p></li>
-<li id="fn152"><p>The
+using throughout this material.<a href="8.10-section8-10.html#fnref144" class="footnote-back">↩︎</a></p></li>
+<li id="fn145"><p>The
 <code>scale_color_viridis_d(end = 0.85, option = "inferno")</code> code makes the plot
 in a suite of four colors from the <code>viridis</code> package <span class="citation">(<a href="#ref-R-viridis">Garnier 2024</a>)</span> that attempt
-to be color-blind friendly.<a href="8.10-section8-10.html#fnref152" class="footnote-back">↩︎</a></p></li>
+to be color-blind friendly.<a href="8.10-section8-10.html#fnref145" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

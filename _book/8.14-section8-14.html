@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -349,33 +345,33 @@ involved in the interaction if we don’t need the interaction.</p>
 Figure 8.42: Scatterplot of log(FEV) vs Age by smoking status, with both combined (top) and faceted (bottom) versions.
 </p>
 </div>
-<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="8.14-section8-14.html#cb843-1" tabindex="-1"></a><span class="fu">library</span>(coneproj)</span>
-<span id="cb843-2"><a href="8.14-section8-14.html#cb843-2" tabindex="-1"></a><span class="fu">data</span>(FEV)</span>
-<span id="cb843-3"><a href="8.14-section8-14.html#cb843-3" tabindex="-1"></a>FEV <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(FEV)</span>
-<span id="cb843-4"><a href="8.14-section8-14.html#cb843-4" tabindex="-1"></a>FEV <span class="ot">&lt;-</span> FEV <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">factor</span>(sex), <span class="co">#Make sex and smoke factors, log.FEV</span></span>
-<span id="cb843-5"><a href="8.14-section8-14.html#cb843-5" tabindex="-1"></a>                      <span class="at">smoke =</span> <span class="fu">factor</span>(smoke),</span>
-<span id="cb843-6"><a href="8.14-section8-14.html#cb843-6" tabindex="-1"></a>                      <span class="at">log.FEV =</span> <span class="fu">log</span>(FEV))</span>
-<span id="cb843-7"><a href="8.14-section8-14.html#cb843-7" tabindex="-1"></a><span class="fu">levels</span>(FEV<span class="sc">$</span>sex) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Female&quot;</span>,<span class="st">&quot;Male&quot;</span>) <span class="co">#Make sex labels explicit</span></span>
-<span id="cb843-8"><a href="8.14-section8-14.html#cb843-8" tabindex="-1"></a><span class="fu">levels</span>(FEV<span class="sc">$</span>smoke) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Nonsmoker&quot;</span>,<span class="st">&quot;Smoker&quot;</span>) <span class="co">#Make smoking status labels explicit</span></span>
-<span id="cb843-9"><a href="8.14-section8-14.html#cb843-9" tabindex="-1"></a></span>
-<span id="cb843-10"><a href="8.14-section8-14.html#cb843-10" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> FEV <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> log.FEV, <span class="at">color =</span> smoke, <span class="at">shape =</span> smoke)) <span class="sc">+</span></span>
-<span id="cb843-11"><a href="8.14-section8-14.html#cb843-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb843-12"><a href="8.14-section8-14.html#cb843-12" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb843-13"><a href="8.14-section8-14.html#cb843-13" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb843-14"><a href="8.14-section8-14.html#cb843-14" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb843-15"><a href="8.14-section8-14.html#cb843-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Plot of log(FEV) vs Age of children by smoking  status&quot;</span>,</span>
-<span id="cb843-16"><a href="8.14-section8-14.html#cb843-16" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;log(FEV)&quot;</span>) </span>
-<span id="cb843-17"><a href="8.14-section8-14.html#cb843-17" tabindex="-1"></a></span>
-<span id="cb843-18"><a href="8.14-section8-14.html#cb843-18" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> FEV <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> log.FEV, <span class="at">color =</span> smoke, <span class="at">shape =</span> smoke)) <span class="sc">+</span></span>
-<span id="cb843-19"><a href="8.14-section8-14.html#cb843-19" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb843-20"><a href="8.14-section8-14.html#cb843-20" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb843-21"><a href="8.14-section8-14.html#cb843-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb843-22"><a href="8.14-section8-14.html#cb843-22" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb843-23"><a href="8.14-section8-14.html#cb843-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Plot of log(FEV) vs Age of children by smoking  status&quot;</span>,</span>
-<span id="cb843-24"><a href="8.14-section8-14.html#cb843-24" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;log(FEV)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb843-25"><a href="8.14-section8-14.html#cb843-25" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(smoke))</span>
-<span id="cb843-26"><a href="8.14-section8-14.html#cb843-26" tabindex="-1"></a></span>
-<span id="cb843-27"><a href="8.14-section8-14.html#cb843-27" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="8.14-section8-14.html#cb795-1" tabindex="-1"></a><span class="fu">library</span>(coneproj)</span>
+<span id="cb795-2"><a href="8.14-section8-14.html#cb795-2" tabindex="-1"></a><span class="fu">data</span>(FEV)</span>
+<span id="cb795-3"><a href="8.14-section8-14.html#cb795-3" tabindex="-1"></a>FEV <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(FEV)</span>
+<span id="cb795-4"><a href="8.14-section8-14.html#cb795-4" tabindex="-1"></a>FEV <span class="ot">&lt;-</span> FEV <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">factor</span>(sex), <span class="co">#Make sex and smoke factors, log.FEV</span></span>
+<span id="cb795-5"><a href="8.14-section8-14.html#cb795-5" tabindex="-1"></a>                      <span class="at">smoke =</span> <span class="fu">factor</span>(smoke),</span>
+<span id="cb795-6"><a href="8.14-section8-14.html#cb795-6" tabindex="-1"></a>                      <span class="at">log.FEV =</span> <span class="fu">log</span>(FEV))</span>
+<span id="cb795-7"><a href="8.14-section8-14.html#cb795-7" tabindex="-1"></a><span class="fu">levels</span>(FEV<span class="sc">$</span>sex) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Female&quot;</span>,<span class="st">&quot;Male&quot;</span>) <span class="co">#Make sex labels explicit</span></span>
+<span id="cb795-8"><a href="8.14-section8-14.html#cb795-8" tabindex="-1"></a><span class="fu">levels</span>(FEV<span class="sc">$</span>smoke) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Nonsmoker&quot;</span>,<span class="st">&quot;Smoker&quot;</span>) <span class="co">#Make smoking status labels explicit</span></span>
+<span id="cb795-9"><a href="8.14-section8-14.html#cb795-9" tabindex="-1"></a></span>
+<span id="cb795-10"><a href="8.14-section8-14.html#cb795-10" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> FEV <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> log.FEV, <span class="at">color =</span> smoke, <span class="at">shape =</span> smoke)) <span class="sc">+</span></span>
+<span id="cb795-11"><a href="8.14-section8-14.html#cb795-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb795-12"><a href="8.14-section8-14.html#cb795-12" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb795-13"><a href="8.14-section8-14.html#cb795-13" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb795-14"><a href="8.14-section8-14.html#cb795-14" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb795-15"><a href="8.14-section8-14.html#cb795-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Plot of log(FEV) vs Age of children by smoking  status&quot;</span>,</span>
+<span id="cb795-16"><a href="8.14-section8-14.html#cb795-16" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;log(FEV)&quot;</span>) </span>
+<span id="cb795-17"><a href="8.14-section8-14.html#cb795-17" tabindex="-1"></a></span>
+<span id="cb795-18"><a href="8.14-section8-14.html#cb795-18" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> FEV <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> log.FEV, <span class="at">color =</span> smoke, <span class="at">shape =</span> smoke)) <span class="sc">+</span></span>
+<span id="cb795-19"><a href="8.14-section8-14.html#cb795-19" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb795-20"><a href="8.14-section8-14.html#cb795-20" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb795-21"><a href="8.14-section8-14.html#cb795-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb795-22"><a href="8.14-section8-14.html#cb795-22" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb795-23"><a href="8.14-section8-14.html#cb795-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Plot of log(FEV) vs Age of children by smoking  status&quot;</span>,</span>
+<span id="cb795-24"><a href="8.14-section8-14.html#cb795-24" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;log(FEV)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb795-25"><a href="8.14-section8-14.html#cb795-25" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(smoke))</span>
+<span id="cb795-26"><a href="8.14-section8-14.html#cb795-26" tabindex="-1"></a></span>
+<span id="cb795-27"><a href="8.14-section8-14.html#cb795-27" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p>To get the needed results, start with the <strong><em>full model</em></strong> – the most
 complicated model you want to consider. It is good to check assumptions before
 considering reducing the model as they rarely get better in simpler models and
@@ -383,8 +379,8 @@ the <strong>AIC is only appropriate to use if the model assumptions are not clea
 violated</strong>. As suggested above, our “fullish” model for the <em>log(FEV)</em> values is
 specified as <code>log(FEV) ~ height + age * smoke + sex</code>.</p>
 
-<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="8.14-section8-14.html#cb844-1" tabindex="-1"></a>fm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(log.FEV <span class="sc">~</span> height <span class="sc">+</span> age <span class="sc">*</span> smoke <span class="sc">+</span> sex, <span class="at">data =</span> FEV)</span>
-<span id="cb844-2"><a href="8.14-section8-14.html#cb844-2" tabindex="-1"></a><span class="fu">summary</span>(fm1)</span></code></pre></div>
+<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="8.14-section8-14.html#cb796-1" tabindex="-1"></a>fm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(log.FEV <span class="sc">~</span> height <span class="sc">+</span> age <span class="sc">*</span> smoke <span class="sc">+</span> sex, <span class="at">data =</span> FEV)</span>
+<span id="cb796-2"><a href="8.14-section8-14.html#cb796-2" tabindex="-1"></a><span class="fu">summary</span>(fm1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log.FEV ~ height + age * smoke + sex, data = FEV)
@@ -405,9 +401,9 @@ specified as <code>log(FEV) ~ height + age * smoke + sex</code>.</p>
 ## Residual standard error: 0.1454 on 648 degrees of freedom
 ## Multiple R-squared:  0.8112, Adjusted R-squared:  0.8097 
 ## F-statistic: 556.8 on 5 and 648 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="8.14-section8-14.html#cb846-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb846-2"><a href="8.14-section8-14.html#cb846-2" tabindex="-1"></a><span class="fu">plot</span>(fm1, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb846-3"><a href="8.14-section8-14.html#cb846-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Diagnostics for full FEV model&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="8.14-section8-14.html#cb798-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb798-2"><a href="8.14-section8-14.html#cb798-2" tabindex="-1"></a><span class="fu">plot</span>(fm1, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb798-3"><a href="8.14-section8-14.html#cb798-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Diagnostics for full FEV model&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-43"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-43-1.png" alt="Diagnostics for the log(FEV) model that includes height, sex, and an interaction between age and smoking status (the full model)." width="75%" />
 <p class="caption">
@@ -422,7 +418,7 @@ assumption but not enough to be concerned about our inferences from this model.
 If we select a different model(s), we would want to check its diagnostics and
 make sure that the results do not look noticeably worse than these do.</p>
 
-<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="8.14-section8-14.html#cb847-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(fm1, <span class="at">residuals =</span> T), <span class="at">grid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="8.14-section8-14.html#cb799-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(fm1, <span class="at">residuals =</span> T), <span class="at">grid =</span> T)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-44"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-44-1.png" alt="Term-plots for the log(FEV) model that includes height, sex, and an interaction between age and smoking status (the full model), with partial residuals." width="75%" />
 <p class="caption">
@@ -444,8 +440,8 @@ without the interaction term in the model, called <code>fm1R</code>. You need to
 models and then apply the <code>AIC</code> function to them with commas between the model
 names:</p>
 <!-- \newpage -->
-<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="8.14-section8-14.html#cb848-1" tabindex="-1"></a>fm1R <span class="ot">&lt;-</span> <span class="fu">lm</span>(log.FEV <span class="sc">~</span> height <span class="sc">+</span> age <span class="sc">+</span> smoke <span class="sc">+</span> sex, <span class="at">data =</span> FEV)</span>
-<span id="cb848-2"><a href="8.14-section8-14.html#cb848-2" tabindex="-1"></a><span class="fu">AIC</span>(fm1, fm1R)</span></code></pre></div>
+<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="8.14-section8-14.html#cb800-1" tabindex="-1"></a>fm1R <span class="ot">&lt;-</span> <span class="fu">lm</span>(log.FEV <span class="sc">~</span> height <span class="sc">+</span> age <span class="sc">+</span> smoke <span class="sc">+</span> sex, <span class="at">data =</span> FEV)</span>
+<span id="cb800-2"><a href="8.14-section8-14.html#cb800-2" tabindex="-1"></a><span class="fu">AIC</span>(fm1, fm1R)</span></code></pre></div>
 <pre><code>##      df       AIC
 ## fm1   7 -658.5178
 ## fm1R  6 -658.6037</code></pre>
@@ -460,9 +456,9 @@ between <em>age</em> and <em>smoking</em> in a model with two other predictors. 
 probably also interested in whether the other terms are needed in the model.
 The full suite of results from dredge provide model comparisons that help us to
 assess the presence/absence of each model component including the interaction.</p>
-<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="8.14-section8-14.html#cb850-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
-<span id="cb850-2"><a href="8.14-section8-14.html#cb850-2" tabindex="-1"></a><span class="fu">dredge</span>(fm1, <span class="at">rank =</span> <span class="st">&quot;AIC&quot;</span>, </span>
-<span id="cb850-3"><a href="8.14-section8-14.html#cb850-3" tabindex="-1"></a>       <span class="at">extra =</span> <span class="fu">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="at">adjRsq =</span> <span class="cf">function</span>(x) <span class="fu">summary</span>(x)<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="8.14-section8-14.html#cb802-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
+<span id="cb802-2"><a href="8.14-section8-14.html#cb802-2" tabindex="-1"></a><span class="fu">dredge</span>(fm1, <span class="at">rank =</span> <span class="st">&quot;AIC&quot;</span>, </span>
+<span id="cb802-3"><a href="8.14-section8-14.html#cb802-3" tabindex="-1"></a>       <span class="at">extra =</span> <span class="fu">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="at">adjRsq =</span> <span class="cf">function</span>(x) <span class="fu">summary</span>(x)<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
 <pre><code>## Global model call: lm(formula = log.FEV ~ height + age * smoke + sex, data = FEV)
 ## ---
 ## Model selection table 
@@ -575,20 +571,20 @@ from Section</strong> <a href="7.6-section7-6.html#section7-6">7.6</a> <strong>w
 we have to note that the model used to generate the slope coefficient had other
 components and so this estimate is after adjusting for them.</strong></p>
 
-<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="8.14-section8-14.html#cb852-1" tabindex="-1"></a>fm1R<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="8.14-section8-14.html#cb804-1" tabindex="-1"></a>fm1R<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>## (Intercept)      height         age smokeSmoker     sexMale 
 ## -1.94399818  0.04279579  0.02338721 -0.04606754  0.02931936</code></pre>
-<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="8.14-section8-14.html#cb854-1" tabindex="-1"></a><span class="fu">vif</span>(fm1R)</span></code></pre></div>
+<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="8.14-section8-14.html#cb806-1" tabindex="-1"></a><span class="fu">vif</span>(fm1R)</span></code></pre></div>
 <pre><code>##   height      age    smoke      sex 
 ## 2.829728 3.019010 1.209564 1.060228</code></pre>
-<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="8.14-section8-14.html#cb856-1" tabindex="-1"></a><span class="fu">confint</span>(fm1R)</span></code></pre></div>
+<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="8.14-section8-14.html#cb808-1" tabindex="-1"></a><span class="fu">confint</span>(fm1R)</span></code></pre></div>
 <pre><code>##                    2.5 %       97.5 %
 ## (Intercept) -2.098414941 -1.789581413
 ## height       0.039498923  0.046092655
 ## age          0.016812109  0.029962319
 ## smokeSmoker -0.087127344 -0.005007728
 ## sexMale      0.006308481  0.052330236</code></pre>
-<div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="8.14-section8-14.html#cb858-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(fm1R), <span class="at">grid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="8.14-section8-14.html#cb810-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(fm1R), <span class="at">grid =</span> T)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-46"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-46-1.png" alt="Term-plots for the top AIC model for log(FEV) that includes height, age, smoking status, and sex in the model." width="75%" />
 <p class="caption">

@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -333,27 +329,27 @@ performance of their test and it was not based on a random sample?</p>
 statistical models underlying the development of the SAT and GRE) and also in
 obtaining a data set for testing out the performance of their tests that is at
 least representative of the students (or some types of students) at this
-university. They<a href="#fn144" class="footnote-ref" id="fnref144"><sup>144</sup></a> provided information on the <em>SAT Verbal</em> (<code>satv</code>)
+university. They<a href="#fn137" class="footnote-ref" id="fnref137"><sup>137</sup></a> provided information on the <em>SAT Verbal</em> (<code>satv</code>)
 and <em>Math</em> (<code>satm</code>) percentiles (these are not the scores but the ranking
 percentile that each score translated to in a particular year),
-<em>High School GPA</em> (<code>hsgpa</code>), <em>First Year</em> of college <em>GPA</em> (<code>fygpa</code>), <em>Gender</em> (<code>gender</code> of the students coded 1 and 2 with possibly 1 for males and 2 for females – the documentation was also unclear this). Should <code>gender</code> even be displayed in a plot with correlations since it is a categorical variable?<a href="#fn145" class="footnote-ref" id="fnref145"><sup>145</sup></a> Our interests here are in whether the two SAT percentiles are (together?)
+<em>High School GPA</em> (<code>hsgpa</code>), <em>First Year</em> of college <em>GPA</em> (<code>fygpa</code>), <em>Gender</em> (<code>gender</code> of the students coded 1 and 2 with possibly 1 for males and 2 for females – the documentation was also unclear this). Should <code>gender</code> even be displayed in a plot with correlations since it is a categorical variable?<a href="#fn138" class="footnote-ref" id="fnref138"><sup>138</sup></a> Our interests here are in whether the two SAT percentiles are (together?)
 related to the first year college GPA, describing the size of their impacts
 and assessing the predictive potential of SAT-based measures for first year in
 college GPA. There are certainly other possible research questions that can be
 addressed with these data but this will keep us focused.
 </p>
 
-<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb777-1"><a href="8.8-section8-8.html#cb777-1" tabindex="-1"></a><span class="fu">library</span>(openintro)</span>
-<span id="cb777-2"><a href="8.8-section8-8.html#cb777-2" tabindex="-1"></a><span class="fu">data</span>(satgpa)</span>
-<span id="cb777-3"><a href="8.8-section8-8.html#cb777-3" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(satgpa)</span>
-<span id="cb777-4"><a href="8.8-section8-8.html#cb777-4" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">gender =</span> sex , <span class="co">#Renaming variables </span></span>
-<span id="cb777-5"><a href="8.8-section8-8.html#cb777-5" tabindex="-1"></a>                            <span class="at">satv =</span> sat_v, <span class="at">satm =</span> sat_m, <span class="at">satsum =</span> sat_sum, </span>
-<span id="cb777-6"><a href="8.8-section8-8.html#cb777-6" tabindex="-1"></a>                            <span class="at">hsgpa =</span> hs_gpa, </span>
-<span id="cb777-7"><a href="8.8-section8-8.html#cb777-7" tabindex="-1"></a>                            <span class="at">fygpa =</span> fy_gpa) </span>
-<span id="cb777-8"><a href="8.8-section8-8.html#cb777-8" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> </span>
-<span id="cb777-9"><a href="8.8-section8-8.html#cb777-9" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb777-10"><a href="8.8-section8-8.html#cb777-10" tabindex="-1"></a>  <span class="fu">ggpairs</span>() <span class="sc">+</span> </span>
-<span id="cb777-11"><a href="8.8-section8-8.html#cb777-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="8.8-section8-8.html#cb729-1" tabindex="-1"></a><span class="fu">library</span>(openintro)</span>
+<span id="cb729-2"><a href="8.8-section8-8.html#cb729-2" tabindex="-1"></a><span class="fu">data</span>(satgpa)</span>
+<span id="cb729-3"><a href="8.8-section8-8.html#cb729-3" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(satgpa)</span>
+<span id="cb729-4"><a href="8.8-section8-8.html#cb729-4" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">gender =</span> sex , <span class="co">#Renaming variables </span></span>
+<span id="cb729-5"><a href="8.8-section8-8.html#cb729-5" tabindex="-1"></a>                            <span class="at">satv =</span> sat_v, <span class="at">satm =</span> sat_m, <span class="at">satsum =</span> sat_sum, </span>
+<span id="cb729-6"><a href="8.8-section8-8.html#cb729-6" tabindex="-1"></a>                            <span class="at">hsgpa =</span> hs_gpa, </span>
+<span id="cb729-7"><a href="8.8-section8-8.html#cb729-7" tabindex="-1"></a>                            <span class="at">fygpa =</span> fy_gpa) </span>
+<span id="cb729-8"><a href="8.8-section8-8.html#cb729-8" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> </span>
+<span id="cb729-9"><a href="8.8-section8-8.html#cb729-9" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb729-10"><a href="8.8-section8-8.html#cb729-10" tabindex="-1"></a>  <span class="fu">ggpairs</span>() <span class="sc">+</span> </span>
+<span id="cb729-11"><a href="8.8-section8-8.html#cb729-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-18"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-18-1.png" alt="Scatterplot matrix of SAT and GPA data set." width="75%" />
 <p class="caption">
@@ -365,7 +361,7 @@ pre-college measures and the <em>college GPA</em> but none are above the moderat
 strength level. The <em>hsgpa</em> has a highest correlation with
 first year of college results but its correlation is not that strong. Maybe
 together in a model the SAT percentiles can also be useful? Also note this plot
-shows an odd <em>hsgpa</em> of 4.5 that probably should be removed<a href="#fn146" class="footnote-ref" id="fnref146"><sup>146</sup></a> if that variable is going to be used (<em>hsgpa</em>
+shows an odd <em>hsgpa</em> of 4.5 that probably should be removed<a href="#fn139" class="footnote-ref" id="fnref139"><sup>139</sup></a> if that variable is going to be used (<em>hsgpa</em>
 was not used in the following models so the observation remains in the data).</p>
 <!-- \newpage -->
 <p>In MLR, the modeling process is a bit more complex and often involves
@@ -395,8 +391,8 @@ they might apply to… But you could see why the company that administers the SA
 <p>The following code fits the model of interest, provides a model summary,
 and the diagnostic plots, allowing us to consider the tests of interest:</p>
 
-<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="8.8-section8-8.html#cb778-1" tabindex="-1"></a>gpa1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fygpa <span class="sc">~</span> satv <span class="sc">+</span> satm, <span class="at">data =</span> satgpa)</span>
-<span id="cb778-2"><a href="8.8-section8-8.html#cb778-2" tabindex="-1"></a><span class="fu">summary</span>(gpa1)</span></code></pre></div>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="8.8-section8-8.html#cb730-1" tabindex="-1"></a>gpa1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fygpa <span class="sc">~</span> satv <span class="sc">+</span> satm, <span class="at">data =</span> satgpa)</span>
+<span id="cb730-2"><a href="8.8-section8-8.html#cb730-2" tabindex="-1"></a><span class="fu">summary</span>(gpa1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fygpa ~ satv + satm, data = satgpa)
@@ -414,9 +410,9 @@ and the diagnostic plots, allowing us to consider the tests of interest:</p>
 ## Residual standard error: 0.6582 on 997 degrees of freedom
 ## Multiple R-squared:  0.2122, Adjusted R-squared:  0.2106 
 ## F-statistic: 134.2 on 2 and 997 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="8.8-section8-8.html#cb780-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb780-2"><a href="8.8-section8-8.html#cb780-2" tabindex="-1"></a><span class="fu">plot</span>(gpa1, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb780-3"><a href="8.8-section8-8.html#cb780-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Diagnostics for GPA model with satv and satm&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="8.8-section8-8.html#cb732-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb732-2"><a href="8.8-section8-8.html#cb732-2" tabindex="-1"></a><span class="fu">plot</span>(gpa1, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb732-3"><a href="8.8-section8-8.html#cb732-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Diagnostics for GPA model with satv and satm&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-19"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-19-1.png" alt="Diagnostic plots for the \(\text{fygpa}\sim\text{satm} + \text{satm}\) model." width="75%" />
 <p class="caption">
@@ -478,14 +474,14 @@ actually a bit lower than one might expect and suggests that each
 score must be measuring some independent information about different
 characteristics of the students.</p></li>
 <li><p>VIFs also do not suggest a major issue with multicollinearity in the
-model with the VIFs for both variables the same at 1.278<a href="#fn147" class="footnote-ref" id="fnref147"><sup>147</sup></a>. This suggests that both SEs are about 13% larger than they
+model with the VIFs for both variables the same at 1.278<a href="#fn140" class="footnote-ref" id="fnref140"><sup>140</sup></a>. This suggests that both SEs are about 13% larger than they
 otherwise would have been due to shared information between the two
 predictor variables. </p></li>
 </ul>
-<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb781-1"><a href="8.8-section8-8.html#cb781-1" tabindex="-1"></a><span class="fu">vif</span>(gpa1)</span></code></pre></div>
+<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="8.8-section8-8.html#cb733-1" tabindex="-1"></a><span class="fu">vif</span>(gpa1)</span></code></pre></div>
 <pre><code>##     satv     satm 
 ## 1.278278 1.278278</code></pre>
-<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb783-1"><a href="8.8-section8-8.html#cb783-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vif</span>(gpa1))</span></code></pre></div>
+<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="8.8-section8-8.html#cb735-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vif</span>(gpa1))</span></code></pre></div>
 <pre><code>##    satv    satm 
 ## 1.13061 1.13061</code></pre></li>
 <li><p><strong>Equal (constant) variance:</strong></p>
@@ -591,7 +587,7 @@ sample size as opposed to the model itself explaining most of the variation
 in the responses. </p></li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="8.8-section8-8.html#cb785-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(gpa1, <span class="at">residuals =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="8.8-section8-8.html#cb737-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(gpa1, <span class="at">residuals =</span> T))</span></code></pre></div>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-20"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-20-1.png" alt="Term-plots for the \(\text{fygpa}\sim\text{satv} + \text{satm}\) model with partial residuals." width="75%" />
@@ -604,7 +600,7 @@ Figure 8.20: Term-plots for the <span class="math inline">\(\text{fygpa}\sim\tex
 estimated slope coefficient. As always, the “easy” way to get 95% confidence
 intervals is using the <code>confint</code> function:</li>
 </ul>
-<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="8.8-section8-8.html#cb786-1" tabindex="-1"></a><span class="fu">confint</span>(gpa1)</span></code></pre></div>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="8.8-section8-8.html#cb738-1" tabindex="-1"></a><span class="fu">confint</span>(gpa1)</span></code></pre></div>
 <pre><code>##                   2.5 %     97.5 %
 ## (Intercept) -0.29147825 0.30622148
 ## satv         0.01977864 0.03100106
@@ -649,18 +645,18 @@ The predicted mean value is</p>
 \end{array}\]</span></p>
 <p>This result and the 95% confidence interval for the mean student <em>fygpa</em> at these
 scores can be found using the <code>predict</code> function as: </p>
-<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb788-1"><a href="8.8-section8-8.html#cb788-1" tabindex="-1"></a><span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">satv =</span> <span class="dv">30</span>, <span class="at">satm =</span> <span class="dv">60</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="8.8-section8-8.html#cb740-1" tabindex="-1"></a><span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">satv =</span> <span class="dv">30</span>, <span class="at">satm =</span> <span class="dv">60</span>))</span></code></pre></div>
 <pre><code>##       1 
 ## 2.11274</code></pre>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb790-1"><a href="8.8-section8-8.html#cb790-1" tabindex="-1"></a><span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">satv =</span> <span class="dv">30</span>,<span class="at">satm =</span> <span class="dv">60</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="8.8-section8-8.html#cb742-1" tabindex="-1"></a><span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">satv =</span> <span class="dv">30</span>,<span class="at">satm =</span> <span class="dv">60</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##       fit      lwr      upr
 ## 1 2.11274 1.982612 2.242868</code></pre>
 <p>For students at the 30<sup>th</sup> percentile of <em>satv</em> and 60<sup>th</sup>
 percentile of <em>satm</em>, we are 95% confident that the true mean first year GPA
 is between 1.98 and 2.24 points. For an individual student, we would want the
 95% prediction interval:</p>
-<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb792-1"><a href="8.8-section8-8.html#cb792-1" tabindex="-1"></a><span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">satv =</span> <span class="dv">30</span>, <span class="at">satm =</span> <span class="dv">60</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="8.8-section8-8.html#cb744-1" tabindex="-1"></a><span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">satv =</span> <span class="dv">30</span>, <span class="at">satm =</span> <span class="dv">60</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##       fit       lwr      upr
 ## 1 2.11274 0.8145859 3.410894</code></pre>
 <p>For a student with <em>satv</em> = 30 and <em>satm</em> = 60, we are 95% sure that their first
@@ -684,50 +680,50 @@ two types of intervals – to make them in MLR, you have to fix all but one of
 the predictor variables and we usually do that by fixing the other variables at
 their means. </p>
 
-<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="8.8-section8-8.html#cb794-1" tabindex="-1"></a><span class="co"># Remake effects plots with added 95% PIs</span></span>
-<span id="cb794-2"><a href="8.8-section8-8.html#cb794-2" tabindex="-1"></a>dv1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">satv =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">24</span>, <span class="at">to =</span> <span class="dv">76</span>, <span class="at">length.out =</span> <span class="dv">50</span>), <span class="at">satm =</span> <span class="fu">rep</span>(<span class="fl">54.4</span>, <span class="dv">50</span>))</span>
-<span id="cb794-3"><a href="8.8-section8-8.html#cb794-3" tabindex="-1"></a></span>
-<span id="cb794-4"><a href="8.8-section8-8.html#cb794-4" tabindex="-1"></a>mv1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dv1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
-<span id="cb794-5"><a href="8.8-section8-8.html#cb794-5" tabindex="-1"></a>pv1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dv1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
-<span id="cb794-6"><a href="8.8-section8-8.html#cb794-6" tabindex="-1"></a></span>
-<span id="cb794-7"><a href="8.8-section8-8.html#cb794-7" tabindex="-1"></a>mres_GPA_v <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dv1, mv1, pv1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
-<span id="cb794-8"><a href="8.8-section8-8.html#cb794-8" tabindex="-1"></a></span>
-<span id="cb794-9"><a href="8.8-section8-8.html#cb794-9" tabindex="-1"></a><span class="co"># Rename CI and PI limits to have more explicit column names:</span></span>
-<span id="cb794-10"><a href="8.8-section8-8.html#cb794-10" tabindex="-1"></a>mres_GPA_v <span class="ot">&lt;-</span> mres_GPA_v <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">4</span>, <span class="at">upr_CI =</span> upr...<span class="dv">5</span>, </span>
-<span id="cb794-11"><a href="8.8-section8-8.html#cb794-11" tabindex="-1"></a>                                    <span class="at">lwr_PI =</span> lwr...<span class="dv">6</span>, <span class="at">upr_PI =</span> upr...<span class="dv">7</span>)</span>
-<span id="cb794-12"><a href="8.8-section8-8.html#cb794-12" tabindex="-1"></a></span>
-<span id="cb794-13"><a href="8.8-section8-8.html#cb794-13" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> mres_GPA_v <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb794-14"><a href="8.8-section8-8.html#cb794-14" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb794-15"><a href="8.8-section8-8.html#cb794-15" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
-<span id="cb794-16"><a href="8.8-section8-8.html#cb794-16" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb794-17"><a href="8.8-section8-8.html#cb794-17" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, </span>
-<span id="cb794-18"><a href="8.8-section8-8.html#cb794-18" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
-<span id="cb794-19"><a href="8.8-section8-8.html#cb794-19" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;GPA&quot;</span>, <span class="at">x =</span> <span class="st">&quot;satv Percentile&quot;</span>, </span>
-<span id="cb794-20"><a href="8.8-section8-8.html#cb794-20" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;satv Effect plot with 95% CI and PI&quot;</span>) <span class="sc">+</span></span>
-<span id="cb794-21"><a href="8.8-section8-8.html#cb794-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb794-22"><a href="8.8-section8-8.html#cb794-22" tabindex="-1"></a></span>
-<span id="cb794-23"><a href="8.8-section8-8.html#cb794-23" tabindex="-1"></a>dm1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">satv =</span> <span class="fu">rep</span>(<span class="fl">48.93</span>, <span class="dv">50</span>), <span class="at">satm =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">29</span>, <span class="at">to =</span> <span class="dv">77</span>, <span class="at">length.out =</span> <span class="dv">50</span>))</span>
-<span id="cb794-24"><a href="8.8-section8-8.html#cb794-24" tabindex="-1"></a></span>
-<span id="cb794-25"><a href="8.8-section8-8.html#cb794-25" tabindex="-1"></a>mm1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dm1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
-<span id="cb794-26"><a href="8.8-section8-8.html#cb794-26" tabindex="-1"></a>pm1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dm1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
-<span id="cb794-27"><a href="8.8-section8-8.html#cb794-27" tabindex="-1"></a></span>
-<span id="cb794-28"><a href="8.8-section8-8.html#cb794-28" tabindex="-1"></a>mres_GPA_m <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dm1, mm1, pm1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
-<span id="cb794-29"><a href="8.8-section8-8.html#cb794-29" tabindex="-1"></a></span>
-<span id="cb794-30"><a href="8.8-section8-8.html#cb794-30" tabindex="-1"></a><span class="co">#Rename CI and PI limits to have more explicit column names:</span></span>
-<span id="cb794-31"><a href="8.8-section8-8.html#cb794-31" tabindex="-1"></a>mres_GPA_m <span class="ot">&lt;-</span> mres_GPA_m <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">4</span>, <span class="at">upr_CI =</span> upr...<span class="dv">5</span>, </span>
-<span id="cb794-32"><a href="8.8-section8-8.html#cb794-32" tabindex="-1"></a>                                    <span class="at">lwr_PI =</span> lwr...<span class="dv">6</span>, <span class="at">upr_PI =</span> upr...<span class="dv">7</span>)</span>
-<span id="cb794-33"><a href="8.8-section8-8.html#cb794-33" tabindex="-1"></a></span>
-<span id="cb794-34"><a href="8.8-section8-8.html#cb794-34" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> mres_GPA_m <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb794-35"><a href="8.8-section8-8.html#cb794-35" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb794-36"><a href="8.8-section8-8.html#cb794-36" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
-<span id="cb794-37"><a href="8.8-section8-8.html#cb794-37" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb794-38"><a href="8.8-section8-8.html#cb794-38" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, </span>
-<span id="cb794-39"><a href="8.8-section8-8.html#cb794-39" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
-<span id="cb794-40"><a href="8.8-section8-8.html#cb794-40" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;GPA&quot;</span>, <span class="at">x =</span> <span class="st">&quot;satm Percentile&quot;</span>, </span>
-<span id="cb794-41"><a href="8.8-section8-8.html#cb794-41" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;satm Effect plot with 95% CI and PI&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb794-42"><a href="8.8-section8-8.html#cb794-42" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb794-43"><a href="8.8-section8-8.html#cb794-43" tabindex="-1"></a></span>
-<span id="cb794-44"><a href="8.8-section8-8.html#cb794-44" tabindex="-1"></a><span class="fu">grid.arrange</span>(v1, m1, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="8.8-section8-8.html#cb746-1" tabindex="-1"></a><span class="co"># Remake effects plots with added 95% PIs</span></span>
+<span id="cb746-2"><a href="8.8-section8-8.html#cb746-2" tabindex="-1"></a>dv1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">satv =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">24</span>, <span class="at">to =</span> <span class="dv">76</span>, <span class="at">length.out =</span> <span class="dv">50</span>), <span class="at">satm =</span> <span class="fu">rep</span>(<span class="fl">54.4</span>, <span class="dv">50</span>))</span>
+<span id="cb746-3"><a href="8.8-section8-8.html#cb746-3" tabindex="-1"></a></span>
+<span id="cb746-4"><a href="8.8-section8-8.html#cb746-4" tabindex="-1"></a>mv1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dv1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
+<span id="cb746-5"><a href="8.8-section8-8.html#cb746-5" tabindex="-1"></a>pv1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dv1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
+<span id="cb746-6"><a href="8.8-section8-8.html#cb746-6" tabindex="-1"></a></span>
+<span id="cb746-7"><a href="8.8-section8-8.html#cb746-7" tabindex="-1"></a>mres_GPA_v <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dv1, mv1, pv1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
+<span id="cb746-8"><a href="8.8-section8-8.html#cb746-8" tabindex="-1"></a></span>
+<span id="cb746-9"><a href="8.8-section8-8.html#cb746-9" tabindex="-1"></a><span class="co"># Rename CI and PI limits to have more explicit column names:</span></span>
+<span id="cb746-10"><a href="8.8-section8-8.html#cb746-10" tabindex="-1"></a>mres_GPA_v <span class="ot">&lt;-</span> mres_GPA_v <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">4</span>, <span class="at">upr_CI =</span> upr...<span class="dv">5</span>, </span>
+<span id="cb746-11"><a href="8.8-section8-8.html#cb746-11" tabindex="-1"></a>                                    <span class="at">lwr_PI =</span> lwr...<span class="dv">6</span>, <span class="at">upr_PI =</span> upr...<span class="dv">7</span>)</span>
+<span id="cb746-12"><a href="8.8-section8-8.html#cb746-12" tabindex="-1"></a></span>
+<span id="cb746-13"><a href="8.8-section8-8.html#cb746-13" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> mres_GPA_v <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb746-14"><a href="8.8-section8-8.html#cb746-14" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb746-15"><a href="8.8-section8-8.html#cb746-15" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
+<span id="cb746-16"><a href="8.8-section8-8.html#cb746-16" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb746-17"><a href="8.8-section8-8.html#cb746-17" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, </span>
+<span id="cb746-18"><a href="8.8-section8-8.html#cb746-18" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb746-19"><a href="8.8-section8-8.html#cb746-19" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;GPA&quot;</span>, <span class="at">x =</span> <span class="st">&quot;satv Percentile&quot;</span>, </span>
+<span id="cb746-20"><a href="8.8-section8-8.html#cb746-20" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;satv Effect plot with 95% CI and PI&quot;</span>) <span class="sc">+</span></span>
+<span id="cb746-21"><a href="8.8-section8-8.html#cb746-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb746-22"><a href="8.8-section8-8.html#cb746-22" tabindex="-1"></a></span>
+<span id="cb746-23"><a href="8.8-section8-8.html#cb746-23" tabindex="-1"></a>dm1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">satv =</span> <span class="fu">rep</span>(<span class="fl">48.93</span>, <span class="dv">50</span>), <span class="at">satm =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">29</span>, <span class="at">to =</span> <span class="dv">77</span>, <span class="at">length.out =</span> <span class="dv">50</span>))</span>
+<span id="cb746-24"><a href="8.8-section8-8.html#cb746-24" tabindex="-1"></a></span>
+<span id="cb746-25"><a href="8.8-section8-8.html#cb746-25" tabindex="-1"></a>mm1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dm1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
+<span id="cb746-26"><a href="8.8-section8-8.html#cb746-26" tabindex="-1"></a>pm1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dm1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
+<span id="cb746-27"><a href="8.8-section8-8.html#cb746-27" tabindex="-1"></a></span>
+<span id="cb746-28"><a href="8.8-section8-8.html#cb746-28" tabindex="-1"></a>mres_GPA_m <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dm1, mm1, pm1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
+<span id="cb746-29"><a href="8.8-section8-8.html#cb746-29" tabindex="-1"></a></span>
+<span id="cb746-30"><a href="8.8-section8-8.html#cb746-30" tabindex="-1"></a><span class="co">#Rename CI and PI limits to have more explicit column names:</span></span>
+<span id="cb746-31"><a href="8.8-section8-8.html#cb746-31" tabindex="-1"></a>mres_GPA_m <span class="ot">&lt;-</span> mres_GPA_m <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">4</span>, <span class="at">upr_CI =</span> upr...<span class="dv">5</span>, </span>
+<span id="cb746-32"><a href="8.8-section8-8.html#cb746-32" tabindex="-1"></a>                                    <span class="at">lwr_PI =</span> lwr...<span class="dv">6</span>, <span class="at">upr_PI =</span> upr...<span class="dv">7</span>)</span>
+<span id="cb746-33"><a href="8.8-section8-8.html#cb746-33" tabindex="-1"></a></span>
+<span id="cb746-34"><a href="8.8-section8-8.html#cb746-34" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> mres_GPA_m <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb746-35"><a href="8.8-section8-8.html#cb746-35" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb746-36"><a href="8.8-section8-8.html#cb746-36" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
+<span id="cb746-37"><a href="8.8-section8-8.html#cb746-37" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb746-38"><a href="8.8-section8-8.html#cb746-38" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, </span>
+<span id="cb746-39"><a href="8.8-section8-8.html#cb746-39" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb746-40"><a href="8.8-section8-8.html#cb746-40" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;GPA&quot;</span>, <span class="at">x =</span> <span class="st">&quot;satm Percentile&quot;</span>, </span>
+<span id="cb746-41"><a href="8.8-section8-8.html#cb746-41" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;satm Effect plot with 95% CI and PI&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb746-42"><a href="8.8-section8-8.html#cb746-42" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb746-43"><a href="8.8-section8-8.html#cb746-43" tabindex="-1"></a></span>
+<span id="cb746-44"><a href="8.8-section8-8.html#cb746-44" tabindex="-1"></a><span class="fu">grid.arrange</span>(v1, m1, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-21"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-21-1.png" alt="Term-plots for the \(\text{fygpa}\sim\text{satv} + \text{satm}\) model with 95% confidence intervals (dark, dashed lines) and 95% PIs (light grey, dotted lines)." width="75%" />
 <p class="caption">
@@ -745,19 +741,19 @@ Figure 8.21: Term-plots for the <span class="math inline">\(\text{fygpa}\sim\tex
 </div>
 <div class="footnotes">
 <hr />
-<ol start="144">
-<li id="fn144"><p>The variables were renamed to better interface with R code and our book formatting using the <code>rename</code> function.<a href="8.8-section8-8.html#fnref144" class="footnote-back">↩︎</a></p></li>
-<li id="fn145"><p>The answer is no – it should be converted to a factor variable prior to plotting so it can be displayed correctly by <code>ggpairs</code>, but was intentionally left this way so you could see what happens when numerically coded categorical variables are not carefully handled in R.<a href="8.8-section8-8.html#fnref145" class="footnote-back">↩︎</a></p></li>
-<li id="fn146"><p>Either
+<ol start="137">
+<li id="fn137"><p>The variables were renamed to better interface with R code and our book formatting using the <code>rename</code> function.<a href="8.8-section8-8.html#fnref137" class="footnote-back">↩︎</a></p></li>
+<li id="fn138"><p>The answer is no – it should be converted to a factor variable prior to plotting so it can be displayed correctly by <code>ggpairs</code>, but was intentionally left this way so you could see what happens when numerically coded categorical variables are not carefully handled in R.<a href="8.8-section8-8.html#fnref138" class="footnote-back">↩︎</a></p></li>
+<li id="fn139"><p>Either
 someone had a weighted GPA with bonus points, or more likely here, there
 was a coding error in the data set since only one observation was over 4.0 in
 the GPA data. Either way, we could remove it and note that our inferences for
-HSGPA do not extend above 4.0.<a href="8.8-section8-8.html#fnref146" class="footnote-back">↩︎</a></p></li>
-<li id="fn147"><p>When there
+HSGPA do not extend above 4.0.<a href="8.8-section8-8.html#fnref139" class="footnote-back">↩︎</a></p></li>
+<li id="fn140"><p>When there
 are just two predictors, the VIFs have to be the same since the
 proportion of information shared is the same in both directions. With
 more than two predictors, each variable can have a different VIF
-value.<a href="8.8-section8-8.html#fnref147" class="footnote-back">↩︎</a></p></li>
+value.<a href="8.8-section8-8.html#fnref140" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

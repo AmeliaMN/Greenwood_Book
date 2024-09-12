@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -359,7 +355,7 @@ least squares criterion for estimating the regression coefficients in MLR, but
 the mathematics are beyond the scope of this course.
 The <code>lm</code> function takes
 care of finding the least squares coefficients using a very sophisticated
-algorithm<a href="#fn132" class="footnote-ref" id="fnref132"><sup>132</sup></a>. The estimated
+algorithm<a href="#fn125" class="footnote-ref" id="fnref125"><sup>125</sup></a>. The estimated
 regression equation it returns is:</p>
 <p><span class="math display">\[\widehat{y}_i = b_0 + b_1x_{1i} +b_2x_{2i}+\ldots+b_Kx_{Ki}\]</span></p>
 <p>where each <span class="math inline">\(b_k\)</span> estimates its corresponding parameter <span class="math inline">\(\beta_k\)</span>.</p>
@@ -379,12 +375,12 @@ variables might leave out some important predictive information. The following
 code loads the data set and makes the scatterplot matrix
 (Figure <a href="8.1-section8-1.html#fig:Figure8-1">8.1</a>) to allow
 some preliminary assessment of the pairwise relationships.</p>
-<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="8.1-section8-1.html#cb708-1" tabindex="-1"></a>snotel_s <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/snotel_s.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="8.1-section8-1.html#cb660-1" tabindex="-1"></a>snotel_s <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/snotel_s.csv&quot;</span>)</span></code></pre></div>
 
-<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="8.1-section8-1.html#cb709-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb709-2"><a href="8.1-section8-1.html#cb709-2" tabindex="-1"></a><span class="co"># Reorder columns slightly and only plot quantitative variables using &quot;columns = ...&quot;</span></span>
-<span id="cb709-3"><a href="8.1-section8-1.html#cb709-3" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">3</span>)) <span class="sc">+</span> </span>
-<span id="cb709-4"><a href="8.1-section8-1.html#cb709-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="8.1-section8-1.html#cb661-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb661-2"><a href="8.1-section8-1.html#cb661-2" tabindex="-1"></a><span class="co"># Reorder columns slightly and only plot quantitative variables using &quot;columns = ...&quot;</span></span>
+<span id="cb661-3"><a href="8.1-section8-1.html#cb661-3" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">3</span>)) <span class="sc">+</span> </span>
+<span id="cb661-4"><a href="8.1-section8-1.html#cb661-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-1"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-1-1.png" alt="Scatterplot matrix of data from a sample of SNOTEL sites in April on four variables. " width="75%" />
 <p class="caption">
@@ -436,7 +432,7 @@ are:</p>
 <p>The term-plots of the estimated models reinforce
 our expected results, showing a positive change in <em>Snow Depth</em> for higher
 <em>Elevations</em> and negative impacts for increasing temperatures on <em>Snow Depth</em>.
-These plots are made across the observed range<a href="#fn133" class="footnote-ref" id="fnref133"><sup>133</sup></a> of the predictor
+These plots are made across the observed range<a href="#fn126" class="footnote-ref" id="fnref126"><sup>126</sup></a> of the predictor
 variable and help us to get a sense of the total impacts of
 predictors. For example, for elevation in Figure <a href="8.1-section8-1.html#fig:Figure8-2">8.2</a>, the
 smallest observed
@@ -484,15 +480,15 @@ Figure 8.3: Plot of the estimated SLR model using Min Temp as predictor.
 Figure 8.4: Plot of the estimated SLR model using Max Temp as predictor.
 </p>
 </div>
-<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="8.1-section8-1.html#cb710-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation, <span class="at">data =</span> snotel_s)</span>
-<span id="cb710-2"><a href="8.1-section8-1.html#cb710-2" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Min.Temp, <span class="at">data =</span> snotel_s)</span>
-<span id="cb710-3"><a href="8.1-section8-1.html#cb710-3" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Max.Temp, <span class="at">data =</span> snotel_s)</span>
-<span id="cb710-4"><a href="8.1-section8-1.html#cb710-4" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
-<span id="cb710-5"><a href="8.1-section8-1.html#cb710-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m1, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;SLR: Effect of Elevation&quot;</span>)</span>
-<span id="cb710-6"><a href="8.1-section8-1.html#cb710-6" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m2, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;SLR: Effect of Min Temp&quot;</span>)</span>
-<span id="cb710-7"><a href="8.1-section8-1.html#cb710-7" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m3, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;SLR: Effect of Max Temp&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="8.1-section8-1.html#cb662-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation, <span class="at">data =</span> snotel_s)</span>
+<span id="cb662-2"><a href="8.1-section8-1.html#cb662-2" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Min.Temp, <span class="at">data =</span> snotel_s)</span>
+<span id="cb662-3"><a href="8.1-section8-1.html#cb662-3" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Max.Temp, <span class="at">data =</span> snotel_s)</span>
+<span id="cb662-4"><a href="8.1-section8-1.html#cb662-4" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
+<span id="cb662-5"><a href="8.1-section8-1.html#cb662-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m1, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;SLR: Effect of Elevation&quot;</span>)</span>
+<span id="cb662-6"><a href="8.1-section8-1.html#cb662-6" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m2, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;SLR: Effect of Min Temp&quot;</span>)</span>
+<span id="cb662-7"><a href="8.1-section8-1.html#cb662-7" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m3, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;SLR: Effect of Max Temp&quot;</span>)</span></code></pre></div>
 <!-- \newpage -->
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="8.1-section8-1.html#cb711-1" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="8.1-section8-1.html#cb663-1" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Elevation, data = snotel_s)
@@ -509,7 +505,7 @@ Figure 8.4: Plot of the estimated SLR model using Max Temp as predictor.
 ## Residual standard error: 13.27 on 23 degrees of freedom
 ## Multiple R-squared:  0.634,  Adjusted R-squared:  0.618 
 ## F-statistic: 39.83 on 1 and 23 DF,  p-value: 1.933e-06</code></pre>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="8.1-section8-1.html#cb713-1" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="8.1-section8-1.html#cb665-1" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Min.Temp, data = snotel_s)
@@ -526,7 +522,7 @@ Figure 8.4: Plot of the estimated SLR model using Max Temp as predictor.
 ## Residual standard error: 14.65 on 23 degrees of freedom
 ## Multiple R-squared:  0.5534, Adjusted R-squared:  0.534 
 ## F-statistic:  28.5 on 1 and 23 DF,  p-value: 2.022e-05</code></pre>
-<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="8.1-section8-1.html#cb715-1" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="8.1-section8-1.html#cb667-1" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Max.Temp, data = snotel_s)
@@ -547,11 +543,11 @@ Figure 8.4: Plot of the estimated SLR model using Max Temp as predictor.
 snow depth, we want to consider if an MLR model might explain more of the
 variability in <em>Snow Depth</em>. To fit an MLR model, we use the same general format
 as in previous topics but with adding “<code>+</code>” between any additional
-predictors<a href="#fn134" class="footnote-ref" id="fnref134"><sup>134</sup></a> we want to add to the model,
+predictors<a href="#fn127" class="footnote-ref" id="fnref127"><sup>127</sup></a> we want to add to the model,
 <code>y ~ x1 + x2 + ... + xk</code>: </p>
 
-<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb717-1"><a href="8.1-section8-1.html#cb717-1" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s)</span>
-<span id="cb717-2"><a href="8.1-section8-1.html#cb717-2" tabindex="-1"></a><span class="fu">summary</span>(m4)</span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="8.1-section8-1.html#cb669-1" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s)</span>
+<span id="cb669-2"><a href="8.1-section8-1.html#cb669-2" tabindex="-1"></a><span class="fu">summary</span>(m4)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s)
@@ -570,7 +566,7 @@ predictors<a href="#fn134" class="footnote-ref" id="fnref134"><sup>134</sup></a>
 ## Residual standard error: 13.6 on 21 degrees of freedom
 ## Multiple R-squared:  0.6485, Adjusted R-squared:  0.5983 
 ## F-statistic: 12.91 on 3 and 21 DF,  p-value: 5.328e-05</code></pre>
-<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="8.1-section8-1.html#cb719-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m4, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;MLR model with Elev, Min, &amp; Max Temps&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="8.1-section8-1.html#cb671-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m4, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;MLR model with Elev, Min, &amp; Max Temps&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-5"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-5-1.png" alt="Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp. Compare this plot that comes from one MLR model to Figures 8.2, 8.3, and 8.4 for comparable SLR models. Note the points in these panels are the partial residuals that are generated after controlling for the other two of the three variables as explained below." width="75%" />
 <p class="caption">
@@ -627,19 +623,19 @@ after adjusting for the other variables that are expected to matter. The “adju
 </div>
 <div class="footnotes">
 <hr />
-<ol start="132">
-<li id="fn132"><p>If you take advanced applied mathematics courses, you can learn
+<ol start="125">
+<li id="fn125"><p>If you take advanced applied mathematics courses, you can learn
 more about the algorithms being used by <code>lm</code>.
 Everyone else only cares
 about the algorithms when they don’t work – which is usually due to the
-user’s inputs in these models not the algorithm itself.<a href="8.1-section8-1.html#fnref132" class="footnote-back">↩︎</a></p></li>
-<li id="fn133"><p>Sometimes the <code>effects</code> plots
+user’s inputs in these models not the algorithm itself.<a href="8.1-section8-1.html#fnref125" class="footnote-back">↩︎</a></p></li>
+<li id="fn126"><p>Sometimes the <code>effects</code> plots
 ignores the edge explanatory observations with the
 default display. Always check the original variable summaries when considering
-the range of observed values. By turning on the “partial residuals” with SLR models, the plots show the original observations along with the fitted values and 95% confidence interval band. In more complex models, these displays with residuals are more complicated but can be used to assess linearity with each predictor in the model after accounting for other variables.<a href="8.1-section8-1.html#fnref133" class="footnote-back">↩︎</a></p></li>
-<li id="fn134"><p>We used this same notation in the fitting the additive Two-Way
+the range of observed values. By turning on the “partial residuals” with SLR models, the plots show the original observations along with the fitted values and 95% confidence interval band. In more complex models, these displays with residuals are more complicated but can be used to assess linearity with each predictor in the model after accounting for other variables.<a href="8.1-section8-1.html#fnref126" class="footnote-back">↩︎</a></p></li>
+<li id="fn127"><p>We used this same notation in the fitting the additive Two-Way
 ANOVA and this is also additive in terms of these variables. Interaction
-models are discussed later in the chapter.<a href="8.1-section8-1.html#fnref134" class="footnote-back">↩︎</a></p></li>
+models are discussed later in the chapter.<a href="8.1-section8-1.html#fnref127" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

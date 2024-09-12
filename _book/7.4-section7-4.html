@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -338,7 +334,7 @@ panel (c) is actually the real data set and pretty clearly presents itself as
 “different” from the other results. When we have small p-values, the real data
 set will be clearly different from the permuted results because it will be
 almost impossible to find a permuted data set that can attain as large a slope
-coefficient as was observed in the real data set<a href="#fn124" class="footnote-ref" id="fnref124"><sup>124</sup></a>. This result ties back into our original interests
+coefficient as was observed in the real data set<a href="#fn117" class="footnote-ref" id="fnref117"><sup>117</sup></a>. This result ties back into our original interests
 in this climate change research
 situation – does our result look like it is different from what could have been
 observed just by chance if there were no linear relationship between <span class="math inline">\(x\)</span>
@@ -353,27 +349,27 @@ really far from any possible values that can be obtained using permutations as
 shown in Figure <a href="7.4-section7-4.html#fig:Figure7-9">7.9</a>. The p-value would be reported as
 <span class="math inline">\(&lt;0.001\)</span> for the two-sided permutation test.</p>
 <!-- \newpage -->
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="7.4-section7-4.html#cb640-1" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
-<span id="cb640-2"><a href="7.4-section7-4.html#cb640-2" tabindex="-1"></a>Tobs</span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="7.4-section7-4.html#cb592-1" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb592-2"><a href="7.4-section7-4.html#cb592-2" tabindex="-1"></a>Tobs</span></code></pre></div>
 <pre><code>##       Year 
 ## 0.05244213</code></pre>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="7.4-section7-4.html#cb642-1" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb642-2"><a href="7.4-section7-4.html#cb642-2" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
-<span id="cb642-3"><a href="7.4-section7-4.html#cb642-3" tabindex="-1"></a></span>
-<span id="cb642-4"><a href="7.4-section7-4.html#cb642-4" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
-<span id="cb642-5"><a href="7.4-section7-4.html#cb642-5" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> <span class="fu">shuffle</span>(Year), <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
-<span id="cb642-6"><a href="7.4-section7-4.html#cb642-6" tabindex="-1"></a>}</span>
-<span id="cb642-7"><a href="7.4-section7-4.html#cb642-7" tabindex="-1"></a><span class="fu">pdata</span>(<span class="fu">abs</span>(Tstar), <span class="fu">abs</span>(Tobs), <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="7.4-section7-4.html#cb594-1" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb594-2"><a href="7.4-section7-4.html#cb594-2" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
+<span id="cb594-3"><a href="7.4-section7-4.html#cb594-3" tabindex="-1"></a></span>
+<span id="cb594-4"><a href="7.4-section7-4.html#cb594-4" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
+<span id="cb594-5"><a href="7.4-section7-4.html#cb594-5" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> <span class="fu">shuffle</span>(Year), <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb594-6"><a href="7.4-section7-4.html#cb594-6" tabindex="-1"></a>}</span>
+<span id="cb594-7"><a href="7.4-section7-4.html#cb594-7" tabindex="-1"></a><span class="fu">pdata</span>(<span class="fu">abs</span>(Tstar), <span class="fu">abs</span>(Tobs), <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 
-<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="7.4-section7-4.html#cb644-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
-<span id="cb644-2"><a href="7.4-section7-4.html#cb644-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb644-3"><a href="7.4-section7-4.html#cb644-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
-<span id="cb644-4"><a href="7.4-section7-4.html#cb644-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb644-5"><a href="7.4-section7-4.html#cb644-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
-<span id="cb644-6"><a href="7.4-section7-4.html#cb644-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb644-7"><a href="7.4-section7-4.html#cb644-7" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>,</span>
-<span id="cb644-8"><a href="7.4-section7-4.html#cb644-8" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="7.4-section7-4.html#cb596-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<span id="cb596-2"><a href="7.4-section7-4.html#cb596-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb596-3"><a href="7.4-section7-4.html#cb596-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
+<span id="cb596-4"><a href="7.4-section7-4.html#cb596-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb596-5"><a href="7.4-section7-4.html#cb596-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb596-6"><a href="7.4-section7-4.html#cb596-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb596-7"><a href="7.4-section7-4.html#cb596-7" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>,</span>
+<span id="cb596-8"><a href="7.4-section7-4.html#cb596-8" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-9"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-9-1.png" alt="Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at \(\pm b_1 = 0.56\) based on the observed estimated slope." width="75%" />
 <p class="caption">
@@ -408,28 +404,28 @@ The interpretation is
 the same and this result reinforces the other assessments that the parametric
 approach is not unreasonable here except possibly for the independence assumption. These randomization approaches provide no robustness against violations of the independence assumption. </p>
 
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="7.4-section7-4.html#cb645-1" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
-<span id="cb645-2"><a href="7.4-section7-4.html#cb645-2" tabindex="-1"></a>Tobs</span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="7.4-section7-4.html#cb597-1" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb597-2"><a href="7.4-section7-4.html#cb597-2" tabindex="-1"></a>Tobs</span></code></pre></div>
 <pre><code>##       Year 
 ## 0.05244213</code></pre>
-<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="7.4-section7-4.html#cb647-1" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb647-2"><a href="7.4-section7-4.html#cb647-2" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
-<span id="cb647-3"><a href="7.4-section7-4.html#cb647-3" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
-<span id="cb647-4"><a href="7.4-section7-4.html#cb647-4" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> <span class="fu">resample</span>(bozemantemps))<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
-<span id="cb647-5"><a href="7.4-section7-4.html#cb647-5" tabindex="-1"></a>}</span>
-<span id="cb647-6"><a href="7.4-section7-4.html#cb647-6" tabindex="-1"></a>quantiles <span class="ot">&lt;-</span> <span class="fu">qdata</span>(Tstar, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
-<span id="cb647-7"><a href="7.4-section7-4.html#cb647-7" tabindex="-1"></a>quantiles</span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="7.4-section7-4.html#cb599-1" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb599-2"><a href="7.4-section7-4.html#cb599-2" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
+<span id="cb599-3"><a href="7.4-section7-4.html#cb599-3" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
+<span id="cb599-4"><a href="7.4-section7-4.html#cb599-4" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> <span class="fu">resample</span>(bozemantemps))<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb599-5"><a href="7.4-section7-4.html#cb599-5" tabindex="-1"></a>}</span>
+<span id="cb599-6"><a href="7.4-section7-4.html#cb599-6" tabindex="-1"></a>quantiles <span class="ot">&lt;-</span> <span class="fu">qdata</span>(Tstar, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb599-7"><a href="7.4-section7-4.html#cb599-7" tabindex="-1"></a>quantiles</span></code></pre></div>
 <pre><code>##       2.5%      97.5% 
 ## 0.04326952 0.06131044</code></pre>
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="7.4-section7-4.html#cb649-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
-<span id="cb649-2"><a href="7.4-section7-4.html#cb649-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb649-3"><a href="7.4-section7-4.html#cb649-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
-<span id="cb649-4"><a href="7.4-section7-4.html#cb649-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb649-5"><a href="7.4-section7-4.html#cb649-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
-<span id="cb649-6"><a href="7.4-section7-4.html#cb649-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> quantiles, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">3</span>) <span class="sc">+</span>    </span>
-<span id="cb649-7"><a href="7.4-section7-4.html#cb649-7" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb649-8"><a href="7.4-section7-4.html#cb649-8" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">15</span>,</span>
-<span id="cb649-9"><a href="7.4-section7-4.html#cb649-9" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="7.4-section7-4.html#cb601-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<span id="cb601-2"><a href="7.4-section7-4.html#cb601-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb601-3"><a href="7.4-section7-4.html#cb601-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
+<span id="cb601-4"><a href="7.4-section7-4.html#cb601-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb601-5"><a href="7.4-section7-4.html#cb601-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb601-6"><a href="7.4-section7-4.html#cb601-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> quantiles, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">3</span>) <span class="sc">+</span>    </span>
+<span id="cb601-7"><a href="7.4-section7-4.html#cb601-7" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb601-8"><a href="7.4-section7-4.html#cb601-8" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">15</span>,</span>
+<span id="cb601-9"><a href="7.4-section7-4.html#cb601-9" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-10"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-10-1.png" alt="Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold dashed vertical lines delineating the 95% confidence interval and the bold solid line the observed slope of 0.052." width="75%" />
 <p class="caption">
@@ -440,10 +436,10 @@ Figure 7.10: Bootstrap distribution of the slope coefficient in the Bozeman temp
 </div>
 <div class="footnotes">
 <hr />
-<ol start="124">
-<li id="fn124"><p>It took many permutations
+<ol start="117">
+<li id="fn117"><p>It took many permutations
 to get competitor plots this close to the real data set and they really
-aren’t that close.<a href="7.4-section7-4.html#fnref124" class="footnote-back">↩︎</a></p></li>
+aren’t that close.<a href="7.4-section7-4.html#fnref117" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

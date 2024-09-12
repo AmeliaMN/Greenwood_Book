@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -329,7 +325,7 @@ groups. For example, does the relationship between the <em>satv</em> and <em>fyg
 differ for male and female students? We can add the grouping information to
 the scatterplot of <em>fygpa</em> vs <em>satv</em> (Figure <a href="8.9-section8-9.html#fig:Figure8-22">8.22</a>) and
 consider whether there is visual evidence of a difference in the slope and/or
-intercept between the two groups, with men coded<a href="#fn148" class="footnote-ref" id="fnref148"><sup>148</sup></a> as 1 and women coded as 2. Code below changes this variable to <code>GENDER</code> with more explicit labels, even though they might not be correct and the students were likely forced to choose one or the other.
+intercept between the two groups, with men coded<a href="#fn141" class="footnote-ref" id="fnref141"><sup>141</sup></a> as 1 and women coded as 2. Code below changes this variable to <code>GENDER</code> with more explicit labels, even though they might not be correct and the students were likely forced to choose one or the other.
 </p>
 <p>It appears that the slope for females might be larger (steeper) in this
 relationship than it is for
@@ -355,31 +351,31 @@ sexes in their relationship between <em>satm</em> and GPA and we can safely cont
 using a model that does not differentiate the two groups. We could also just
 subset the data set and do two analyses, but that approach will not allow us
 to assess whether things are “really” different between the two groups.</p>
-<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="8.9-section8-9.html#cb795-1" tabindex="-1"></a><span class="co"># Make 1,2 coded gender into factor GENDER</span></span>
-<span id="cb795-2"><a href="8.9-section8-9.html#cb795-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">GENDER =</span> <span class="fu">factor</span>(gender)) </span>
-<span id="cb795-3"><a href="8.9-section8-9.html#cb795-3" tabindex="-1"></a><span class="co"># Make category names clear but note that level names might be wrong</span></span>
-<span id="cb795-4"><a href="8.9-section8-9.html#cb795-4" tabindex="-1"></a><span class="fu">levels</span>(satgpa<span class="sc">$</span>GENDER) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MALE&quot;</span>, <span class="st">&quot;FEMALE&quot;</span>) </span>
-<span id="cb795-5"><a href="8.9-section8-9.html#cb795-5" tabindex="-1"></a></span>
-<span id="cb795-6"><a href="8.9-section8-9.html#cb795-6" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
-<span id="cb795-7"><a href="8.9-section8-9.html#cb795-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb795-8"><a href="8.9-section8-9.html#cb795-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb795-9"><a href="8.9-section8-9.html#cb795-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb795-10"><a href="8.9-section8-9.html#cb795-10" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>) <span class="sc">+</span></span>
-<span id="cb795-11"><a href="8.9-section8-9.html#cb795-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span>
-<span id="cb795-12"><a href="8.9-section8-9.html#cb795-12" tabindex="-1"></a></span>
-<span id="cb795-13"><a href="8.9-section8-9.html#cb795-13" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
-<span id="cb795-14"><a href="8.9-section8-9.html#cb795-14" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb795-15"><a href="8.9-section8-9.html#cb795-15" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb795-16"><a href="8.9-section8-9.html#cb795-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb795-17"><a href="8.9-section8-9.html#cb795-17" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span></span>
-<span id="cb795-18"><a href="8.9-section8-9.html#cb795-18" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb747-1"><a href="8.9-section8-9.html#cb747-1" tabindex="-1"></a><span class="co"># Make 1,2 coded gender into factor GENDER</span></span>
+<span id="cb747-2"><a href="8.9-section8-9.html#cb747-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">GENDER =</span> <span class="fu">factor</span>(gender)) </span>
+<span id="cb747-3"><a href="8.9-section8-9.html#cb747-3" tabindex="-1"></a><span class="co"># Make category names clear but note that level names might be wrong</span></span>
+<span id="cb747-4"><a href="8.9-section8-9.html#cb747-4" tabindex="-1"></a><span class="fu">levels</span>(satgpa<span class="sc">$</span>GENDER) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MALE&quot;</span>, <span class="st">&quot;FEMALE&quot;</span>) </span>
+<span id="cb747-5"><a href="8.9-section8-9.html#cb747-5" tabindex="-1"></a></span>
+<span id="cb747-6"><a href="8.9-section8-9.html#cb747-6" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
+<span id="cb747-7"><a href="8.9-section8-9.html#cb747-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb747-8"><a href="8.9-section8-9.html#cb747-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb747-9"><a href="8.9-section8-9.html#cb747-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb747-10"><a href="8.9-section8-9.html#cb747-10" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>) <span class="sc">+</span></span>
+<span id="cb747-11"><a href="8.9-section8-9.html#cb747-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span>
+<span id="cb747-12"><a href="8.9-section8-9.html#cb747-12" tabindex="-1"></a></span>
+<span id="cb747-13"><a href="8.9-section8-9.html#cb747-13" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
+<span id="cb747-14"><a href="8.9-section8-9.html#cb747-14" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb747-15"><a href="8.9-section8-9.html#cb747-15" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb747-16"><a href="8.9-section8-9.html#cb747-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb747-17"><a href="8.9-section8-9.html#cb747-17" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span></span>
+<span id="cb747-18"><a href="8.9-section8-9.html#cb747-18" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span></code></pre></div>
 <p>To fit one model to a data set that contains multiple groups, we need a way of
 entering categorical variable information in an MLR model. Regression models
 require quantitative predictor variables for the <span class="math inline">\(x\text{&#39;s}\)</span> so we can’t
 directly enter the text coded information on the gender of the students into the regression model since it
 contains “words” and how can multiply a word times a slope coefficient. To be able to
 put in “numbers” as predictors, we create what are called
-<strong><em>indicator variables</em></strong><a href="#fn149" class="footnote-ref" id="fnref149"><sup>149</sup></a>
+<strong><em>indicator variables</em></strong><a href="#fn142" class="footnote-ref" id="fnref142"><sup>142</sup></a>
 that are made up of 0s and 1s, with the 0 reflecting one category and 1 the
 other, changing depending on the category of the individual in that row of the data set. The
 <code>lm</code> function does this whenever a
@@ -391,8 +387,8 @@ exploring what happens when we put <code>GENDER</code> into our <code>lm</code> 
 the <code>factor</code> function and making the factor <code>levels</code> explicit instead of 1s
 and 2s.
 </p>
-<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="8.9-section8-9.html#cb796-1" tabindex="-1"></a>SATGENDER1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fygpa <span class="sc">~</span> satm <span class="sc">+</span> GENDER, <span class="at">data =</span> satgpa) <span class="co">#Fit lm with satm and GENDER</span></span>
-<span id="cb796-2"><a href="8.9-section8-9.html#cb796-2" tabindex="-1"></a><span class="fu">summary</span>(SATGENDER1)</span></code></pre></div>
+<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="8.9-section8-9.html#cb748-1" tabindex="-1"></a>SATGENDER1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fygpa <span class="sc">~</span> satm <span class="sc">+</span> GENDER, <span class="at">data =</span> satgpa) <span class="co">#Fit lm with satm and GENDER</span></span>
+<span id="cb748-2"><a href="8.9-section8-9.html#cb748-2" tabindex="-1"></a><span class="fu">summary</span>(SATGENDER1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fygpa ~ satm + GENDER, data = satgpa)
@@ -430,10 +426,10 @@ not show up in the output. To see what <code>lm</code> is doing for us when we g
 two-level categorical variable, we can create our own “numerical” predictor that
 is 0 for <em>males</em> and 1 for <em>females</em> that we called <code>GENDERINDICATOR</code>, displayed
 for the first 10 observations:</p>
-<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="8.9-section8-9.html#cb798-1" tabindex="-1"></a><span class="co"># Convert logical to 1 for female, 0 for male using ifelse function</span></span>
-<span id="cb798-2"><a href="8.9-section8-9.html#cb798-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">GENDERINDICATOR =</span> <span class="fu">ifelse</span>(GENDER <span class="sc">==</span> <span class="st">&quot;FEMALE&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)) </span>
-<span id="cb798-3"><a href="8.9-section8-9.html#cb798-3" tabindex="-1"></a><span class="co"># Explore first 10 observations on the two versions of GENDER using the head() function</span></span>
-<span id="cb798-4"><a href="8.9-section8-9.html#cb798-4" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">select</span>(GENDER, GENDERINDICATOR) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="8.9-section8-9.html#cb750-1" tabindex="-1"></a><span class="co"># Convert logical to 1 for female, 0 for male using ifelse function</span></span>
+<span id="cb750-2"><a href="8.9-section8-9.html#cb750-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">GENDERINDICATOR =</span> <span class="fu">ifelse</span>(GENDER <span class="sc">==</span> <span class="st">&quot;FEMALE&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)) </span>
+<span id="cb750-3"><a href="8.9-section8-9.html#cb750-3" tabindex="-1"></a><span class="co"># Explore first 10 observations on the two versions of GENDER using the head() function</span></span>
+<span id="cb750-4"><a href="8.9-section8-9.html#cb750-4" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">select</span>(GENDER, GENDERINDICATOR) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 2
 ##    GENDER GENDERINDICATOR
 ##    &lt;fct&gt;            &lt;dbl&gt;
@@ -457,8 +453,8 @@ directly
 into linear models with other <span class="math inline">\(x\text{&#39;s}\)</span> (quantitative or categorical). If we
 replace the categorical <code>GENDER</code> variable with our quantitative <code>GENDERINDICATOR</code>
 and re-fit the model, we get:</p>
-<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="8.9-section8-9.html#cb800-1" tabindex="-1"></a>SATGENDER2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fygpa <span class="sc">~</span> satm <span class="sc">+</span> GENDERINDICATOR, <span class="at">data =</span> satgpa)</span>
-<span id="cb800-2"><a href="8.9-section8-9.html#cb800-2" tabindex="-1"></a><span class="fu">summary</span>(SATGENDER2)</span></code></pre></div>
+<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="8.9-section8-9.html#cb752-1" tabindex="-1"></a>SATGENDER2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fygpa <span class="sc">~</span> satm <span class="sc">+</span> GENDERINDICATOR, <span class="at">data =</span> satgpa)</span>
+<span id="cb752-2"><a href="8.9-section8-9.html#cb752-2" tabindex="-1"></a><span class="fu">summary</span>(SATGENDER2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fygpa ~ satm + GENDERINDICATOR, data = satgpa)
@@ -508,7 +504,7 @@ simplify the equation)</p></li>
 <span class="math inline">\((\widehat{\text{fygpa}}_i = 0.529 + 0.0386\cdot\text{satm}_i)\)</span>. The only difference
 between these two models is in the <span class="math inline">\(y\)</span>-intercept, with the <em>female</em> model’s
 <span class="math inline">\(y\)</span>-intercept shifted up from the <em>male</em> <span class="math inline">\(y\)</span>-intercept by 0.313. And that is what
-adding indicator variables into models does in general<a href="#fn150" class="footnote-ref" id="fnref150"><sup>150</sup></a> – it shifts the intercept up or down from
+adding indicator variables into models does in general<a href="#fn143" class="footnote-ref" id="fnref143"><sup>143</sup></a> – it shifts the intercept up or down from
 the baseline group (here selected as <em>males</em>) to get a new intercept for the
 deviation group (here <em>females</em>).</p>
 <p>To make this visually clearer, Figure <a href="8.9-section8-9.html#fig:Figure8-24">8.24</a> contains the
@@ -570,12 +566,12 @@ category (<code>female</code>) of <span class="math inline">\(b_0 + b_2 = 0.529\
 the estimated male intercept and <span class="math inline">\(484/1000 = 0.484\)</span> for estimated female
 intercept, <span class="math inline">\(0.516 \cdot 0.216 + 0.484 \cdot 0.529 = 0.368\)</span>.</p>
 
-<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="8.9-section8-9.html#cb802-1" tabindex="-1"></a><span class="fu">tally</span>(GENDER <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> satgpa)</span></code></pre></div>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="8.9-section8-9.html#cb754-1" tabindex="-1"></a><span class="fu">tally</span>(GENDER <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> satgpa)</span></code></pre></div>
 <pre><code>##         1
 ## GENDER     1
 ##   MALE   516
 ##   FEMALE 484</code></pre>
-<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="8.9-section8-9.html#cb804-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(SATGENDER1))</span></code></pre></div>
+<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="8.9-section8-9.html#cb756-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(SATGENDER1))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-25"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-25-1.png" alt="Term-plots for the estimated model for \(\text{fygpa}\sim\text{satm} + \text{GENDER}\)." width="75%" />
 <p class="caption">
@@ -600,7 +596,7 @@ first year college GPA between <em>males</em> and <em>females</em>, so we would 
 there is a difference in their true mean GPA levels controlled for <em>satm</em>. The
 confidence interval is also informative:</p>
 <!-- \newpage -->
-<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="8.9-section8-9.html#cb806-1" tabindex="-1"></a><span class="fu">confint</span>(SATGENDER1)</span></code></pre></div>
+<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="8.9-section8-9.html#cb758-1" tabindex="-1"></a><span class="fu">confint</span>(SATGENDER1)</span></code></pre></div>
 <pre><code>##                    2.5 %     97.5 %
 ## (Intercept)  -0.07566665 0.50744709
 ## satm          0.03355273 0.04367726
@@ -617,19 +613,19 @@ in the intercept for each group.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="148">
-<li id="fn148"><p>We
+<ol start="141">
+<li id="fn141"><p>We
 are actually making an educated guess about what these codes mean. Other
 similar data sets used 1 for males but the documentation on these data is a bit
 sparse. We proceed with a small potential that the conclusions regarding
-differences in gender are in the wrong direction.<a href="8.9-section8-9.html#fnref148" class="footnote-back">↩︎</a></p></li>
-<li id="fn149"><p>Some people also call them <strong><em>dummy variables</em></strong> to reflect that they are stand-ins for dealing with the categorical information. But it seems like a harsh anthropomorphism so I prefer “indicators”.<a href="8.9-section8-9.html#fnref149" class="footnote-back">↩︎</a></p></li>
-<li id="fn150"><p>This is true for
+differences in gender are in the wrong direction.<a href="8.9-section8-9.html#fnref141" class="footnote-back">↩︎</a></p></li>
+<li id="fn142"><p>Some people also call them <strong><em>dummy variables</em></strong> to reflect that they are stand-ins for dealing with the categorical information. But it seems like a harsh anthropomorphism so I prefer “indicators”.<a href="8.9-section8-9.html#fnref142" class="footnote-back">↩︎</a></p></li>
+<li id="fn143"><p>This is true for
 additive uses of indicator variables. In Section <a href="8.11-section8-11.html#section8-11">8.11</a>, we
 consider interactions between quantitative and categorical variables which has
 the effect of changing slopes and intercepts. The simplification ideas to
 produce estimated equations for each group are used there but we have to account
-for changing slopes by group too.<a href="8.9-section8-9.html#fnref150" class="footnote-back">↩︎</a></p></li>
+for changing slopes by group too.<a href="8.9-section8-9.html#fnref143" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

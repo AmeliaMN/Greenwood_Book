@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -347,7 +343,7 @@ one model over another. </p>
 (<strong><em>R</em></strong><sup>2</sup>).</p></li>
 <li><p><em>a priori</em> reasons to “use” a particular model, for example in a designed
 experiment or it includes variable(s) whose estimated slopes directly address the research question(s), even if the variables are not “important” in the model.</p></li>
-<li><p>Model selection “criteria” suggest one model is better than the others<a href="#fn141" class="footnote-ref" id="fnref141"><sup>141</sup></a>.</p></li>
+<li><p>Model selection “criteria” suggest one model is better than the others<a href="#fn134" class="footnote-ref" id="fnref134"><sup>134</sup></a>.</p></li>
 </ol>
 <p>It is OK to consider multiple reasons to select a model but it is dangerous to
 “shop” for a model across many possible models – a practice which is sometimes
@@ -430,9 +426,9 @@ the responses used change.</p>
 are available. Make sure you are able to pick out the correct one. For the
 reduced data set (<span class="math inline">\(n = 23\)</span>) <em>Snow Depth</em> models, the pertinent part of the model
 summary for the model with all three predictors is in the last three lines:</p>
-<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="8.4-section8-4.html#cb756-1" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, </span>
-<span id="cb756-2"><a href="8.4-section8-4.html#cb756-2" tabindex="-1"></a>         <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
-<span id="cb756-3"><a href="8.4-section8-4.html#cb756-3" tabindex="-1"></a><span class="fu">summary</span>(m6)</span></code></pre></div>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="8.4-section8-4.html#cb708-1" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, </span>
+<span id="cb708-2"><a href="8.4-section8-4.html#cb708-2" tabindex="-1"></a>         <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<span id="cb708-3"><a href="8.4-section8-4.html#cb708-3" tabindex="-1"></a><span class="fu">summary</span>(m6)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %&gt;% 
@@ -553,10 +549,10 @@ modeling situations; that measure is called the <strong><em>AIC</em></strong>.</
 </div>
 <div class="footnotes">
 <hr />
-<ol start="141">
-<li id="fn141"><p>Also
+<ol start="134">
+<li id="fn134"><p>Also
 see Section <a href="8.13-section8-13.html#section8-13">8.13</a> for another method of picking among different
-models.<a href="8.4-section8-4.html#fnref141" class="footnote-back">↩︎</a></p></li>
+models.<a href="8.4-section8-4.html#fnref134" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

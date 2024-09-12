@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -323,7 +319,7 @@ measures have been replaced by digital temperature recording devices that
 continue to track this sort of information with much less human effort and,
 possibly, errors. This sort of information is often aggregated to monthly or
 yearly averages to be able to see “on average” changes from month-to-month or
-year-to-year as opposed to the day-to-day variation in the temperature<a href="#fn121" class="footnote-ref" id="fnref121"><sup>121</sup></a>. Often the local information is aggregated further to
+year-to-year as opposed to the day-to-day variation in the temperature<a href="#fn114" class="footnote-ref" id="fnref114"><sup>114</sup></a>. Often the local information is aggregated further to
 provide regional, hemispheric, or even global average temperatures. Climate
 change research involves attempting to quantify the changes over time in these
 and other long-term temperature or temperature proxies.</p>
@@ -334,9 +330,9 @@ average of the monthly averages of the daily maximum temperature in Bozeman in d
 F from 1901 to 2014. We can call
 them yearly average maximum temperatures but note that it was a little more
 complicated than that to arrive at the response variable we are analyzing.</p>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="7.3-section7-3.html#cb620-1" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/BozemanMeanMax.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="7.3-section7-3.html#cb572-1" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/BozemanMeanMax.csv&quot;</span>)</span></code></pre></div>
 
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="7.3-section7-3.html#cb621-1" tabindex="-1"></a><span class="fu">summary</span>(bozemantemps)</span></code></pre></div>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="7.3-section7-3.html#cb573-1" tabindex="-1"></a><span class="fu">summary</span>(bozemantemps)</span></code></pre></div>
 <pre><code>##     meanmax           Year     
 ##  Min.   :49.75   Min.   :1901  
 ##  1st Qu.:53.97   1st Qu.:1930  
@@ -344,15 +340,15 @@ complicated than that to arrive at the response variable we are analyzing.</p>
 ##  Mean   :55.34   Mean   :1958  
 ##  3rd Qu.:57.02   3rd Qu.:1986  
 ##  Max.   :60.05   Max.   :2014</code></pre>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="7.3-section7-3.html#cb623-1" tabindex="-1"></a><span class="fu">length</span>(bozemantemps<span class="sc">$</span>Year) <span class="co">#Some years are missing (1905, 1906, 1948, 1950, 1995)</span></span></code></pre></div>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="7.3-section7-3.html#cb575-1" tabindex="-1"></a><span class="fu">length</span>(bozemantemps<span class="sc">$</span>Year) <span class="co">#Some years are missing (1905, 1906, 1948, 1950, 1995)</span></span></code></pre></div>
 <pre><code>## [1] 109</code></pre>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="7.3-section7-3.html#cb625-1" tabindex="-1"></a>bozemantemps <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> meanmax)) <span class="sc">+</span></span>
-<span id="cb625-2"><a href="7.3-section7-3.html#cb625-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb625-3"><a href="7.3-section7-3.html#cb625-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb625-4"><a href="7.3-section7-3.html#cb625-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">se =</span> F) <span class="sc">+</span> <span class="co">#Add smoothing line</span></span>
-<span id="cb625-5"><a href="7.3-section7-3.html#cb625-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb625-6"><a href="7.3-section7-3.html#cb625-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Bozeman Yearly Average Max Temperatures&quot;</span>,</span>
-<span id="cb625-7"><a href="7.3-section7-3.html#cb625-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mean Maximum Temperature (degrees F)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="7.3-section7-3.html#cb577-1" tabindex="-1"></a>bozemantemps <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> meanmax)) <span class="sc">+</span></span>
+<span id="cb577-2"><a href="7.3-section7-3.html#cb577-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb577-3"><a href="7.3-section7-3.html#cb577-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb577-4"><a href="7.3-section7-3.html#cb577-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">se =</span> F) <span class="sc">+</span> <span class="co">#Add smoothing line</span></span>
+<span id="cb577-5"><a href="7.3-section7-3.html#cb577-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb577-6"><a href="7.3-section7-3.html#cb577-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Bozeman Yearly Average Max Temperatures&quot;</span>,</span>
+<span id="cb577-7"><a href="7.3-section7-3.html#cb577-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mean Maximum Temperature (degrees F)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-5"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-5-1.png" alt="Scatterplot of average yearly maximum temperatures in Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines." width="75%" />
 <p class="caption">
@@ -363,7 +359,7 @@ Figure 7.5: Scatterplot of average yearly maximum temperatures in Bozeman from 1
 1901 and 2014 based on a sample of <span class="math inline">\(n = 109\)</span> years because four years had too
 many missing months to fairly include in the responses. Missing values occur
 for many reasons and in
-this case were likely just machine or human error<a href="#fn122" class="footnote-ref" id="fnref122"><sup>122</sup></a>.
+this case were likely just machine or human error<a href="#fn115" class="footnote-ref" id="fnref115"><sup>115</sup></a>.
 These are time series data and in time series analysis we assume that the
 population of interest for inference is all possible realizations from the
 underlying process over this time frame even though we only ever get to observe
@@ -385,7 +381,7 @@ and use the confidence
 interval interpretation to discuss the size of the change.
 First, we need to select our hypotheses (the 2-sided test
 would be a <strong><em>conservative</em></strong> choice and no one that does climate change
-research wants to be accused of taking a <strong><em>liberal</em></strong> approach in their analyses<a href="#fn123" class="footnote-ref" id="fnref123"><sup>123</sup></a>) and our test statistic, <span class="math inline">\(t = \frac{b_1}{\text{SE}_{b_1}}\)</span>. The scatterplot is the perfect tool to illustrate the situation.</p>
+research wants to be accused of taking a <strong><em>liberal</em></strong> approach in their analyses<a href="#fn116" class="footnote-ref" id="fnref116"><sup>116</sup></a>) and our test statistic, <span class="math inline">\(t = \frac{b_1}{\text{SE}_{b_1}}\)</span>. The scatterplot is the perfect tool to illustrate the situation.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Hypotheses for the slope coefficient test:</strong></li>
 </ol>
@@ -416,9 +412,9 @@ reasonably correct even in the presence of some autocorrelation. </li>
 <p>To assess the remaining conditions, we need to fit the regression model and use
 the diagnostic plots in Figure <a href="7.3-section7-3.html#fig:Figure7-6">7.6</a> to aid our assessment:</p>
 
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="7.3-section7-3.html#cb626-1" tabindex="-1"></a>temp1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)</span>
-<span id="cb626-2"><a href="7.3-section7-3.html#cb626-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb626-3"><a href="7.3-section7-3.html#cb626-3" tabindex="-1"></a><span class="fu">plot</span>(temp1, <span class="at">add.smooth =</span> F, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="7.3-section7-3.html#cb578-1" tabindex="-1"></a>temp1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)</span>
+<span id="cb578-2"><a href="7.3-section7-3.html#cb578-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb578-3"><a href="7.3-section7-3.html#cb578-3" tabindex="-1"></a><span class="fu">plot</span>(temp1, <span class="at">add.smooth =</span> F, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-6"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-6-1.png" alt="Diagnostic plots of the Bozeman yearly temperature simple linear regression model." width="75%" />
 <p class="caption">
@@ -495,7 +491,7 @@ normality assumption a bit.</p>
 <ul>
 <li><span class="math inline">\(t = 0.05244/0.00476 = 11.02\)</span></li>
 </ul>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="7.3-section7-3.html#cb627-1" tabindex="-1"></a><span class="fu">summary</span>(temp1)</span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="7.3-section7-3.html#cb579-1" tabindex="-1"></a><span class="fu">summary</span>(temp1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = meanmax ~ Year, data = bozemantemps)
@@ -517,7 +513,7 @@ normality assumption a bit.</p>
 <li><p>The test statistic is assumed to follow a <span class="math inline">\(t\)</span>-distribution with
 <span class="math inline">\(n-2 = 109-2 = 107\)</span> degrees of freedom. The p-value can also be calculated as:</p></li>
 </ul>
-<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="7.3-section7-3.html#cb629-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fl">11.02</span>, <span class="at">df =</span> <span class="dv">107</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="7.3-section7-3.html#cb581-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fl">11.02</span>, <span class="at">df =</span> <span class="dv">107</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 2.498481e-19</code></pre>
 <ul>
 <li>Which is then reported as &lt; 0.0001, which means that the chances of
@@ -544,7 +540,7 @@ temperature in Bozeman and the confidence suggests minimal variation around
 this estimate, going from 0.04 to 0.06 <span class="math inline">\(^\circ F\)</span>. The “size” of this change
 is discussed more in Section <a href="7.5-section7-5.html#section7-5">7.5</a>.</li>
 </ul>
-<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="7.3-section7-3.html#cb631-1" tabindex="-1"></a><span class="fu">confint</span>(temp1)</span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="7.3-section7-3.html#cb583-1" tabindex="-1"></a><span class="fu">confint</span>(temp1)</span></code></pre></div>
 <pre><code>##                    2.5 %       97.5 %
 ## (Intercept) -65.83068375 -28.87177785
 ## Year          0.04300681   0.06187746</code></pre></li>
@@ -627,9 +623,9 @@ useful to understanding how much information is available for different aspects
 of the line. Here it provides gaps for missing years of observations as sort of
 broken teeth in a comb. Also not used here, we can also turn on the <code>residuals = T</code> option, which in SLR just plots the original points and adds a smoothing line to this plot to reinforce the previous assessment of assumptions.</p>
 
-<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="7.3-section7-3.html#cb633-1" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
-<span id="cb633-2"><a href="7.3-section7-3.html#cb633-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(temp1, <span class="at">xlevels =</span> <span class="fu">list</span>(<span class="at">Year =</span> bozemantemps<span class="sc">$</span>Year)),</span>
-<span id="cb633-3"><a href="7.3-section7-3.html#cb633-3" tabindex="-1"></a>     <span class="at">grid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="7.3-section7-3.html#cb585-1" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
+<span id="cb585-2"><a href="7.3-section7-3.html#cb585-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(temp1, <span class="at">xlevels =</span> <span class="fu">list</span>(<span class="at">Year =</span> bozemantemps<span class="sc">$</span>Year)),</span>
+<span id="cb585-3"><a href="7.3-section7-3.html#cb585-3" tabindex="-1"></a>     <span class="at">grid =</span> T)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-7"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-7-1.png" alt="Term-plot for the Bozeman mean yearly maximum temperature linear regression model with 95% confidence interval bands for the mean in each year." width="75%" />
 <p class="caption">
@@ -648,8 +644,8 @@ It all depends on the application.</p>
 <p>To make the y-intercept more interesting for our data set, we can re-scale the <span class="math inline">\(x\text{&#39;s}\)</span> using <code>mutate</code> before we fit the
 model to have the first year in the data set (1901) be “0”. This is
 accomplished by calculating <span class="math inline">\(\text{Year2} = \text{Year}-1901\)</span>.</p>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="7.3-section7-3.html#cb634-1" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> bozemantemps <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Year2 =</span> Year <span class="sc">-</span> <span class="dv">1901</span>)</span>
-<span id="cb634-2"><a href="7.3-section7-3.html#cb634-2" tabindex="-1"></a><span class="fu">summary</span>(bozemantemps<span class="sc">$</span>Year2)</span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="7.3-section7-3.html#cb586-1" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> bozemantemps <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Year2 =</span> Year <span class="sc">-</span> <span class="dv">1901</span>)</span>
+<span id="cb586-2"><a href="7.3-section7-3.html#cb586-2" tabindex="-1"></a><span class="fu">summary</span>(bozemantemps<span class="sc">$</span>Year2)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.00   29.00   58.00   57.27   85.00  113.00</code></pre>
 <p>The new estimated regression equation is
@@ -663,8 +659,8 @@ revisit Figure <a href="7.3-section7-3.html#fig:Figure7-7">7.7</a> you will actu
 confidence intervals
 provide upper and lower bounds that match this result for 1901 – the
 y-intercept CI matches the 95% CI for the true mean in the first year of the data set.</p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="7.3-section7-3.html#cb636-1" tabindex="-1"></a>temp2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year2, <span class="at">data =</span> bozemantemps)</span>
-<span id="cb636-2"><a href="7.3-section7-3.html#cb636-2" tabindex="-1"></a><span class="fu">summary</span>(temp2)</span></code></pre></div>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="7.3-section7-3.html#cb588-1" tabindex="-1"></a>temp2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year2, <span class="at">data =</span> bozemantemps)</span>
+<span id="cb588-2"><a href="7.3-section7-3.html#cb588-2" tabindex="-1"></a><span class="fu">summary</span>(temp2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = meanmax ~ Year2, data = bozemantemps)
@@ -681,7 +677,7 @@ y-intercept CI matches the 95% CI for the true mean in the first year of the dat
 ## Residual standard error: 1.624 on 107 degrees of freedom
 ## Multiple R-squared:  0.5315, Adjusted R-squared:  0.5271 
 ## F-statistic: 121.4 on 1 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="7.3-section7-3.html#cb638-1" tabindex="-1"></a><span class="fu">confint</span>(temp2)</span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="7.3-section7-3.html#cb590-1" tabindex="-1"></a><span class="fu">confint</span>(temp2)</span></code></pre></div>
 <pre><code>##                   2.5 %      97.5 %
 ## (Intercept) 51.71913822 52.96339150
 ## Year2        0.04300681  0.06187746</code></pre>
@@ -709,19 +705,19 @@ Santibáñez, Pamela A., Olivia J. Maselli, Mark C. Greenwood, Mackenzie M. Grie
 </div>
 <div class="footnotes">
 <hr />
-<ol start="121">
-<li id="fn121"><p>See
+<ol start="114">
+<li id="fn114"><p>See
 <a href="http://fivethirtyeight.com/features/which-city-has-the-most-unpredictable-weather/" class="uri">http://fivethirtyeight.com/features/which-city-has-the-most-unpredictable-weather/</a>
 for an interesting discussion of
 weather variability where Great Falls, MT had a very high rating on
-“unpredictability”.<a href="7.3-section7-3.html#fnref121" class="footnote-back">↩︎</a></p></li>
-<li id="fn122"><p>It is actually pretty
+“unpredictability”.<a href="7.3-section7-3.html#fnref114" class="footnote-back">↩︎</a></p></li>
+<li id="fn115"><p>It is actually pretty
 amazing that there are hundreds of locations in the U.S. with nearly complete daily
-records for over 100 years.<a href="7.3-section7-3.html#fnref122" class="footnote-back">↩︎</a></p></li>
-<li id="fn123"><p>All joking aside, if researchers can find evidence of climate
+records for over 100 years.<a href="7.3-section7-3.html#fnref115" class="footnote-back">↩︎</a></p></li>
+<li id="fn116"><p>All joking aside, if researchers can find evidence of climate
 change using <strong><em>conservative</em></strong> methods (methods that reject the null
 hypothesis when it is true less often than stated), then their results are
-even harder to ignore.<a href="7.3-section7-3.html#fnref123" class="footnote-back">↩︎</a></p></li>
+even harder to ignore.<a href="7.3-section7-3.html#fnref116" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

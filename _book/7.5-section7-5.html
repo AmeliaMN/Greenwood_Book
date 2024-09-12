@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -324,7 +320,7 @@ situations with the previous tools. There are three potential solutions to viola
 of the validity conditions: </p>
 <ol style="list-style-type: decimal">
 <li><p>Consider removing an offending point or two and see if this improves the results,
-presenting results both with and without those points to describe their impact<a href="#fn125" class="footnote-ref" id="fnref125"><sup>125</sup></a>,</p></li>
+presenting results both with and without those points to describe their impact<a href="#fn118" class="footnote-ref" id="fnref118"><sup>118</sup></a>,</p></li>
 <li><p>Try to transform the response, explanatory, or both variables and see if you can
 force the data set to meet our SLR assumptions after transformation (the focus
 of this and the next section), or </p></li>
@@ -360,9 +356,9 @@ Figure 7.11: Scatterplots of <em>Temperature</em> (<span class="math inline">\(^
 </p>
 </div>
 <!-- \vspace{11pt} -->
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="7.5-section7-5.html#cb650-1" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> bozemantemps <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">meanmaxC =</span> (meanmax <span class="sc">-</span> <span class="dv">32</span>)<span class="sc">*</span>(<span class="dv">5</span><span class="sc">/</span><span class="dv">9</span>))</span>
-<span id="cb650-2"><a href="7.5-section7-5.html#cb650-2" tabindex="-1"></a>temp3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmaxC <span class="sc">~</span> Year2, <span class="at">data =</span> bozemantemps)</span>
-<span id="cb650-3"><a href="7.5-section7-5.html#cb650-3" tabindex="-1"></a><span class="fu">summary</span>(temp1)</span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="7.5-section7-5.html#cb602-1" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> bozemantemps <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">meanmaxC =</span> (meanmax <span class="sc">-</span> <span class="dv">32</span>)<span class="sc">*</span>(<span class="dv">5</span><span class="sc">/</span><span class="dv">9</span>))</span>
+<span id="cb602-2"><a href="7.5-section7-5.html#cb602-2" tabindex="-1"></a>temp3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmaxC <span class="sc">~</span> Year2, <span class="at">data =</span> bozemantemps)</span>
+<span id="cb602-3"><a href="7.5-section7-5.html#cb602-3" tabindex="-1"></a><span class="fu">summary</span>(temp1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = meanmax ~ Year, data = bozemantemps)
@@ -380,7 +376,7 @@ Figure 7.11: Scatterplots of <em>Temperature</em> (<span class="math inline">\(^
 ## Multiple R-squared:  0.5315, Adjusted R-squared:  0.5271 
 ## F-statistic: 121.4 on 1 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <!-- \newpage -->
-<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="7.5-section7-5.html#cb652-1" tabindex="-1"></a><span class="fu">summary</span>(temp3)</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="7.5-section7-5.html#cb604-1" tabindex="-1"></a><span class="fu">summary</span>(temp3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = meanmaxC ~ Year2, data = bozemantemps)
@@ -483,17 +479,17 @@ scales.</p>
 data for Montana. Figure <a href="7.5-section7-5.html#fig:Figure7-12">7.12</a> compares the
 relationship between these variables on the original hectares scale and the
 log-hectares scale.</p>
-<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="7.5-section7-5.html#cb654-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Temperature, <span class="at">y =</span> hectares)) <span class="sc">+</span></span>
-<span id="cb654-2"><a href="7.5-section7-5.html#cb654-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb654-3"><a href="7.5-section7-5.html#cb654-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;(a)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Hectares&quot;</span>) <span class="sc">+</span></span>
-<span id="cb654-4"><a href="7.5-section7-5.html#cb654-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb654-5"><a href="7.5-section7-5.html#cb654-5" tabindex="-1"></a>            </span>
-<span id="cb654-6"><a href="7.5-section7-5.html#cb654-6" tabindex="-1"></a>plog <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Temperature, <span class="at">y =</span> loghectares)) <span class="sc">+</span></span>
-<span id="cb654-7"><a href="7.5-section7-5.html#cb654-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb654-8"><a href="7.5-section7-5.html#cb654-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;(b)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;log-Hectares&quot;</span>) <span class="sc">+</span></span>
-<span id="cb654-9"><a href="7.5-section7-5.html#cb654-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb654-10"><a href="7.5-section7-5.html#cb654-10" tabindex="-1"></a></span>
-<span id="cb654-11"><a href="7.5-section7-5.html#cb654-11" tabindex="-1"></a><span class="fu">grid.arrange</span>(p, plog, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="7.5-section7-5.html#cb606-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Temperature, <span class="at">y =</span> hectares)) <span class="sc">+</span></span>
+<span id="cb606-2"><a href="7.5-section7-5.html#cb606-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb606-3"><a href="7.5-section7-5.html#cb606-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;(a)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Hectares&quot;</span>) <span class="sc">+</span></span>
+<span id="cb606-4"><a href="7.5-section7-5.html#cb606-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb606-5"><a href="7.5-section7-5.html#cb606-5" tabindex="-1"></a>            </span>
+<span id="cb606-6"><a href="7.5-section7-5.html#cb606-6" tabindex="-1"></a>plog <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Temperature, <span class="at">y =</span> loghectares)) <span class="sc">+</span></span>
+<span id="cb606-7"><a href="7.5-section7-5.html#cb606-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb606-8"><a href="7.5-section7-5.html#cb606-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;(b)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;log-Hectares&quot;</span>) <span class="sc">+</span></span>
+<span id="cb606-9"><a href="7.5-section7-5.html#cb606-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb606-10"><a href="7.5-section7-5.html#cb606-10" tabindex="-1"></a></span>
+<span id="cb606-11"><a href="7.5-section7-5.html#cb606-11" tabindex="-1"></a><span class="fu">grid.arrange</span>(p, plog, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-12"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-12-1.png" alt="Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature." width="75%" />
@@ -519,22 +515,22 @@ the original version of the variables and Figure <a href="7.5-section7-5.html#fi
 shows the same
 information with the response variable (height) log-transformed.
 </p>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="7.5-section7-5.html#cb655-1" tabindex="-1"></a><span class="fu">library</span>(spuRs)</span>
-<span id="cb655-2"><a href="7.5-section7-5.html#cb655-2" tabindex="-1"></a><span class="fu">data</span>(ufc)</span>
-<span id="cb655-3"><a href="7.5-section7-5.html#cb655-3" tabindex="-1"></a>ufc <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ufc)</span>
-<span id="cb655-4"><a href="7.5-section7-5.html#cb655-4" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dbh.cm, <span class="at">y =</span> height.m)) <span class="sc">+</span></span>
-<span id="cb655-5"><a href="7.5-section7-5.html#cb655-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb655-6"><a href="7.5-section7-5.html#cb655-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb655-7"><a href="7.5-section7-5.html#cb655-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb655-8"><a href="7.5-section7-5.html#cb655-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb655-9"><a href="7.5-section7-5.html#cb655-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Tree height vs tree diameter&quot;</span>)</span>
-<span id="cb655-10"><a href="7.5-section7-5.html#cb655-10" tabindex="-1"></a></span>
-<span id="cb655-11"><a href="7.5-section7-5.html#cb655-11" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dbh.cm, <span class="at">y =</span> <span class="fu">log</span>(height.m))) <span class="sc">+</span></span>
-<span id="cb655-12"><a href="7.5-section7-5.html#cb655-12" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb655-13"><a href="7.5-section7-5.html#cb655-13" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb655-14"><a href="7.5-section7-5.html#cb655-14" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb655-15"><a href="7.5-section7-5.html#cb655-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb655-16"><a href="7.5-section7-5.html#cb655-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log-tree height vs tree diameter&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="7.5-section7-5.html#cb607-1" tabindex="-1"></a><span class="fu">library</span>(spuRs)</span>
+<span id="cb607-2"><a href="7.5-section7-5.html#cb607-2" tabindex="-1"></a><span class="fu">data</span>(ufc)</span>
+<span id="cb607-3"><a href="7.5-section7-5.html#cb607-3" tabindex="-1"></a>ufc <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ufc)</span>
+<span id="cb607-4"><a href="7.5-section7-5.html#cb607-4" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dbh.cm, <span class="at">y =</span> height.m)) <span class="sc">+</span></span>
+<span id="cb607-5"><a href="7.5-section7-5.html#cb607-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb607-6"><a href="7.5-section7-5.html#cb607-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb607-7"><a href="7.5-section7-5.html#cb607-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb607-8"><a href="7.5-section7-5.html#cb607-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb607-9"><a href="7.5-section7-5.html#cb607-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Tree height vs tree diameter&quot;</span>)</span>
+<span id="cb607-10"><a href="7.5-section7-5.html#cb607-10" tabindex="-1"></a></span>
+<span id="cb607-11"><a href="7.5-section7-5.html#cb607-11" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dbh.cm, <span class="at">y =</span> <span class="fu">log</span>(height.m))) <span class="sc">+</span></span>
+<span id="cb607-12"><a href="7.5-section7-5.html#cb607-12" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb607-13"><a href="7.5-section7-5.html#cb607-13" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb607-14"><a href="7.5-section7-5.html#cb607-14" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb607-15"><a href="7.5-section7-5.html#cb607-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb607-16"><a href="7.5-section7-5.html#cb607-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log-tree height vs tree diameter&quot;</span>)</span></code></pre></div>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-13"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-13-1.png" alt="Scatterplot of tree height versus tree diameter." width="75%" />
@@ -587,12 +583,12 @@ above it, and the finish below it). In the end, we might prefer to fit an SLR
 model to the tree <em>height</em> vs <em>log(diameter)</em> versions of the variables
 (Figure <a href="7.5-section7-5.html#fig:Figure7-15">7.15</a>).</p>
 
-<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="7.5-section7-5.html#cb656-1" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(dbh.cm), <span class="at">y =</span> <span class="fu">log</span>(height.m))) <span class="sc">+</span></span>
-<span id="cb656-2"><a href="7.5-section7-5.html#cb656-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb656-3"><a href="7.5-section7-5.html#cb656-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb656-4"><a href="7.5-section7-5.html#cb656-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb656-5"><a href="7.5-section7-5.html#cb656-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb656-6"><a href="7.5-section7-5.html#cb656-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log-tree height vs log-tree diameter&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="7.5-section7-5.html#cb608-1" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(dbh.cm), <span class="at">y =</span> <span class="fu">log</span>(height.m))) <span class="sc">+</span></span>
+<span id="cb608-2"><a href="7.5-section7-5.html#cb608-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb608-3"><a href="7.5-section7-5.html#cb608-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb608-4"><a href="7.5-section7-5.html#cb608-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb608-5"><a href="7.5-section7-5.html#cb608-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb608-6"><a href="7.5-section7-5.html#cb608-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log-tree height vs log-tree diameter&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-16"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-16-1.png" alt="Scatterplot of log(tree height) versus log(tree diameter)." width="75%" />
 <p class="caption">
@@ -632,9 +628,9 @@ Figure 7.17: Scatterplots of Infant Mortality vs GDP under four different combin
 <p>Almost all nonlinear transformations assume that the variables are strictly
 greater than 0. For example, consider what happens when we apply the
 <code>log</code> function to 0 or a negative value in R:</p>
-<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="7.5-section7-5.html#cb657-1" tabindex="-1"></a><span class="fu">log</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="7.5-section7-5.html#cb609-1" tabindex="-1"></a><span class="fu">log</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] NaN</code></pre>
-<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="7.5-section7-5.html#cb659-1" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="7.5-section7-5.html#cb611-1" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## [1] -Inf</code></pre>
 <p>So be careful to think about the domain of the transformation function
 before using transformations.
@@ -689,12 +685,12 @@ Fox, John, Sanford Weisberg, and Brad Price. 2022. <em>carData: Companion to App
 </div>
 <div class="footnotes">
 <hr />
-<ol start="125">
-<li id="fn125"><p>If
+<ol start="118">
+<li id="fn118"><p>If
 the removal is of a point that is extreme in <span class="math inline">\(x\)</span>-values, then it is appropriate
 to note that the results only apply to the restricted range of <span class="math inline">\(x\)</span>-values that
 were actually analyzed in the scope of inference discussion. Our results only ever apply to the range of <span class="math inline">\(x\)</span>-values we
-had available so this is a relatively minor change.<a href="7.5-section7-5.html#fnref125" class="footnote-back">↩︎</a></p></li>
+had available so this is a relatively minor change.<a href="7.5-section7-5.html#fnref118" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

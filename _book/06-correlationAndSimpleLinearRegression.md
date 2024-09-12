@@ -185,266 +185,248 @@ these cases, make the most reasonable choice based on the observed variables but
 remember that, when the direction of relationship is unclear, you could have
 switched the axes and thus the implication of which variable is explanatory.
 
-## Estimating the correlation coefficient	{#section6-2}
+<!-- ## Estimating the correlation coefficient	{#section6-2} -->
 
 
-In terms of quantifying relationships between variables, we start with 
-the correlation coefficient, a
-measure that is the same regardless of your choice of variables as
-explanatory or response. We measure the strength and direction of
-linear relationships between two quantitative variables using 
-***Pearson's r*** or ***Pearson's Product Moment Correlation Coefficient***.
-For those who really like acronyms, Wikipedia even suggests calling it 
-the PPMCC. However, 
-its use is so ubiquitous that the lower case ***r*** or just "correlation
-coefficient" are often sufficient to identify that you have used the PPMCC. 
-Some of the extra distinctions arise because there are other ways of measuring
-correlations in other situations (for example between two categorical
-variables), but we will not consider them here. 
+<!-- In terms of quantifying relationships between variables, we start with  -->
+<!-- the correlation coefficient, a -->
+<!-- measure that is the same regardless of your choice of variables as -->
+<!-- explanatory or response. We measure the strength and direction of -->
+<!-- linear relationships between two quantitative variables using  -->
+<!-- ***Pearson's r*** or ***Pearson's Product Moment Correlation Coefficient***. -->
+<!-- For those who really like acronyms, Wikipedia even suggests calling it  -->
+<!-- the PPMCC. However,  -->
+<!-- its use is so ubiquitous that the lower case ***r*** or just "correlation -->
+<!-- coefficient" are often sufficient to identify that you have used the PPMCC.  -->
+<!-- Some of the extra distinctions arise because there are other ways of measuring -->
+<!-- correlations in other situations (for example between two categorical -->
+<!-- variables), but we will not consider them here.  -->
 
-\newpage
+<!-- \newpage -->
 
-\indent The correlation coefficient, ***r***, is calculated as
+<!-- \indent The correlation coefficient, ***r***, is calculated as -->
 
-$$r = \frac{1}{n-1}\sum^n_{i = 1}\left(\frac{x_i-\bar{x}}{s_x}\right)
-\left(\frac{y_i-\bar{y}}{s_y}\right),$$ 
+<!-- $$r = \frac{1}{n-1}\sum^n_{i = 1}\left(\frac{x_i-\bar{x}}{s_x}\right) -->
+<!-- \left(\frac{y_i-\bar{y}}{s_y}\right),$$  -->
 
-where $s_x$ and $s_y$ are the standard deviations of $x$ and $y$. This 
-formula can also be written as
+<!-- where $s_x$ and $s_y$ are the standard deviations of $x$ and $y$. This  -->
+<!-- formula can also be written as -->
 
-$$r = \frac{1}{n-1}\sum^n_{i = 1}z_{x_i}z_{y_i}$$
+<!-- $$r = \frac{1}{n-1}\sum^n_{i = 1}z_{x_i}z_{y_i}$$ -->
 
-where $z_{x_i}$ is the z-score (observation minus mean divided by 
-standard deviation) for the $i^{th}$ observation on $x$ and $z_{y_i}$
-is the z-score for the $i^{th}$ observation on $y$. We won't directly
-use this formula, but its contents inform the behavior of ***r***.
-First, because it is a sum divided by ($n-1$) it is a bit like
-an average -- it combines information across all observations and, like the
-mean, is sensitive to outliers. Second, it is a dimension-less measure, meaning
-that it has no units attached to it. It is based on z-scores which have units
-of standard deviations of $x$ or $y$ so the original units of measurement are
-canceled out going into this calculation. This also means that changing the
-original units of measurement, say from Fahrenheit to Celsius or from miles to
-km for one or the other variable will have no impact on the correlation. Less
-obviously, the formula guarantees that ***r*** is between -1 and 1. It will
-attain -1 for a perfect negative linear relationship, 1 for a perfect positive
-linear relationship, and 0 for no linear relationship. We are being careful
-here to say ***linear relationship*** because you can have a strong nonlinear
-relationship with a correlation of 0. For example, consider 
-Figure \@ref(fig:Figure6-2). 
+<!-- where $z_{x_i}$ is the z-score (observation minus mean divided by  -->
+<!-- standard deviation) for the $i^{th}$ observation on $x$ and $z_{y_i}$ -->
+<!-- is the z-score for the $i^{th}$ observation on $y$. We won't directly -->
+<!-- use this formula, but its contents inform the behavior of ***r***. -->
+<!-- First, because it is a sum divided by ($n-1$) it is a bit like -->
+<!-- an average -- it combines information across all observations and, like the -->
+<!-- mean, is sensitive to outliers. Second, it is a dimension-less measure, meaning -->
+<!-- that it has no units attached to it. It is based on z-scores which have units -->
+<!-- of standard deviations of $x$ or $y$ so the original units of measurement are -->
+<!-- canceled out going into this calculation. This also means that changing the -->
+<!-- original units of measurement, say from Fahrenheit to Celsius or from miles to -->
+<!-- km for one or the other variable will have no impact on the correlation. Less -->
+<!-- obviously, the formula guarantees that ***r*** is between -1 and 1. It will -->
+<!-- attain -1 for a perfect negative linear relationship, 1 for a perfect positive -->
+<!-- linear relationship, and 0 for no linear relationship. We are being careful -->
+<!-- here to say ***linear relationship*** because you can have a strong nonlinear -->
+<!-- relationship with a correlation of 0. For example, consider  -->
+<!-- Figure \@ref(fig:Figure6-2).  -->
 
-(ref:fig6-2) Scatterplot of an amusing (and strong) relationship that has $r = 0$.
+<!-- (ref:fig6-2) Scatterplot of an amusing (and strong) relationship that has $r = 0$. -->
 
-<div class="figure" style="text-align: center">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-2-1.png" alt="(ref:fig6-2)" width="75%" />
-<p class="caption">(\#fig:Figure6-2)(ref:fig6-2)</p>
-</div>
+<!-- ```{r Figure6-2,fig.cap = "(ref:fig6-2)",echo = F,warning = F,message = F} -->
+<!-- x <- seq(from = 0,to = 20,length.out = 20) -->
+<!-- y <- (x-mean(x))^2 -->
+<!-- x <- c(x,5,15) -->
+<!-- y <- c(y,220,220) -->
 
- 
-\indent There are some conditions for trusting the results that the 
-correlation coefficient provides:
-
-1. Two quantitative variables measured. 
-
-    * This might seem silly, but categorical variables can be coded 
-    numerically and a meaningless correlation can be estimated if you 
-    are not careful what you correlate. 
-    
-    <!-- \newpage -->
-    
-2. The relationship between the variables is relatively linear.
-
-    * If the relationship is nonlinear, the correlation is meaningless since it 
-    only measures linear relationships 
-    and can be misleading if applied to a nonlinear relationship.
-    
-3. There should be no outliers. \index{outlier}
-
-    * The correlation is very sensitive (technically ***not resistant***) 
-    to the impacts of certain types of outliers and you should generally 
-    avoid reporting the correlation when they are present.
-    \index{resistant!not}
-    
-    * One option in the presence of outliers is to report the correlation 
-    with and without outliers to see how they influence the estimated 
-    correlation. 
-
-\indent The correlation coefficient is dimensionless but larger magnitude values
-(closer to -1 OR 1) mean stronger linear relationships. A rough interpretation
-scale based on experiences working with correlations follows, but this varies
-between fields and types of research and variables measured. It depends on the
-levels of correlation researchers become used to obtaining, so can even vary
-within fields. Use this scale for the discussing the strength of the linear
-relationship until you develop your own experience with typical results in a
-particular field and what is expected:
-
-* $\left|\boldsymbol{r}\right|<0.3$: weak linear relationship,
-
-* $0.3 < \left|\boldsymbol{r}\right|<0.7$: moderate linear relationship, 
-
-* $0.7 < \left|\boldsymbol{r}\right|<0.9$: strong linear relationship, and
-
-* $0.9 < \left|\boldsymbol{r}\right|<1.0$: very strong linear relationship.
-
-And again note that this scale only relates to the **linear** aspect of
-the relationship between the variables. 
-
-\indent When we have linear relationships between two quantitative variables, 
-$x$ and $y$, we can obtain estimated correlations from the ``cor``
-function either using ``y ~ x`` or by running the ``cor`` function^[This 
-interface with the ``cor`` function only works after you load the 
-``mosaic`` package.] on the entire data set. When you run the ``cor``
-function on a data set it produces a ***correlation matrix*** which 
-contains a matrix of correlations where you can triangulate the 
-variables being correlated by the row and column names, noting
-that the correlation between a variable and itself is 1. A matrix of
-correlations is useful for comparing more than two variables, discussed below. \index{correlation matrix} \index{\texttt{cor()}}
+<!-- dp1 <- tibble(x,y) -->
+<!-- dp1 |> ggplot(aes(x = x, y = y)) +  -->
+<!--   geom_point(col = "slateblue", size = 2) +  -->
+<!--   theme_test() -->
+<!-- ``` -->
 
 
-``` r
-library(mosaic)
-cor(BAC ~ Beers, data = BB)
-```
+<!-- \indent There are some conditions for trusting the results that the  -->
+<!-- correlation coefficient provides: -->
 
-```
-## [1] 0.8943381
-```
+<!-- 1. Two quantitative variables measured.  -->
 
-``` r
-cor(BB)
-```
+<!--     * This might seem silly, but categorical variables can be coded  -->
+<!--     numerically and a meaningless correlation can be estimated if you  -->
+<!--     are not careful what you correlate.  -->
 
-```
-##           Beers       BAC
-## Beers 1.0000000 0.8943381
-## BAC   0.8943381 1.0000000
-```
+<!--     <!-- \newpage --> -->
 
-Based on either version of using the function, we find that the correlation
-between ``Beers`` and ``BAC`` is estimated to be 0.89. This suggests a 
-strong linear relationship between the
-two variables. Examples are about the only way to build up enough experience to
-become skillful in using the correlation coefficient. Some additional
-complications arise in more complicated studies as the next example
-demonstrates. 
+<!-- 2. The relationship between the variables is relatively linear. -->
 
-\indent @Gude2009 explored the relationship 
-between average summer
-temperature (degrees F) and area burned (natural log of hectares^[The 
-natural log ($\log_e$ or $\ln$) is used in statistics so much that the
-function in R ``log`` actually takes the natural log and if you want a 
-$\log_{10}$ you have to use the function ``log10``. When statisticians 
-say log we mean natural log.] = log(hectares)) by wildfires in Montana 
-from 1985 to 2007. The ***log-transformation*** is often used to reduce 
-the impacts of really large observations with
-non-negative (strictly greater than 0) variables
-(more on ***transformations*** and their impacts on regression models 
-in Chapter \@ref(chapter7)).
-\index{transformation}
-Based on your experiences with the wildfire "season" and before 
-analyzing the data, I'm sure
-you would assume that summer temperature explains the area burned by wildfires. 
-But could it be that more fires are related to having warmer summers? That
-second direction is unlikely on a state-wide scale but could apply at a
-particular weather station that is near a fire. There is another option -- some
-other variable is affecting both variables. For example, drier summers might 
-be the real explanatory variable that is related to having both warm summers and lots
-of fires. These variables are also being measured over time making them examples
-of ***time series***. In
-this situation, if there are changes over time, they might be attributed to
-climate change. So there are really three relationships to explore with the
-variables measured here (remembering that the full story might require
-measuring even more!): log-area burned versus temperature, temperature versus
-year, and log-area burned versus year. \index{log} \index{log10} \index{\texttt{log()}} \index{time series}
+<!--     * If the relationship is nonlinear, the correlation is meaningless since it  -->
+<!--     only measures linear relationships  -->
+<!--     and can be misleading if applied to a nonlinear relationship. -->
 
-\indent As demonstrated in the following code, with more than two variables, we can use the ``cor`` function on all the 
-variables and end up getting a matrix of correlations or, simply, the
-***correlation matrix***. \index{correlation matrix} If you triangulate the row and column labels, that cell provides the correlation between that pair of variables. For example, in the first row (``Year``) 
-and the last column (``loghectares``), you can find that the correlation
-coefficient is ***r*** = 0.362. Note the symmetry in the matrix around the 
-diagonal of 1's -- this further illustrates that correlation between 
-$x$ and $y$ does not depend on which variable is viewed as the "response".
-The estimated correlation
-between ``Temperature`` and ``Year`` is -0.004 and the correlation between
-``loghectares`` (*log-hectares burned*) and ``Temperature`` is 0.81. So 
-``Temperature`` has almost no linear
-change over time. And there is a strong linear relationship between 
-``loghectares`` and ``Temperature``. So it appears that temperatures may 
-be related to log-area burned but that the trend over time in both is less 
-clear (at least the linear trends). 
+<!-- 3. There should be no outliers. \index{outlier} -->
 
+<!--     * The correlation is very sensitive (technically ***not resistant***)  -->
+<!--     to the impacts of certain types of outliers and you should generally  -->
+<!--     avoid reporting the correlation when they are present. -->
+<!--     \index{resistant!not} -->
 
-``` r
-mtfires <- read_csv("http://www.math.montana.edu/courses/s217/documents/climateR2.csv")
-```
+<!--     * One option in the presence of outliers is to report the correlation  -->
+<!--     with and without outliers to see how they influence the estimated  -->
+<!--     correlation.  -->
+
+<!-- \indent The correlation coefficient is dimensionless but larger magnitude values -->
+<!-- (closer to -1 OR 1) mean stronger linear relationships. A rough interpretation -->
+<!-- scale based on experiences working with correlations follows, but this varies -->
+<!-- between fields and types of research and variables measured. It depends on the -->
+<!-- levels of correlation researchers become used to obtaining, so can even vary -->
+<!-- within fields. Use this scale for the discussing the strength of the linear -->
+<!-- relationship until you develop your own experience with typical results in a -->
+<!-- particular field and what is expected: -->
+
+<!-- * $\left|\boldsymbol{r}\right|<0.3$: weak linear relationship, -->
+
+<!-- * $0.3 < \left|\boldsymbol{r}\right|<0.7$: moderate linear relationship,  -->
+
+<!-- * $0.7 < \left|\boldsymbol{r}\right|<0.9$: strong linear relationship, and -->
+
+<!-- * $0.9 < \left|\boldsymbol{r}\right|<1.0$: very strong linear relationship. -->
+
+<!-- And again note that this scale only relates to the **linear** aspect of -->
+<!-- the relationship between the variables.  -->
+
+<!-- \indent When we have linear relationships between two quantitative variables,  -->
+<!-- $x$ and $y$, we can obtain estimated correlations from the ``cor`` -->
+<!-- function either using ``y ~ x`` or by running the ``cor`` function^[This  -->
+<!-- interface with the ``cor`` function only works after you load the  -->
+<!-- ``mosaic`` package.] on the entire data set. When you run the ``cor`` -->
+<!-- function on a data set it produces a ***correlation matrix*** which  -->
+<!-- contains a matrix of correlations where you can triangulate the  -->
+<!-- variables being correlated by the row and column names, noting -->
+<!-- that the correlation between a variable and itself is 1. A matrix of -->
+<!-- correlations is useful for comparing more than two variables, discussed below. \index{correlation matrix} \index{\texttt{cor()}} -->
+
+<!-- ```{r} -->
+<!-- library(mosaic) -->
+<!-- cor(BAC ~ Beers, data = BB) -->
+<!-- cor(BB) -->
+<!-- ``` -->
+
+<!-- Based on either version of using the function, we find that the correlation -->
+<!-- between ``Beers`` and ``BAC`` is estimated to be 0.89. This suggests a  -->
+<!-- strong linear relationship between the -->
+<!-- two variables. Examples are about the only way to build up enough experience to -->
+<!-- become skillful in using the correlation coefficient. Some additional -->
+<!-- complications arise in more complicated studies as the next example -->
+<!-- demonstrates.  -->
+
+<!-- \indent @Gude2009 explored the relationship  -->
+<!-- between average summer -->
+<!-- temperature (degrees F) and area burned (natural log of hectares^[The  -->
+<!-- natural log ($\log_e$ or $\ln$) is used in statistics so much that the -->
+<!-- function in R ``log`` actually takes the natural log and if you want a  -->
+<!-- $\log_{10}$ you have to use the function ``log10``. When statisticians  -->
+<!-- say log we mean natural log.] = log(hectares)) by wildfires in Montana  -->
+<!-- from 1985 to 2007. The ***log-transformation*** is often used to reduce  -->
+<!-- the impacts of really large observations with -->
+<!-- non-negative (strictly greater than 0) variables -->
+<!-- (more on ***transformations*** and their impacts on regression models  -->
+<!-- in Chapter \@ref(chapter7)). -->
+<!-- \index{transformation} -->
+<!-- Based on your experiences with the wildfire "season" and before  -->
+<!-- analyzing the data, I'm sure -->
+<!-- you would assume that summer temperature explains the area burned by wildfires.  -->
+<!-- But could it be that more fires are related to having warmer summers? That -->
+<!-- second direction is unlikely on a state-wide scale but could apply at a -->
+<!-- particular weather station that is near a fire. There is another option -- some -->
+<!-- other variable is affecting both variables. For example, drier summers might  -->
+<!-- be the real explanatory variable that is related to having both warm summers and lots -->
+<!-- of fires. These variables are also being measured over time making them examples -->
+<!-- of ***time series***. In -->
+<!-- this situation, if there are changes over time, they might be attributed to -->
+<!-- climate change. So there are really three relationships to explore with the -->
+<!-- variables measured here (remembering that the full story might require -->
+<!-- measuring even more!): log-area burned versus temperature, temperature versus -->
+<!-- year, and log-area burned versus year. \index{log} \index{log10} \index{\texttt{log()}} \index{time series} -->
+
+<!-- \indent As demonstrated in the following code, with more than two variables, we can use the ``cor`` function on all the  -->
+<!-- variables and end up getting a matrix of correlations or, simply, the -->
+<!-- ***correlation matrix***. \index{correlation matrix} If you triangulate the row and column labels, that cell provides the correlation between that pair of variables. For example, in the first row (``Year``)  -->
+<!-- and the last column (``loghectares``), you can find that the correlation -->
+<!-- coefficient is ***r*** = 0.362. Note the symmetry in the matrix around the  -->
+<!-- diagonal of 1's -- this further illustrates that correlation between  -->
+<!-- $x$ and $y$ does not depend on which variable is viewed as the "response". -->
+<!-- The estimated correlation -->
+<!-- between ``Temperature`` and ``Year`` is -0.004 and the correlation between -->
+<!-- ``loghectares`` (*log-hectares burned*) and ``Temperature`` is 0.81. So  -->
+<!-- ``Temperature`` has almost no linear -->
+<!-- change over time. And there is a strong linear relationship between  -->
+<!-- ``loghectares`` and ``Temperature``. So it appears that temperatures may  -->
+<!-- be related to log-area burned but that the trend over time in both is less  -->
+<!-- clear (at least the linear trends).  -->
+
+<!-- ```{r eval = F} -->
+<!-- mtfires <- read_csv("http://www.math.montana.edu/courses/s217/documents/climateR2.csv") -->
+<!-- ``` -->
 
 
 
 
 ``` r
 # natural log transformation of area burned
-mtfires <- mtfires |> mutate(loghectares = log(hectares)) 
-
-# Cuts the original hectares data so only log-scale version in tibble
-mtfiresR <- mtfires |> 
-  select(-hectares) 
-cor(mtfiresR)
+mtfires <- mtfires |> mutate(loghectares = log(hectares))
 ```
 
-```
-##                   Year Temperature loghectares
-## Year         1.0000000  -0.0037991   0.3617789
-## Temperature -0.0037991   1.0000000   0.8135947
-## loghectares  0.3617789   0.8135947   1.0000000
-```
-
-\indent The correlation matrix alone is misleading -- we need to explore scatterplots 
-to check for nonlinear
-relationships, outliers, and clustering of observations that may be distorting
-the numerical measure of the linear relationship. \index{outlier} The ``ggpairs``
-function from the ``GGally`` package [@R-GGally] combines the numerical 
-correlation information and scatterplots in one display^[We will not use the "significance stars" in the plot that display with the estimated correlations. You can ignore them but we will sometimes remove them from the plot by using the more complex code of `ggpairs(upper = list(continuous = GGally::wrap(ggally_cor, stars = F)))`.].
-\index{R packages!\textbf{GGally}}
-As in the correlation matrix, you
-triangulate the variables for the pairwise relationship. The upper right
-panel of Figure \@ref(fig:Figure6-3) displays a correlation of 0.362 for 
-``Year`` and ``loghectares`` and the lower left panel contains the 
-scatterplot with ``Year`` on the $x$-axis and ``loghectares`` on the $y$-axis.
-The correlation between ``Year`` and ``Temperature`` is really small, both
-in magnitude and in display, but appears to be nonlinear (it goes down between
-1985 and 1995 and then goes back up), so the correlation coefficient doesn't
-mean much here since it just measures the overall linear relationship. We might
-say that this is a moderate strength (moderately "clear") curvilinear
-relationship. In terms of the underlying climate process, it suggests a
-decrease in summer temperatures between 1985 and 1995 and then an increase in
-the second half of the data set. 
+<!-- ```{r} -->
+<!-- # Cuts the original hectares data so only log-scale version in tibble -->
+<!-- mtfiresR <- mtfires |> -->
+<!--   select(-hectares) -->
+<!-- cor(mtfiresR) -->
+<!-- ``` -->
 
 
-(ref:fig6-3) Scatterplot matrix of Montana fires data. 
+<!-- \indent The correlation matrix alone is misleading -- we need to explore scatterplots  -->
+<!-- to check for nonlinear -->
+<!-- relationships, outliers, and clustering of observations that may be distorting -->
+<!-- the numerical measure of the linear relationship. \index{outlier} The ``ggpairs`` -->
+<!-- function from the ``GGally`` package [@R-GGally] combines the numerical  -->
+<!-- correlation information and scatterplots in one display^[We will not use the "significance stars" in the plot that display with the estimated correlations. You can ignore them but we will sometimes remove them from the plot by using the more complex code of `ggpairs(upper = list(continuous = GGally::wrap(ggally_cor, stars = F)))`.]. -->
+<!-- \index{R packages!\textbf{GGally}} -->
+<!-- As in the correlation matrix, you -->
+<!-- triangulate the variables for the pairwise relationship. The upper right -->
+<!-- panel of Figure \@ref(fig:Figure6-3) displays a correlation of 0.362 for  -->
+<!-- ``Year`` and ``loghectares`` and the lower left panel contains the  -->
+<!-- scatterplot with ``Year`` on the $x$-axis and ``loghectares`` on the $y$-axis. -->
+<!-- The correlation between ``Year`` and ``Temperature`` is really small, both -->
+<!-- in magnitude and in display, but appears to be nonlinear (it goes down between -->
+<!-- 1985 and 1995 and then goes back up), so the correlation coefficient doesn't -->
+<!-- mean much here since it just measures the overall linear relationship. We might -->
+<!-- say that this is a moderate strength (moderately "clear") curvilinear -->
+<!-- relationship. In terms of the underlying climate process, it suggests a -->
+<!-- decrease in summer temperatures between 1985 and 1995 and then an increase in -->
+<!-- the second half of the data set.  -->
 
 
-``` r
-library(GGally) 
-mtfiresR |> ggpairs() + theme_bw()
-```
+<!-- (ref:fig6-3) Scatterplot matrix of Montana fires data.  -->
 
-<div class="figure" style="text-align: center">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-3-1.png" alt="(ref:fig6-3)" width="75%" />
-<p class="caption">(\#fig:Figure6-3)(ref:fig6-3)</p>
-</div>
+<!-- ```{r Figure6-3,fig.cap = "(ref:fig6-3)"} -->
+<!-- library(GGally)  -->
+<!-- mtfiresR |> ggpairs() + theme_bw() -->
+<!-- ``` -->
 
-\indent As one more example, the Australian Institute of Sport collected data 
-on 102 male and 100 female athletes that are available in the ``ais``
-data set from the ``alr4`` package (@R-alr4, @Weisberg2014).
-\index{R packages!\textbf{alr4}}
-They measured a 
-variety of variables including the athlete's Hematocrit (``Hc``, 
-units of percentage of red blood cells in the blood), Body Fat Percentage 
-(``Bfat``, units of percentage of total body weight), and height (``Ht``,
-units of cm). Eventually we might be interested in predicting ``Hc`` 
-based on the other variables, but for now the associations are of interest. 
+<!-- \indent As one more example, the Australian Institute of Sport collected data  -->
+<!-- on 102 male and 100 female athletes that are available in the ``ais`` -->
+<!-- data set from the ``alr4`` package (@R-alr4, @Weisberg2014). -->
+<!-- \index{R packages!\textbf{alr4}} -->
+<!-- They measured a  -->
+<!-- variety of variables including the athlete's Hematocrit (``Hc``,  -->
+<!-- units of percentage of red blood cells in the blood), Body Fat Percentage  -->
+<!-- (``Bfat``, units of percentage of total body weight), and height (``Ht``, -->
+<!-- units of cm). Eventually we might be interested in predicting ``Hc``  -->
+<!-- based on the other variables, but for now the associations are of interest.  -->
 
-(ref:fig6-4) Scatterplot matrix of athlete data. 
+<!-- (ref:fig6-4) Scatterplot matrix of athlete data.  -->
 
 
 ``` r
@@ -476,50 +458,33 @@ aisR |> ggpairs() + theme_bw()
 <p class="caption">(\#fig:Figure6-4)(ref:fig6-4)</p>
 </div>
 
-<!-- \newpage -->
+<!-- <!-- \newpage --> -->
 
+<!-- ```{r} -->
+<!-- cor(aisR) -->
+<!-- ``` -->
 
-``` r
-cor(aisR)
-```
+<!-- ``Ht`` (*Height*) and ``Hc`` (*Hematocrit*) have a moderate positive  -->
+<!-- relationship that may contain a slight nonlinearity. It also contains one -->
+<!-- clear outlier for a middle height athlete (around 175 cm) with an ``Hc`` -->
+<!-- of close to 60% (a result that is extremely high). One might wonder about  -->
+<!-- whether this athlete has been doping or -->
+<!-- if that measurement involved a recording error. We should consider removing -->
+<!-- that observation to see how our results might change without it impacting the -->
+<!-- results. For the relationship between ``Bfat`` (*body fat*) and ``Hc``  -->
+<!-- (*hematocrit*), that same high ``Hc`` value is a clear outlier. There is -->
+<!-- also a high ``Bfat`` (*body fat*) athlete (35%) with a somewhat low  -->
+<!-- ``Hc`` value. This also might be influencing our impressions so we will  -->
+<!-- remove both "unusual" values and remake the plot. The two offending -->
+<!-- observations were found for individuals numbered 56 and 166 in the data set. To access those observations (and then remove them), we introduce the ``slice`` function that we can apply to a tibble as a way to use the row number to either select (as used here) or remove those rows: \index{\texttt{slice()}} -->
 
-```
-##              Ht         Hc       Bfat
-## Ht    1.0000000  0.3711915 -0.1880217
-## Hc    0.3711915  1.0000000 -0.5324491
-## Bfat -0.1880217 -0.5324491  1.0000000
-```
+<!-- ```{r} -->
+<!-- aisR |> slice(56, 166) -->
+<!-- ``` -->
 
-``Ht`` (*Height*) and ``Hc`` (*Hematocrit*) have a moderate positive 
-relationship that may contain a slight nonlinearity. It also contains one
-clear outlier for a middle height athlete (around 175 cm) with an ``Hc``
-of close to 60% (a result that is extremely high). One might wonder about 
-whether this athlete has been doping or
-if that measurement involved a recording error. We should consider removing
-that observation to see how our results might change without it impacting the
-results. For the relationship between ``Bfat`` (*body fat*) and ``Hc`` 
-(*hematocrit*), that same high ``Hc`` value is a clear outlier. There is
-also a high ``Bfat`` (*body fat*) athlete (35%) with a somewhat low 
-``Hc`` value. This also might be influencing our impressions so we will 
-remove both "unusual" values and remake the plot. The two offending
-observations were found for individuals numbered 56 and 166 in the data set. To access those observations (and then remove them), we introduce the ``slice`` function that we can apply to a tibble as a way to use the row number to either select (as used here) or remove those rows: \index{\texttt{slice()}}
+<!-- We can create a reduced version of the data (``aisR2``) using the ``slice`` function to slice "out" the rows we don't want by passing a vector of the rows we don't want to retain with a minus sign in front of each of them, ``slice(-56, -166)``, or as vector of rows with a minus in front of the concatenated (``c(...)``) vector (``slice(-c(56, 166))``), and then remake the plot: \index{\texttt{slice()}} \index{remove rows} -->
 
-
-``` r
-aisR |> slice(56, 166)
-```
-
-```
-## # A tibble: 2 × 3
-##      Ht    Hc  Bfat
-##   <dbl> <dbl> <dbl>
-## 1  180.  37.6 35.5 
-## 2  175.  59.7  9.56
-```
-
-We can create a reduced version of the data (``aisR2``) using the ``slice`` function to slice "out" the rows we don't want by passing a vector of the rows we don't want to retain with a minus sign in front of each of them, ``slice(-56, -166)``, or as vector of rows with a minus in front of the concatenated (``c(...)``) vector (``slice(-c(56, 166))``), and then remake the plot: \index{\texttt{slice()}} \index{remove rows}
-
-(ref:fig6-5) Scatterplot matrix of athlete data with two potential outliers removed. \index{outlier}
+<!-- (ref:fig6-5) Scatterplot matrix of athlete data with two potential outliers removed. \index{outlier} -->
 
 
 ``` r
@@ -532,466 +497,406 @@ aisR2 |> ggpairs() + theme_bw()
 <p class="caption">(\#fig:Figure6-5)(ref:fig6-5)</p>
 </div>
 
-\indent After removing these two unusual observations, the relationships between 
-the variables are more obvious (Figure \@ref(fig:Figure6-5)). There is a 
-moderate strength, relatively linear relationship between *Height* and 
-*Hematocrit*. There is almost no relationship between *Height* and 
-*Body Fat %* $(\boldsymbol{r} = -0.20)$. There is a negative, moderate strength, 
-somewhat curvilinear relationship between *Hematocrit* and *Body Fat %*
-$(\boldsymbol{r} = -0.54)$. As hematocrit increases initially, the body fat 
-percentage decreases but at a certain level (around 45% for ``Hc``), the 
-body fat percentage seems to
-level off. Interestingly, it ended up that removing those two outliers had only
-minor impacts on the estimated correlations -- this will not always be the case. 
+<!-- \indent After removing these two unusual observations, the relationships between  -->
+<!-- the variables are more obvious (Figure \@ref(fig:Figure6-5)). There is a  -->
+<!-- moderate strength, relatively linear relationship between *Height* and  -->
+<!-- *Hematocrit*. There is almost no relationship between *Height* and  -->
+<!-- *Body Fat %* $(\boldsymbol{r} = -0.20)$. There is a negative, moderate strength,  -->
+<!-- somewhat curvilinear relationship between *Hematocrit* and *Body Fat %* -->
+<!-- $(\boldsymbol{r} = -0.54)$. As hematocrit increases initially, the body fat  -->
+<!-- percentage decreases but at a certain level (around 45% for ``Hc``), the  -->
+<!-- body fat percentage seems to -->
+<!-- level off. Interestingly, it ended up that removing those two outliers had only -->
+<!-- minor impacts on the estimated correlations -- this will not always be the case.  -->
 
-\indent Sometimes we want to just be able to focus on the correlations, assuming 
-we trust that
-the correlation is a reasonable description of the results between the
-variables. To make it easier to see patterns of positive and negative
-correlations, we can employ a different version of the same display from 
-the ``corrplot`` package [@R-corrplot] with the ``corrplot.mixed`` function. \index{\texttt{corrplot.mixed()}}
-\index{R packages!\textbf{corrplot}}
-In this case 
-(Figure \@ref(fig:Figure6-6)), it tells much the same story but also allows 
-the viewer to easily distinguish both size and direction and read off the 
-numerical correlations if desired. \index{correlation plot}
+<!-- \indent Sometimes we want to just be able to focus on the correlations, assuming  -->
+<!-- we trust that -->
+<!-- the correlation is a reasonable description of the results between the -->
+<!-- variables. To make it easier to see patterns of positive and negative -->
+<!-- correlations, we can employ a different version of the same display from  -->
+<!-- the ``corrplot`` package [@R-corrplot] with the ``corrplot.mixed`` function. \index{\texttt{corrplot.mixed()}} -->
+<!-- \index{R packages!\textbf{corrplot}} -->
+<!-- In this case  -->
+<!-- (Figure \@ref(fig:Figure6-6)), it tells much the same story but also allows  -->
+<!-- the viewer to easily distinguish both size and direction and read off the  -->
+<!-- numerical correlations if desired. \index{correlation plot} -->
 
-(ref:fig6-6) Correlation plot of the athlete data with two potential outliers removed. Lighter (orange) circle for positive correlations and black for negative correlations. 
+<!-- (ref:fig6-6) Correlation plot of the athlete data with two potential outliers removed. Lighter (orange) circle for positive correlations and black for negative correlations.  -->
 
-
-``` r
-library(corrplot)
-corrplot.mixed(cor(aisR2), upper.col = c("black", "orange"), 
-               lower.col = c("black", "orange"))
-```
-
-<div class="figure" style="text-align: center">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-6-1.png" alt="(ref:fig6-6)" width="75%" />
-<p class="caption">(\#fig:Figure6-6)(ref:fig6-6)</p>
-</div>
+<!-- ```{r Figure6-6,fig.cap = "(ref:fig6-6)"} -->
+<!-- library(corrplot) -->
+<!-- corrplot.mixed(cor(aisR2), upper.col = c("black", "orange"),  -->
+<!--                lower.col = c("black", "orange")) -->
+<!-- ``` -->
 
 
-## Relationships between variables by groups	{#section6-3}
+<!-- ## Relationships between variables by groups	{#section6-3} -->
 
-In assessing the relationship
-between variables, incorporating information from a third variable can often
-enhance the information gathered by either showing that the relationship
-between the first two variables is the same across levels of the other variable
-or showing that it differs. When the other variable is categorical (or just can
-be made categorical), it can be added to scatterplots, changing the symbols and
-colors for the points based on the different groups. These techniques are
-especially useful if the categorical variable corresponds to potentially
-distinct groups in the responses. In the previous example, the data set was
-built with male and female athletes. For some characteristics, the
-relationships might be the same for both sexes but for others, there are likely
-some physiological differences to consider. 
+<!-- In assessing the relationship -->
+<!-- between variables, incorporating information from a third variable can often -->
+<!-- enhance the information gathered by either showing that the relationship -->
+<!-- between the first two variables is the same across levels of the other variable -->
+<!-- or showing that it differs. When the other variable is categorical (or just can -->
+<!-- be made categorical), it can be added to scatterplots, changing the symbols and -->
+<!-- colors for the points based on the different groups. These techniques are -->
+<!-- especially useful if the categorical variable corresponds to potentially -->
+<!-- distinct groups in the responses. In the previous example, the data set was -->
+<!-- built with male and female athletes. For some characteristics, the -->
+<!-- relationships might be the same for both sexes but for others, there are likely -->
+<!-- some physiological differences to consider.  -->
 
-\indent This set of material is where the ``ggplot2`` methods will really pay
-off for us, providing you with an extensive set of tools for visualizing
-relationships between two quantitative variables and incorporating information
-from other variables. There are three ways to add a categorical variable to a
-scatterplot that we will use. The first is to modify the colors, the second is
-modify the plotting symbol, and the third is to split the graph into panels or
-facets based on the groups of the variable. We usually combine the first two
-options to give the reader the best chance of detecting the group differences
-using both colors and symbols by groups; we will save faceting for a little
-later in the material. In these modifications, we can modify the colors and
-symbols based on the levels of categorical variable (say ``groupfactor``) by
-adding ``color = groupfactor, shape = groupfactor`` to the `aes()` definition
-in the initial ``ggplot`` part of the function or within an aesthetic inside
-``geom_point``. Defining the colors and shape within the ``geom_point`` only is
-useful if you want to change colors or symbols for the points in a way that
-might differ from the colors and groupings you use for other layers in the plot.
-The addition of grouping information in the initial ``ggplot`` aesthetic is
-called a "global" aesthetic and will apply to all the following geom's. Defining
-the colors or symbols within ``geom_point`` is called a "local" aesthetic and
-only applies to that layer of the plot. To enhance visibility of the points in
-the scatterplot, we often engage different color palettes, using a version^[The
-``end = 0.7`` is used to avoid the lightest yellow color in the gradient that is
-often hard to see.] of the ``viridis`` colors with
-``scale_color_viridis_d(end = 0.7)``. Using these ggplot additions,
-Figure \@ref(fig:Figure6-7) displays the *Height* and *Hematocrit* relationship
-with information on the sex of the athletes where *sex* was coded 0 for males
-and 1 for females, changing both the symbol and color for the groups -- with a
-legend to help to understand the plot. \index{\texttt{geom\_point()}}
+<!-- \indent This set of material is where the ``ggplot2`` methods will really pay -->
+<!-- off for us, providing you with an extensive set of tools for visualizing -->
+<!-- relationships between two quantitative variables and incorporating information -->
+<!-- from other variables. There are three ways to add a categorical variable to a -->
+<!-- scatterplot that we will use. The first is to modify the colors, the second is -->
+<!-- modify the plotting symbol, and the third is to split the graph into panels or -->
+<!-- facets based on the groups of the variable. We usually combine the first two -->
+<!-- options to give the reader the best chance of detecting the group differences -->
+<!-- using both colors and symbols by groups; we will save faceting for a little -->
+<!-- later in the material. In these modifications, we can modify the colors and -->
+<!-- symbols based on the levels of categorical variable (say ``groupfactor``) by -->
+<!-- adding ``color = groupfactor, shape = groupfactor`` to the `aes()` definition -->
+<!-- in the initial ``ggplot`` part of the function or within an aesthetic inside -->
+<!-- ``geom_point``. Defining the colors and shape within the ``geom_point`` only is -->
+<!-- useful if you want to change colors or symbols for the points in a way that -->
+<!-- might differ from the colors and groupings you use for other layers in the plot. -->
+<!-- The addition of grouping information in the initial ``ggplot`` aesthetic is -->
+<!-- called a "global" aesthetic and will apply to all the following geom's. Defining -->
+<!-- the colors or symbols within ``geom_point`` is called a "local" aesthetic and -->
+<!-- only applies to that layer of the plot. To enhance visibility of the points in -->
+<!-- the scatterplot, we often engage different color palettes, using a version^[The -->
+<!-- ``end = 0.7`` is used to avoid the lightest yellow color in the gradient that is -->
+<!-- often hard to see.] of the ``viridis`` colors with -->
+<!-- ``scale_color_viridis_d(end = 0.7)``. Using these ggplot additions, -->
+<!-- Figure \@ref(fig:Figure6-7) displays the *Height* and *Hematocrit* relationship -->
+<!-- with information on the sex of the athletes where *sex* was coded 0 for males -->
+<!-- and 1 for females, changing both the symbol and color for the groups -- with a -->
+<!-- legend to help to understand the plot. \index{\texttt{geom\_point()}} -->
 
-(ref:fig6-7) Scatterplot of athlete's height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
+<!-- (ref:fig6-7) Scatterplot of athlete's height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s. -->
 
 <div class="figure" style="text-align: center">
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-7-1.png" alt="(ref:fig6-7)" width="75%" />
 <p class="caption">(\#fig:Figure6-7)(ref:fig6-7)</p>
 </div>
 
-
-``` r
-aisR2 <- ais |>
-  slice(-c(56, 166)) |>
-  select(Ht, Hc, Bfat, Sex) |>
-  mutate(Sex = factor(Sex))
-
-
-aisR2 |> ggplot(mapping = aes(x = Ht, y = Hc)) +
-  geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
-  theme_bw() +
-  scale_color_viridis_d(end = 0.7) +
-  labs(title = "Scatterplot of Height vs Hematocrit by Sex")
-```
-
-\indent Adding the grouping information really changes the impressions of the
-relationship between *Height* and *Hematocrit* -- within each sex, there is
-little relationship between the two variables. The overall relationship is of
-moderate strength and positive but the subgroup relationships are weak at best. 
-The overall relationship is created by inappropriately combining two groups
-that had different means in both the $x$ and $y$ directions. Men have higher
-mean heights and hematocrit values than women and putting them together in one
-large group creates the misleading overall relationship^[This is related to what
-is called Simpson's paradox, where the overall analysis (ignoring a grouping
-variable) leads to a conclusion of a relationship in one direction, but when the
-relationship is broken down into subgroups it is in the opposite direction in
-each group. \index{Simpson's paradox} This emphasizes the importance of checking
-and accounting for differences in groups and the more complex models we are
-setting the stage to consider in the coming chapters.]. 
-
-\indent To get the correlation coefficients by groups, we can subset the data set using a
-logical inquiry on the ``Sex`` variable in the updated ``aisR2`` data set, using 
-``Sex == 0`` in the ``filter`` function to get a tibble with male subjects only and ``Sex == 1`` for the female subjects, 
-then running the ``cor`` function on each version of the data set:
-
-
-``` r
-cor(Hc ~ Ht, data = aisR2 |> filter(Sex == 0)) #Males only
-```
-
-```
-## [1] -0.04756589
-```
-
-``` r
-cor(Hc ~ Ht, data = aisR2 |> filter(Sex == 1)) #Females only
-```
-
-```
-## [1] 0.02795272
-```
-
-These results show that $\boldsymbol{r} = -0.05$ for *Height* and *Hematocrit* 
-for *males* and $\boldsymbol{r} = 0.03$ for *females*. The first suggests a 
-very weak negative linear
-relationship and the second suggests a very weak positive linear relationship. 
-The correlation when the two groups were combined (and group information was 
-ignored!) was that $\boldsymbol{r} = 0.37$. So one
-conclusion here is that correlations on data sets that contain groups can be
-very misleading (if the groups are ignored). It also emphasizes the importance of exploring for potential
-subgroups in the data set -- these two groups were not obvious in the initial
-plot, but with added information the real story became clear. 
-
-\indent For the *Body Fat* vs *Hematocrit* results in Figure \@ref(fig:Figure6-8), with
-an overall correlation of $\boldsymbol{r} = -0.54$, the subgroup correlations
-show weaker relationships that also appear to be in different directions 
-($\boldsymbol{r} = 0.13$ for men and $\boldsymbol{r} = -0.17$ for women). This 
-doubly reinforces the dangers of aggregating different groups and
-ignoring the group information. 
-
-
-``` r
-cor(Hc ~ Bfat, data = aisR2 |> filter(Sex == 0)) #Males only
-```
-
-```
-## [1] 0.1269418
-```
-
-``` r
-cor(Hc ~ Bfat, data = aisR2 |> filter(Sex == 1)) #Females only
-```
-
-```
-## [1] -0.1679751
-```
-
-(ref:fig6-8) Scatterplot of athlete's body fat and hematocrit by sex of athletes. Males were coded as 0s and females as 1s. 
-
-<div class="figure" style="text-align: center">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-8-1.png" alt="(ref:fig6-8)" width="75%" />
-<p class="caption">(\#fig:Figure6-8)(ref:fig6-8)</p>
-</div>
-
-<!-- \newpage -->
-
-
-``` r
-aisR2 |> ggplot(mapping = aes(x = Bfat, y = Hc)) +
-  geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
-  theme_bw() +
-  scale_color_viridis_d(end = 0.7) +
-  labs(title = "Scatterplot of Body Fat vs Hematocrit by Sex")
-```
-
-\indent One final exploration for these data involves the *body fat *and
-*height* relationship displayed in Figure \@ref(fig:Figure6-9). This
-relationship shows an even greater disparity between overall and subgroup
-results. The overall relationship is characterized as a weak negative
-relationship $(\boldsymbol{r} = -0.20)$ that is not clearly linear or nonlinear.
-The subgroup relationships are both clearly positive with a stronger
-relationship for men that might also be nonlinear (for 
-the linear relationships $\boldsymbol{r} = 0.45$ for women and
-$\boldsymbol{r} = 0.20$ for men). Especially for female athletes, those that are 
-taller seem to have higher body fat percentages. This might be related to the
-types of sports they compete in (there were 10 in the data set) -- that would be
-another categorical variable 
-we could incorporate... Both groups also seem to demonstrate slightly more 
-variability in *Body Fat* associated with taller athletes (each sort of 
-"fans out"). 
-
-
-``` r
-cor(Bfat ~ Ht, data = aisR2 |> filter(Sex == 0)) #Males only
-```
-
-```
-## [1] 0.1954609
-```
-
-``` r
-cor(Bfat ~ Ht, data = aisR2 |> filter(Sex == 1)) #Females only
-```
-
-```
-## [1] 0.4476962
-```
-
-(ref:fig6-9) Scatterplot of athlete's body fat and height by sex.
-
-<div class="figure" style="text-align: center">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-9-1.png" alt="(ref:fig6-9)" width="75%" />
-<p class="caption">(\#fig:Figure6-9)(ref:fig6-9)</p>
-</div>
-
-
-
-``` r
-aisR2 |> ggplot(mapping = aes(x = Ht, y = Bfat)) +
-  geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
-  theme_bw() +
-  scale_color_viridis_d(end = 0.7) +
-  labs(title = "Scatterplot of Height vs Body Fat by Sex")
-```
-
-
-\indent In each of these situations, the sex of the athletes has the potential
-to cause misleading conclusions if ignored. There are two ways that this could
-occur -- if we did not measure it then we would have no hope to account for it
-OR we could have measured it but not adjusted for it in our results, as was done
-initially. We distinguish between these two situations by defining the impacts
-of this additional variable as either a confounding or lurking variable:
-
-* ***Confounding variable:*** affects the response variable and is related to the 
-explanatory variable. The impacts of a confounding variable on the response 
-variable cannot be separated from the impacts of the explanatory variable.
-\index{confounding}
-
-* ***Lurking variable:*** a potential confounding variable that is not measured 
-and is not considered in the interpretation of the study.
-\index{lurking}
-
-Lurking variables show up in studies sometimes due to lack of knowledge of the 
-system being studied or a lack of resources to measure these variables. Note
-that there may be no satisfying resolution to the confounding variable problem
-but that it is better to have measured it and know about it than to have it
-remain a lurking variable.
-
-\indent To help think about confounding and lurking variables, consider the following 
-situation. On many
-highways, such as Highway 93 in Montana and north into Canada, recent
-construction efforts have been involved in creating safe passages for animals
-by adding fencing and animal crossing structures. These structures both can
-improve driver safety, save money from costs associated with animal-vehicle
-collisions, and increase connectivity of animal populations. Researchers (such as @Clevenger2005)
-involved in these projects are interested in which characteristics of
-underpasses lead to the most successful structures, mainly measured by rates of
-animal usage (number of times they cross under the road). Crossing structures
-are typically made using culverts and those tend to be cylindrical. Researchers
-are interested in studying the effect of height and width of crossing structures
-on animal usage. Unfortunately, all the tallest structures are also the widest
-structures. If animals prefer the tall and wide structures, then there is no
-way to know if it is due to the height or width of the structure since they are
-confounded. If the researchers had only measured width, then they might assume
-that it is the important characteristic of the structures but height could be a
-lurking variable that really was the factor related to animal usage of the
-structures. This is an example where it may not be possible to design a study
-that prevents confounding of the two variables *height* and *width*. If the
-researchers could control the height and width of the structures independently, then they
-could randomly assign both variables to make sure that some narrow structures
-are installed that are tall and some that are short. Additionally, they would
-also want to have some wide structures that are short and some are tall. Careful design of studies can prevent confounding of variables if they are
-known in advance and it is possible to control them, but in observational
-studies the observed combinations of variables are uncontrollable. This is why
-we need to employ additional caution in interpreting results from observational
-studies. Here that would mean that even if width was found to be a predictor of animal usage, we would likely want to avoid saying that width of the structures caused differences in animal usage. 
-
-## Inference for the correlation coefficient {#section6-4}
-
-We used bootstrapping briefly in
-Chapter \@ref(chapter2) to generate nonparametric confidence intervals based 
-on the middle
-95% of the bootstrapped version of the statistic. Remember that bootstrapping
-involves sampling *with replacement*
-from the data set and creates a distribution centered near the statistic from
-the real data set. This also mimics sampling under the alternative as opposed
-to sampling under the null as in our permutation approaches. Bootstrapping is
-particularly useful for making confidence intervals where the distribution of
-the statistic may not follow a named distribution. This is the case for the
-correlation coefficient which we will see shortly. 
-\index{bootstrap}
-
-\indent The correlation is an interesting
-summary but it is also an estimator of a population parameter called $\rho$
-(the symbol rho), which is the ***population correlation coefficient***. When 
-$\rho = 1$, we have a perfect positive linear relationship in the population; 
-when $\rho = -1$, there is a perfect negative linear relationship in the 
-population; and when $\rho = 0$, there is no linear relationship in the 
-population. Therefore, to test if there is a
-linear relationship between two quantitative variables, we use the null
-hypothesis $H_0: \rho = 0$ (tests if the true correlation, $\rho$, is 0 -- no
-linear relationship). The alternative hypothesis is that there is some
-(positive or negative) relationship between the variables in the population, 
-$H_A: \rho \ne 0$. The distribution of the Pearson correlation coefficient 
-can be complicated in some situations, so we will use
-bootstrapping methods to generate confidence intervals for $\rho$ based on 
-repeated random samples with replacement from the original data set.
-\index{bootstrap} \index{$\rho$} 
-If the $C\%$
-confidence interval contains 0, then we would find little to no evidence against the null
-hypothesis since 0 is in the interval of our likely values for $\rho$. If 
-the $C\%$ confidence interval does not contain 0, then we would find strong evidence against the null 
-hypothesis. Along with its use in testing, it is also interesting to be able to generate a confidence interval for $\rho$ to provide an interval where we are $C\%$ confident that the true parameter lies.
-
-\indent The *beers* and *BAC* example seemed to provide a strong relationship with
-$\boldsymbol{r} = 0.89$. As correlations approach -1 or 1, the sampling distribution becomes 
-more and more skewed. This certainly shows up in the bootstrap distribution 
-that the following code produces (Figure \@ref(fig:Figure6-10)). Remember that
-bootstrapping utilizes the ``resample`` function applied to the data set to 
-create new realizations of the data set by re-sampling
-with replacement from those observations. The bold vertical line in 
-Figure \@ref(fig:Figure6-10) corresponds to the estimated correlation
-$\boldsymbol{r} = 0.89$ and the distribution contains a noticeable left skew 
-with a few much smaller $T^*\text{'s}$ possible in bootstrap samples. The 
-$C\%$ confidence interval is found based
-on the middle $C\%$ of the distribution or by finding the values that put 
-$(100-C)/2$ into each tail of the distribution with the ``qdata`` function. 
-
-
-``` r
-Tobs <- cor(BAC ~ Beers, data = BB); Tobs
-```
-
-```
-## [1] 0.8943381
-```
-
-``` r
-set.seed(614)
-B <- 1000
-Tstar <- matrix(NA, nrow = B)
-for (b in (1:B)){
-  Tstar[b] <- cor(BAC ~ Beers, data = resample(BB))
-}
-quantiles <- qdata(Tstar, c(0.025, 0.975)) #95% Confidence Interval
-```
-
-<!-- \newpage -->
-
-(ref:fig6-10) Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval.
-
-
-``` r
-quantiles
-```
-
-```
-##      2.5%     97.5% 
-## 0.7633606 0.9541518
-```
-
-``` r
-tibble(Tstar) |> ggplot(aes(x = Tstar)) +
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  geom_density(aes(y = ..scaled..)) +
-  theme_bw() +
-  labs(y = "Density") +
-  geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 3) +
-  geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15,
-           geom = "text", vjust = -0.75)
-```
-
-<div class="figure" style="text-align: center">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-10-1.png" alt="(ref:fig6-10)" width="75%" />
-<p class="caption">(\#fig:Figure6-10)(ref:fig6-10)</p>
-</div>
-
-These results tell us that the bootstrap 95% CI is from 0.76 to 0.95 -- we are 95%
-confident that the true correlation between *Beers* and *BAC* in all OSU students 
-like those that volunteered for this study is between 0.76 and 0.95. Note that
-there are no units on the correlation coefficient or in this interpretation of it. 
-
-\indent We can also use this confidence interval to test for a linear
-relationship between these variables. 
-
-* $\boldsymbol{H_0:\rho = 0:}$ **There is no linear relationship between *Beers*
-and *BAC* in the population.**
-
-* $\boldsymbol{H_A: \rho \ne 0:}$ **There is a linear relationship between
-*Beers* and *BAC* in the population.**
-
-
-The 95% confidence level corresponds to a 5% significance level test and if the 95% CI does not contain 0, you know that the p-value would be less than 0.05 and if it does contain 0 that the p-value would be more than 0.05. The 95% CI is
-from 0.76 to 0.95, which does not contain 0, so we find strong evidence^[The interval is "far" from the reference value under the null (0) so this provides at least strong evidence. With using confidence intervals for tests, we really don't know much about the strength of evidence against the null hypothesis but the hypothesis test here is a bit more complicated to construct and understand and we will have to tolerate just having crude information about the p-value to assess strength of evidence.] against the null
-hypothesis and conclude that there is
-a linear relationship between *Beers* and *BAC* in OSU students. We'll revisit this
-example using the upcoming regression tools to explore the potential for more
-specific conclusions about this relationship. Note that for these inferences to be
-accurate, we need to be able to trust that the sample correlation is reasonable
-for characterizing the relationship between these variables along with the assumptions we will discuss below. 
-
-\indent In this situation with randomly assigned levels of $x$ and strong evidence against the null 
-hypothesis of no relationship, we can further conclude that changing beer 
-consumption **causes** changes in the *BAC*. This is a much stronger conclusion
-than we can typically make based on correlation coefficients. Correlations and
-scatterplots are enticing for infusing causal interpretations in non-causal
-situations. Statistics teachers often repeat the mantra that ***correlation is not causation***
-and that generally applies -- except when there is randomization involved in 
-the study. It is rarer for
-researchers either to assign, or even to be able to assign, levels of
-quantitative variables so correlations should be viewed as non-causal unless
-the details of the study suggest otherwise. 
-
-## Are tree diameters related to tree heights?	{#section6-5}
-
-In a study at the Upper Flat Creek
-study area in the University of Idaho Experimental Forest, a random sample of 
-$n = 336$ trees was selected from the forest, with measurements recorded on Douglas 
-Fir, Grand Fir, Western Red
-Cedar, and Western Larch trees. The data set called ``ufc`` is available from the 
-``spuRs`` package [@R-spuRs] and 
-contains ``dbh.cm`` (tree diameter at 1.37 m from the ground, measured in cm) and 
-``height.m`` (tree height in meters).
-\index{R packages!\textbf{spuRs}}
-The relationship displayed in 
-Figure \@ref(fig:Figure6-11) is positive, 
-moderately strong with some curvature and increasing variability as the
-diameter increases. There do not appear to be groups in the data set but since
-this contains four different types of trees, we would want to revisit this plot
-by type of tree. To assist in the linearity assessment, we also add the
-``geom_smooth`` to the plot with an option of ``method = "lm"``, which provides
-a straight line to best describe the relationship (more on that line in the
-coming sections and chapters). The bands around the line are based on the 95%
-confidence intervals we can generate for any x-value and relate to pinning down
-the true mean value of the y-variable at that value of the x-variable -- but
-only apply if the linear relationship is a good description of the relationship
-between the variables (which it is not here!). \index{\texttt{geom\_smooth()}} 
-
-(ref:fig6-11) Scatterplot of tree heights (m) vs tree diameters (cm) with estimated straight line relationship (blue line) and 95% confidence interval (grey band).
+<!-- ```{r eval = F} -->
+<!-- aisR2 <- ais |> -->
+<!--   slice(-c(56, 166)) |> -->
+<!--   select(Ht, Hc, Bfat, Sex) |> -->
+<!--   mutate(Sex = factor(Sex)) -->
+
+
+<!-- aisR2 |> ggplot(mapping = aes(x = Ht, y = Hc)) + -->
+<!--   geom_point(aes(shape = Sex, color = Sex), size = 2.5) + -->
+<!--   theme_bw() + -->
+<!--   scale_color_viridis_d(end = 0.7) + -->
+<!--   labs(title = "Scatterplot of Height vs Hematocrit by Sex") -->
+<!-- ``` -->
+
+<!-- \indent Adding the grouping information really changes the impressions of the -->
+<!-- relationship between *Height* and *Hematocrit* -- within each sex, there is -->
+<!-- little relationship between the two variables. The overall relationship is of -->
+<!-- moderate strength and positive but the subgroup relationships are weak at best.  -->
+<!-- The overall relationship is created by inappropriately combining two groups -->
+<!-- that had different means in both the $x$ and $y$ directions. Men have higher -->
+<!-- mean heights and hematocrit values than women and putting them together in one -->
+<!-- large group creates the misleading overall relationship^[This is related to what -->
+<!-- is called Simpson's paradox, where the overall analysis (ignoring a grouping -->
+<!-- variable) leads to a conclusion of a relationship in one direction, but when the -->
+<!-- relationship is broken down into subgroups it is in the opposite direction in -->
+<!-- each group. \index{Simpson's paradox} This emphasizes the importance of checking -->
+<!-- and accounting for differences in groups and the more complex models we are -->
+<!-- setting the stage to consider in the coming chapters.].  -->
+
+<!-- \indent To get the correlation coefficients by groups, we can subset the data set using a -->
+<!-- logical inquiry on the ``Sex`` variable in the updated ``aisR2`` data set, using  -->
+<!-- ``Sex == 0`` in the ``filter`` function to get a tibble with male subjects only and ``Sex == 1`` for the female subjects,  -->
+<!-- then running the ``cor`` function on each version of the data set: -->
+
+<!-- ```{r} -->
+<!-- cor(Hc ~ Ht, data = aisR2 |> filter(Sex == 0)) #Males only -->
+<!-- cor(Hc ~ Ht, data = aisR2 |> filter(Sex == 1)) #Females only -->
+<!-- ``` -->
+
+<!-- These results show that $\boldsymbol{r} = -0.05$ for *Height* and *Hematocrit*  -->
+<!-- for *males* and $\boldsymbol{r} = 0.03$ for *females*. The first suggests a  -->
+<!-- very weak negative linear -->
+<!-- relationship and the second suggests a very weak positive linear relationship.  -->
+<!-- The correlation when the two groups were combined (and group information was  -->
+<!-- ignored!) was that $\boldsymbol{r} = 0.37$. So one -->
+<!-- conclusion here is that correlations on data sets that contain groups can be -->
+<!-- very misleading (if the groups are ignored). It also emphasizes the importance of exploring for potential -->
+<!-- subgroups in the data set -- these two groups were not obvious in the initial -->
+<!-- plot, but with added information the real story became clear.  -->
+
+<!-- \indent For the *Body Fat* vs *Hematocrit* results in Figure \@ref(fig:Figure6-8), with -->
+<!-- an overall correlation of $\boldsymbol{r} = -0.54$, the subgroup correlations -->
+<!-- show weaker relationships that also appear to be in different directions  -->
+<!-- ($\boldsymbol{r} = 0.13$ for men and $\boldsymbol{r} = -0.17$ for women). This  -->
+<!-- doubly reinforces the dangers of aggregating different groups and -->
+<!-- ignoring the group information.  -->
+
+<!-- ```{r} -->
+<!-- cor(Hc ~ Bfat, data = aisR2 |> filter(Sex == 0)) #Males only -->
+<!-- cor(Hc ~ Bfat, data = aisR2 |> filter(Sex == 1)) #Females only -->
+<!-- ``` -->
+
+<!-- (ref:fig6-8) Scatterplot of athlete's body fat and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.  -->
+
+<!-- ```{r Figure6-8,fig.cap = "(ref:fig6-8)",echo = F} -->
+<!-- aisR2 |> ggplot(mapping = aes(x = Bfat, y = Hc)) + -->
+<!--   geom_point(aes(shape = Sex, color = Sex), size = 2.5) + -->
+<!--   theme_bw() + -->
+<!--   scale_color_viridis_d(end = 0.7) + -->
+<!--   labs(title = "Scatterplot of Body Fat vs Hematocrit by Sex") -->
+<!-- ``` -->
+
+<!-- <!-- \newpage --> -->
+
+<!-- ```{r eval = F} -->
+<!-- aisR2 |> ggplot(mapping = aes(x = Bfat, y = Hc)) + -->
+<!--   geom_point(aes(shape = Sex, color = Sex), size = 2.5) + -->
+<!--   theme_bw() + -->
+<!--   scale_color_viridis_d(end = 0.7) + -->
+<!--   labs(title = "Scatterplot of Body Fat vs Hematocrit by Sex") -->
+<!-- ``` -->
+
+<!-- \indent One final exploration for these data involves the *body fat *and -->
+<!-- *height* relationship displayed in Figure \@ref(fig:Figure6-9). This -->
+<!-- relationship shows an even greater disparity between overall and subgroup -->
+<!-- results. The overall relationship is characterized as a weak negative -->
+<!-- relationship $(\boldsymbol{r} = -0.20)$ that is not clearly linear or nonlinear. -->
+<!-- The subgroup relationships are both clearly positive with a stronger -->
+<!-- relationship for men that might also be nonlinear (for  -->
+<!-- the linear relationships $\boldsymbol{r} = 0.45$ for women and -->
+<!-- $\boldsymbol{r} = 0.20$ for men). Especially for female athletes, those that are  -->
+<!-- taller seem to have higher body fat percentages. This might be related to the -->
+<!-- types of sports they compete in (there were 10 in the data set) -- that would be -->
+<!-- another categorical variable  -->
+<!-- we could incorporate... Both groups also seem to demonstrate slightly more  -->
+<!-- variability in *Body Fat* associated with taller athletes (each sort of  -->
+<!-- "fans out").  -->
+
+<!-- ```{r} -->
+<!-- cor(Bfat ~ Ht, data = aisR2 |> filter(Sex == 0)) #Males only -->
+<!-- cor(Bfat ~ Ht, data = aisR2 |> filter(Sex == 1)) #Females only -->
+<!-- ``` -->
+
+<!-- (ref:fig6-9) Scatterplot of athlete's body fat and height by sex. -->
+
+<!-- ```{r Figure6-9,fig.cap = "(ref:fig6-9)",echo = F} -->
+<!-- aisR2 |> ggplot(mapping = aes(x = Ht, y = Bfat)) + -->
+<!--   geom_point(aes(shape = Sex, color = Sex), size = 2.5) + -->
+<!--   theme_bw() + -->
+<!--   scale_color_viridis_d(end = 0.7) + -->
+<!--   labs(title = "Scatterplot of Height vs Body Fat by Sex") -->
+<!-- ``` -->
+
+
+<!-- ```{r eval = F} -->
+<!-- aisR2 |> ggplot(mapping = aes(x = Ht, y = Bfat)) + -->
+<!--   geom_point(aes(shape = Sex, color = Sex), size = 2.5) + -->
+<!--   theme_bw() + -->
+<!--   scale_color_viridis_d(end = 0.7) + -->
+<!--   labs(title = "Scatterplot of Height vs Body Fat by Sex") -->
+<!-- ``` -->
+
+
+<!-- \indent In each of these situations, the sex of the athletes has the potential -->
+<!-- to cause misleading conclusions if ignored. There are two ways that this could -->
+<!-- occur -- if we did not measure it then we would have no hope to account for it -->
+<!-- OR we could have measured it but not adjusted for it in our results, as was done -->
+<!-- initially. We distinguish between these two situations by defining the impacts -->
+<!-- of this additional variable as either a confounding or lurking variable: -->
+
+<!-- * ***Confounding variable:*** affects the response variable and is related to the  -->
+<!-- explanatory variable. The impacts of a confounding variable on the response  -->
+<!-- variable cannot be separated from the impacts of the explanatory variable. -->
+<!-- \index{confounding} -->
+
+<!-- * ***Lurking variable:*** a potential confounding variable that is not measured  -->
+<!-- and is not considered in the interpretation of the study. -->
+<!-- \index{lurking} -->
+
+<!-- Lurking variables show up in studies sometimes due to lack of knowledge of the  -->
+<!-- system being studied or a lack of resources to measure these variables. Note -->
+<!-- that there may be no satisfying resolution to the confounding variable problem -->
+<!-- but that it is better to have measured it and know about it than to have it -->
+<!-- remain a lurking variable. -->
+
+<!-- \indent To help think about confounding and lurking variables, consider the following  -->
+<!-- situation. On many -->
+<!-- highways, such as Highway 93 in Montana and north into Canada, recent -->
+<!-- construction efforts have been involved in creating safe passages for animals -->
+<!-- by adding fencing and animal crossing structures. These structures both can -->
+<!-- improve driver safety, save money from costs associated with animal-vehicle -->
+<!-- collisions, and increase connectivity of animal populations. Researchers (such as @Clevenger2005) -->
+<!-- involved in these projects are interested in which characteristics of -->
+<!-- underpasses lead to the most successful structures, mainly measured by rates of -->
+<!-- animal usage (number of times they cross under the road). Crossing structures -->
+<!-- are typically made using culverts and those tend to be cylindrical. Researchers -->
+<!-- are interested in studying the effect of height and width of crossing structures -->
+<!-- on animal usage. Unfortunately, all the tallest structures are also the widest -->
+<!-- structures. If animals prefer the tall and wide structures, then there is no -->
+<!-- way to know if it is due to the height or width of the structure since they are -->
+<!-- confounded. If the researchers had only measured width, then they might assume -->
+<!-- that it is the important characteristic of the structures but height could be a -->
+<!-- lurking variable that really was the factor related to animal usage of the -->
+<!-- structures. This is an example where it may not be possible to design a study -->
+<!-- that prevents confounding of the two variables *height* and *width*. If the -->
+<!-- researchers could control the height and width of the structures independently, then they -->
+<!-- could randomly assign both variables to make sure that some narrow structures -->
+<!-- are installed that are tall and some that are short. Additionally, they would -->
+<!-- also want to have some wide structures that are short and some are tall. Careful design of studies can prevent confounding of variables if they are -->
+<!-- known in advance and it is possible to control them, but in observational -->
+<!-- studies the observed combinations of variables are uncontrollable. This is why -->
+<!-- we need to employ additional caution in interpreting results from observational -->
+<!-- studies. Here that would mean that even if width was found to be a predictor of animal usage, we would likely want to avoid saying that width of the structures caused differences in animal usage.  -->
+
+<!-- ## Inference for the correlation coefficient {#section6-4} -->
+
+<!-- We used bootstrapping briefly in -->
+<!-- Chapter \@ref(chapter2) to generate nonparametric confidence intervals based  -->
+<!-- on the middle -->
+<!-- 95% of the bootstrapped version of the statistic. Remember that bootstrapping -->
+<!-- involves sampling *with replacement* -->
+<!-- from the data set and creates a distribution centered near the statistic from -->
+<!-- the real data set. This also mimics sampling under the alternative as opposed -->
+<!-- to sampling under the null as in our permutation approaches. Bootstrapping is -->
+<!-- particularly useful for making confidence intervals where the distribution of -->
+<!-- the statistic may not follow a named distribution. This is the case for the -->
+<!-- correlation coefficient which we will see shortly.  -->
+<!-- \index{bootstrap} -->
+
+<!-- \indent The correlation is an interesting -->
+<!-- summary but it is also an estimator of a population parameter called $\rho$ -->
+<!-- (the symbol rho), which is the ***population correlation coefficient***. When  -->
+<!-- $\rho = 1$, we have a perfect positive linear relationship in the population;  -->
+<!-- when $\rho = -1$, there is a perfect negative linear relationship in the  -->
+<!-- population; and when $\rho = 0$, there is no linear relationship in the  -->
+<!-- population. Therefore, to test if there is a -->
+<!-- linear relationship between two quantitative variables, we use the null -->
+<!-- hypothesis $H_0: \rho = 0$ (tests if the true correlation, $\rho$, is 0 -- no -->
+<!-- linear relationship). The alternative hypothesis is that there is some -->
+<!-- (positive or negative) relationship between the variables in the population,  -->
+<!-- $H_A: \rho \ne 0$. The distribution of the Pearson correlation coefficient  -->
+<!-- can be complicated in some situations, so we will use -->
+<!-- bootstrapping methods to generate confidence intervals for $\rho$ based on  -->
+<!-- repeated random samples with replacement from the original data set. -->
+<!-- \index{bootstrap} \index{$\rho$}  -->
+<!-- If the $C\%$ -->
+<!-- confidence interval contains 0, then we would find little to no evidence against the null -->
+<!-- hypothesis since 0 is in the interval of our likely values for $\rho$. If  -->
+<!-- the $C\%$ confidence interval does not contain 0, then we would find strong evidence against the null  -->
+<!-- hypothesis. Along with its use in testing, it is also interesting to be able to generate a confidence interval for $\rho$ to provide an interval where we are $C\%$ confident that the true parameter lies. -->
+
+<!-- \indent The *beers* and *BAC* example seemed to provide a strong relationship with -->
+<!-- $\boldsymbol{r} = 0.89$. As correlations approach -1 or 1, the sampling distribution becomes  -->
+<!-- more and more skewed. This certainly shows up in the bootstrap distribution  -->
+<!-- that the following code produces (Figure \@ref(fig:Figure6-10)). Remember that -->
+<!-- bootstrapping utilizes the ``resample`` function applied to the data set to  -->
+<!-- create new realizations of the data set by re-sampling -->
+<!-- with replacement from those observations. The bold vertical line in  -->
+<!-- Figure \@ref(fig:Figure6-10) corresponds to the estimated correlation -->
+<!-- $\boldsymbol{r} = 0.89$ and the distribution contains a noticeable left skew  -->
+<!-- with a few much smaller $T^*\text{'s}$ possible in bootstrap samples. The  -->
+<!-- $C\%$ confidence interval is found based -->
+<!-- on the middle $C\%$ of the distribution or by finding the values that put  -->
+<!-- $(100-C)/2$ into each tail of the distribution with the ``qdata`` function.  -->
+
+<!-- ```{r} -->
+<!-- Tobs <- cor(BAC ~ Beers, data = BB); Tobs -->
+<!-- set.seed(614) -->
+<!-- B <- 1000 -->
+<!-- Tstar <- matrix(NA, nrow = B) -->
+<!-- for (b in (1:B)){ -->
+<!--   Tstar[b] <- cor(BAC ~ Beers, data = resample(BB)) -->
+<!-- } -->
+<!-- quantiles <- qdata(Tstar, c(0.025, 0.975)) #95% Confidence Interval -->
+<!-- ``` -->
+
+<!-- <!-- \newpage --> -->
+
+<!-- (ref:fig6-10) Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval. -->
+
+<!-- ```{r Figure6-10,fig.cap = "(ref:fig6-10)"} -->
+<!-- quantiles -->
+
+<!-- tibble(Tstar) |> ggplot(aes(x = Tstar)) + -->
+<!--   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + -->
+<!--   geom_density(aes(y = ..scaled..)) + -->
+<!--   theme_bw() + -->
+<!--   labs(y = "Density") + -->
+<!--   geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 3) + -->
+<!--   geom_vline(xintercept = Tobs, col = "red", lwd = 2) + -->
+<!--   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, -->
+<!--            geom = "text", vjust = -0.75) -->
+<!-- ``` -->
+
+<!-- These results tell us that the bootstrap 95% CI is from 0.76 to 0.95 -- we are 95% -->
+<!-- confident that the true correlation between *Beers* and *BAC* in all OSU students  -->
+<!-- like those that volunteered for this study is between 0.76 and 0.95. Note that -->
+<!-- there are no units on the correlation coefficient or in this interpretation of it.  -->
+
+<!-- \indent We can also use this confidence interval to test for a linear -->
+<!-- relationship between these variables.  -->
+
+<!-- * $\boldsymbol{H_0:\rho = 0:}$ **There is no linear relationship between *Beers* -->
+<!-- and *BAC* in the population.** -->
+
+<!-- * $\boldsymbol{H_A: \rho \ne 0:}$ **There is a linear relationship between -->
+<!-- *Beers* and *BAC* in the population.** -->
+
+
+<!-- The 95% confidence level corresponds to a 5% significance level test and if the 95% CI does not contain 0, you know that the p-value would be less than 0.05 and if it does contain 0 that the p-value would be more than 0.05. The 95% CI is -->
+<!-- from 0.76 to 0.95, which does not contain 0, so we find strong evidence^[The interval is "far" from the reference value under the null (0) so this provides at least strong evidence. With using confidence intervals for tests, we really don't know much about the strength of evidence against the null hypothesis but the hypothesis test here is a bit more complicated to construct and understand and we will have to tolerate just having crude information about the p-value to assess strength of evidence.] against the null -->
+<!-- hypothesis and conclude that there is -->
+<!-- a linear relationship between *Beers* and *BAC* in OSU students. We'll revisit this -->
+<!-- example using the upcoming regression tools to explore the potential for more -->
+<!-- specific conclusions about this relationship. Note that for these inferences to be -->
+<!-- accurate, we need to be able to trust that the sample correlation is reasonable -->
+<!-- for characterizing the relationship between these variables along with the assumptions we will discuss below.  -->
+
+<!-- \indent In this situation with randomly assigned levels of $x$ and strong evidence against the null  -->
+<!-- hypothesis of no relationship, we can further conclude that changing beer  -->
+<!-- consumption **causes** changes in the *BAC*. This is a much stronger conclusion -->
+<!-- than we can typically make based on correlation coefficients. Correlations and -->
+<!-- scatterplots are enticing for infusing causal interpretations in non-causal -->
+<!-- situations. Statistics teachers often repeat the mantra that ***correlation is not causation*** -->
+<!-- and that generally applies -- except when there is randomization involved in  -->
+<!-- the study. It is rarer for -->
+<!-- researchers either to assign, or even to be able to assign, levels of -->
+<!-- quantitative variables so correlations should be viewed as non-causal unless -->
+<!-- the details of the study suggest otherwise.  -->
+
+<!-- ## Are tree diameters related to tree heights?	{#section6-5} -->
+
+<!-- In a study at the Upper Flat Creek -->
+<!-- study area in the University of Idaho Experimental Forest, a random sample of  -->
+<!-- $n = 336$ trees was selected from the forest, with measurements recorded on Douglas  -->
+<!-- Fir, Grand Fir, Western Red -->
+<!-- Cedar, and Western Larch trees. The data set called ``ufc`` is available from the  -->
+<!-- ``spuRs`` package [@R-spuRs] and  -->
+<!-- contains ``dbh.cm`` (tree diameter at 1.37 m from the ground, measured in cm) and  -->
+<!-- ``height.m`` (tree height in meters). -->
+<!-- \index{R packages!\textbf{spuRs}} -->
+<!-- The relationship displayed in  -->
+<!-- Figure \@ref(fig:Figure6-11) is positive,  -->
+<!-- moderately strong with some curvature and increasing variability as the -->
+<!-- diameter increases. There do not appear to be groups in the data set but since -->
+<!-- this contains four different types of trees, we would want to revisit this plot -->
+<!-- by type of tree. To assist in the linearity assessment, we also add the -->
+<!-- ``geom_smooth`` to the plot with an option of ``method = "lm"``, which provides -->
+<!-- a straight line to best describe the relationship (more on that line in the -->
+<!-- coming sections and chapters). The bands around the line are based on the 95% -->
+<!-- confidence intervals we can generate for any x-value and relate to pinning down -->
+<!-- the true mean value of the y-variable at that value of the x-variable -- but -->
+<!-- only apply if the linear relationship is a good description of the relationship -->
+<!-- between the variables (which it is not here!). \index{\texttt{geom\_smooth()}}  -->
+
+<!-- (ref:fig6-11) Scatterplot of tree heights (m) vs tree diameters (cm) with estimated straight line relationship (blue line) and 95% confidence interval (grey band). -->
 
 
 ``` r
@@ -1002,7 +907,7 @@ ufc <- as_tibble(ufc)
 ufc |> ggplot(mapping = aes(x = dbh.cm, y = height.m)) +
   geom_point() +
   geom_smooth(method = "lm") +
-  theme_bw() 
+  theme_bw()
 ```
 
 <div class="figure" style="text-align: center">
@@ -1010,149 +915,95 @@ ufc |> ggplot(mapping = aes(x = dbh.cm, y = height.m)) +
 <p class="caption">(\#fig:Figure6-11)(ref:fig6-11)</p>
 </div>
 
-Of particular interest is an observation with a diameter around 58 cm and a height
-of less than 5 m. Observing a tree with a diameter around 60 cm is not unusual
-in the data set, but none of the other trees with this diameter had heights
-under 15 m. It ends up that the likely outlier is in observation number 168 and
-because it is so unusual it likely corresponds to either a damaged tree or a
-recording error. 
+<!-- Of particular interest is an observation with a diameter around 58 cm and a height -->
+<!-- of less than 5 m. Observing a tree with a diameter around 60 cm is not unusual -->
+<!-- in the data set, but none of the other trees with this diameter had heights -->
+<!-- under 15 m. It ends up that the likely outlier is in observation number 168 and -->
+<!-- because it is so unusual it likely corresponds to either a damaged tree or a -->
+<!-- recording error.  -->
 
+<!-- ```{r} -->
+<!-- ufc |> slice(168) -->
+<!-- ``` -->
 
-``` r
-ufc |> slice(168)
-```
+<!-- \indent With the outlier in the data set, the correlation is 0.77 and without it, the -->
+<!-- correlation increases to 0.79. The removal does not create a big change because -->
+<!-- the data set is relatively large and the *diameter* value is close to the mean of the  -->
+<!-- $x\text{'s}$^[Observations at the edge of the $x\text{'s}$ will be called high  -->
+<!-- leverage points in Section \@ref(section6-9); this point is a low leverage point  -->
+<!-- because it is close to mean of the $x\text{'s}$.] but it has some impact on the  -->
+<!-- strength of the correlation.  -->
 
-```
-## # A tibble: 1 × 5
-##    plot  tree species dbh.cm height.m
-##   <int> <int> <fct>    <dbl>    <dbl>
-## 1    67     6 WL        57.5      3.4
-```
+<!-- ```{r} -->
+<!-- cor(dbh.cm ~ height.m, data = ufc) -->
+<!-- cor(dbh.cm ~ height.m, data = ufc |> slice(-168)) -->
+<!-- ``` -->
 
-\indent With the outlier in the data set, the correlation is 0.77 and without it, the
-correlation increases to 0.79. The removal does not create a big change because
-the data set is relatively large and the *diameter* value is close to the mean of the 
-$x\text{'s}$^[Observations at the edge of the $x\text{'s}$ will be called high 
-leverage points in Section \@ref(section6-9); this point is a low leverage point 
-because it is close to mean of the $x\text{'s}$.] but it has some impact on the 
-strength of the correlation. 
+<!-- \indent With the outlier included, the bootstrap 95% confidence interval goes from 0.702 to -->
+<!-- 0.820 -- we are 95% confident that the true correlation between *diameter* and *height* -->
+<!-- in the population of trees is between 0.708 and 0.819. When -->
+<!-- the outlier is dropped from the data set, the 95% bootstrap CI is 0.753 to 0.826,  -->
+<!-- which shifts the lower endpoint of the interval up, reducing the width of the -->
+<!-- interval from 0.111 to 0.073 (Figure \@ref(fig:Figure6-12)). In other words, the uncertainty regarding the -->
+<!-- value of the population correlation coefficient is reduced. The reason to -->
+<!-- remove the observation is that it is unusual based on the observed pattern,  -->
+<!-- which implies an error in data collection or sampling from a population other -->
+<!-- than the one used for the other observations and, if the removal is justified,  -->
+<!-- it helps us refine our inferences for the population parameter. But measuring -->
+<!-- the linear relationship in these data where there is a clear curve violates one of -->
+<!-- our assumptions of using these methods -- we'll see some other ways of detecting -->
+<!-- this issue in Section \@ref(section6-10) and we'll try to "fix" this example using -->
+<!-- transformations in Chapter \@ref(chapter7).  -->
 
+<!-- \newpage -->
 
-``` r
-cor(dbh.cm ~ height.m, data = ufc)
-```
+<!-- (ref:fig6-12) Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines). Notice the change in spread of the bootstrap distributions as well as the different centers. -->
 
-```
-## [1] 0.7699552
-```
+<!-- ```{r Figure6-12,fig.cap = "(ref:fig6-12)",echo = T, fig.height=9.5} -->
+<!-- Tobs <- cor(dbh.cm ~ height.m, data = ufc); Tobs -->
+<!-- set.seed(208) -->
+<!-- B <- 1000 -->
+<!-- Tstar <- matrix(NA, nrow = B) -->
+<!-- for (b in (1:B)){ -->
+<!--   Tstar[b] <- cor(dbh.cm ~ height.m, data = resample(ufc)) -->
+<!-- } -->
+<!-- quantiles <- qdata(Tstar, c(.025, .975)) #95% Confidence Interval -->
+<!-- quantiles -->
 
-``` r
-cor(dbh.cm ~ height.m, data = ufc |> slice(-168))
-```
+<!-- p1 <- tibble(Tstar) |>  ggplot(aes(x = Tstar)) + -->
+<!--   geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "skyblue", center = 0) + -->
+<!--   geom_density(aes(y = ..scaled..)) + -->
+<!--   theme_bw() + -->
+<!--   labs(y = "Density", title = "Bootstrap distribution of correlation with all data") + -->
+<!--   geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 3) + -->
+<!--   geom_vline(xintercept = Tobs, col = "red", lwd = 2) + -->
+<!--   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 25, -->
+<!--            geom = "text", vjust = -0.75) + -->
+<!--   xlim(0.6, 0.85) + -->
+<!--   ylim(0, 1.1) -->
 
-```
-## [1] 0.7912053
-```
+<!-- Tobs <- cor(dbh.cm ~ height.m, data = ufc |> slice(-168)); Tobs -->
+<!-- Tstar <- matrix(NA, nrow = B) -->
+<!-- for (b in (1:B)){ -->
+<!--   Tstar[b] <- cor(dbh.cm ~ height.m, data = resample(ufc |> slice(-168))) -->
+<!-- } -->
+<!-- quantiles <- qdata(Tstar, c(.025, .975)) #95% Confidence Interval -->
+<!-- quantiles -->
 
-\indent With the outlier included, the bootstrap 95% confidence interval goes from 0.702 to
-0.820 -- we are 95% confident that the true correlation between *diameter* and *height*
-in the population of trees is between 0.708 and 0.819. When
-the outlier is dropped from the data set, the 95% bootstrap CI is 0.753 to 0.826, 
-which shifts the lower endpoint of the interval up, reducing the width of the
-interval from 0.111 to 0.073 (Figure \@ref(fig:Figure6-12)). In other words, the uncertainty regarding the
-value of the population correlation coefficient is reduced. The reason to
-remove the observation is that it is unusual based on the observed pattern, 
-which implies an error in data collection or sampling from a population other
-than the one used for the other observations and, if the removal is justified, 
-it helps us refine our inferences for the population parameter. But measuring
-the linear relationship in these data where there is a clear curve violates one of
-our assumptions of using these methods -- we'll see some other ways of detecting
-this issue in Section \@ref(section6-10) and we'll try to "fix" this example using
-transformations in Chapter \@ref(chapter7). 
+<!-- p2 <- tibble(Tstar) |>  ggplot(aes(x = Tstar)) + -->
+<!--   geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "skyblue", center = 0) +  -->
+<!--   geom_density(aes(y = ..scaled..)) + -->
+<!--   theme_bw() + -->
+<!--   labs(y = "Density", title = "Bootstrap distribution of correlation without outlier") + -->
+<!--   geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 3) + -->
+<!--   geom_vline(xintercept = Tobs, col = "red", lwd = 2) + -->
+<!--   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 25, -->
+<!--            geom = "text", vjust = -0.75) + -->
+<!--   xlim(0.6, 0.85) + -->
+<!--   ylim(0, 1.1) -->
 
-\newpage
-
-(ref:fig6-12) Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines). Notice the change in spread of the bootstrap distributions as well as the different centers.
-
-
-``` r
-Tobs <- cor(dbh.cm ~ height.m, data = ufc); Tobs
-```
-
-```
-## [1] 0.7699552
-```
-
-``` r
-set.seed(208)
-B <- 1000
-Tstar <- matrix(NA, nrow = B)
-for (b in (1:B)){
-  Tstar[b] <- cor(dbh.cm ~ height.m, data = resample(ufc))
-}
-quantiles <- qdata(Tstar, c(.025, .975)) #95% Confidence Interval
-quantiles
-```
-
-```
-##      2.5%     97.5% 
-## 0.7075771 0.8190283
-```
-
-``` r
-p1 <- tibble(Tstar) |>  ggplot(aes(x = Tstar)) +
-  geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "skyblue", center = 0) +
-  geom_density(aes(y = ..scaled..)) +
-  theme_bw() +
-  labs(y = "Density", title = "Bootstrap distribution of correlation with all data") +
-  geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 3) +
-  geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 25,
-           geom = "text", vjust = -0.75) +
-  xlim(0.6, 0.85) +
-  ylim(0, 1.1)
-
-Tobs <- cor(dbh.cm ~ height.m, data = ufc |> slice(-168)); Tobs
-```
-
-```
-## [1] 0.7912053
-```
-
-``` r
-Tstar <- matrix(NA, nrow = B)
-for (b in (1:B)){
-  Tstar[b] <- cor(dbh.cm ~ height.m, data = resample(ufc |> slice(-168)))
-}
-quantiles <- qdata(Tstar, c(.025, .975)) #95% Confidence Interval
-quantiles
-```
-
-```
-##      2.5%     97.5% 
-## 0.7532338 0.8259416
-```
-
-``` r
-p2 <- tibble(Tstar) |>  ggplot(aes(x = Tstar)) +
-  geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "skyblue", center = 0) + 
-  geom_density(aes(y = ..scaled..)) +
-  theme_bw() +
-  labs(y = "Density", title = "Bootstrap distribution of correlation without outlier") +
-  geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 3) +
-  geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 25,
-           geom = "text", vjust = -0.75) +
-  xlim(0.6, 0.85) +
-  ylim(0, 1.1)
-
-grid.arrange(p1, p2, ncol = 1)
-```
-
-<div class="figure" style="text-align: center">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-12-1.png" alt="(ref:fig6-12)" width="75%" />
-<p class="caption">(\#fig:Figure6-12)(ref:fig6-12)</p>
-</div>
+<!-- grid.arrange(p1, p2, ncol = 1) -->
+<!-- ``` -->
 
 <!-- \newpage -->
 

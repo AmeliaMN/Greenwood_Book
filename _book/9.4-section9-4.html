@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -343,14 +339,14 @@ variables and one for the comparisons of periods (an indicator variable
 <em>Cretaceous</em>), which are more explicitly coded below. They <em>log-e</em> transformed all their quantitative variables
 because the untransformed variables created diagnostic issues including
 influential points. They explored a model just based on the <em>DBC</em>
-predictor<a href="#fn167" class="footnote-ref" id="fnref167"><sup>167</sup></a> and they analyzed the residuals from that model to see if the
+predictor<a href="#fn160" class="footnote-ref" id="fnref160"><sup>160</sup></a> and they analyzed the residuals from that model to see if the
 biodiversity was different in the <em>Cretaceous</em> or before, finding a
-“p-value <strong>&gt;=</strong> 0.0001” (I think they meant &lt; 0.0001<a href="#fn168" class="footnote-ref" id="fnref168"><sup>168</sup></a>). They were comparing the MLR
+“p-value <strong>&gt;=</strong> 0.0001” (I think they meant &lt; 0.0001<a href="#fn161" class="footnote-ref" id="fnref161"><sup>161</sup></a>). They were comparing the MLR
 models you learned to some extended regression models that incorporated a
 correction for correlation in the responses over time, but we can proceed with
 fitting some of their MLR models and using an AIC comparison similar to what
 they used. There are some obvious flaws in their analysis and results that we
-will avoid<a href="#fn169" class="footnote-ref" id="fnref169"><sup>169</sup></a>.</p>
+will avoid<a href="#fn162" class="footnote-ref" id="fnref162"><sup>162</sup></a>.</p>
 <p>First, we start with a plot of the log-diversity vs the log-dinosaur bearing
 collections by period. We can see fairly strong positive relationships between
 the log amounts of collections and species found with potentially similar
@@ -360,20 +356,20 @@ about a curving relationship. Note that a similar plot can also be made using
 the formations version of the quantitative predictor variable and that the
 research questions involve whether <em>DBF</em> or <em>DBC</em> are better predictor
 variables.</p>
-<div class="sourceCode" id="cb897"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb897-1"><a href="9.4-section9-4.html#cb897-1" tabindex="-1"></a>bm <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/bensonmanion.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="9.4-section9-4.html#cb849-1" tabindex="-1"></a>bm <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/bensonmanion.csv&quot;</span>)</span></code></pre></div>
 
-<div class="sourceCode" id="cb898"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb898-1"><a href="9.4-section9-4.html#cb898-1" tabindex="-1"></a>bm <span class="ot">&lt;-</span> bm <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">logSpecies =</span> <span class="fu">log</span>(Species),</span>
-<span id="cb898-2"><a href="9.4-section9-4.html#cb898-2" tabindex="-1"></a>                    <span class="at">logDBCs =</span> <span class="fu">log</span>(DBCs),</span>
-<span id="cb898-3"><a href="9.4-section9-4.html#cb898-3" tabindex="-1"></a>                    <span class="at">logDBFs =</span> <span class="fu">log</span>(DBFs),</span>
-<span id="cb898-4"><a href="9.4-section9-4.html#cb898-4" tabindex="-1"></a>                    <span class="at">TJK =</span> <span class="fu">factor</span>(TJK)</span>
-<span id="cb898-5"><a href="9.4-section9-4.html#cb898-5" tabindex="-1"></a>                    )</span>
-<span id="cb898-6"><a href="9.4-section9-4.html#cb898-6" tabindex="-1"></a><span class="fu">levels</span>(bm<span class="sc">$</span>TJK) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Trias_Juras&quot;</span>,<span class="st">&quot;Cretaceous&quot;</span>)</span>
-<span id="cb898-7"><a href="9.4-section9-4.html#cb898-7" tabindex="-1"></a>bm <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> logDBCs, <span class="at">y =</span> logSpecies, <span class="at">color =</span> TJK, <span class="at">shape =</span> TJK)) <span class="sc">+</span></span>
-<span id="cb898-8"><a href="9.4-section9-4.html#cb898-8" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb898-9"><a href="9.4-section9-4.html#cb898-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb898-10"><a href="9.4-section9-4.html#cb898-10" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb898-11"><a href="9.4-section9-4.html#cb898-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb898-12"><a href="9.4-section9-4.html#cb898-12" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="9.4-section9-4.html#cb850-1" tabindex="-1"></a>bm <span class="ot">&lt;-</span> bm <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">logSpecies =</span> <span class="fu">log</span>(Species),</span>
+<span id="cb850-2"><a href="9.4-section9-4.html#cb850-2" tabindex="-1"></a>                    <span class="at">logDBCs =</span> <span class="fu">log</span>(DBCs),</span>
+<span id="cb850-3"><a href="9.4-section9-4.html#cb850-3" tabindex="-1"></a>                    <span class="at">logDBFs =</span> <span class="fu">log</span>(DBFs),</span>
+<span id="cb850-4"><a href="9.4-section9-4.html#cb850-4" tabindex="-1"></a>                    <span class="at">TJK =</span> <span class="fu">factor</span>(TJK)</span>
+<span id="cb850-5"><a href="9.4-section9-4.html#cb850-5" tabindex="-1"></a>                    )</span>
+<span id="cb850-6"><a href="9.4-section9-4.html#cb850-6" tabindex="-1"></a><span class="fu">levels</span>(bm<span class="sc">$</span>TJK) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Trias_Juras&quot;</span>,<span class="st">&quot;Cretaceous&quot;</span>)</span>
+<span id="cb850-7"><a href="9.4-section9-4.html#cb850-7" tabindex="-1"></a>bm <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> logDBCs, <span class="at">y =</span> logSpecies, <span class="at">color =</span> TJK, <span class="at">shape =</span> TJK)) <span class="sc">+</span></span>
+<span id="cb850-8"><a href="9.4-section9-4.html#cb850-8" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb850-9"><a href="9.4-section9-4.html#cb850-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb850-10"><a href="9.4-section9-4.html#cb850-10" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb850-11"><a href="9.4-section9-4.html#cb850-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb850-12"><a href="9.4-section9-4.html#cb850-12" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-10"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-10-1.png" alt="Scatterplot of log-biodiversity vs log-DBCs by TJK." width="75%" />
 <p class="caption">
@@ -401,11 +397,11 @@ Figure 9.10: Scatterplot of <em>log-biodiversity</em> vs <em>log-DBCs</em> by <e
 <p>Both versions of the models (based on <em>DBF</em> or <em>DBC</em>) start with an MLR model
 with a quantitative variable and two slopes. We can obtain some of the needed
 model selection results from the first full model using:</p>
-<div class="sourceCode" id="cb899"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb899-1"><a href="9.4-section9-4.html#cb899-1" tabindex="-1"></a>bd1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logSpecies <span class="sc">~</span> logDBCs <span class="sc">+</span> TJK, <span class="at">data =</span> bm)</span>
-<span id="cb899-2"><a href="9.4-section9-4.html#cb899-2" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
-<span id="cb899-3"><a href="9.4-section9-4.html#cb899-3" tabindex="-1"></a><span class="fu">options</span>(<span class="at">na.action =</span> <span class="st">&quot;na.fail&quot;</span>)</span>
-<span id="cb899-4"><a href="9.4-section9-4.html#cb899-4" tabindex="-1"></a><span class="fu">dredge</span>(bd1, <span class="at">rank =</span> <span class="st">&quot;AIC&quot;</span>, </span>
-<span id="cb899-5"><a href="9.4-section9-4.html#cb899-5" tabindex="-1"></a>       <span class="at">extra =</span> <span class="fu">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="at">adjRsq =</span> <span class="cf">function</span>(x) <span class="fu">summary</span>(x)<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="9.4-section9-4.html#cb851-1" tabindex="-1"></a>bd1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logSpecies <span class="sc">~</span> logDBCs <span class="sc">+</span> TJK, <span class="at">data =</span> bm)</span>
+<span id="cb851-2"><a href="9.4-section9-4.html#cb851-2" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
+<span id="cb851-3"><a href="9.4-section9-4.html#cb851-3" tabindex="-1"></a><span class="fu">options</span>(<span class="at">na.action =</span> <span class="st">&quot;na.fail&quot;</span>)</span>
+<span id="cb851-4"><a href="9.4-section9-4.html#cb851-4" tabindex="-1"></a><span class="fu">dredge</span>(bd1, <span class="at">rank =</span> <span class="st">&quot;AIC&quot;</span>, </span>
+<span id="cb851-5"><a href="9.4-section9-4.html#cb851-5" tabindex="-1"></a>       <span class="at">extra =</span> <span class="fu">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="at">adjRsq =</span> <span class="cf">function</span>(x) <span class="fu">summary</span>(x)<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
 <pre><code>## Global model call: lm(formula = logSpecies ~ logDBCs + TJK, data = bm)
 ## ---
 ## Model selection table 
@@ -416,9 +412,9 @@ model selection results from the first full model using:</p>
 ## 3  2.5300          + 0.004823 -0.03664  3 -23.893 53.8 20.48  0.000
 ## Models ranked by AIC(x)</code></pre>
 <p>And from the second model:</p>
-<div class="sourceCode" id="cb901"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb901-1"><a href="9.4-section9-4.html#cb901-1" tabindex="-1"></a>bd2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logSpecies <span class="sc">~</span> logDBFs <span class="sc">+</span> TJK, <span class="at">data =</span> bm)</span>
-<span id="cb901-2"><a href="9.4-section9-4.html#cb901-2" tabindex="-1"></a><span class="fu">dredge</span>(bd2, <span class="at">rank =</span> <span class="st">&quot;AIC&quot;</span>,</span>
-<span id="cb901-3"><a href="9.4-section9-4.html#cb901-3" tabindex="-1"></a>       <span class="at">extra =</span> <span class="fu">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="at">adjRsq =</span> <span class="cf">function</span>(x) <span class="fu">summary</span>(x)<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="9.4-section9-4.html#cb853-1" tabindex="-1"></a>bd2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logSpecies <span class="sc">~</span> logDBFs <span class="sc">+</span> TJK, <span class="at">data =</span> bm)</span>
+<span id="cb853-2"><a href="9.4-section9-4.html#cb853-2" tabindex="-1"></a><span class="fu">dredge</span>(bd2, <span class="at">rank =</span> <span class="st">&quot;AIC&quot;</span>,</span>
+<span id="cb853-3"><a href="9.4-section9-4.html#cb853-3" tabindex="-1"></a>       <span class="at">extra =</span> <span class="fu">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="at">adjRsq =</span> <span class="cf">function</span>(x) <span class="fu">summary</span>(x)<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
 <pre><code>## Global model call: lm(formula = logSpecies ~ logDBFs + TJK, data = bm)
 ## ---
 ## Model selection table 
@@ -538,14 +534,14 @@ with nothing in it (mean-only) and 20.5 AIC units worse than the top model.
 But the two top models distinctly benefit from the inclusion of <em>TJK</em>. This
 suggests that after controlling for the sampling effort, either through <em>DBC</em> or
 <em>DBF</em>, the differences in the stages captured by <em>TJK</em> can be more clearly observed.</p>
-<p>So the top model in our (correct) results<a href="#fn170" class="footnote-ref" id="fnref170"><sup>170</sup></a> suggests that
+<p>So the top model in our (correct) results<a href="#fn163" class="footnote-ref" id="fnref163"><sup>163</sup></a> suggests that
 <em>log(DBC)</em> is important as well as different intercepts for the two periods. We can interrogate
 this model further but we should check the diagnostics (Figure
 <a href="9.4-section9-4.html#fig:Figure9-11">9.11</a>) and consider our model
 assumptions first as AICs are not valid if the model assumptions are clearly violated.</p>
 
-<div class="sourceCode" id="cb903"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb903-1"><a href="9.4-section9-4.html#cb903-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb903-2"><a href="9.4-section9-4.html#cb903-2" tabindex="-1"></a><span class="fu">plot</span>(bd1, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="9.4-section9-4.html#cb855-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb855-2"><a href="9.4-section9-4.html#cb855-2" tabindex="-1"></a><span class="fu">plot</span>(bd1, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-11"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-11-1.png" alt="Diagnostic plots for the top AIC model." width="75%" />
 <p class="caption">
@@ -599,7 +595,7 @@ suggests <span class="math inline">\(\exp(-0.76) = 0.47\)</span> times (53% drop
 per stage for Cretaceous versus the prior time period, after correcting for
 log-sampling effort in each stage.</p>
 <!-- \newpage -->
-<div class="sourceCode" id="cb904"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb904-1"><a href="9.4-section9-4.html#cb904-1" tabindex="-1"></a><span class="fu">summary</span>(bd1)</span></code></pre></div>
+<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="9.4-section9-4.html#cb856-1" tabindex="-1"></a><span class="fu">summary</span>(bd1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logSpecies ~ logDBCs + TJK, data = bm)
@@ -618,7 +614,7 @@ log-sampling effort in each stage.</p>
 ## Multiple R-squared:  0.5809, Adjusted R-squared:  0.5444 
 ## F-statistic: 15.94 on 2 and 23 DF,  p-value: 4.54e-05</code></pre>
 
-<div class="sourceCode" id="cb906"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb906-1"><a href="9.4-section9-4.html#cb906-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(bd1, <span class="at">residuals =</span> T), <span class="at">grid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="9.4-section9-4.html#cb858-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(bd1, <span class="at">residuals =</span> T), <span class="at">grid =</span> T)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-12"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-12-1.png" alt="Term-plots for the top AIC model with partial residuals." width="75%" />
 <p class="caption">
@@ -672,14 +668,14 @@ Benson, Roger B. J., and Philip D. Mannion. 2012. <span>“Multi-Variate Models 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="167">
-<li id="fn167"><p>This was not even close to their top AIC model so they made an odd
-choice.<a href="9.4-section9-4.html#fnref167" class="footnote-back">↩︎</a></p></li>
-<li id="fn168"><p>I had students read this
+<ol start="160">
+<li id="fn160"><p>This was not even close to their top AIC model so they made an odd
+choice.<a href="9.4-section9-4.html#fnref160" class="footnote-back">↩︎</a></p></li>
+<li id="fn161"><p>I had students read this
 paper in a class and one decided that this was a reasonable way to report small
 p-values – it is WRONG. We are interested in how small a p-value might be and
-saying it is over a value is never useful, especially if you say it is larger than a tiny number.<a href="9.4-section9-4.html#fnref168" class="footnote-back">↩︎</a></p></li>
-<li id="fn169"><p>All too often, I read journal articles that have under-utilized,
+saying it is over a value is never useful, especially if you say it is larger than a tiny number.<a href="9.4-section9-4.html#fnref161" class="footnote-back">↩︎</a></p></li>
+<li id="fn162"><p>All too often, I read journal articles that have under-utilized,
 under-reported, mis-applied, or mis-interpreted statistical methods and
 results. One of the reasons that I wanted to write this book was to help more
 people move from basic statistical knowledge to correct use of intermediate
@@ -690,12 +686,12 @@ courses are not enough to get you there, but you have to start somewhere. You
 are only maybe two or three hundred hours into your 10,000 hours required for mastery.
 This book is intended get you some solid fundamentals to build on or a
 few intermediate tools to use if this is your last statistics training
-experience.<a href="9.4-section9-4.html#fnref169" class="footnote-back">↩︎</a></p></li>
-<li id="fn170"><p>They also had an error in their AIC
+experience.<a href="9.4-section9-4.html#fnref162" class="footnote-back">↩︎</a></p></li>
+<li id="fn163"><p>They also had an error in their AIC
 results that is difficult to explain here but was due to an un-careful usage of
 the results from the more advanced models that account for autocorrelation,
 which seems to provide the proper ranking of models (<em>that they ignored</em>) but
-did not provide the correct differences among models.<a href="9.4-section9-4.html#fnref170" class="footnote-back">↩︎</a></p></li>
+did not provide the correct differences among models.<a href="9.4-section9-4.html#fnref163" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

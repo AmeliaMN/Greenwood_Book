@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -436,8 +432,8 @@ calculation in the model summary and from <code>qt(0.975, df = n-2)</code> which
 7.48 in the model summary to
 make confidence intervals – that is the test statistic used below. The related
 calculations are shown at the bottom of the following code:</p>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="7.2-section7-2.html#cb599-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(BAC <span class="sc">~</span> Beers, <span class="at">data =</span> BB)</span>
-<span id="cb599-2"><a href="7.2-section7-2.html#cb599-2" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="7.2-section7-2.html#cb551-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(BAC <span class="sc">~</span> Beers, <span class="at">data =</span> BB)</span>
+<span id="cb551-2"><a href="7.2-section7-2.html#cb551-2" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = BAC ~ Beers, data = BB)
@@ -454,17 +450,17 @@ calculations are shown at the bottom of the following code:</p>
 ## Residual standard error: 0.02044 on 14 degrees of freedom
 ## Multiple R-squared:  0.7998, Adjusted R-squared:  0.7855 
 ## F-statistic: 55.94 on 1 and 14 DF,  p-value: 2.969e-06</code></pre>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="7.2-section7-2.html#cb601-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>) <span class="co">#t* multiplier for 95% CI</span></span></code></pre></div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="7.2-section7-2.html#cb553-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>) <span class="co">#t* multiplier for 95% CI</span></span></code></pre></div>
 <pre><code>## [1] 2.144787</code></pre>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="7.2-section7-2.html#cb603-1" tabindex="-1"></a><span class="fl">0.017964</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>)<span class="sc">*</span><span class="fl">0.002402</span></span></code></pre></div>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="7.2-section7-2.html#cb555-1" tabindex="-1"></a><span class="fl">0.017964</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>)<span class="sc">*</span><span class="fl">0.002402</span></span></code></pre></div>
 <pre><code>## [1] 0.01281222 0.02311578</code></pre>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="7.2-section7-2.html#cb605-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>)<span class="sc">*</span><span class="fl">0.002402</span></span></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="7.2-section7-2.html#cb557-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>)<span class="sc">*</span><span class="fl">0.002402</span></span></code></pre></div>
 <pre><code>## [1] 0.005151778</code></pre>
 <p>We can also get the confidence interval
 directly from the <code>confint</code> function run on our regression model,
 saving some calculation
 effort and providing both the CI for the y-intercept and the slope coefficient. </p>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="7.2-section7-2.html#cb607-1" tabindex="-1"></a><span class="fu">confint</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="7.2-section7-2.html#cb559-1" tabindex="-1"></a><span class="fu">confint</span>(m1)</span></code></pre></div>
 <pre><code>##                   2.5 %     97.5 %
 ## (Intercept) -0.03980535 0.01440414
 ## Beers        0.01281262 0.02311490</code></pre>
@@ -491,7 +487,7 @@ the location of <span class="math inline">\(x\)</span>-values can impact the pre
 revisit this in the context of <strong><em>multicollinearity</em></strong> in the next chapter,
 and often we have no control of <span class="math inline">\(x\)</span>-values, but just note that different
 patterns of <span class="math inline">\(x\)</span>-values can lead to different precision of estimated slope
-coefficients<a href="#fn120" class="footnote-ref" id="fnref120"><sup>120</sup></a>.</p>
+coefficients<a href="#fn113" class="footnote-ref" id="fnref113"><sup>113</sup></a>.</p>
 <p>For hypothesis testing, we will almost always stick with two-sided tests
 in regression modeling as it is a more conservative approach and does not require
 us to have an expectation of a direction for relationships <em>a priori</em>. In this
@@ -537,13 +533,13 @@ interpret this sort of marginal result as having some or marginal evidence again
 but certainly would never say that this presents strong evidence.
 </p>
 <!-- \vspace{22pt} -->
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="7.2-section7-2.html#cb609-1" tabindex="-1"></a><span class="fu">library</span>(alr4)</span>
-<span id="cb609-2"><a href="7.2-section7-2.html#cb609-2" tabindex="-1"></a><span class="fu">data</span>(ais)</span>
-<span id="cb609-3"><a href="7.2-section7-2.html#cb609-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb609-4"><a href="7.2-section7-2.html#cb609-4" tabindex="-1"></a>ais <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ais)</span>
-<span id="cb609-5"><a href="7.2-section7-2.html#cb609-5" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">56</span>, <span class="sc">-</span><span class="dv">166</span>) <span class="co">#Removes observations in rows 56 and 166</span></span>
-<span id="cb609-6"><a href="7.2-section7-2.html#cb609-6" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Results for Females </span></span>
-<span id="cb609-7"><a href="7.2-section7-2.html#cb609-7" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="7.2-section7-2.html#cb561-1" tabindex="-1"></a><span class="fu">library</span>(alr4)</span>
+<span id="cb561-2"><a href="7.2-section7-2.html#cb561-2" tabindex="-1"></a><span class="fu">data</span>(ais)</span>
+<span id="cb561-3"><a href="7.2-section7-2.html#cb561-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb561-4"><a href="7.2-section7-2.html#cb561-4" tabindex="-1"></a>ais <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ais)</span>
+<span id="cb561-5"><a href="7.2-section7-2.html#cb561-5" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">56</span>, <span class="sc">-</span><span class="dv">166</span>) <span class="co">#Removes observations in rows 56 and 166</span></span>
+<span id="cb561-6"><a href="7.2-section7-2.html#cb561-6" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Results for Females </span></span>
+<span id="cb561-7"><a href="7.2-section7-2.html#cb561-7" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Hc ~ Bfat, data = aisR %&gt;% filter(Sex == 1))
@@ -560,7 +556,7 @@ but certainly would never say that this presents strong evidence.
 ## Residual standard error: 2.598 on 97 degrees of freedom
 ## Multiple R-squared:  0.02822,    Adjusted R-squared:  0.0182 
 ## F-statistic: 2.816 on 1 and 97 DF,  p-value: 0.09653</code></pre>
-<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="7.2-section7-2.html#cb611-1" tabindex="-1"></a><span class="fu">confint</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="7.2-section7-2.html#cb563-1" tabindex="-1"></a><span class="fu">confint</span>(m2)</span></code></pre></div>
 <pre><code>##                  2.5 %      97.5 %
 ## (Intercept) 40.1626516 43.86490713
 ## Bfat        -0.1856071  0.01553165</code></pre>
@@ -569,10 +565,10 @@ example pay particular attention
 to how we are handling the units of the response variable, log-hectares, and to
 the changes to doing inferences with a 99% confidence
 level CI, and where you can find the needed results in the following output:</p>
-<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="7.2-section7-2.html#cb613-1" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/climateR2.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="7.2-section7-2.html#cb614-1" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">loghectares =</span> <span class="fu">log</span>(hectares))</span>
-<span id="cb614-2"><a href="7.2-section7-2.html#cb614-2" tabindex="-1"></a>fire1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(loghectares <span class="sc">~</span> Temperature, <span class="at">data =</span> mtfires)</span>
-<span id="cb614-3"><a href="7.2-section7-2.html#cb614-3" tabindex="-1"></a><span class="fu">summary</span>(fire1)</span></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="7.2-section7-2.html#cb565-1" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/climateR2.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="7.2-section7-2.html#cb566-1" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">loghectares =</span> <span class="fu">log</span>(hectares))</span>
+<span id="cb566-2"><a href="7.2-section7-2.html#cb566-2" tabindex="-1"></a>fire1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(loghectares <span class="sc">~</span> Temperature, <span class="at">data =</span> mtfires)</span>
+<span id="cb566-3"><a href="7.2-section7-2.html#cb566-3" tabindex="-1"></a><span class="fu">summary</span>(fire1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = loghectares ~ Temperature, data = mtfires)
@@ -589,11 +585,11 @@ level CI, and where you can find the needed results in the following output:</p>
 ## Residual standard error: 1.476 on 21 degrees of freedom
 ## Multiple R-squared:  0.6619, Adjusted R-squared:  0.6458 
 ## F-statistic: 41.12 on 1 and 21 DF,  p-value: 2.347e-06</code></pre>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="7.2-section7-2.html#cb616-1" tabindex="-1"></a><span class="fu">confint</span>(fire1, <span class="at">level =</span> <span class="fl">0.99</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="7.2-section7-2.html#cb568-1" tabindex="-1"></a><span class="fu">confint</span>(fire1, <span class="at">level =</span> <span class="fl">0.99</span>)</span></code></pre></div>
 <pre><code>##                    0.5 %     99.5 %
 ## (Intercept) -104.6477287 -34.921286
 ## Temperature    0.7753784   2.001499</code></pre>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="7.2-section7-2.html#cb618-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">21</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="7.2-section7-2.html#cb570-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">21</span>)</span></code></pre></div>
 <pre><code>## [1] 2.83136</code></pre>
 <ul>
 <li><p>Based on the estimated regression model, we can say that if the
@@ -666,15 +662,15 @@ model built using <em>Temperature</em> explains 66.2% of the variation in yearly
 </div>
 <div class="footnotes">
 <hr />
-<ol start="120">
-<li id="fn120"><p>There is an area of statistical research on how to
+<ol start="113">
+<li id="fn113"><p>There is an area of statistical research on how to
 optimally choose <span class="math inline">\(x\)</span>-values to
 get the most precise estimate of a slope coefficient. In observational studies
 we have to deal with whatever pattern of <span class="math inline">\(x\text{&#39;s}\)</span> we ended up with. If you can
 choose, generate an even spread of <span class="math inline">\(x\text{&#39;s}\)</span> over some range of
 interest similar to what was used in the <em>Beers</em> vs <em>BAC</em> study to provide
 the best distribution of values to discover the relationship across the
-selected range of <span class="math inline">\(x\)</span>-values.<a href="7.2-section7-2.html#fnref120" class="footnote-back">↩︎</a></p></li>
+selected range of <span class="math inline">\(x\)</span>-values.<a href="7.2-section7-2.html#fnref113" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

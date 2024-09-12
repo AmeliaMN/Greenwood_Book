@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -359,7 +355,7 @@ Revisit the scatterplots to identify the source of the issue.
 <ul>
 <li>Turning on the <code>residuals = T</code> option in the effects plot allows
 direct assessment of residuals vs each predictor after accounting
-for others. Look for clear patterns in the partial residuals<a href="#fn135" class="footnote-ref" id="fnref135"><sup>135</sup></a> that the smoothing line is
+for others. Look for clear patterns in the partial residuals<a href="#fn128" class="footnote-ref" id="fnref128"><sup>128</sup></a> that the smoothing line is
 also following for potential issues with the linearity assumption.</li>
 </ul></li>
 </ol></li>
@@ -477,9 +473,9 @@ in every situation, but is especially helpful if you are struggling to decide if
 what you are seeing in the diagnostics is just random variability or is really a
 clear issue. The regular steps in assessing each assumption are discussed first.</p>
 
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="8.2-section8-2.html#cb720-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb720-2"><a href="8.2-section8-2.html#cb720-2" tabindex="-1"></a><span class="fu">plot</span>(m4, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb720-3"><a href="8.2-section8-2.html#cb720-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Diagnostics for m4&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="8.2-section8-2.html#cb672-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb672-2"><a href="8.2-section8-2.html#cb672-2" tabindex="-1"></a><span class="fu">plot</span>(m4, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb672-3"><a href="8.2-section8-2.html#cb672-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Diagnostics for m4&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-6"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-6-1.png" alt="Diagnostic plots for model m4: \(\text{Snow.Depth}\sim \text{Elevation} + \text{Min.Temp} + \text{Max.Temp}\)." width="75%" />
 <p class="caption">
@@ -564,7 +560,7 @@ these sites. For the Northeast Entrance, the <em>Max.Temp</em> was 45, the <em>M
 was 28, and the <em>Elevation</em> was 7350 as you can see in this printout of just the
 two rows of the data set available by slicing rows 9 and 10 from <code>snotel_s</code>:</p>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="8.2-section8-2.html#cb721-1" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">9</span>,<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="8.2-section8-2.html#cb673-1" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">9</span>,<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 6
 ##      ID Station            Snow.Depth Max.Temp Min.Temp Elevation
 ##   &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -582,10 +578,10 @@ is found using the estimated model with</p>
 <p>but the observed snow depth was actually <span class="math inline">\(y_9 = 11.2\)</span> inches. The observed <strong><em>residual</em></strong> is then</p>
 <p><span class="math display">\[e_9 = y_9-\widehat{y}_9 = 11.2-40.465 = -29.265 \text{ inches.}\]</span></p>
 <p>So the model “misses” the snow depth by over 29 inches with the model suggesting
-over 40 inches of snow but only 11 inches actually being present<a href="#fn136" class="footnote-ref" id="fnref136"><sup>136</sup></a>.</p>
-<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="8.2-section8-2.html#cb723-1" tabindex="-1"></a><span class="sc">-</span><span class="fl">10.51</span> <span class="sc">+</span> <span class="fl">0.0123</span><span class="sc">*</span><span class="dv">7350</span> <span class="sc">-</span> <span class="fl">0.505</span><span class="sc">*</span><span class="dv">28</span> <span class="sc">-</span> <span class="fl">0.562</span><span class="sc">*</span><span class="dv">45</span></span></code></pre></div>
+over 40 inches of snow but only 11 inches actually being present<a href="#fn129" class="footnote-ref" id="fnref129"><sup>129</sup></a>.</p>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="8.2-section8-2.html#cb675-1" tabindex="-1"></a><span class="sc">-</span><span class="fl">10.51</span> <span class="sc">+</span> <span class="fl">0.0123</span><span class="sc">*</span><span class="dv">7350</span> <span class="sc">-</span> <span class="fl">0.505</span><span class="sc">*</span><span class="dv">28</span> <span class="sc">-</span> <span class="fl">0.562</span><span class="sc">*</span><span class="dv">45</span></span></code></pre></div>
 <pre><code>## [1] 40.465</code></pre>
-<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="8.2-section8-2.html#cb725-1" tabindex="-1"></a><span class="fl">11.2</span> <span class="sc">-</span> <span class="fl">40.465</span></span></code></pre></div>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="8.2-section8-2.html#cb677-1" tabindex="-1"></a><span class="fl">11.2</span> <span class="sc">-</span> <span class="fl">40.465</span></span></code></pre></div>
 <pre><code>## [1] -29.265</code></pre>
 <p>This point is being rated as influential (Cook’s D <span class="math inline">\(\approx\)</span> 1) with a
 leverage of nearly 0.35 and a standardized residual (<span class="math inline">\(y\)</span>-axis of Residuals vs. 
@@ -610,9 +606,9 @@ residual is then</p>
 <p>This results in a standardized residual of around -1. This is still a “miss”
 but not as glaring as the previous result and also is not having a major impact
 on the model’s estimated slope coefficients based on the small Cook’s D value.</p>
-<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="8.2-section8-2.html#cb727-1" tabindex="-1"></a><span class="sc">-</span><span class="fl">10.51</span> <span class="sc">+</span> <span class="fl">0.0123</span><span class="sc">*</span><span class="dv">5600</span> <span class="sc">-</span> <span class="fl">0.505</span><span class="sc">*</span><span class="dv">28</span> <span class="sc">-</span> <span class="fl">0.562</span><span class="sc">*</span><span class="dv">36</span></span></code></pre></div>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="8.2-section8-2.html#cb679-1" tabindex="-1"></a><span class="sc">-</span><span class="fl">10.51</span> <span class="sc">+</span> <span class="fl">0.0123</span><span class="sc">*</span><span class="dv">5600</span> <span class="sc">-</span> <span class="fl">0.505</span><span class="sc">*</span><span class="dv">28</span> <span class="sc">-</span> <span class="fl">0.562</span><span class="sc">*</span><span class="dv">36</span></span></code></pre></div>
 <pre><code>## [1] 23.998</code></pre>
-<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="8.2-section8-2.html#cb729-1" tabindex="-1"></a><span class="dv">14</span> <span class="sc">-</span> <span class="fl">23.998</span></span></code></pre></div>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="8.2-section8-2.html#cb681-1" tabindex="-1"></a><span class="dv">14</span> <span class="sc">-</span> <span class="fl">23.998</span></span></code></pre></div>
 <pre><code>## [1] -9.998</code></pre>
 <p>Note that any predictions using this model presume that it is
 trustworthy, but
@@ -620,8 +616,8 @@ the large Cook’s D on one observation suggests we should consider the model
 after removing that observation. We can re-run the model without the
 9<sup>th</sup> observation using the data set <code>snotel_s %&gt;% slice(-9)</code>.</p>
 <!-- \newpage -->
-<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="8.2-section8-2.html#cb731-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">9</span>))</span>
-<span id="cb731-2"><a href="8.2-section8-2.html#cb731-2" tabindex="-1"></a><span class="fu">summary</span>(m5)</span></code></pre></div>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="8.2-section8-2.html#cb683-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">9</span>))</span>
+<span id="cb683-2"><a href="8.2-section8-2.html#cb683-2" tabindex="-1"></a><span class="fu">summary</span>(m5)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %&gt;% 
@@ -642,7 +638,7 @@ after removing that observation. We can re-run the model without the
 ## Multiple R-squared:  0.7522, Adjusted R-squared:  0.715 
 ## F-statistic: 20.24 on 3 and 20 DF,  p-value: 2.843e-06</code></pre>
 
-<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="8.2-section8-2.html#cb733-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m5, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;MLR model with NE Ent. Removed&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="8.2-section8-2.html#cb685-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m5, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;MLR model with NE Ent. Removed&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-7"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-7-1.png" alt="Term-plots for the MLR for Snow Depth based on Elevation, Min Temp, and Max Temp with Northeast entrance observation removed from data set (n = 24)." width="75%" />
 <p class="caption">
@@ -694,7 +690,7 @@ from it.</p>
 for the model fit to the data set without NE Entrance (now <span class="math inline">\(n = 24\)</span>) reveals a new
 point that is somewhat influential (point 22 in the data set has Cook’s D
 <span class="math inline">\(\approx\)</span> 0.5). It is for a location called “Bloody
-<span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span>”<a href="#fn137" class="footnote-ref" id="fnref137"><sup>137</sup></a> which has a
+<span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span>”<a href="#fn130" class="footnote-ref" id="fnref130"><sup>130</sup></a> which has a
 leverage of nearly 0.2 and a standardized residual of nearly -3.
 This point did not show up as influential in the original version of the data
 set with the same model but it is now. It also shows up as a potential outlier.
@@ -709,9 +705,9 @@ Additionally, our model contains results that are not what we would have
 expected <em>a priori</em>, so it is not unreasonable to consider removing this
 observation to be able to work towards a model that is fully trustworthy.</p>
 
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="8.2-section8-2.html#cb734-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb734-2"><a href="8.2-section8-2.html#cb734-2" tabindex="-1"></a><span class="fu">plot</span>(m5, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb734-3"><a href="8.2-section8-2.html#cb734-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Diagnostics for m5&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="8.2-section8-2.html#cb686-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb686-2"><a href="8.2-section8-2.html#cb686-2" tabindex="-1"></a><span class="fu">plot</span>(m5, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb686-3"><a href="8.2-section8-2.html#cb686-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Diagnostics for m5&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-8"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-8-1.png" alt="Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with Northeast entrance observation removed from data set." width="75%" />
 <p class="caption">
@@ -747,7 +743,7 @@ Figure 8.9: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp
 <!-- \newpage -->
 <p>This worry-some observation is located in the 22<sup>nd</sup> row of the
 original data set:</p>
-<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="8.2-section8-2.html#cb736-1" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">22</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="8.2-section8-2.html#cb688-1" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">22</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 6
 ##      ID Station          Snow.Depth Max.Temp Min.Temp Elevation
 ##   &lt;dbl&gt; &lt;fct&gt;                 &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -756,11 +752,11 @@ original data set:</p>
 <span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span>” sites, there are <span class="math inline">\(n = 23\)</span> observations
 remaining. This model (<code>m6</code>) seems to contain residual diagnostics (Figure
 <a href="8.2-section8-2.html#fig:Figure8-9">8.9</a>) that are finally generally reasonable.</p>
-<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="8.2-section8-2.html#cb738-1" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
-<span id="cb738-2"><a href="8.2-section8-2.html#cb738-2" tabindex="-1"></a><span class="fu">summary</span>(m6)</span>
-<span id="cb738-3"><a href="8.2-section8-2.html#cb738-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb738-4"><a href="8.2-section8-2.html#cb738-4" tabindex="-1"></a><span class="fu">plot</span>(m6, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb738-5"><a href="8.2-section8-2.html#cb738-5" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Diagnostics for m6&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="8.2-section8-2.html#cb690-1" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<span id="cb690-2"><a href="8.2-section8-2.html#cb690-2" tabindex="-1"></a><span class="fu">summary</span>(m6)</span>
+<span id="cb690-3"><a href="8.2-section8-2.html#cb690-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb690-4"><a href="8.2-section8-2.html#cb690-4" tabindex="-1"></a><span class="fu">plot</span>(m6, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb690-5"><a href="8.2-section8-2.html#cb690-5" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Diagnostics for m6&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p>It is hard to suggest that there any curvature issues and the slight variation
 in the Scale-Location plot is mostly
 due to few observations with fitted values around 30 happening to be well
@@ -780,7 +776,7 @@ quantitatively assess and compare different regression models that are considere
 in the next sections.
 </p>
 
-<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="8.2-section8-2.html#cb739-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m6, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;MLR model with n = 23&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="8.2-section8-2.html#cb691-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m6, <span class="at">residuals =</span> T), <span class="at">main =</span> <span class="st">&quot;MLR model with n = 23&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-10"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-10-1.png" alt="Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed." width="75%" />
 <p class="caption">
@@ -798,55 +794,55 @@ reasonable assumptions and the match between simulated responses and the
 original ones reinforces those previous assessments. When the match is not so
 close, it can reinforce or create concern about the way that the assumptions
 have been assessed using other tools.</p>
-<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="8.2-section8-2.html#cb740-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">307</span>)</span>
-<span id="cb740-2"><a href="8.2-section8-2.html#cb740-2" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>))</span>
-<span id="cb740-3"><a href="8.2-section8-2.html#cb740-3" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> </span>
-<span id="cb740-4"><a href="8.2-section8-2.html#cb740-4" tabindex="-1"></a>  <span class="co">#Creates first and second set of simulated responses</span></span>
-<span id="cb740-5"><a href="8.2-section8-2.html#cb740-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SimulatedSnow =</span> <span class="fu">simulate</span>(m6)[[<span class="dv">1</span>]],</span>
-<span id="cb740-6"><a href="8.2-section8-2.html#cb740-6" tabindex="-1"></a>         <span class="at">SimulatedSnow2 =</span> <span class="fu">simulate</span>(m6)[[<span class="dv">1</span>]]</span>
-<span id="cb740-7"><a href="8.2-section8-2.html#cb740-7" tabindex="-1"></a>         ) </span></code></pre></div>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="8.2-section8-2.html#cb692-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">307</span>)</span>
+<span id="cb692-2"><a href="8.2-section8-2.html#cb692-2" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>))</span>
+<span id="cb692-3"><a href="8.2-section8-2.html#cb692-3" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> </span>
+<span id="cb692-4"><a href="8.2-section8-2.html#cb692-4" tabindex="-1"></a>  <span class="co">#Creates first and second set of simulated responses</span></span>
+<span id="cb692-5"><a href="8.2-section8-2.html#cb692-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SimulatedSnow =</span> <span class="fu">simulate</span>(m6)[[<span class="dv">1</span>]],</span>
+<span id="cb692-6"><a href="8.2-section8-2.html#cb692-6" tabindex="-1"></a>         <span class="at">SimulatedSnow2 =</span> <span class="fu">simulate</span>(m6)[[<span class="dv">1</span>]]</span>
+<span id="cb692-7"><a href="8.2-section8-2.html#cb692-7" tabindex="-1"></a>         ) </span></code></pre></div>
 
-<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="8.2-section8-2.html#cb741-1" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
-<span id="cb741-2"><a href="8.2-section8-2.html#cb741-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb741-3"><a href="8.2-section8-2.html#cb741-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb741-4"><a href="8.2-section8-2.html#cb741-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
-<span id="cb741-5"><a href="8.2-section8-2.html#cb741-5" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
-<span id="cb741-6"><a href="8.2-section8-2.html#cb741-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb741-7"><a href="8.2-section8-2.html#cb741-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb741-8"><a href="8.2-section8-2.html#cb741-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
-<span id="cb741-9"><a href="8.2-section8-2.html#cb741-9" tabindex="-1"></a>r3 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
-<span id="cb741-10"><a href="8.2-section8-2.html#cb741-10" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb741-11"><a href="8.2-section8-2.html#cb741-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb741-12"><a href="8.2-section8-2.html#cb741-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
-<span id="cb741-13"><a href="8.2-section8-2.html#cb741-13" tabindex="-1"></a></span>
-<span id="cb741-14"><a href="8.2-section8-2.html#cb741-14" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
-<span id="cb741-15"><a href="8.2-section8-2.html#cb741-15" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb741-16"><a href="8.2-section8-2.html#cb741-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb741-17"><a href="8.2-section8-2.html#cb741-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
-<span id="cb741-18"><a href="8.2-section8-2.html#cb741-18" tabindex="-1"></a></span>
-<span id="cb741-19"><a href="8.2-section8-2.html#cb741-19" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
-<span id="cb741-20"><a href="8.2-section8-2.html#cb741-20" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb741-21"><a href="8.2-section8-2.html#cb741-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb741-22"><a href="8.2-section8-2.html#cb741-22" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
-<span id="cb741-23"><a href="8.2-section8-2.html#cb741-23" tabindex="-1"></a>s3 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
-<span id="cb741-24"><a href="8.2-section8-2.html#cb741-24" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb741-25"><a href="8.2-section8-2.html#cb741-25" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb741-26"><a href="8.2-section8-2.html#cb741-26" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
-<span id="cb741-27"><a href="8.2-section8-2.html#cb741-27" tabindex="-1"></a></span>
-<span id="cb741-28"><a href="8.2-section8-2.html#cb741-28" tabindex="-1"></a>s12 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
-<span id="cb741-29"><a href="8.2-section8-2.html#cb741-29" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb741-30"><a href="8.2-section8-2.html#cb741-30" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb741-31"><a href="8.2-section8-2.html#cb741-31" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>
-<span id="cb741-32"><a href="8.2-section8-2.html#cb741-32" tabindex="-1"></a>s22 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
-<span id="cb741-33"><a href="8.2-section8-2.html#cb741-33" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb741-34"><a href="8.2-section8-2.html#cb741-34" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb741-35"><a href="8.2-section8-2.html#cb741-35" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>
-<span id="cb741-36"><a href="8.2-section8-2.html#cb741-36" tabindex="-1"></a>s32 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
-<span id="cb741-37"><a href="8.2-section8-2.html#cb741-37" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb741-38"><a href="8.2-section8-2.html#cb741-38" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb741-39"><a href="8.2-section8-2.html#cb741-39" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>
-<span id="cb741-40"><a href="8.2-section8-2.html#cb741-40" tabindex="-1"></a></span>
-<span id="cb741-41"><a href="8.2-section8-2.html#cb741-41" tabindex="-1"></a><span class="fu">grid.arrange</span>(r1, r2, r3, s1, s2, s3, s12, s22, s32, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="8.2-section8-2.html#cb693-1" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
+<span id="cb693-2"><a href="8.2-section8-2.html#cb693-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb693-3"><a href="8.2-section8-2.html#cb693-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb693-4"><a href="8.2-section8-2.html#cb693-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
+<span id="cb693-5"><a href="8.2-section8-2.html#cb693-5" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
+<span id="cb693-6"><a href="8.2-section8-2.html#cb693-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb693-7"><a href="8.2-section8-2.html#cb693-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb693-8"><a href="8.2-section8-2.html#cb693-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
+<span id="cb693-9"><a href="8.2-section8-2.html#cb693-9" tabindex="-1"></a>r3 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
+<span id="cb693-10"><a href="8.2-section8-2.html#cb693-10" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb693-11"><a href="8.2-section8-2.html#cb693-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb693-12"><a href="8.2-section8-2.html#cb693-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
+<span id="cb693-13"><a href="8.2-section8-2.html#cb693-13" tabindex="-1"></a></span>
+<span id="cb693-14"><a href="8.2-section8-2.html#cb693-14" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
+<span id="cb693-15"><a href="8.2-section8-2.html#cb693-15" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb693-16"><a href="8.2-section8-2.html#cb693-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb693-17"><a href="8.2-section8-2.html#cb693-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
+<span id="cb693-18"><a href="8.2-section8-2.html#cb693-18" tabindex="-1"></a></span>
+<span id="cb693-19"><a href="8.2-section8-2.html#cb693-19" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
+<span id="cb693-20"><a href="8.2-section8-2.html#cb693-20" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb693-21"><a href="8.2-section8-2.html#cb693-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb693-22"><a href="8.2-section8-2.html#cb693-22" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
+<span id="cb693-23"><a href="8.2-section8-2.html#cb693-23" tabindex="-1"></a>s3 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
+<span id="cb693-24"><a href="8.2-section8-2.html#cb693-24" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb693-25"><a href="8.2-section8-2.html#cb693-25" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb693-26"><a href="8.2-section8-2.html#cb693-26" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
+<span id="cb693-27"><a href="8.2-section8-2.html#cb693-27" tabindex="-1"></a></span>
+<span id="cb693-28"><a href="8.2-section8-2.html#cb693-28" tabindex="-1"></a>s12 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
+<span id="cb693-29"><a href="8.2-section8-2.html#cb693-29" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb693-30"><a href="8.2-section8-2.html#cb693-30" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb693-31"><a href="8.2-section8-2.html#cb693-31" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>
+<span id="cb693-32"><a href="8.2-section8-2.html#cb693-32" tabindex="-1"></a>s22 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
+<span id="cb693-33"><a href="8.2-section8-2.html#cb693-33" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb693-34"><a href="8.2-section8-2.html#cb693-34" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb693-35"><a href="8.2-section8-2.html#cb693-35" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>
+<span id="cb693-36"><a href="8.2-section8-2.html#cb693-36" tabindex="-1"></a>s32 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
+<span id="cb693-37"><a href="8.2-section8-2.html#cb693-37" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb693-38"><a href="8.2-section8-2.html#cb693-38" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb693-39"><a href="8.2-section8-2.html#cb693-39" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>
+<span id="cb693-40"><a href="8.2-section8-2.html#cb693-40" tabindex="-1"></a></span>
+<span id="cb693-41"><a href="8.2-section8-2.html#cb693-41" tabindex="-1"></a><span class="fu">grid.arrange</span>(r1, r2, r3, s1, s2, s3, s12, s22, s32, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-11"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-11-1.png" alt="Plot of the original responses versus the three predictors (\(n\) = 23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows." width="100%" />
 <p class="caption">
@@ -856,18 +852,18 @@ Figure 8.11: Plot of the original responses versus the three predictors (<span c
 </div>
 <div class="footnotes">
 <hr />
-<ol start="135">
-<li id="fn135"><p>I have
+<ol start="128">
+<li id="fn128"><p>I have
 not given you a formula for calculating partial residuals. We will
-leave that for more advanced material.<a href="8.2-section8-2.html#fnref135" class="footnote-back">↩︎</a></p></li>
-<li id="fn136"><p>Imagine
+leave that for more advanced material.<a href="8.2-section8-2.html#fnref128" class="footnote-back">↩︎</a></p></li>
+<li id="fn129"><p>Imagine
 showing up to a ski area expecting a 40 inch base and there only being
 11 inches. I’m sure ski areas are always more accurate than this model in their
-reporting of amounts of snow on the ground…<a href="8.2-section8-2.html#fnref136" class="footnote-back">↩︎</a></p></li>
-<li id="fn137"><p>The site name is redacted to protect
+reporting of amounts of snow on the ground…<a href="8.2-section8-2.html#fnref129" class="footnote-back">↩︎</a></p></li>
+<li id="fn130"><p>The site name is redacted to protect
 the innocence of the reader. More information on this site, located in
 Beaverhead County in Montana, is available at
-<a href="http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt" class="uri">http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt</a>.<a href="8.2-section8-2.html#fnref137" class="footnote-back">↩︎</a></p></li>
+<a href="http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt" class="uri">http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt</a>.<a href="8.2-section8-2.html#fnref130" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -374,7 +370,7 @@ considered.</p>
 <div style="page-break-after: always;"></div>
 <p>To perform the first test (after checking that assumptions are not
 problematic, of course), we can apply the <code>Anova</code> function from the <code>car</code>
-package to an interaction model<a href="#fn157" class="footnote-ref" id="fnref157"><sup>157</sup></a>.
+package to an interaction model<a href="#fn150" class="footnote-ref" id="fnref150"><sup>150</sup></a>.
 It will provide three tests, one for each variable by
 themselves, which are not too interesting, and then the interaction test. This
 will result in an <span class="math inline">\(F\)</span>-statistic that, if the assumptions are true, will follow
@@ -432,7 +428,7 @@ The p-value from this
 distribution is 0.515, showing little to no evidence against
 the null hypothesis, so does not suggest that the slope coefficient for <em>du1</em> in explaining <em>du2</em> is different for
 at least one of the <em>Treatment</em> groups in the population.</p>
-<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="8.12-section8-12.html#cb837-1" tabindex="-1"></a><span class="fu">Anova</span>(head2)</span></code></pre></div>
+<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb789-1"><a href="8.12-section8-12.html#cb789-1" tabindex="-1"></a><span class="fu">Anova</span>(head2)</span></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: du2
@@ -483,8 +479,8 @@ initially in MLR by stating this result as: there is little evidence against the
 null hypothesis of no difference in the mean <em>du2</em> for the <em>Treatment</em> groups
 after controlling for <em>du1</em> so we would conclude that there is possibly no
 difference between the groups controlled for <em>du1</em>.</p>
-<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="8.12-section8-12.html#cb839-1" tabindex="-1"></a>head1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(du2 <span class="sc">~</span> du1 <span class="sc">+</span> treatment, <span class="at">data =</span> Headache)</span>
-<span id="cb839-2"><a href="8.12-section8-12.html#cb839-2" tabindex="-1"></a><span class="fu">Anova</span>(head1)</span></code></pre></div>
+<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="8.12-section8-12.html#cb791-1" tabindex="-1"></a>head1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(du2 <span class="sc">~</span> du1 <span class="sc">+</span> treatment, <span class="at">data =</span> Headache)</span>
+<span id="cb791-2"><a href="8.12-section8-12.html#cb791-2" tabindex="-1"></a><span class="fu">Anova</span>(head1)</span></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: du2
@@ -508,11 +504,11 @@ important.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="157">
-<li id="fn157"><p>We could also use the <code>anova</code> function to do
+<ol start="150">
+<li id="fn150"><p>We could also use the <code>anova</code> function to do
 this but using <code>Anova</code> throughout this material provides the answers we want
 in the additive model and it has no impact for the only test of interest in the
-interaction model since the interaction is the last component in the model.<a href="8.12-section8-12.html#fnref157" class="footnote-back">↩︎</a></p></li>
+interaction model since the interaction is the last component in the model.<a href="8.12-section8-12.html#fnref150" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

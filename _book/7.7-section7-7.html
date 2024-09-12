@@ -249,19 +249,15 @@ details > summary {
 <li class="has-sub"><a href="6-chapter6.html#chapter6" id="toc-chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a>
 <ul>
 <li><a href="6.1-section6-1.html#section6-1" id="toc-section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
-<li><a href="6.2-section6-2.html#section6-2" id="toc-section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
-<li><a href="6.3-section6-3.html#section6-3" id="toc-section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
-<li><a href="6.4-section6-4.html#section6-4" id="toc-section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
-<li><a href="6.5-section6-5.html#section6-5" id="toc-section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
-<li><a href="6.6-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
-<li><a href="6.7-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
-<li><a href="6.8-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li><a href="6.9-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
-<li><a href="6.10-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
-<li><a href="6.11-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
-<li><a href="6.12-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
-<li><a href="6.13-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
-<li><a href="6.14-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+<li><a href="6.2-section6-6.html#section6-6" id="toc-section6-6"><span class="toc-section-number">6.2</span> Describing relationships with a regression model</a></li>
+<li><a href="6.3-section6-7.html#section6-7" id="toc-section6-7"><span class="toc-section-number">6.3</span> Least Squares Estimation</a></li>
+<li><a href="6.4-section6-8.html#section6-8" id="toc-section6-8"><span class="toc-section-number">6.4</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6.5-section6-9.html#section6-9" id="toc-section6-9"><span class="toc-section-number">6.5</span> Outliers: leverage and influence</a></li>
+<li><a href="6.6-section6-10.html#section6-10" id="toc-section6-10"><span class="toc-section-number">6.6</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6.7-section6-11.html#section6-11" id="toc-section6-11"><span class="toc-section-number">6.7</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6.8-section6-12.html#section6-12" id="toc-section6-12"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6.9-section6-13.html#section6-13" id="toc-section6-13"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6.10-section6-14.html#section6-14" id="toc-section6-14"><span class="toc-section-number">6.10</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="7-chapter7.html#chapter7" id="toc-chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a>
 <ul>
@@ -320,7 +316,7 @@ regression line and a shaded area surrounding
 the estimated regression equation. Those shaded areas are based on connecting
 the dots on 95% confidence intervals constructed for the true mean <span class="math inline">\(y\)</span> value
 across all the <span class="math inline">\(x\)</span>-values. To formalize this idea, consider a specific value
-of <span class="math inline">\(x\)</span>, and call it <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span> (pronounced <strong>x-new</strong><a href="#fn129" class="footnote-ref" id="fnref129"><sup>129</sup></a>).
+of <span class="math inline">\(x\)</span>, and call it <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span> (pronounced <strong>x-new</strong><a href="#fn122" class="footnote-ref" id="fnref122"><sup>122</sup></a>).
 Then the true mean response for this <strong><em>subpopulation</em></strong> (a subpopulation
 is all observations we could obtain at <span class="math inline">\(\boldsymbol{x = x_{\nu}}\)</span>) is given by
 <span class="math inline">\(\boldsymbol{E(Y) = \mu_\nu = \beta_0+\beta_1x_{\nu}}\)</span>. To estimate the mean
@@ -411,8 +407,8 @@ consume 8 beers. Four different applications of the predict function follow.
 Note that <code>lwr</code> and <code>upr</code> in the output depend on what we
 requested. The first use of <code>predict</code> just returns the estimated mean
 for 8 beers:</p>
-<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="7.7-section7-7.html#cb670-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(BAC <span class="sc">~</span> Beers, <span class="at">data =</span> BB)</span>
-<span id="cb670-2"><a href="7.7-section7-7.html#cb670-2" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="7.7-section7-7.html#cb622-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(BAC <span class="sc">~</span> Beers, <span class="at">data =</span> BB)</span>
+<span id="cb622-2"><a href="7.7-section7-7.html#cb622-2" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>))</span></code></pre></div>
 <pre><code>##         1 
 ## 0.1310095</code></pre>
 <p>By turning on the <code>se.fit = T</code> option, we also get the SE for the
@@ -420,7 +416,7 @@ confidence interval and degrees of freedom.
 Note that elements returned
 are labeled as <code>$fit</code>, <code>$se.fit</code>, etc. and provide some of the information to calculate CIs or PIs “by hand”.</p>
 <!-- \newpage -->
-<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="7.7-section7-7.html#cb672-1" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">se.fit =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="7.7-section7-7.html#cb624-1" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">se.fit =</span> T)</span></code></pre></div>
 <pre><code>## $fit
 ##         1 
 ## 0.1310095 
@@ -436,10 +432,10 @@ are labeled as <code>$fit</code>, <code>$se.fit</code>, etc. and provide some of
 <p>Instead of using the components of the intervals to
 make them, we can also directly request the CI or PI using the
 <code>interval = ...</code> option, as in the following two lines of code.</p>
-<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="7.7-section7-7.html#cb674-1" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="7.7-section7-7.html#cb626-1" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##         fit       lwr       upr
 ## 1 0.1310095 0.1112681 0.1507509</code></pre>
-<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="7.7-section7-7.html#cb676-1" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="7.7-section7-7.html#cb628-1" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##         fit        lwr       upr
 ## 1 0.1310095 0.08292834 0.1790906</code></pre>
 <p>Based on these results, we are 95% confident that the true mean <em>BAC</em>
@@ -456,18 +452,18 @@ for the estimate of the <span class="math inline">\(\text{mean} = \text{SE}_{\ha
 , <code>$df</code> is <span class="math inline">\(n-2 = 16-2 = 14\)</span>, and <code>$residual.scale</code> is
 <span class="math inline">\(\hat{\sigma} = 0.02044\)</span>. So we just need the <span class="math inline">\(t^*\)</span> multiplier for 95%
 confidence and 14 <em>df</em>:</p>
-<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="7.7-section7-7.html#cb678-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>) <span class="co">#t* multiplier for 95% CI or 95% PI</span></span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="7.7-section7-7.html#cb630-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>) <span class="co">#t* multiplier for 95% CI or 95% PI</span></span></code></pre></div>
 <pre><code>## [1] 2.144787</code></pre>
 <p>The 95% CI for the true mean at <span class="math inline">\(\boldsymbol{x_{\nu} = 8}\)</span> is then:</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="7.7-section7-7.html#cb680-1" tabindex="-1"></a><span class="fl">0.131</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fl">2.1448</span><span class="sc">*</span><span class="fl">0.0092</span></span></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="7.7-section7-7.html#cb632-1" tabindex="-1"></a><span class="fl">0.131</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fl">2.1448</span><span class="sc">*</span><span class="fl">0.0092</span></span></code></pre></div>
 <pre><code>## [1] 0.1112678 0.1507322</code></pre>
 <p>which matches the previous output quite well.</p>
 <p>The 95% PI requires the calculation of
 <span class="math inline">\(\sqrt{\text{SE}_{\hat{\mu}_{\nu}}^2 + \boldsymbol{\hat{\sigma}^2}} = \sqrt{(0.0092)^2+(0.02044)^2} = 0.0224\)</span>.</p>
-<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="7.7-section7-7.html#cb682-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">0.0092</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.02044</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="7.7-section7-7.html#cb634-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">0.0092</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.02044</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.02241503</code></pre>
 <p>The 95% PI at <span class="math inline">\(\boldsymbol{x_{\nu} = 8}\)</span> is</p>
-<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="7.7-section7-7.html#cb684-1" tabindex="-1"></a><span class="fl">0.131</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fl">2.1448</span><span class="sc">*</span><span class="fl">0.0224</span></span></code></pre></div>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="7.7-section7-7.html#cb636-1" tabindex="-1"></a><span class="fl">0.131</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fl">2.1448</span><span class="sc">*</span><span class="fl">0.0224</span></span></code></pre></div>
 <pre><code>## [1] 0.08295648 0.17904352</code></pre>
 <p>These calculations are “fun” and informative but displaying these results
 for all <span class="math inline">\(x\)</span>-values is a bit more
@@ -479,16 +475,16 @@ using the <code>seq</code> function. The <code>seq</code> function requires thre
 the <code>length.out</code>, which defines the resolution of the grid of equally spaced points
 to create. Here, <code>length.out = 30</code> provides 30 points evenly spaced between 0 and 10 and is more than enough to make
 the confidence and prediction intervals from 0 to 10 <em>Beers</em>. </p>
-<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="7.7-section7-7.html#cb686-1" tabindex="-1"></a><span class="co"># Creates vector of predictor values from 0 to 10</span></span>
-<span id="cb686-2"><a href="7.7-section7-7.html#cb686-2" tabindex="-1"></a>beerf <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">30</span>) </span>
-<span id="cb686-3"><a href="7.7-section7-7.html#cb686-3" tabindex="-1"></a><span class="fu">head</span>(beerf, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="7.7-section7-7.html#cb638-1" tabindex="-1"></a><span class="co"># Creates vector of predictor values from 0 to 10</span></span>
+<span id="cb638-2"><a href="7.7-section7-7.html#cb638-2" tabindex="-1"></a>beerf <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">30</span>) </span>
+<span id="cb638-3"><a href="7.7-section7-7.html#cb638-3" tabindex="-1"></a><span class="fu">head</span>(beerf, <span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## [1] 0.0000000 0.3448276 0.6896552 1.0344828 1.3793103 1.7241379</code></pre>
-<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="7.7-section7-7.html#cb688-1" tabindex="-1"></a><span class="fu">tail</span>(beerf, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="7.7-section7-7.html#cb640-1" tabindex="-1"></a><span class="fu">tail</span>(beerf, <span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## [1]  8.275862  8.620690  8.965517  9.310345  9.655172 10.000000</code></pre>
 <p>Now we can call the <code>predict</code> function at the values stored in
 <code>beerf</code> to get the CIs across that range of <em>Beers</em> values:</p>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="7.7-section7-7.html#cb690-1" tabindex="-1"></a>BBCI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> beerf), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
-<span id="cb690-2"><a href="7.7-section7-7.html#cb690-2" tabindex="-1"></a><span class="fu">head</span>(BBCI)</span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="7.7-section7-7.html#cb642-1" tabindex="-1"></a>BBCI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> beerf), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
+<span id="cb642-2"><a href="7.7-section7-7.html#cb642-2" tabindex="-1"></a><span class="fu">head</span>(BBCI)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##         fit      lwr    upr
 ##       &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
@@ -500,8 +496,8 @@ the confidence and prediction intervals from 0 to 10 <em>Beers</em>. </p>
 ## 6  0.0183   -0.00105 0.0376</code></pre>
 <!-- \newpage -->
 <p>And the PIs:</p>
-<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="7.7-section7-7.html#cb692-1" tabindex="-1"></a>BBPI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> beerf), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
-<span id="cb692-2"><a href="7.7-section7-7.html#cb692-2" tabindex="-1"></a><span class="fu">head</span>(BBPI)</span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="7.7-section7-7.html#cb644-1" tabindex="-1"></a>BBPI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> beerf), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
+<span id="cb644-2"><a href="7.7-section7-7.html#cb644-2" tabindex="-1"></a><span class="fu">head</span>(BBPI)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##         fit     lwr    upr
 ##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -511,7 +507,7 @@ the confidence and prediction intervals from 0 to 10 <em>Beers</em>. </p>
 ## 4  0.00588  -0.0433 0.0551
 ## 5  0.0121   -0.0365 0.0606
 ## 6  0.0183   -0.0296 0.0662</code></pre>
-<p>To visualize these results as shown in Figure <a href="7.7-section7-7.html#fig:Figure7-23">7.23</a>, we need to work to combine some of the previous results into a common tibble, called <code>modelresB</code>, using the <code>bind_cols</code> function that allows multiple columns to be put together. Because some of the names are the same in the <code>BBCI</code> and <code>BBPI</code> objects and were awkwardly given unique names, there is an additional step to rename the columns using the <code>rename</code> function. The <code>rename</code> function changes the name to what is provided before the <code>=</code> for the column identified after the <code>=</code> (think of it like <code>mutate</code> except that it does not create a new variable). The layers in the plot start with adding a line for the fitted values (solid, using <code>geom_line</code>) based on the information in <code>modelresB</code>. We also introduce the <code>geom_ribbon</code> explicitly for the first time<a href="#fn130" class="footnote-ref" id="fnref130"><sup>130</sup></a> to plot our confidence and prediction intervals. It allows plotting of a region (and its edges) defined by <code>ymin</code> and <code>ymax</code> across the values provided to <code>x</code>. I also wanted to include the original observations, but they are stored in a different tibble (<code>BB</code>), so the <code>geom_point</code> needs to be explicitly told to use a different data set for its contribution to the plot with <code>data = BB</code> along with its own local aesthetic with x and y selections from the original variables. </p>
+<p>To visualize these results as shown in Figure <a href="7.7-section7-7.html#fig:Figure7-23">7.23</a>, we need to work to combine some of the previous results into a common tibble, called <code>modelresB</code>, using the <code>bind_cols</code> function that allows multiple columns to be put together. Because some of the names are the same in the <code>BBCI</code> and <code>BBPI</code> objects and were awkwardly given unique names, there is an additional step to rename the columns using the <code>rename</code> function. The <code>rename</code> function changes the name to what is provided before the <code>=</code> for the column identified after the <code>=</code> (think of it like <code>mutate</code> except that it does not create a new variable). The layers in the plot start with adding a line for the fitted values (solid, using <code>geom_line</code>) based on the information in <code>modelresB</code>. We also introduce the <code>geom_ribbon</code> explicitly for the first time<a href="#fn123" class="footnote-ref" id="fnref123"><sup>123</sup></a> to plot our confidence and prediction intervals. It allows plotting of a region (and its edges) defined by <code>ymin</code> and <code>ymax</code> across the values provided to <code>x</code>. I also wanted to include the original observations, but they are stored in a different tibble (<code>BB</code>), so the <code>geom_point</code> needs to be explicitly told to use a different data set for its contribution to the plot with <code>data = BB</code> along with its own local aesthetic with x and y selections from the original variables. </p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-23"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-23-1.png" alt="Estimated SLR for BAC data with fitted values (solid line), 95% confidence (darker, dashed lines), and 95% prediction (lighter, dotted lines) intervals." width="75%" />
@@ -519,24 +515,24 @@ the confidence and prediction intervals from 0 to 10 <em>Beers</em>. </p>
 Figure 7.23: Estimated SLR for BAC data with fitted values (solid line), 95% confidence (darker, dashed lines), and 95% prediction (lighter, dotted lines) intervals.
 </p>
 </div>
-<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="7.7-section7-7.html#cb694-1" tabindex="-1"></a><span class="co"># Patch the beerf vector, fits (just one version), and intervals from BBCI and </span></span>
-<span id="cb694-2"><a href="7.7-section7-7.html#cb694-2" tabindex="-1"></a><span class="co"># BBPI together with bind_cols:</span></span>
-<span id="cb694-3"><a href="7.7-section7-7.html#cb694-3" tabindex="-1"></a>modelresB <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="at">beerf =</span> <span class="fu">tibble</span>(beerf), BBCI, BBPI <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
-<span id="cb694-4"><a href="7.7-section7-7.html#cb694-4" tabindex="-1"></a></span>
-<span id="cb694-5"><a href="7.7-section7-7.html#cb694-5" tabindex="-1"></a><span class="co"># Rename CI and PI limits to have more explicit column names:</span></span>
-<span id="cb694-6"><a href="7.7-section7-7.html#cb694-6" tabindex="-1"></a>modelresB <span class="ot">&lt;-</span> modelresB <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">3</span>, <span class="at">upr_CI =</span> upr...<span class="dv">4</span>, </span>
-<span id="cb694-7"><a href="7.7-section7-7.html#cb694-7" tabindex="-1"></a>                                  <span class="at">lwr_PI =</span> lwr...<span class="dv">5</span>, <span class="at">upr_PI =</span> upr...<span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="7.7-section7-7.html#cb646-1" tabindex="-1"></a><span class="co"># Patch the beerf vector, fits (just one version), and intervals from BBCI and </span></span>
+<span id="cb646-2"><a href="7.7-section7-7.html#cb646-2" tabindex="-1"></a><span class="co"># BBPI together with bind_cols:</span></span>
+<span id="cb646-3"><a href="7.7-section7-7.html#cb646-3" tabindex="-1"></a>modelresB <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="at">beerf =</span> <span class="fu">tibble</span>(beerf), BBCI, BBPI <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
+<span id="cb646-4"><a href="7.7-section7-7.html#cb646-4" tabindex="-1"></a></span>
+<span id="cb646-5"><a href="7.7-section7-7.html#cb646-5" tabindex="-1"></a><span class="co"># Rename CI and PI limits to have more explicit column names:</span></span>
+<span id="cb646-6"><a href="7.7-section7-7.html#cb646-6" tabindex="-1"></a>modelresB <span class="ot">&lt;-</span> modelresB <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">3</span>, <span class="at">upr_CI =</span> upr...<span class="dv">4</span>, </span>
+<span id="cb646-7"><a href="7.7-section7-7.html#cb646-7" tabindex="-1"></a>                                  <span class="at">lwr_PI =</span> lwr...<span class="dv">5</span>, <span class="at">upr_PI =</span> upr...<span class="dv">6</span>)</span></code></pre></div>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="7.7-section7-7.html#cb695-1" tabindex="-1"></a>modelresB <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb695-2"><a href="7.7-section7-7.html#cb695-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb695-3"><a href="7.7-section7-7.html#cb695-3" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
-<span id="cb695-4"><a href="7.7-section7-7.html#cb695-4" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb695-5"><a href="7.7-section7-7.html#cb695-5" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, </span>
-<span id="cb695-6"><a href="7.7-section7-7.html#cb695-6" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb695-7"><a href="7.7-section7-7.html#cb695-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> BB, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Beers, <span class="at">y =</span> BAC)) <span class="sc">+</span> </span>
-<span id="cb695-8"><a href="7.7-section7-7.html#cb695-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;BAC&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Beers&quot;</span>, </span>
-<span id="cb695-9"><a href="7.7-section7-7.html#cb695-9" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Scatterplot with estimated regression line and 95% CI and PI&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb695-10"><a href="7.7-section7-7.html#cb695-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="7.7-section7-7.html#cb647-1" tabindex="-1"></a>modelresB <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb647-2"><a href="7.7-section7-7.html#cb647-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb647-3"><a href="7.7-section7-7.html#cb647-3" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
+<span id="cb647-4"><a href="7.7-section7-7.html#cb647-4" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb647-5"><a href="7.7-section7-7.html#cb647-5" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, </span>
+<span id="cb647-6"><a href="7.7-section7-7.html#cb647-6" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb647-7"><a href="7.7-section7-7.html#cb647-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> BB, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Beers, <span class="at">y =</span> BAC)) <span class="sc">+</span> </span>
+<span id="cb647-8"><a href="7.7-section7-7.html#cb647-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;BAC&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Beers&quot;</span>, </span>
+<span id="cb647-9"><a href="7.7-section7-7.html#cb647-9" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Scatterplot with estimated regression line and 95% CI and PI&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb647-10"><a href="7.7-section7-7.html#cb647-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p>More importantly, note that the CI in Figure <a href="7.7-section7-7.html#fig:Figure7-23">7.23</a> clearly
 shows widening as we move further away from the mean of the
 <span class="math inline">\(x\text{&#39;s}\)</span> to the edges of the observed <span class="math inline">\(x\)</span>-values. This reflects a decrease
@@ -556,31 +552,31 @@ the 109 observations (1.8%) fall outside the 95% PIs. Since the PI needs to be
 concerned with unobserved new observations it makes sense that it might contain
 more than 95% of the observations used to make it.</p>
 
-<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="7.7-section7-7.html#cb696-1" tabindex="-1"></a>temp1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)</span>
-<span id="cb696-2"><a href="7.7-section7-7.html#cb696-2" tabindex="-1"></a>Yearf <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1901</span>, <span class="at">to =</span> <span class="dv">2014</span>, <span class="at">length.out =</span> <span class="dv">75</span>)</span>
-<span id="cb696-3"><a href="7.7-section7-7.html#cb696-3" tabindex="-1"></a> </span>
-<span id="cb696-4"><a href="7.7-section7-7.html#cb696-4" tabindex="-1"></a>TCI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> Yearf), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
-<span id="cb696-5"><a href="7.7-section7-7.html#cb696-5" tabindex="-1"></a></span>
-<span id="cb696-6"><a href="7.7-section7-7.html#cb696-6" tabindex="-1"></a>TPI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> Yearf), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
-<span id="cb696-7"><a href="7.7-section7-7.html#cb696-7" tabindex="-1"></a></span>
-<span id="cb696-8"><a href="7.7-section7-7.html#cb696-8" tabindex="-1"></a><span class="co"># Patch the Yearf vector, fits (just one version), and intervals from TCI and </span></span>
-<span id="cb696-9"><a href="7.7-section7-7.html#cb696-9" tabindex="-1"></a><span class="co"># TPI together with bind_cols:</span></span>
-<span id="cb696-10"><a href="7.7-section7-7.html#cb696-10" tabindex="-1"></a>modelresT <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="at">Yearf =</span> <span class="fu">tibble</span>(Yearf), TCI, TPI <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
-<span id="cb696-11"><a href="7.7-section7-7.html#cb696-11" tabindex="-1"></a></span>
-<span id="cb696-12"><a href="7.7-section7-7.html#cb696-12" tabindex="-1"></a><span class="co"># Rename CI and PI limits to have more explicit column names:</span></span>
-<span id="cb696-13"><a href="7.7-section7-7.html#cb696-13" tabindex="-1"></a>modelresT <span class="ot">&lt;-</span> modelresT <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">3</span>, <span class="at">upr_CI =</span> upr...<span class="dv">4</span>, </span>
-<span id="cb696-14"><a href="7.7-section7-7.html#cb696-14" tabindex="-1"></a>                                  <span class="at">lwr_PI =</span> lwr...<span class="dv">5</span>, <span class="at">upr_PI =</span> upr...<span class="dv">6</span>)</span>
-<span id="cb696-15"><a href="7.7-section7-7.html#cb696-15" tabindex="-1"></a></span>
-<span id="cb696-16"><a href="7.7-section7-7.html#cb696-16" tabindex="-1"></a>modelresT <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb696-17"><a href="7.7-section7-7.html#cb696-17" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb696-18"><a href="7.7-section7-7.html#cb696-18" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
-<span id="cb696-19"><a href="7.7-section7-7.html#cb696-19" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb696-20"><a href="7.7-section7-7.html#cb696-20" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, </span>
-<span id="cb696-21"><a href="7.7-section7-7.html#cb696-21" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb696-22"><a href="7.7-section7-7.html#cb696-22" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> bozemantemps, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> meanmax)) <span class="sc">+</span> </span>
-<span id="cb696-23"><a href="7.7-section7-7.html#cb696-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;degrees F&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, </span>
-<span id="cb696-24"><a href="7.7-section7-7.html#cb696-24" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Scatterplot with estimated regression line and 95% CI and PI&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb696-25"><a href="7.7-section7-7.html#cb696-25" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="7.7-section7-7.html#cb648-1" tabindex="-1"></a>temp1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)</span>
+<span id="cb648-2"><a href="7.7-section7-7.html#cb648-2" tabindex="-1"></a>Yearf <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1901</span>, <span class="at">to =</span> <span class="dv">2014</span>, <span class="at">length.out =</span> <span class="dv">75</span>)</span>
+<span id="cb648-3"><a href="7.7-section7-7.html#cb648-3" tabindex="-1"></a> </span>
+<span id="cb648-4"><a href="7.7-section7-7.html#cb648-4" tabindex="-1"></a>TCI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> Yearf), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
+<span id="cb648-5"><a href="7.7-section7-7.html#cb648-5" tabindex="-1"></a></span>
+<span id="cb648-6"><a href="7.7-section7-7.html#cb648-6" tabindex="-1"></a>TPI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> Yearf), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
+<span id="cb648-7"><a href="7.7-section7-7.html#cb648-7" tabindex="-1"></a></span>
+<span id="cb648-8"><a href="7.7-section7-7.html#cb648-8" tabindex="-1"></a><span class="co"># Patch the Yearf vector, fits (just one version), and intervals from TCI and </span></span>
+<span id="cb648-9"><a href="7.7-section7-7.html#cb648-9" tabindex="-1"></a><span class="co"># TPI together with bind_cols:</span></span>
+<span id="cb648-10"><a href="7.7-section7-7.html#cb648-10" tabindex="-1"></a>modelresT <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="at">Yearf =</span> <span class="fu">tibble</span>(Yearf), TCI, TPI <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
+<span id="cb648-11"><a href="7.7-section7-7.html#cb648-11" tabindex="-1"></a></span>
+<span id="cb648-12"><a href="7.7-section7-7.html#cb648-12" tabindex="-1"></a><span class="co"># Rename CI and PI limits to have more explicit column names:</span></span>
+<span id="cb648-13"><a href="7.7-section7-7.html#cb648-13" tabindex="-1"></a>modelresT <span class="ot">&lt;-</span> modelresT <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">3</span>, <span class="at">upr_CI =</span> upr...<span class="dv">4</span>, </span>
+<span id="cb648-14"><a href="7.7-section7-7.html#cb648-14" tabindex="-1"></a>                                  <span class="at">lwr_PI =</span> lwr...<span class="dv">5</span>, <span class="at">upr_PI =</span> upr...<span class="dv">6</span>)</span>
+<span id="cb648-15"><a href="7.7-section7-7.html#cb648-15" tabindex="-1"></a></span>
+<span id="cb648-16"><a href="7.7-section7-7.html#cb648-16" tabindex="-1"></a>modelresT <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb648-17"><a href="7.7-section7-7.html#cb648-17" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb648-18"><a href="7.7-section7-7.html#cb648-18" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
+<span id="cb648-19"><a href="7.7-section7-7.html#cb648-19" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb648-20"><a href="7.7-section7-7.html#cb648-20" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, </span>
+<span id="cb648-21"><a href="7.7-section7-7.html#cb648-21" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb648-22"><a href="7.7-section7-7.html#cb648-22" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> bozemantemps, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> meanmax)) <span class="sc">+</span> </span>
+<span id="cb648-23"><a href="7.7-section7-7.html#cb648-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;degrees F&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, </span>
+<span id="cb648-24"><a href="7.7-section7-7.html#cb648-24" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Scatterplot with estimated regression line and 95% CI and PI&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb648-25"><a href="7.7-section7-7.html#cb648-25" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-24"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-24-1.png" alt="Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals." width="75%" />
 <p class="caption">
@@ -590,16 +586,16 @@ Figure 7.24: Estimated SLR for Bozeman temperature data with 95% confidence (das
 <!-- \newpage -->
 <p>We can also use these same methods to do a prediction for the year after the
 data set ended, 2015, and in 2050:</p>
-<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="7.7-section7-7.html#cb697-1" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2015</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="7.7-section7-7.html#cb649-1" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2015</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit     lwr      upr
 ## 1 58.31967 57.7019 58.93744</code></pre>
-<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="7.7-section7-7.html#cb699-1" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2015</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="7.7-section7-7.html#cb651-1" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2015</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 58.31967 55.04146 61.59787</code></pre>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="7.7-section7-7.html#cb701-1" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2050</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="7.7-section7-7.html#cb653-1" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2050</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 60.15514 59.23631 61.07397</code></pre>
-<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="7.7-section7-7.html#cb703-1" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2050</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="7.7-section7-7.html#cb655-1" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2050</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 60.15514 56.80712 63.50316</code></pre>
 <p>These results tell us that we are 95% confident that the true mean yearly
@@ -609,7 +605,7 @@ yearly average maximum temperature in 2015 will be (I guess “would have been�
 between 59.2<span class="math inline">\(^\circ F\)</span> and 61.1<span class="math inline">\(^\circ F\)</span>. Obviously, 2015 has occurred, but
 since the data were not published when the data set was downloaded in July
 2016, we can probably best treat 2015 as a potential “future” observation. The
-results for 2050 are clearly for the future mean and a new observation<a href="#fn131" class="footnote-ref" id="fnref131"><sup>131</sup></a> in 2050.
+results for 2050 are clearly for the future mean and a new observation<a href="#fn124" class="footnote-ref" id="fnref124"><sup>124</sup></a> in 2050.
 Note that up to 2014, no values of this response had been observed above 60<span class="math inline">\(^\circ F\)</span> and the predicted mean in 2050 is over 60<span class="math inline">\(^\circ F\)</span> if the trend
 persists. It is easy to criticize the use of this model for 2050 because of its extreme amount
 of extrapolation.</p>
@@ -623,12 +619,12 @@ De Veaux, Richard D., Paul F. Velleman, and David E. Bock. 2011. <em>Stats: Data
 </div>
 <div class="footnotes">
 <hr />
-<ol start="129">
-<li id="fn129"><p>This silly
+<ol start="122">
+<li id="fn122"><p>This silly
 nomenclature was inspired by <span class="citation">De Veaux, Velleman, and Bock (<a href="#ref-DeVeaux2011">2011</a>)</span> <em>Stats: Data and
-Models</em> text. If you find this too cheesy, you can just call it x-vee.<a href="7.7-section7-7.html#fnref129" class="footnote-back">↩︎</a></p></li>
-<li id="fn130"><p>The <code>geom_ribbon</code> has been used inside the <code>geom_smooth</code> function we have used before, but this is the first time we are drawing these intervals ourselves.<a href="7.7-section7-7.html#fnref130" class="footnote-back">↩︎</a></p></li>
-<li id="fn131"><p>I have really enjoyed writing this book and enjoy updating it yearly, but hope someone else gets to do the work of checking the level of inaccuracy of this model in another 30 years.<a href="7.7-section7-7.html#fnref131" class="footnote-back">↩︎</a></p></li>
+Models</em> text. If you find this too cheesy, you can just call it x-vee.<a href="7.7-section7-7.html#fnref122" class="footnote-back">↩︎</a></p></li>
+<li id="fn123"><p>The <code>geom_ribbon</code> has been used inside the <code>geom_smooth</code> function we have used before, but this is the first time we are drawing these intervals ourselves.<a href="7.7-section7-7.html#fnref123" class="footnote-back">↩︎</a></p></li>
+<li id="fn124"><p>I have really enjoyed writing this book and enjoy updating it yearly, but hope someone else gets to do the work of checking the level of inaccuracy of this model in another 30 years.<a href="7.7-section7-7.html#fnref124" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">
