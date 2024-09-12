@@ -171,7 +171,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#section1-1"><i class="fa fa-check"></i><b>1.1</b> Overview of methods</a></li>
 <li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section1-2"><i class="fa fa-check"></i><b>1.2</b> Getting started in R</a></li>
 <li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section1-3"><i class="fa fa-check"></i><b>1.3</b> Basic summary statistics, histograms, and boxplots using R</a></li>
-<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section1-4"><i class="fa fa-check"></i><b>1.4</b> R Markdown</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section1-4"><i class="fa fa-check"></i><b>1.4</b> Quarto</a></li>
 <li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section1-5"><i class="fa fa-check"></i><b>1.5</b> Grammar of Graphics</a></li>
 <li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#section1-6"><i class="fa fa-check"></i><b>1.6</b> Exiting RStudio</a></li>
 <li class="chapter" data-level="1.7" data-path="chapter1.html"><a href="chapter1.html#section1-7"><i class="fa fa-check"></i><b>1.7</b> Chapter summary</a></li>
@@ -394,7 +394,7 @@ To make scatterplots as in Figure <a href="chapter6.html#fig:Figure6-1">6.1</a>,
 <div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="chapter6.html#cb511-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb511-2"><a href="chapter6.html#cb511-2" tabindex="-1"></a>BB <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/beersbac.csv&quot;</span>)</span></code></pre></div>
 
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="chapter6.html#cb512-1" tabindex="-1"></a>BB <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Beers, <span class="at">y =</span> BAC)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="chapter6.html#cb512-1" tabindex="-1"></a>BB <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Beers, <span class="at">y =</span> BAC)) <span class="sc">+</span></span>
 <span id="cb512-2"><a href="chapter6.html#cb512-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb512-3"><a href="chapter6.html#cb512-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-1"></span>
@@ -610,10 +610,10 @@ be related to log-area burned but that the trend over time in both is less
 clear (at least the linear trends).</p>
 <div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="chapter6.html#cb517-1" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/climateR2.csv&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="chapter6.html#cb518-1" tabindex="-1"></a><span class="co"># natural log transformation of area burned</span></span>
-<span id="cb518-2"><a href="chapter6.html#cb518-2" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">loghectares =</span> <span class="fu">log</span>(hectares)) </span>
+<span id="cb518-2"><a href="chapter6.html#cb518-2" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> mtfires <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">loghectares =</span> <span class="fu">log</span>(hectares)) </span>
 <span id="cb518-3"><a href="chapter6.html#cb518-3" tabindex="-1"></a></span>
 <span id="cb518-4"><a href="chapter6.html#cb518-4" tabindex="-1"></a><span class="co"># Cuts the original hectares data so only log-scale version in tibble</span></span>
-<span id="cb518-5"><a href="chapter6.html#cb518-5" tabindex="-1"></a>mtfiresR <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> </span>
+<span id="cb518-5"><a href="chapter6.html#cb518-5" tabindex="-1"></a>mtfiresR <span class="ot">&lt;-</span> mtfires <span class="sc">|&gt;</span> </span>
 <span id="cb518-6"><a href="chapter6.html#cb518-6" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>hectares) </span>
 <span id="cb518-7"><a href="chapter6.html#cb518-7" tabindex="-1"></a><span class="fu">cor</span>(mtfiresR)</span></code></pre></div>
 <pre><code>##                   Year Temperature loghectares
@@ -641,7 +641,7 @@ decrease in summer temperatures between 1985 and 1995 and then an increase in
 the second half of the data set.</p>
 
 <div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="chapter6.html#cb520-1" tabindex="-1"></a><span class="fu">library</span>(GGally) </span>
-<span id="cb520-2"><a href="chapter6.html#cb520-2" tabindex="-1"></a>mtfiresR <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<span id="cb520-2"><a href="chapter6.html#cb520-2" tabindex="-1"></a>mtfiresR <span class="sc">|&gt;</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-3"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-3-1.png" alt="Scatterplot matrix of Montana fires data." width="75%" />
 <p class="caption">
@@ -662,7 +662,7 @@ based on the other variables, but for now the associations are of interest.</p>
 <span id="cb521-2"><a href="chapter6.html#cb521-2" tabindex="-1"></a><span class="fu">data</span>(ais)</span>
 <span id="cb521-3"><a href="chapter6.html#cb521-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb521-4"><a href="chapter6.html#cb521-4" tabindex="-1"></a>ais <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ais)</span>
-<span id="cb521-5"><a href="chapter6.html#cb521-5" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span></span>
+<span id="cb521-5"><a href="chapter6.html#cb521-5" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">|&gt;</span></span>
 <span id="cb521-6"><a href="chapter6.html#cb521-6" tabindex="-1"></a>  <span class="fu">select</span>(Ht, Hc, Bfat)</span>
 <span id="cb521-7"><a href="chapter6.html#cb521-7" tabindex="-1"></a><span class="fu">summary</span>(aisR)</span></code></pre></div>
 <pre><code>##        Ht              Hc             Bfat       
@@ -672,7 +672,7 @@ based on the other variables, but for now the associations are of interest.</p>
 ##  Mean   :180.1   Mean   :43.09   Mean   :13.507  
 ##  3rd Qu.:186.2   3rd Qu.:45.58   3rd Qu.:18.080  
 ##  Max.   :209.4   Max.   :59.70   Max.   :35.520</code></pre>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="chapter6.html#cb523-1" tabindex="-1"></a>aisR <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="chapter6.html#cb523-1" tabindex="-1"></a>aisR <span class="sc">|&gt;</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-4"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-4-1.png" alt="Scatterplot matrix of athlete data." width="75%" />
 <p class="caption">
@@ -698,7 +698,7 @@ also a high <code>Bfat</code> (<em>body fat</em>) athlete (35%) with a somewhat 
 <code>Hc</code> value. This also might be influencing our impressions so we will
 remove both “unusual” values and remake the plot. The two offending
 observations were found for individuals numbered 56 and 166 in the data set. To access those observations (and then remove them), we introduce the <code>slice</code> function that we can apply to a tibble as a way to use the row number to either select (as used here) or remove those rows: </p>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="chapter6.html#cb526-1" tabindex="-1"></a>aisR <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">56</span>, <span class="dv">166</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="chapter6.html#cb526-1" tabindex="-1"></a>aisR <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">56</span>, <span class="dv">166</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##      Ht    Hc  Bfat
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -706,8 +706,8 @@ observations were found for individuals numbered 56 and 166 in the data set. To 
 ## 2  175.  59.7  9.56</code></pre>
 <p>We can create a reduced version of the data (<code>aisR2</code>) using the <code>slice</code> function to slice “out” the rows we don’t want by passing a vector of the rows we don’t want to retain with a minus sign in front of each of them, <code>slice(-56, -166)</code>, or as vector of rows with a minus in front of the concatenated (<code>c(...)</code>) vector (<code>slice(-c(56, 166))</code>), and then remake the plot: </p>
 
-<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="chapter6.html#cb528-1" tabindex="-1"></a>aisR2 <span class="ot">&lt;-</span> aisR <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">56</span>, <span class="sc">-</span><span class="dv">166</span>) <span class="co">#Removes observations in rows 56 and 166</span></span>
-<span id="cb528-2"><a href="chapter6.html#cb528-2" tabindex="-1"></a>aisR2 <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="chapter6.html#cb528-1" tabindex="-1"></a>aisR2 <span class="ot">&lt;-</span> aisR <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">56</span>, <span class="sc">-</span><span class="dv">166</span>) <span class="co">#Removes observations in rows 56 and 166</span></span>
+<span id="cb528-2"><a href="chapter6.html#cb528-2" tabindex="-1"></a>aisR2 <span class="sc">|&gt;</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-5"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-5-1.png" alt="Scatterplot matrix of athlete data with two potential outliers removed. " width="75%" />
 <p class="caption">
@@ -793,13 +793,13 @@ legend to help to understand the plot. </p>
 Figure 6.7: Scatterplot of athlete’s height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
 </p>
 </div>
-<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="chapter6.html#cb530-1" tabindex="-1"></a>aisR2 <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span></span>
-<span id="cb530-2"><a href="chapter6.html#cb530-2" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">56</span>, <span class="dv">166</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb530-3"><a href="chapter6.html#cb530-3" tabindex="-1"></a>  <span class="fu">select</span>(Ht, Hc, Bfat, Sex) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="chapter6.html#cb530-1" tabindex="-1"></a>aisR2 <span class="ot">&lt;-</span> ais <span class="sc">|&gt;</span></span>
+<span id="cb530-2"><a href="chapter6.html#cb530-2" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">56</span>, <span class="dv">166</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb530-3"><a href="chapter6.html#cb530-3" tabindex="-1"></a>  <span class="fu">select</span>(Ht, Hc, Bfat, Sex) <span class="sc">|&gt;</span></span>
 <span id="cb530-4"><a href="chapter6.html#cb530-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sex =</span> <span class="fu">factor</span>(Sex))</span>
 <span id="cb530-5"><a href="chapter6.html#cb530-5" tabindex="-1"></a></span>
 <span id="cb530-6"><a href="chapter6.html#cb530-6" tabindex="-1"></a></span>
-<span id="cb530-7"><a href="chapter6.html#cb530-7" tabindex="-1"></a>aisR2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Hc)) <span class="sc">+</span></span>
+<span id="cb530-7"><a href="chapter6.html#cb530-7" tabindex="-1"></a>aisR2 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Hc)) <span class="sc">+</span></span>
 <span id="cb530-8"><a href="chapter6.html#cb530-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Sex, <span class="at">color =</span> Sex), <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
 <span id="cb530-9"><a href="chapter6.html#cb530-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb530-10"><a href="chapter6.html#cb530-10" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
@@ -816,9 +816,9 @@ large group creates the misleading overall relationship<a href="#fn114" class="f
 logical inquiry on the <code>Sex</code> variable in the updated <code>aisR2</code> data set, using
 <code>Sex == 0</code> in the <code>filter</code> function to get a tibble with male subjects only and <code>Sex == 1</code> for the female subjects,
 then running the <code>cor</code> function on each version of the data set:</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="chapter6.html#cb531-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="chapter6.html#cb531-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
 <pre><code>## [1] -0.04756589</code></pre>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="chapter6.html#cb533-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="chapter6.html#cb533-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
 <pre><code>## [1] 0.02795272</code></pre>
 <p>These results show that <span class="math inline">\(\boldsymbol{r} = -0.05\)</span> for <em>Height</em> and <em>Hematocrit</em>
 for <em>males</em> and <span class="math inline">\(\boldsymbol{r} = 0.03\)</span> for <em>females</em>. The first suggests a
@@ -836,9 +836,9 @@ show weaker relationships that also appear to be in different directions
 (<span class="math inline">\(\boldsymbol{r} = 0.13\)</span> for men and <span class="math inline">\(\boldsymbol{r} = -0.17\)</span> for women). This
 doubly reinforces the dangers of aggregating different groups and
 ignoring the group information.</p>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="chapter6.html#cb535-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="chapter6.html#cb535-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
 <pre><code>## [1] 0.1269418</code></pre>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="chapter6.html#cb537-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="chapter6.html#cb537-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
 <pre><code>## [1] -0.1679751</code></pre>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-8"></span>
@@ -848,7 +848,7 @@ Figure 6.8: Scatterplot of athlete’s body fat and hematocrit by sex of athlete
 </p>
 </div>
 <!-- \newpage -->
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="chapter6.html#cb539-1" tabindex="-1"></a>aisR2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Bfat, <span class="at">y =</span> Hc)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="chapter6.html#cb539-1" tabindex="-1"></a>aisR2 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Bfat, <span class="at">y =</span> Hc)) <span class="sc">+</span></span>
 <span id="cb539-2"><a href="chapter6.html#cb539-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Sex, <span class="at">color =</span> Sex), <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
 <span id="cb539-3"><a href="chapter6.html#cb539-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb539-4"><a href="chapter6.html#cb539-4" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
@@ -868,9 +868,9 @@ another categorical variable
 we could incorporate… Both groups also seem to demonstrate slightly more
 variability in <em>Body Fat</em> associated with taller athletes (each sort of
 “fans out”).</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="chapter6.html#cb540-1" tabindex="-1"></a><span class="fu">cor</span>(Bfat <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="chapter6.html#cb540-1" tabindex="-1"></a><span class="fu">cor</span>(Bfat <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
 <pre><code>## [1] 0.1954609</code></pre>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="chapter6.html#cb542-1" tabindex="-1"></a><span class="fu">cor</span>(Bfat <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="chapter6.html#cb542-1" tabindex="-1"></a><span class="fu">cor</span>(Bfat <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
 <pre><code>## [1] 0.4476962</code></pre>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-9"></span>
@@ -879,7 +879,7 @@ variability in <em>Body Fat</em> associated with taller athletes (each sort of
 Figure 6.9: Scatterplot of athlete’s body fat and height by sex.
 </p>
 </div>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="chapter6.html#cb544-1" tabindex="-1"></a>aisR2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Bfat)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="chapter6.html#cb544-1" tabindex="-1"></a>aisR2 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Bfat)) <span class="sc">+</span></span>
 <span id="cb544-2"><a href="chapter6.html#cb544-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Sex, <span class="at">color =</span> Sex), <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
 <span id="cb544-3"><a href="chapter6.html#cb544-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb544-4"><a href="chapter6.html#cb544-4" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
@@ -994,7 +994,7 @@ on the middle <span class="math inline">\(C\%\)</span> of the distribution or by
 <div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="chapter6.html#cb548-1" tabindex="-1"></a>quantiles</span></code></pre></div>
 <pre><code>##      2.5%     97.5% 
 ## 0.7633606 0.9541518</code></pre>
-<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="chapter6.html#cb550-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="chapter6.html#cb550-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span></span>
 <span id="cb550-2"><a href="chapter6.html#cb550-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
 <span id="cb550-3"><a href="chapter6.html#cb550-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
 <span id="cb550-4"><a href="chapter6.html#cb550-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -1069,7 +1069,7 @@ between the variables (which it is not here!). </p>
 <span id="cb551-2"><a href="chapter6.html#cb551-2" tabindex="-1"></a><span class="fu">data</span>(ufc)</span>
 <span id="cb551-3"><a href="chapter6.html#cb551-3" tabindex="-1"></a>ufc <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ufc)</span>
 <span id="cb551-4"><a href="chapter6.html#cb551-4" tabindex="-1"></a></span>
-<span id="cb551-5"><a href="chapter6.html#cb551-5" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dbh.cm, <span class="at">y =</span> height.m)) <span class="sc">+</span></span>
+<span id="cb551-5"><a href="chapter6.html#cb551-5" tabindex="-1"></a>ufc <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dbh.cm, <span class="at">y =</span> height.m)) <span class="sc">+</span></span>
 <span id="cb551-6"><a href="chapter6.html#cb551-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb551-7"><a href="chapter6.html#cb551-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb551-8"><a href="chapter6.html#cb551-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code></pre></div>
@@ -1085,7 +1085,7 @@ in the data set, but none of the other trees with this diameter had heights
 under 15 m. It ends up that the likely outlier is in observation number 168 and
 because it is so unusual it likely corresponds to either a damaged tree or a
 recording error.</p>
-<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="chapter6.html#cb552-1" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">168</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="chapter6.html#cb552-1" tabindex="-1"></a>ufc <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">168</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 5
 ##    plot  tree species dbh.cm height.m
 ##   &lt;int&gt; &lt;int&gt; &lt;fct&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -1097,7 +1097,7 @@ the data set is relatively large and the <em>diameter</em> value is close to the
 strength of the correlation.</p>
 <div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="chapter6.html#cb554-1" tabindex="-1"></a><span class="fu">cor</span>(dbh.cm <span class="sc">~</span> height.m, <span class="at">data =</span> ufc)</span></code></pre></div>
 <pre><code>## [1] 0.7699552</code></pre>
-<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="chapter6.html#cb556-1" tabindex="-1"></a><span class="fu">cor</span>(dbh.cm <span class="sc">~</span> height.m, <span class="at">data =</span> ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="chapter6.html#cb556-1" tabindex="-1"></a><span class="fu">cor</span>(dbh.cm <span class="sc">~</span> height.m, <span class="at">data =</span> ufc <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>))</span></code></pre></div>
 <pre><code>## [1] 0.7912053</code></pre>
 <p>With the outlier included, the bootstrap 95% confidence interval goes from 0.702 to
 0.820 – we are 95% confident that the true correlation between <em>diameter</em> and <em>height</em>
@@ -1128,7 +1128,7 @@ transformations in Chapter <a href="chapter7.html#chapter7">7</a>.</p>
 <span id="cb560-8"><a href="chapter6.html#cb560-8" tabindex="-1"></a>quantiles</span></code></pre></div>
 <pre><code>##      2.5%     97.5% 
 ## 0.7075771 0.8190283</code></pre>
-<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="chapter6.html#cb562-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="chapter6.html#cb562-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(Tstar) <span class="sc">|&gt;</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span></span>
 <span id="cb562-2"><a href="chapter6.html#cb562-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">25</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
 <span id="cb562-3"><a href="chapter6.html#cb562-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
 <span id="cb562-4"><a href="chapter6.html#cb562-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -1140,17 +1140,17 @@ transformations in Chapter <a href="chapter7.html#chapter7">7</a>.</p>
 <span id="cb562-10"><a href="chapter6.html#cb562-10" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">0.6</span>, <span class="fl">0.85</span>) <span class="sc">+</span></span>
 <span id="cb562-11"><a href="chapter6.html#cb562-11" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">1.1</span>)</span>
 <span id="cb562-12"><a href="chapter6.html#cb562-12" tabindex="-1"></a></span>
-<span id="cb562-13"><a href="chapter6.html#cb562-13" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">cor</span>(dbh.cm <span class="sc">~</span> height.m, <span class="at">data =</span> ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>)); Tobs</span></code></pre></div>
+<span id="cb562-13"><a href="chapter6.html#cb562-13" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">cor</span>(dbh.cm <span class="sc">~</span> height.m, <span class="at">data =</span> ufc <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>)); Tobs</span></code></pre></div>
 <pre><code>## [1] 0.7912053</code></pre>
 <div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="chapter6.html#cb564-1" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
 <span id="cb564-2"><a href="chapter6.html#cb564-2" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
-<span id="cb564-3"><a href="chapter6.html#cb564-3" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">cor</span>(dbh.cm <span class="sc">~</span> height.m, <span class="at">data =</span> <span class="fu">resample</span>(ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>)))</span>
+<span id="cb564-3"><a href="chapter6.html#cb564-3" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">cor</span>(dbh.cm <span class="sc">~</span> height.m, <span class="at">data =</span> <span class="fu">resample</span>(ufc <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>)))</span>
 <span id="cb564-4"><a href="chapter6.html#cb564-4" tabindex="-1"></a>}</span>
 <span id="cb564-5"><a href="chapter6.html#cb564-5" tabindex="-1"></a>quantiles <span class="ot">&lt;-</span> <span class="fu">qdata</span>(Tstar, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>)) <span class="co">#95% Confidence Interval</span></span>
 <span id="cb564-6"><a href="chapter6.html#cb564-6" tabindex="-1"></a>quantiles</span></code></pre></div>
 <pre><code>##      2.5%     97.5% 
 ## 0.7532338 0.8259416</code></pre>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="chapter6.html#cb566-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="chapter6.html#cb566-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(Tstar) <span class="sc">|&gt;</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span></span>
 <span id="cb566-2"><a href="chapter6.html#cb566-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">25</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
 <span id="cb566-3"><a href="chapter6.html#cb566-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
 <span id="cb566-4"><a href="chapter6.html#cb566-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -1192,7 +1192,7 @@ variable for <em>BAC</em>. In some situations, this will not be so clear, but lo
 random assignment or scientific logic to guide your choices of variables as
 explanatory or response<a href="#fn117" class="footnote-ref" id="fnref117"><sup>117</sup></a>.</p>
 
-<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="chapter6.html#cb567-1" tabindex="-1"></a>BB <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Beers, <span class="at">y =</span> BAC)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="chapter6.html#cb567-1" tabindex="-1"></a>BB <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Beers, <span class="at">y =</span> BAC)) <span class="sc">+</span></span>
 <span id="cb567-2"><a href="chapter6.html#cb567-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">col =</span> <span class="st">&quot;cyan4&quot;</span>) <span class="sc">+</span></span>
 <span id="cb567-3"><a href="chapter6.html#cb567-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb567-4"><a href="chapter6.html#cb567-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
@@ -1397,11 +1397,11 @@ results for the female athletes along with the regression line which has a
 negative slope coefficient. The estimated regression coefficients are found
 using the <code>lm</code> function:
 </p>
-<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="chapter6.html#cb572-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Results for Females </span></span>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="chapter6.html#cb572-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Results for Females </span></span>
 <span id="cb572-2"><a href="chapter6.html#cb572-2" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Hc ~ Bfat, data = aisR2 %&gt;% filter(Sex == 1))
+## lm(formula = Hc ~ Bfat, data = filter(aisR2, Sex == 1))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -1417,7 +1417,7 @@ using the <code>lm</code> function:
 ## F-statistic: 2.816 on 1 and 97 DF,  p-value: 0.09653</code></pre>
 <!-- \newpage -->
 
-<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="chapter6.html#cb574-1" tabindex="-1"></a>aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Bfat, <span class="at">y =</span> Hc)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="chapter6.html#cb574-1" tabindex="-1"></a>aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Bfat, <span class="at">y =</span> Hc)) <span class="sc">+</span></span>
 <span id="cb574-2"><a href="chapter6.html#cb574-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb574-3"><a href="chapter6.html#cb574-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb574-4"><a href="chapter6.html#cb574-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -1592,7 +1592,7 @@ hand helps us to assess the range of values where we can reasonably use the
 equation – here between 54 and 60 degrees F seems reasonable.</p>
 <!-- \newpage -->
 
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="chapter6.html#cb578-1" tabindex="-1"></a>mtfires <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Temperature, <span class="at">y =</span> loghectares)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="chapter6.html#cb578-1" tabindex="-1"></a>mtfires <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Temperature, <span class="at">y =</span> loghectares)) <span class="sc">+</span></span>
 <span id="cb578-2"><a href="chapter6.html#cb578-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Year), <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
 <span id="cb578-3"><a href="chapter6.html#cb578-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb578-4"><a href="chapter6.html#cb578-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -1766,11 +1766,11 @@ the variation in <em>Hematocrit</em> in these women. That is not a very good
 regression model with over 97% of the variation in <em>Hematocrit</em> unexplained
 by this model. The scatterplot showed a fairly weak relationship but this
 provides numerical and interpretable information that drives that point home.</p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="chapter6.html#cb587-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Results for Females</span></span>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="chapter6.html#cb587-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Results for Females</span></span>
 <span id="cb587-2"><a href="chapter6.html#cb587-2" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Hc ~ Bfat, data = aisR2 %&gt;% filter(Sex == 1))
+## lm(formula = Hc ~ Bfat, data = filter(aisR2, Sex == 1))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -2174,11 +2174,11 @@ non-constant variance. We’ll revisit this example later to see if we can
 find a model on transformed variables that has better diagnostics. Reporting the following regression model that has a decent <span class="math inline">\(R^2\)</span> of 62.6%
 would be misleading since it does not accurately represent the relationship
 between tree diameter and tree height.</p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="chapter6.html#cb590-1" tabindex="-1"></a>tree1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(height.m <span class="sc">~</span> dbh.cm, <span class="at">data =</span> ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>))</span>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="chapter6.html#cb590-1" tabindex="-1"></a>tree1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(height.m <span class="sc">~</span> dbh.cm, <span class="at">data =</span> ufc <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>))</span>
 <span id="cb590-2"><a href="chapter6.html#cb590-2" tabindex="-1"></a><span class="fu">summary</span>(tree1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = height.m ~ dbh.cm, data = ufc %&gt;% slice(-168))
+## lm(formula = height.m ~ dbh.cm, data = slice(ufc, -168))
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -2231,7 +2231,7 @@ waiting time based on duration of prior eruption.</p>
 <span id="cb593-3"><a href="chapter6.html#cb593-3" tabindex="-1"></a><span class="co"># Aligns the duration with time to next eruption</span></span>
 <span id="cb593-4"><a href="chapter6.html#cb593-4" tabindex="-1"></a>G2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Waiting =</span> geyser<span class="sc">$</span>waiting[<span class="sc">-</span><span class="dv">1</span>], <span class="at">Duration =</span> geyser<span class="sc">$</span>duration[<span class="sc">-</span><span class="dv">299</span>])</span>
 <span id="cb593-5"><a href="chapter6.html#cb593-5" tabindex="-1"></a></span>
-<span id="cb593-6"><a href="chapter6.html#cb593-6" tabindex="-1"></a>G2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Duration, <span class="at">y =</span> Waiting)) <span class="sc">+</span></span>
+<span id="cb593-6"><a href="chapter6.html#cb593-6" tabindex="-1"></a>G2 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Duration, <span class="at">y =</span> Waiting)) <span class="sc">+</span></span>
 <span id="cb593-7"><a href="chapter6.html#cb593-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb593-8"><a href="chapter6.html#cb593-8" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb593-9"><a href="chapter6.html#cb593-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">se =</span> F) <span class="sc">+</span> <span class="co">#Add smoothing line</span></span>
@@ -2359,7 +2359,7 @@ same…</p>
 components to modify in lighter and/or ALL CAPS text where <code>y</code> is a response variable,
 <code>x</code> is an explanatory variable, and the data are in <code>DATASETNAME</code>.</p>
 <ul>
-<li><p><strong><font color = 'red'>DATASETNAME</font> %&gt;% ggpairs()</strong></p>
+<li><p><strong><font color = 'red'>DATASETNAME</font> |&gt; ggpairs()</strong></p>
 <ul>
 <li><p>Requires the <code>GGally</code> package.</p></li>
 <li><p>Makes a scatterplot matrix that also displays the correlation
@@ -2377,7 +2377,7 @@ data = <font color = 'red'>DATASETNAME</font>)</strong></p>
 <li>Provides a base R scatter plot.
 </li>
 </ul></li>
-<li><p><strong><font color = 'red'>DATASETNAME</font> %&gt;% ggplot(mapping = aes(x = <font color = 'red'>x</font>, y = <font color = 'red'>y</font>) +<br />
+<li><p><strong><font color = 'red'>DATASETNAME</font> |&gt; ggplot(mapping = aes(x = <font color = 'red'>x</font>, y = <font color = 'red'>y</font>) +<br />
 geom_point() +<br />
 geom_smooth(method = “lm”)</strong></p>
 <ul>
@@ -2418,7 +2418,7 @@ variables except for the subject identifier variable that was in the first
 column and was removed by <code>select(-1)</code>.</p>
 <div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="chapter6.html#cb597-1" tabindex="-1"></a>treadmill <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/treadmill.csv&quot;</span>)</span>
 <span id="cb597-2"><a href="chapter6.html#cb597-2" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb597-3"><a href="chapter6.html#cb597-3" tabindex="-1"></a>treadmill <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>()</span></code></pre></div>
+<span id="cb597-3"><a href="chapter6.html#cb597-3" tabindex="-1"></a>treadmill <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">ggpairs</span>()</span></code></pre></div>
 <p>6.1.1. First,
 we should get a sense of the strength of the correlation between the variable
 of primary interest, <code>TreadMillOx</code>, and the other variables and consider

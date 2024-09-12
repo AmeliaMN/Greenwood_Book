@@ -1,0 +1,23 @@
+---
+title: "testing_stuff"
+format: pdf
+editor: visual
+---
+
+```{r echo=F}
+library(knitr)
+#Color Format
+colFmt = function(x, color){
+  outputFormat = opts_knit$get("rmarkdown.pandoc.to")
+  if(outputFormat == 'latex')
+    paste("\\textcolor{",color,"}{",x,"}",sep="")
+  else if(outputFormat == 'html')
+    paste("<font color='",color,"'>",x,"</font>",sep="")
+  else
+    x
+}
+```
+
+* **head(**`r colFmt("DATASETNAME","red")`**)**
+
+**mean(**~ `r colFmt("DATASETNAME","red")`, data = `r colFmt("VARIABLENAME","red")`**)**

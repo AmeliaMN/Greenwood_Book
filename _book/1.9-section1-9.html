@@ -181,7 +181,7 @@ details > summary {
 <li><a href="1.1-section1-1.html#section1-1" id="toc-section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
 <li><a href="1.2-section1-2.html#section1-2" id="toc-section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
 <li><a href="1.3-section1-3.html#section1-3" id="toc-section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
-<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> R Markdown</a></li>
+<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> Quarto</a></li>
 <li><a href="1.5-section1-5.html#section1-5" id="toc-section1-5"><span class="toc-section-number">1.5</span> Grammar of Graphics</a></li>
 <li><a href="1.6-section1-6.html#section1-6" id="toc-section1-6"><span class="toc-section-number">1.6</span> Exiting RStudio</a></li>
 <li><a href="1.7-section1-7.html#section1-7" id="toc-section1-7"><span class="toc-section-number">1.7</span> Chapter summary</a></li>
@@ -323,9 +323,9 @@ yourself and then only refer to the provided R code if/when you struggle.
 These questions provide a great venue to check your learning, often to see the
 methods applied to another data set, and for something to discuss in study groups,
 with your instructor, and at the Math Learning Center.</p>
-<p>1.1. Open RStudio and go to File -&gt; New File -&gt; R Markdown… to create a .Rmd.
-Click on the “Knit” button and see what happens. Try to complete the following
-questions in that document, clicking on the Knit button after you add a code
+<p>1.1. Open RStudio and go to File -&gt; New File -&gt; Quarto… to create a .qmd.
+Click on the “Render” button and see what happens. Try to complete the following
+questions in that document, clicking on the Render button after you add a code
 chunk with code to complete each question. Part of the assignment on this
 question is to not get frustrated the first time you are trying this and seek
 out help to answer questions you have when practicing.</p>
@@ -349,7 +349,7 @@ ages does this study pertain to?</p>
 kilograms and you might prefer to see them in pounds. The conversion is
 <code>lbs = 2.205*kgs</code>. Create a new variable in the <code>treadmill</code>
 tibble called <em>BWlb</em> using this code:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="1.9-section1-9.html#cb27-1" tabindex="-1"></a>treadmill<span class="sc">$</span>BWlb <span class="ot">&lt;-</span> <span class="fl">2.205</span><span class="sc">*</span>treadmill<span class="sc">$</span>BodyWeight</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="1.9-section1-9.html#cb27-1" tabindex="-1"></a>treadmill <span class="ot">&lt;-</span> <span class="fu">transform</span>(treadmill, <span class="at">BWlb =</span> <span class="fl">2.205</span><span class="sc">*</span>BodyWeight)</span></code></pre></div>
 <p>and find the mean and SD of the new variable (<em>BWlb</em>).</p>
 <p>1.6. Make histograms and boxplots of
 the original <em>BodyWeight</em> and new <em>BWlb</em> variables, both using base R plots and

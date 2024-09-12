@@ -181,7 +181,7 @@ details > summary {
 <li><a href="1.1-section1-1.html#section1-1" id="toc-section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
 <li><a href="1.2-section1-2.html#section1-2" id="toc-section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
 <li><a href="1.3-section1-3.html#section1-3" id="toc-section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
-<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> R Markdown</a></li>
+<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> Quarto</a></li>
 <li><a href="1.5-section1-5.html#section1-5" id="toc-section1-5"><span class="toc-section-number">1.5</span> Grammar of Graphics</a></li>
 <li><a href="1.6-section1-6.html#section1-6" id="toc-section1-6"><span class="toc-section-number">1.6</span> Exiting RStudio</a></li>
 <li><a href="1.7-section1-7.html#section1-7" id="toc-section1-7"><span class="toc-section-number">1.7</span> Chapter summary</a></li>
@@ -378,7 +378,7 @@ importantly!) where the results of your executed commands will show up. The
 most basic interaction with R is available once you get the cursor active at
 the command prompt “&gt;” by clicking in that panel (look for a blinking
 vertical line). The upper left panel is for writing, saving, and running your R
-code either in .R script files or .Rmd (markdown) files, discussed below. Once
+code either in .R script files or .qmd (markdown) files, discussed below. Once
 you have code available in this window, the “Run” button will
 execute the code for the line that your cursor is on or for any text that you
 have highlighted with your mouse. The “data management” or environment panel is
@@ -408,8 +408,8 @@ observations for our subjects in <em>variables</em>.
 Basically, we need to store observations in named vectors (one dimensional
 arrays) that contain a list of the observations. To create a vector containing
 the four numbers and assign it to a variable named <em>variable1</em>, we need to
-create a vector using the concatenate function
-<code>c</code> which means “combine the items” that follow, if they are inside
+create a vector using the combine function
+<code>c()</code> which means “combine the items” that follow, if they are inside
 parentheses and have commas separating the values,
 as follows:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="1.2-section1-2.html#cb4-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span>
@@ -430,8 +430,8 @@ for the variable name representing that vector.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="1.2-section1-2.html#cb6-1" tabindex="-1"></a><span class="sc">&gt;</span> variable1</span>
 <span id="cb6-2"><a href="1.2-section1-2.html#cb6-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span> <span class="dv">8</span></span></code></pre></div>
 <p>With the data stored in a variable, we can use functions such as
-<code>mean</code> and
-<code>sd</code> to find the mean and standard deviation of the observations contained in
+<code>mean()</code> and
+<code>sd()</code> to find the mean and standard deviation of the observations contained in
 <code>variable1</code>:
 </p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="1.2-section1-2.html#cb7-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(variable1)</span>
@@ -478,13 +478,13 @@ doesn’t, repeat the previous steps to install it.</p>
 </table>
 <div style="page-break-after: always;"></div>
 <p>After installing the package, we need to load it to make it active in a given work
-session. Go to the command prompt and type (or copy and paste) <code>library(readr)</code> or <code>require(readr)</code>:
+session. Go to the command prompt and type (or copy and paste) <code>library(readr)</code>:
 </p>
 <pre><code>&gt; library(readr)</code></pre>
 <p>With a data set converted to a CSV file and <code>readr</code> installed and loaded, we need to read the data set into the active workspace.
 There are two ways to do this, either using the point-and-click GUI in RStudio (click
 the “Import Dataset” button in the upper right “Environment” panel as
-indicated in Figure <a href="1.2-section1-2.html#fig:Figure1-2">1.2</a>) or modifying the <code>read_csv</code>
+indicated in Figure <a href="1.2-section1-2.html#fig:Figure1-2">1.2</a>) or modifying the <code>read_csv()</code>
 function to find the file of interest. To practice this, you can
 download an Excel (.xls) file from
 <a href="http://www.math.montana.edu/courses/s217/documents/treadmill.xls" class="uri">http://www.math.montana.edu/courses/s217/documents/treadmill.xls</a>
@@ -606,7 +606,7 @@ Figure 1.3: RStudio with initial data set loaded.
 <p>Just directly typing (or using) a line of code like this is actually the
 other way that we can read in
 files. If you choose to use the text-only interface, then you need to tell R
-where to look in your computer to find the data file. <code>read_csv</code> is a
+where to look in your computer to find the data file. <code>read_csv()</code> is a
 function that takes a path as an argument. To use it, specify the path to
 your data file, put quotes around it, and put it as the input to
 <code>read_csv(...)</code>. For some examples later in the book, you will be able to
@@ -615,7 +615,7 @@ code directly from the website, assuming you are connected to the
 internet.</p>
 <p>To verify that you read the data set in correctly, it is always good to check
 its contents. We can view the first and last rows in the data set using the
-<code>head</code> and <code>tail</code> functions on the data set, which show the following
+<code>head()</code> and <code>tail()</code> functions on the data set, which show the following
 results for the
 <code>treadmill</code> data. Note that you will sometimes need to resize the console
 window in RStudio to get all the columns to display
@@ -644,7 +644,7 @@ the panels.
 <span id="cb10-20"><a href="1.2-section1-2.html#cb10-20" tabindex="-1"></a><span class="dv">5</span>      <span class="dv">30</span>       <span class="fl">39.20</span>               <span class="dv">172</span>   <span class="fl">12.88</span>      <span class="dv">168</span>        <span class="dv">44</span>      <span class="fl">91.63</span>    <span class="dv">54</span></span>
 <span id="cb10-21"><a href="1.2-section1-2.html#cb10-21" tabindex="-1"></a><span class="dv">6</span>      <span class="dv">31</span>       <span class="fl">37.39</span>               <span class="dv">192</span>   <span class="fl">14.03</span>      <span class="dv">186</span>        <span class="dv">56</span>      <span class="fl">87.66</span>    <span class="dv">45</span></span></code></pre></div>
 <div style="page-break-after: always;"></div>
-<p>When you load an installed package with <code>library</code>, you may see a warning message about versions of the package and versions of
+<p>When you load an installed package with <code>library()</code>, you may see a warning message about versions of the package and versions of
 R – this is <em>usually</em> something you can ignore. Other warning messages could
 be more ominous for proceeding but before getting too concerned, there are
 couple of basic things to check.

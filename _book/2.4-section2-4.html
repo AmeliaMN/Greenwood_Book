@@ -181,7 +181,7 @@ details > summary {
 <li><a href="1.1-section1-1.html#section1-1" id="toc-section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
 <li><a href="1.2-section1-2.html#section1-2" id="toc-section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
 <li><a href="1.3-section1-3.html#section1-3" id="toc-section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
-<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> R Markdown</a></li>
+<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> Quarto</a></li>
 <li><a href="1.5-section1-5.html#section1-5" id="toc-section1-5"><span class="toc-section-number">1.5</span> Grammar of Graphics</a></li>
 <li><a href="1.6-section1-6.html#section1-6" id="toc-section1-6"><span class="toc-section-number">1.6</span> Exiting RStudio</a></li>
 <li><a href="1.7-section1-7.html#section1-7" id="toc-section1-7"><span class="toc-section-number">1.7</span> Chapter summary</a></li>
@@ -446,7 +446,7 @@ statistics of the results:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-8"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-8-1.png" alt="Histogram (left, with counts in bars) and density curve (right) of values of test statistic for B = 1,000 permutations." width="75%" />
 <p class="caption">
-Figure 2.8: Histogram (left, with counts in bars) and density curve (right) of values of test statistic for <em>B</em> = 1,000 permutations.
+Figure 2.9: Histogram (left, with counts in bars) and density curve (right) of values of test statistic for <em>B</em> = 1,000 permutations.
 </p>
 </div>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="2.4-section2-4.html#cb93-1" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
@@ -456,17 +456,17 @@ Figure 2.8: Histogram (left, with counts in bars) and density curve (right) of v
 <span id="cb93-5"><a href="2.4-section2-4.html#cb93-5" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">coef</span>(lmP)[<span class="dv">2</span>]</span>
 <span id="cb93-6"><a href="2.4-section2-4.html#cb93-6" tabindex="-1"></a>}</span></code></pre></div>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="2.4-section2-4.html#cb94-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="2.4-section2-4.html#cb94-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
 <span id="cb94-2"><a href="2.4-section2-4.html#cb94-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
 <span id="cb94-3"><a href="2.4-section2-4.html#cb94-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
 <span id="cb94-4"><a href="2.4-section2-4.html#cb94-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb94-5"><a href="2.4-section2-4.html#cb94-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
 <span id="cb94-6"><a href="2.4-section2-4.html#cb94-6" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span>
 <span id="cb94-7"><a href="2.4-section2-4.html#cb94-7" tabindex="-1"></a></span>
-<span id="cb94-8"><a href="2.4-section2-4.html#cb94-8" tabindex="-1"></a><span class="fu">favstats</span>(Tstar)</span></code></pre></div>
+<span id="cb94-8"><a href="2.4-section2-4.html#cb94-8" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>Tstar)</span></code></pre></div>
 <pre><code>##        min        Q1     median  Q3      max       mean       sd    n missing
 ##  -41.26667 -10.06667 -0.3333333 8.6 37.26667 -0.5054667 13.17156 1000       0</code></pre>
-<p>Figure <a href="2.4-section2-4.html#fig:Figure2-8">2.8</a> contains visualizations of <span class="math inline">\(T^*\)</span> and the <code>favstats</code>
+<p>Figure <a href="2.4-section2-4.html#fig:Figure2-8">2.9</a> contains visualizations of <span class="math inline">\(T^*\)</span> and the <code>favstats</code>
 summary provides the related numerical summaries. Our observed <span class="math inline">\(T_{obs}\)</span>
 of -25.933 seems somewhat unusual relative to these results with only
 30 <span class="math inline">\(T^*\)</span> values smaller than -25 based on the
@@ -475,7 +475,7 @@ versus our observed result to be able to clearly decide whether our observed
 result is really unusual.</p>
 <p>To make the comparisons more concrete, first we can enhance the previous graphs
 by adding the value of the test statistic from the real data set, as shown in
-Figure <a href="2.4-section2-4.html#fig:Figure2-9">2.9</a>, using the <code>geom_vline</code> function to draw a vertical
+Figure <a href="2.4-section2-4.html#fig:Figure2-9">2.10</a>, using the <code>geom_vline</code> function to draw a vertical
 line at our <span class="math inline">\(T_{obs}\)</span> value specified in the <code>xintercept</code> option. Notice the
 order of the parameters. The code for the vertical line is before the code for
 the bin counts. This order is prefered so that the counts are still readable if
@@ -484,11 +484,11 @@ the vertical line and a bin count are in the same horizontal position.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-9"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-9-1.png" alt="Histogram and density curve of values of test statistic for 1,000 permutations with bold vertical line for the value of observed test statistic." width="75%" />
 <p class="caption">
-Figure 2.9: Histogram and density curve of values of test statistic for 1,000 permutations with bold vertical line for the value of observed test statistic.
+Figure 2.10: Histogram and density curve of values of test statistic for 1,000 permutations with bold vertical line for the value of observed test statistic.
 </p>
 </div>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="2.4-section2-4.html#cb96-1" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">25.933</span></span>
-<span id="cb96-2"><a href="2.4-section2-4.html#cb96-2" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<span id="cb96-2"><a href="2.4-section2-4.html#cb96-2" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
 <span id="cb96-3"><a href="2.4-section2-4.html#cb96-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
 <span id="cb96-4"><a href="2.4-section2-4.html#cb96-4" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
 <span id="cb96-5"><a href="2.4-section2-4.html#cb96-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -506,7 +506,7 @@ function, we need to provide the distribution of values to compare to the cut-of
 proportion that are below (left of) or above (right of) the cut-off
 (<code>lower.tail = T</code> option provides the proportion of values to the left of (below) the cutoff
 of interest).</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="2.4-section2-4.html#cb97-1" tabindex="-1"></a><span class="fu">pdata</span>(Tstar, Tobs, <span class="at">lower.tail =</span> T)[[<span class="dv">1</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="2.4-section2-4.html#cb97-1" tabindex="-1"></a><span class="fu">pdata</span>(<span class="sc">~</span>Tstar, Tobs, <span class="at">lower.tail =</span> T)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0.027</code></pre>
 <p>The proportion of 0.027 tells us that 27 of the 1,000 permuted results
 (2.7%) were as small or smaller than what we observed. This type of
@@ -541,19 +541,19 @@ to 25.933 cm
 to add to our previous proportion. Using <code>pdata</code> with <code>-Tobs</code> as the cut-off
 and <code>lower.tail = F</code> provides this result:
 </p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="2.4-section2-4.html#cb99-1" tabindex="-1"></a><span class="fu">pdata</span>(Tstar, <span class="sc">-</span>Tobs, <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="2.4-section2-4.html#cb99-1" tabindex="-1"></a><span class="fu">pdata</span>(<span class="sc">~</span>Tstar, <span class="sc">-</span>Tobs, <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0.017</code></pre>
 <p>So the p-value to test our null hypothesis of no difference in the true means
 between the groups is 0.027 + 0.017, providing a p-value of 0.044.
-Figure <a href="2.4-section2-4.html#fig:Figure2-10">2.10</a> shows both cut-offs on the histogram and density curve.</p>
+Figure <a href="2.4-section2-4.html#fig:Figure2-10">2.11</a> shows both cut-offs on the histogram and density curve.</p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-10"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-10-1.png" alt="Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (-25.933) and its opposite value (25.933) required for performing the two-sided test." width="75%" />
 <p class="caption">
-Figure 2.10: Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (-25.933) and its opposite value (25.933) required for performing the two-sided test.
+Figure 2.11: Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (-25.933) and its opposite value (25.933) required for performing the two-sided test.
 </p>
 </div>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="2.4-section2-4.html#cb101-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="2.4-section2-4.html#cb101-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
 <span id="cb101-2"><a href="2.4-section2-4.html#cb101-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
 <span id="cb101-3"><a href="2.4-section2-4.html#cb101-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
 <span id="cb101-4"><a href="2.4-section2-4.html#cb101-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -599,7 +599,7 @@ of the alternative) that there is a difference in the population means in the
 two groups, but that depends on what you think about how unusual that result was. It is also reasonable to feel that this is not sufficient evidence to conclude that there is a difference in the true means even though many people feel that p-values less than 0.05 are fairly strong evidence against the null hypothesis. If you do not rate this as strong enough evidence (or in general obtain weak evidence) to conclude that there is a difference, then you can only say that there might not be a difference in the means. We can’t conclude that the null hypothesis is true – we just failed to find enough evidence to be sure that it is wrong. It might still be wrong but we couldn’t detect it, either as a mistake because of an unusual sample from our population, or because our sample size was not large enough to detect the size of difference in the populations, or results with larger p-values could happen because there really isn’t a difference. We don’t know which of these might be the truth and certainly don’t know that the null hypothesis is true even if the p-value obtained is 1<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a>.</p>
 <p>Before we move on, let’s note some interesting features of the permutation
 distribution of the difference in the sample means shown in
-Figure <a href="2.4-section2-4.html#fig:Figure2-10">2.10</a>. </p>
+Figure <a href="2.4-section2-4.html#fig:Figure2-10">2.11</a>. </p>
 <ol style="list-style-type: decimal">
 <li><p>It is basically centered at 0. Since we are performing permutations assuming
 the null model is true, we are assuming that <span class="math inline">\(\mu_1 = \mu_2\)</span> which implies that
@@ -633,7 +633,7 @@ the null hypothesis. You should use your own judgment about whether the p-value 
 that the p-value is the probability
 you would observe a result like you did (or more extreme), assuming the null
 hypothesis is true; this tells you that the smaller the p-value is, the more
-evidence you have against the null. Figure <a href="2.4-section2-4.html#fig:Figure2-11">2.11</a> provides a
+evidence you have against the null. Figure <a href="2.4-section2-4.html#fig:Figure2-11">2.12</a> provides a
 diagram of some suggestions for the graded p-value interpretation that you can
 use. The next section provides a more formal
 review of the hypothesis testing
@@ -649,7 +649,7 @@ estimated results (with a measure of precision of the estimated difference). We 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-11"></span>
 <img src="chapter2_files/pvalueStrengths.png" alt="Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values. P-values range from 0 to 1, with only a p-value of 1.0 providing no evidence against the null hypothesis." width="100%" />
 <p class="caption">
-Figure 2.11: Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values. P-values range from 0 to 1, with only a p-value of 1.0 providing no evidence against the null hypothesis.
+Figure 2.12: Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values. P-values range from 0 to 1, with only a p-value of 1.0 providing no evidence against the null hypothesis.
 </p>
 </div>
 <div style="page-break-after: always;"></div>

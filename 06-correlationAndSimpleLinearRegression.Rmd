@@ -152,7 +152,7 @@ BB <- read_csv("beersbac.csv")
 (ref:fig6-1) Scatterplot of *Beers* consumed versus *BAC*.
 
 ```{r Figure6-1,fig.cap = "(ref:fig6-1)",warning = F,message = F}
-BB %>% ggplot(mapping = aes(x = Beers, y = BAC)) +
+BB |> ggplot(mapping = aes(x = Beers, y = BAC)) +
   geom_point() +
   theme_bw()
 ```
@@ -276,7 +276,7 @@ x <- c(x,5,15)
 y <- c(y,220,220)
 
 dp1 <- tibble(x,y)
-dp1 %>% ggplot(aes(x = x, y = y)) + 
+dp1 |> ggplot(aes(x = x, y = y)) + 
   geom_point(col = "slateblue", size = 2) + 
   theme_test()
 ```
@@ -410,10 +410,10 @@ mtfires <- read_csv("climateR2.csv")
 
 ```{r}
 # natural log transformation of area burned
-mtfires <- mtfires %>% mutate(loghectares = log(hectares)) 
+mtfires <- mtfires |> mutate(loghectares = log(hectares)) 
 
 # Cuts the original hectares data so only log-scale version in tibble
-mtfiresR <- mtfires %>% 
+mtfiresR <- mtfires |> 
   select(-hectares) 
 cor(mtfiresR)
 ```
@@ -444,7 +444,7 @@ the second half of the data set.
 
 ```{r Figure6-3,fig.cap = "(ref:fig6-3)"}
 library(GGally) 
-mtfiresR %>% ggpairs() + theme_bw()
+mtfiresR |> ggpairs() + theme_bw()
 ```
 
 \indent As one more example, the Australian Institute of Sport collected data 
@@ -465,10 +465,10 @@ library(alr4)
 data(ais)
 library(tibble)
 ais <- as_tibble(ais)
-aisR <- ais %>%
+aisR <- ais |>
   select(Ht, Hc, Bfat)
 summary(aisR)
-aisR %>% ggpairs() + theme_bw()
+aisR |> ggpairs() + theme_bw()
 ```
 
 <!-- \newpage -->
@@ -492,7 +492,7 @@ remove both "unusual" values and remake the plot. The two offending
 observations were found for individuals numbered 56 and 166 in the data set. To access those observations (and then remove them), we introduce the ``slice`` function that we can apply to a tibble as a way to use the row number to either select (as used here) or remove those rows: \index{\texttt{slice()}}
 
 ```{r}
-aisR %>% slice(56, 166)
+aisR |> slice(56, 166)
 ```
 
 We can create a reduced version of the data (``aisR2``) using the ``slice`` function to slice "out" the rows we don't want by passing a vector of the rows we don't want to retain with a minus sign in front of each of them, ``slice(-56, -166)``, or as vector of rows with a minus in front of the concatenated (``c(...)``) vector (``slice(-c(56, 166))``), and then remake the plot: \index{\texttt{slice()}} \index{remove rows}
@@ -500,8 +500,8 @@ We can create a reduced version of the data (``aisR2``) using the ``slice`` func
 (ref:fig6-5) Scatterplot matrix of athlete data with two potential outliers removed. \index{outlier}
 
 ```{r Figure6-5,fig.cap = "(ref:fig6-5)",warning = F,message = F}
-aisR2 <- aisR %>% slice(-56, -166) #Removes observations in rows 56 and 166
-aisR2 %>% ggpairs() + theme_bw()
+aisR2 <- aisR |> slice(-56, -166) #Removes observations in rows 56 and 166
+aisR2 |> ggpairs() + theme_bw()
 ```
 
 \indent After removing these two unusual observations, the relationships between 
@@ -584,13 +584,13 @@ legend to help to understand the plot. \index{\texttt{geom\_point()}}
 (ref:fig6-7) Scatterplot of athlete's height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
 
 ```{r Figure6-7,fig.cap = "(ref:fig6-7)",echo = F}
-aisR2 <- ais %>%
-  slice(-c(56, 166)) %>%
-  select(Ht, Hc, Bfat, Sex) %>%
+aisR2 <- ais |>
+  slice(-c(56, 166)) |>
+  select(Ht, Hc, Bfat, Sex) |>
   mutate(Sex = factor(Sex))
 
 
-aisR2 %>% ggplot(mapping = aes(x = Ht, y = Hc)) +
+aisR2 |> ggplot(mapping = aes(x = Ht, y = Hc)) +
   geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
@@ -598,13 +598,13 @@ aisR2 %>% ggplot(mapping = aes(x = Ht, y = Hc)) +
 ```
 
 ```{r eval = F}
-aisR2 <- ais %>%
-  slice(-c(56, 166)) %>%
-  select(Ht, Hc, Bfat, Sex) %>%
+aisR2 <- ais |>
+  slice(-c(56, 166)) |>
+  select(Ht, Hc, Bfat, Sex) |>
   mutate(Sex = factor(Sex))
 
 
-aisR2 %>% ggplot(mapping = aes(x = Ht, y = Hc)) +
+aisR2 |> ggplot(mapping = aes(x = Ht, y = Hc)) +
   geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
@@ -632,8 +632,8 @@ logical inquiry on the ``Sex`` variable in the updated ``aisR2`` data set, using
 then running the ``cor`` function on each version of the data set:
 
 ```{r}
-cor(Hc ~ Ht, data = aisR2 %>% filter(Sex == 0)) #Males only
-cor(Hc ~ Ht, data = aisR2 %>% filter(Sex == 1)) #Females only
+cor(Hc ~ Ht, data = aisR2 |> filter(Sex == 0)) #Males only
+cor(Hc ~ Ht, data = aisR2 |> filter(Sex == 1)) #Females only
 ```
 
 These results show that $\boldsymbol{r} = -0.05$ for *Height* and *Hematocrit* 
@@ -655,14 +655,14 @@ doubly reinforces the dangers of aggregating different groups and
 ignoring the group information. 
 
 ```{r}
-cor(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 0)) #Males only
-cor(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1)) #Females only
+cor(Hc ~ Bfat, data = aisR2 |> filter(Sex == 0)) #Males only
+cor(Hc ~ Bfat, data = aisR2 |> filter(Sex == 1)) #Females only
 ```
 
 (ref:fig6-8) Scatterplot of athlete's body fat and hematocrit by sex of athletes. Males were coded as 0s and females as 1s. 
 
 ```{r Figure6-8,fig.cap = "(ref:fig6-8)",echo = F}
-aisR2 %>% ggplot(mapping = aes(x = Bfat, y = Hc)) +
+aisR2 |> ggplot(mapping = aes(x = Bfat, y = Hc)) +
   geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
@@ -672,7 +672,7 @@ aisR2 %>% ggplot(mapping = aes(x = Bfat, y = Hc)) +
 <!-- \newpage -->
 
 ```{r eval = F}
-aisR2 %>% ggplot(mapping = aes(x = Bfat, y = Hc)) +
+aisR2 |> ggplot(mapping = aes(x = Bfat, y = Hc)) +
   geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
@@ -696,14 +696,14 @@ variability in *Body Fat* associated with taller athletes (each sort of
 "fans out"). 
 
 ```{r}
-cor(Bfat ~ Ht, data = aisR2 %>% filter(Sex == 0)) #Males only
-cor(Bfat ~ Ht, data = aisR2 %>% filter(Sex == 1)) #Females only
+cor(Bfat ~ Ht, data = aisR2 |> filter(Sex == 0)) #Males only
+cor(Bfat ~ Ht, data = aisR2 |> filter(Sex == 1)) #Females only
 ```
 
 (ref:fig6-9) Scatterplot of athlete's body fat and height by sex.
 
 ```{r Figure6-9,fig.cap = "(ref:fig6-9)",echo = F}
-aisR2 %>% ggplot(mapping = aes(x = Ht, y = Bfat)) +
+aisR2 |> ggplot(mapping = aes(x = Ht, y = Bfat)) +
   geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
@@ -712,7 +712,7 @@ aisR2 %>% ggplot(mapping = aes(x = Ht, y = Bfat)) +
 
 
 ```{r eval = F}
-aisR2 %>% ggplot(mapping = aes(x = Ht, y = Bfat)) +
+aisR2 |> ggplot(mapping = aes(x = Ht, y = Bfat)) +
   geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
@@ -840,7 +840,7 @@ quantiles <- qdata(Tstar, c(0.025, 0.975)) #95% Confidence Interval
 ```{r Figure6-10,fig.cap = "(ref:fig6-10)"}
 quantiles
 
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
+tibble(Tstar) |> ggplot(aes(x = Tstar)) +
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -919,7 +919,7 @@ library(spuRs) #install.packages("spuRs")
 data(ufc)
 ufc <- as_tibble(ufc)
 
-ufc %>% ggplot(mapping = aes(x = dbh.cm, y = height.m)) +
+ufc |> ggplot(mapping = aes(x = dbh.cm, y = height.m)) +
   geom_point() +
   geom_smooth(method = "lm") +
   theme_bw() 
@@ -933,7 +933,7 @@ because it is so unusual it likely corresponds to either a damaged tree or a
 recording error. 
 
 ```{r}
-ufc %>% slice(168)
+ufc |> slice(168)
 ```
 
 \indent With the outlier in the data set, the correlation is 0.77 and without it, the
@@ -946,7 +946,7 @@ strength of the correlation.
 
 ```{r}
 cor(dbh.cm ~ height.m, data = ufc)
-cor(dbh.cm ~ height.m, data = ufc %>% slice(-168))
+cor(dbh.cm ~ height.m, data = ufc |> slice(-168))
 ```
 
 \indent With the outlier included, the bootstrap 95% confidence interval goes from 0.702 to
@@ -980,7 +980,7 @@ for (b in (1:B)){
 quantiles <- qdata(Tstar, c(.025, .975)) #95% Confidence Interval
 quantiles
 
-p1 <- tibble(Tstar) %>%  ggplot(aes(x = Tstar)) +
+p1 <- tibble(Tstar) |>  ggplot(aes(x = Tstar)) +
   geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "skyblue", center = 0) +
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -992,15 +992,15 @@ p1 <- tibble(Tstar) %>%  ggplot(aes(x = Tstar)) +
   xlim(0.6, 0.85) +
   ylim(0, 1.1)
 
-Tobs <- cor(dbh.cm ~ height.m, data = ufc %>% slice(-168)); Tobs
+Tobs <- cor(dbh.cm ~ height.m, data = ufc |> slice(-168)); Tobs
 Tstar <- matrix(NA, nrow = B)
 for (b in (1:B)){
-  Tstar[b] <- cor(dbh.cm ~ height.m, data = resample(ufc %>% slice(-168)))
+  Tstar[b] <- cor(dbh.cm ~ height.m, data = resample(ufc |> slice(-168)))
 }
 quantiles <- qdata(Tstar, c(.025, .975)) #95% Confidence Interval
 quantiles
 
-p2 <- tibble(Tstar) %>%  ggplot(aes(x = Tstar)) +
+p2 <- tibble(Tstar) |>  ggplot(aes(x = Tstar)) +
   geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -1046,7 +1046,7 @@ explained differences in obesity.].
 (ref:fig6-13) Scatterplot with estimated regression line (solid line) for the *Beers* and *BAC* data. The solid arrows indicate the predictor variable values of 4 and 5 beers and the dashed lines illustrate the predicted mean BAC for 4 and 5 beers consumed based on the SLR model. 
 
 ```{r Figure6-13,fig.cap = "(ref:fig6-13)"}
-BB %>% ggplot(mapping = aes(x = Beers, y = BAC)) +
+BB |> ggplot(mapping = aes(x = Beers, y = BAC)) +
   geom_smooth(method = "lm", col = "cyan4") +
   geom_point() +
   theme_bw() + 
@@ -1263,7 +1263,7 @@ using the ``lm`` function:
 \index{\texttt{lm()}}
 
 ```{r}
-m2 <- lm(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1)) #Results for Females 
+m2 <- lm(Hc ~ Bfat, data = aisR2 |> filter(Sex == 1)) #Results for Females 
 summary(m2)
 ```
 
@@ -1272,7 +1272,7 @@ summary(m2)
 (ref:fig6-15) Scatterplot of Hematocrit versus Body Fat for female athletes. Note how the ``filter`` was used to pipe the subset of the data set to the plot.
 
 ```{r Figure6-15,fig.cap = "(ref:fig6-15)"}
-aisR2 %>% filter(Sex == 1) %>% ggplot(mapping = aes(x = Bfat, y = Hc)) +
+aisR2 |> filter(Sex == 1) |> ggplot(mapping = aes(x = Bfat, y = Hc)) +
   geom_point() +
   geom_smooth(method = "lm") +
   theme_bw() +
@@ -1494,7 +1494,7 @@ equation -- here between 54 and 60 degrees F seems reasonable.
 (ref:fig6-18) Scatterplot of log-hectares burned versus temperature with estimated regression line. Information on the year of each observation is added using a local aesthetic inside ``geom_point`` to color the points on a color gradient based on ``Year``.
 
 ```{r Figure6-18,fig.cap = "(ref:fig6-18)",warning = F,message = F}
-mtfires %>% ggplot(mapping = aes(x = Temperature, y = loghectares)) +
+mtfires |> ggplot(mapping = aes(x = Temperature, y = loghectares)) +
   geom_point(aes(color = Year), size = 2.5) +
   geom_smooth(method = "lm") +
   theme_bw() +
@@ -1667,7 +1667,7 @@ provides numerical and interpretable information that drives that point home.
 
 
 ```{r}
-m2 <- lm(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1)) #Results for Females
+m2 <- lm(Hc ~ Bfat, data = aisR2 |> filter(Sex == 1)) #Results for Females
 summary(m2)
 ```
 
@@ -2120,7 +2120,7 @@ examples:
 (ref:fig6-23) Diagnostics plots for tree height and diameter simple linear regression model. 
 
 ```{r Figure6-23,fig.cap = "(ref:fig6-23)",echo = F}
-tree1 <- lm(height.m ~ dbh.cm, data = ufc %>% slice(-168))
+tree1 <- lm(height.m ~ dbh.cm, data = ufc |> slice(-168))
 par(mfrow = c(2,2))
 plot(tree1, add.smooth = F)
 ```
@@ -2132,7 +2132,7 @@ would be misleading since it does not accurately represent the relationship
 between tree diameter and tree height. 
 
 ```{r}
-tree1 <- lm(height.m ~ dbh.cm, data = ufc %>% slice(-168))
+tree1 <- lm(height.m ~ dbh.cm, data = ufc |> slice(-168))
 summary(tree1)
 ```
 
@@ -2183,7 +2183,7 @@ geyser <- as_tibble(geyser)
 # Aligns the duration with time to next eruption
 G2 <- tibble(Waiting = geyser$waiting[-1], Duration = geyser$duration[-299])
 
-G2 %>% ggplot(mapping = aes(x = Duration, y = Waiting)) +
+G2 |> ggplot(mapping = aes(x = Duration, y = Waiting)) +
   geom_point() +
   geom_smooth(method = "lm") +
   geom_smooth(lty = 2, col = "red", lwd = 1.5, se = F) + #Add smoothing line
@@ -2300,7 +2300,7 @@ The main components of the R code used in this chapter follow with the
 components to modify in lighter and/or ALL CAPS text where ``y`` is a response variable, 
 ``x`` is an explanatory variable, and the data are in ``DATASETNAME``.
 
-* **`r colFmt("DATASETNAME","red")` %>% ggpairs()**
+* **`r colFmt("DATASETNAME","red")` |> ggpairs()**
 
     * Requires the ``GGally`` package.
     
@@ -2319,7 +2319,7 @@ data = `r colFmt("DATASETNAME","red")`)**
     * Provides a base R scatter plot.
     \index{\texttt{plot()}!\texttt{lm()}|textbf}
     
-* **`r colFmt("DATASETNAME","red")` %>% ggplot(mapping = aes(x = `r colFmt("x","red")`, y = `r colFmt("y","red")`) +  
+* **`r colFmt("DATASETNAME","red")` |> ggplot(mapping = aes(x = `r colFmt("x","red")`, y = `r colFmt("y","red")`) +  
 geom_point() +  
 geom_smooth(method = "lm")**
 
@@ -2363,7 +2363,7 @@ column and was removed by ``select(-1)``.
 ```r
 treadmill <- read_csv("http://www.math.montana.edu/courses/s217/documents/treadmill.csv")
 library(psych)
-treadmill %>% select(-1) %>% ggpairs()
+treadmill |> select(-1) |> ggpairs()
 ```
 
 6.1.1. First, 

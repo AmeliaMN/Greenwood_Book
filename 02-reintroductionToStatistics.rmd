@@ -217,12 +217,12 @@ dd$Condition <- factor(dd$Condition)
 
 We use this sort of explicit declaration for either character coded (non-numeric) variables or for numerically coded variables where the numbers represent categories to force R to correctly work with the information on those variables. For quantitative variables, we do not need to declare their type and they are stored as numeric variables as long as there is no text in that column of the spreadsheet other than the variable name.
 
-\indent The one-at-a-time declaration of the variables as factors when there are many (here there are six more) creates repetitive and cumbersome code. There is another way of managing this and other similar related "data wrangling"^[Some might call this data manipulation or transformation, but those terms can have other meanings and we want a term to capture organizing, preparing, and possibly modifying the data to prepare for analysis and doing it reproducibly in what we like to call "data wrangling".]. To do this, we will combine using the pipe operator (`%>% ` from the `magrittr` package or `|>` in base R) and using the `mutate` function from `dplyr`, both `%>%` and `mutate` are part of the `tidyverse` and start to help us write code that flows from left to right to accomplish multiple tasks. \index{pipe} \index{\texttt{\%>\%}} \index{\texttt{\symbol{124}\symbol{62}}} \index{data wrangling} \index{\texttt{mutate()}} The pipe operator (`%>%` or `|>`) allows us to pass a data set to a function (sometimes more than one if you have multiple data wrangling tasks to complete -- see work below) and there is a keyboard short-cut to get the combination of characters for it by using Ctrl+Shift+M on a PC or Cmd+Shift+M on a Mac. The `mutate` function allows us to create new columns or replace existing ones by using information from other columns, separating each additional operation by a comma (and a "return" for proper style). You will gradually see more reasons why we want to learn these functions, but for now this allows us to convert the character variables into `factor` variables within `mutate` and when we are all done to assign our final data set back in the same `dd` tibble that we started with.   
+\indent The one-at-a-time declaration of the variables as factors when there are many (here there are six more) creates repetitive and cumbersome code. There is another way of managing this and other similar related "data wrangling"^[Some might call this data manipulation or transformation, but those terms can have other meanings and we want a term to capture organizing, preparing, and possibly modifying the data to prepare for analysis and doing it reproducibly in what we like to call "data wrangling".]. To do this, we will combine using the pipe operator (`|>` in base R, or `%>% ` from the `magrittr` package) and using the `mutate` function from `dplyr`. The pipe and `mutate` help us write code that flows from left to right to accomplish multiple tasks. \index{pipe} \index{\texttt{\%>\%}} \index{\texttt{\symbol{124}\symbol{62}}} \index{data wrangling} \index{\texttt{mutate()}} The pipe operator (`|>` or `%>%`) allows us to pass a data set to a function (sometimes more than one if you have multiple data wrangling tasks to complete -- see work below) and there is a keyboard short-cut to get the combination of characters for it by using Ctrl+Shift+M on a PC or Cmd+Shift+M on a Mac. The `mutate` function allows us to create new columns or replace existing ones by using information from other columns, separating each additional operation by a comma (and a "return" for proper style). You will gradually see more reasons why we want to learn these functions, but for now this allows us to convert the character variables into `factor` variables within `mutate` and when we are all done to assign our final data set back in the same `dd` tibble that we started with.   
 
 \newpage
 
 ```{r}
-dd <- dd %>% mutate(Shirt = factor(Shirt),
+dd <- dd |> mutate(Shirt = factor(Shirt),
                     Helmet = factor(Helmet),
                     Pants = factor(Pants),
                     Gloves = factor(Gloves),
@@ -232,7 +232,7 @@ dd <- dd %>% mutate(Shirt = factor(Shirt),
 ```
 
 
-The first part of the codechunk (`dd <-`) is to save our work that follows into the `dd` tibble. The `dd %>% mutate` is translated as "take the tibble `dd` and apply the `mutate` function." Inside the `mutate` function, each line has a `variablename = factor(variablename)` that declares each variable as a factor variable with the same name as in the original tibble. 
+The first part of the codechunk (`dd <-`) is to save our work that follows into the `dd` tibble. The `dd |> mutate` is translated as "take the tibble `dd` and apply the `mutate` function." Inside the `mutate` function, each line has a `variablename = factor(variablename)` that declares each variable as a factor variable with the same name as in the original tibble. 
 
 \indent With many variables in a data set and with some preliminary data wrangling completed, it is often useful to get some 
 quick information about all of the variables; the ``summary`` function provides 
@@ -273,7 +273,7 @@ contains the histogram with a boxplot and a rug of *Distance*, all ignoring any 
 (ref:fig2-1) Histogram (with 20 bins), boxplot, and rug of passing distances (in cm).
 
 ```{r Figure2-1, fig.cap="(ref:fig2-1)",echo=F,cache=T}
-dd %>% ggplot(mapping = aes(x = Distance)) +
+dd |> ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 20, fill = "grey") +
   geom_rug(alpha = 0.1) +
   # width used to scale boxplot to make it more visible
@@ -286,7 +286,7 @@ dd %>% ggplot(mapping = aes(x = Distance)) +
 ```
 
 ```{r eval=F}
-dd %>% ggplot(mapping = aes(x = Distance)) +
+dd |> ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 20, fill = "grey") +
   geom_rug(alpha = 0.1) +
   geom_boxplot(color = "tomato", width = 30) + 
@@ -341,7 +341,7 @@ either display and will rarely make both together. \index{\texttt{geom\_density(
 
 ```{r Figure2-2, fig.cap="(ref:fig2-2)",cache=T,echo=F}
 set.seed(555)
-dd %>% ggplot(mapping = aes(x = Distance)) +
+dd |> ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 20, fill = "grey", aes(y = ..density..)) +
   geom_density(fill = "purple", alpha = 0.1) + 
   geom_rug(alpha = 0.1) + 
@@ -352,7 +352,7 @@ dd %>% ggplot(mapping = aes(x = Distance)) +
 ```
 
 ```r
-dd %>% ggplot(mapping = aes(x = Distance)) +
+dd |> ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 15, fill = "grey", aes(y = ..density..)) +
   geom_density(fill = "purple", alpha = 0.1) + 
   geom_rug(alpha = 0.1) + 
@@ -392,12 +392,12 @@ boxplots showing similar distributions for all the groups, with a slightly highe
 
 ```{r Figure2-3, fig.cap="(ref:fig2-3)",echo=F}
 old.par <- par(mai = c(0.5,0.5,0.5,0.5))
-boxplot(Distance ~ Condition, data = dd)
+bwplot(Distance ~ Condition, data = dd)
 
 ```
 
 ```{r eval=F}
-boxplot(Distance ~ Condition, data = dd)
+bwplot(Distance ~ Condition, data = dd)
 ```
 
 \indent The "~" (which is read as the *tilde* symbol^[If you want to type this character in R Markdown, try `$\sim$` outside of code chunks.], which you can find in the
@@ -531,44 +531,44 @@ back into R, but it is actually pretty easy to use R to do data
 management once the data set is loaded. It is also a better scientific process to do as much of your data management within R as possible so that your steps in managing the data are fully documented and reproducible. Highlighting and clicking in spreadsheet programs is a dangerous way to work and can be impossible to recreate steps that were taken from initial data set to the version that was analyzed. In R, we could identify the rows that contain the observations we want to retain and just extract those rows, but this is hard with over five thousand observations. The `filter` function from the ``dplyr`` package (part of the ``tidyverse`` suite of packages) is the best way to be able to focus on observations that meet a particular condition; we can "filter" the data set to retain just those rows. The `filter` function takes the data set via the pipe operate and then we need to define the condition we want to meet to retain those rows. Here we need to define the variable we want to work with, `Condition`, and then request rows that meet a condition (are `%in%`) and the aspects that meet that condition (here by concatenating the two levels of "casual" and "commute"), leading to code of: \index{\texttt{filter()}}
 
 ```
-dd %>% filter(Condition %in% c("casual", "commute"))
+dd |> filter(Condition %in% c("casual", "commute"))
 ```
 
 We want to save that new filtered data set into a new tibble for future work, so we can use the assignment operator (``<-``) to save the reduced data set into `ddsub`:
 
 ```{r}
-ddsub <- dd %>% filter(Condition %in% c("casual", "commute"))
+ddsub <- dd |> filter(Condition %in% c("casual", "commute"))
 ```
 
 There is also the `select` function that we could also use with an additional pipe operator to just focus on certain columns in the data set, here to just retain the `Condition` and `Distance` variables using: \index{\texttt{select()}}
 
 ```{r}
-ddsub <- dd %>% 
-  filter(Condition %in% c("casual","commute")) %>%
+ddsub <- dd |> 
+  filter(Condition %in% c("casual","commute")) |>
   select(Distance, Condition)
 ```
 
 The ``select`` function shows up in multiple packages so you might need to use ``dplyr::select()`` which tells R to use the version of ``select`` that is in ``dplyr``. When you are working to filter or subset your data set you should always check that the correct observations were dropped 
-either using ``View(ddsub)`` or by doing a quick summary of the 
+either using ``View(ddsub)`` or by doing a quick tally of the 
 ``Condition`` variable in the new tibble. 
 
 
 ```{r}
-summary(ddsub$Condition)
+tally(~Condition, data = ddsub)
 ```
 
 It ends up that R remembers the categories for observations that we removed even though there are
 0 observations in them now and that can cause us some problems. When we remove a
 group of observations, we sometimes need to clean up categorical variables to
-just reflect the categories that are present. The ``factor`` 
-\index{\texttt{factor()}}
-function 
-creates categorical variables based on the levels of the variables that are 
-observed and is useful to run here to clean up `Condition` to just reflect the categories that are now present. 
+just reflect the categories that are present. The ``fct_drop`` 
+\index{\texttt{fct\_drop()}}
+function from the `forcats` package
+will drop any categories that have no observations,  
+and is useful to run here to clean up `Condition` to just reflect the categories that are now present. 
 
 ```{r}
-ddsub <- ddsub %>% mutate(Condition = factor(Condition))
-summary(ddsub$Condition)
+ddsub <- ddsub |> mutate(Condition = fct_drop(Condition))
+tally(~Condition, data = ddsub)
 ```
 
 
@@ -580,12 +580,12 @@ the two groups of interest here as seen in Figure \@ref(fig:Figure2-5). Note tha
 ```{r Figure2-5, fig.cap="(ref:fig2-5)",echo=F}
 par(mfrow = c(1,2))
 # old.par <- par(mai = c(0.5,0.5,0.5,0.5))
-boxplot(Distance ~ Condition,data = ddsub) 
+bwplot(Distance ~ Condition,data = ddsub) 
 pirateplot(Distance ~ Condition, data = ddsub, inf.method = "ci", point.o = 0.25, inf.disp = "line")
 ```
 
 ```{r eval=F}
-boxplot(Distance ~ Condition, data = ddsub) 
+bwplot(Distance ~ Condition, data = ddsub) 
 pirateplot(Distance ~ Condition, data = ddsub, inf.method = "ci", inf.disp = "line")
 ```
 
@@ -731,8 +731,8 @@ what this means here.
 
 ```{r echo=T}
 set.seed(9432)
-s1 <- sample(ddsub %>% filter(Condition %in% "commute"), size = 15)
-s2 <- sample(ddsub %>% filter(Condition %in% "casual"), size = 15)
+s1 <- sample(ddsub |> filter(Condition %in% "commute"), size = 15)
+s2 <- sample(ddsub |> filter(Condition %in% "casual"), size = 15)
 dsample <- rbind(s1, s2)
 mean(Distance ~ Condition, data = dsample)
 ```
@@ -746,8 +746,8 @@ that the ``Distances`` are held in the same place while the group labels are shu
 <!-- \newpage -->
 
 ```{r}
-Perm1 <- dsample %>% 
-  select(Distance, Condition) %>% 
+Perm1 <- dsample |> 
+  select(Distance, Condition) |> 
   mutate(PermutedCondition = shuffle(Condition))
 # To force the tibble to print out all rows in data set -- not used often
 data.frame(Perm1) 
@@ -1013,7 +1013,7 @@ for (b in (1:B)){
   lmP <- lm(Distance ~ shuffle(Condition), data = dsample)
   Tstar[b] <- coef(lmP)[2]
 }
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -1036,18 +1036,18 @@ for (b in (1:B)){
 \small
 
 ```{r eval=FALSE}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
   labs(y = "Density") +
   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text", vjust = -0.75)
 
-favstats(Tstar)
+favstats(~Tstar)
 ```
 
 ```{r echo=F, eval=T}
-favstats(Tstar)
+favstats(~Tstar)
 ```
 
 \normalsize
@@ -1074,7 +1074,7 @@ the vertical line and a bin count are in the same horizontal position.
 
 ```{r Figure2-9, fig.cap="(ref:fig2-9)",echo=F,cache=F}
 Tobs <- -25.933
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -1088,7 +1088,7 @@ tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
 
 ```{r eval=F}
 Tobs <- -25.933
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -1116,11 +1116,11 @@ of interest).
 
 
 ```{r}
-pdata(Tstar, Tobs, lower.tail = T)[[1]]
+pdata(~Tstar, Tobs, lower.tail = T)[[1]]
 ```
 
 ```{r echo=F}
-pval_1 <- pdata(Tstar, Tobs, lower.tail = T)[[1]]
+pval_1 <- pdata(~Tstar, Tobs, lower.tail = T)[[1]]
 ```
 
 The proportion of `r pval_1` tells us that `r pval_1*1000` of the 1,000 permuted results 
@@ -1165,11 +1165,11 @@ and ``lower.tail = F`` provides this result:
 \index{\texttt{pdata()}}
 
 ```{r}
-pdata(Tstar, -Tobs, lower.tail = F)[[1]]
+pdata(~Tstar, -Tobs, lower.tail = F)[[1]]
 ```
 
 ```{r echo=F}
-pval_2 <- pdata(Tstar, -Tobs, lower.tail = F)[[1]]
+pval_2 <- pdata(~Tstar, -Tobs, lower.tail = F)[[1]]
 ```
 
 So the p-value to test our null hypothesis of no difference in the true means 
@@ -1179,7 +1179,7 @@ Figure \@ref(fig:Figure2-10) shows both cut-offs on the histogram and density cu
 (ref:fig2-10) Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (-25.933) and its opposite value (25.933) required for performing the two-sided test.
 
 ```{r Figure2-10, fig.cap="(ref:fig2-10)",echo=F,cache=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -1190,7 +1190,7 @@ tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
 ```
 
 ```{r eval=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -1735,7 +1735,7 @@ be surprised if your results vary if you use different random number seeds.
 (ref:fig2-12) Permutation distribution of the $t$-statistic.
 
 ```{r Figure2-12, fig.cap="(ref:fig2-12)",echo=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -1748,7 +1748,7 @@ tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
 \newpage
 
 ```{r eval=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -1969,7 +1969,7 @@ pdata(abs(Tstar), abs(Tobs), lower.tail = F)
 (ref:fig2-15) Permutation distribution of the $t$-statistic for $n = 1,636$ overtake data set.
 
 ```{r Figure2-15, fig.cap="(ref:fig2-15)",echo=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -2016,12 +2016,12 @@ favstats(GPA ~ Sex, data = s217)
 ```{r Figure2-16, fig.cap="(ref:fig2-16)", echo=F,cache=T}
 par(mfrow = c(1,2))
 # old.par <- par(mai = c(0.5,0.5,0.5,0.5))
-boxplot(GPA ~ Sex, data = s217)
+bwplot(GPA ~ Sex, data = s217)
 pirateplot(GPA ~ Sex, data = s217, inf.method = "ci", inf.disp = "line")
 ```
 
 ```{r eval=F}
-boxplot(GPA ~ Sex, data = s217)
+bwplot(GPA ~ Sex, data = s217)
 pirateplot(GPA ~ Sex, data = s217, inf.method = "ci", inf.disp = "line")
 ```
 
@@ -2077,7 +2077,7 @@ perm_pval
 (ref:fig2-17) Histogram and density curve of permutation distribution of test statistic for Intermediate Statistics student GPAs.
 
 ```{r Figure2-17, fig.cap="(ref:fig2-17)",echo=F,cache=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -2090,7 +2090,7 @@ tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
 <!-- \newpage -->
 
 ```{r eval=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -2202,7 +2202,7 @@ In the previous examples, some variation in p-values was observed as different m
 lm_commonmean <- lm(Distance ~ 1, data = ddsub)
 summary(lm_commonmean)
 
-favstats(Distance ~ 1, data = ddsub)
+favstats(~Distance, data = ddsub)
 ```
 
 
@@ -2212,7 +2212,7 @@ The second new R code needed is the `simulate` \index{\texttt{simulate()}} funct
 
 ```{r Figure2-18, fig.cap="(ref:fig2-18)",echo=F,cache=F}
 set.seed(123456)
-ddsub <- ddsub %>% mutate(SimDistance = simulate(lm_commonmean)[[1]])
+ddsub <- ddsub |> mutate(SimDistance = simulate(lm_commonmean)[[1]])
 
 pirateplot(SimDistance ~ Condition, data = ddsub, inf.method = "ci", inf.disp = "line")
 ```
@@ -2543,7 +2543,7 @@ dsample_BTS <- resample(dsample)
 
 
 ```{r}
-table(as.numeric(dsample_BTS$orig.id))
+tally(~orig.id, data = dsample_BTS)
 ```
 
 Like in permutations, one randomization isn't enough. A second bootstrap sample 
@@ -2560,7 +2560,7 @@ of selection on each so $30*1/30 = 1$. So we expect to see each observation in t
 
 ```{r}
 dsample_BTS2 <- resample(dsample)
-table(as.numeric(dsample_BTS2$orig.id))
+tally(~orig.id, data = dsample_BTS2)
 ```
 
 We can use the two results to get an idea of distribution of results in terms 
@@ -2574,15 +2574,15 @@ using bootstrapping methods.
 (ref:fig2-22) Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples. 
 
 ```{r Figure2-22, fig.cap="(ref:fig2-22)",echo=F,cache=T}
-cs1 <- table(as.vector(table(as.numeric(dsample_BTS$orig.id))))
+cs1 <- tally(~orig.id, data = dsample_BTS)
 n0s <- 30-sum(cs1)
 
-cs1_final <- table(c(rep(0,n0s),as.vector(table(as.numeric(dsample_BTS$orig.id)))))
+cs1_final <- table(c(rep(0,n0s),tally(~orig.id, data = dsample_BTS)))
 
-cs2 <- table(as.vector(table(as.numeric(dsample_BTS2$orig.id))))
+cs2 <- tally(~orig.id, data = dsample_BTS2)
 n0s <- 30-sum(cs2)
 
-cs2_final <- table(c(rep(0,n0s),as.vector(table(as.numeric(dsample_BTS2$orig.id)))))
+cs2_final <- table(c(rep(0,n0s),tally(~orig.id, data = dsample_BTS2)))
 
 par(mfrow = c(1,2))
 plot(cs1_final,ylab = "Counts of number of times of re-sampling",
@@ -2645,7 +2645,7 @@ options(width = oldWidth)
 (ref:fig2-23) Histogram and density curve of bootstrap distributions of difference in sample mean ``Distances`` with vertical line for the observed difference in the means of -25.933.
 
 ```{r Figure2-23, fig.cap="(ref:fig2-23)",echo=F,cache=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -2656,7 +2656,7 @@ tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
 ```
 
 ```{r eval=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -2725,7 +2725,7 @@ Figure \@ref(fig:Figure2-24) displays those same percentiles on the bootstrap di
 (ref:fig2-24) Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold, dashed vertical lines).
 
 ```{r Figure2-24, fig.cap="(ref:fig2-24)",echo=F,cache=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -2737,7 +2737,7 @@ tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
 ```
 
 ```{r eval=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -3065,7 +3065,7 @@ this code:
 (ref:fig2-26) Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines). 
 
 ```{r Figure2-26,fig.cap="(ref:fig2-26)",echo=F,cache=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "grey", 
                  center = 0) + 
   geom_density(aes(y = ..scaled..)) +
@@ -3078,7 +3078,7 @@ tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
 ```
 
 ```{r eval=F}
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+tibble(Tstar) |> ggplot(aes(x = Tstar)) + 
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "grey", 
                  center = 0) + 
   geom_density(aes(y = ..scaled..)) +
@@ -3198,12 +3198,12 @@ data = `r colFmt("DATASETNAME","red")`), level = 0.95)**
     * Finds the two-sided test p-value for an observed 2-sample t-test 
     statistic of ``Tobs``. \index{\texttt{pt()}|textbf}
 
-* **hist(`r colFmt("DATASETNAME\\$Y","red")`)**
+* **histogram(**~ `r colFmt("VARIABLENAME","red")`, data = `r colFmt("DATASETNAME","red")`**)**
 
     * Makes a histogram of a variable named ``Y`` from the data set of 
     interest. 
     
-* **boxplot(`r colFmt("Y","red")` ~ `r colFmt("X","red")`, data = `r colFmt("DATASETNAME","red")`)**
+* **bwplot(`r colFmt("Y","red")` ~ `r colFmt("X","red")`, data = `r colFmt("DATASETNAME","red")`)**
 
     * Makes a boxplot of a variable named Y for groups in X from the data set. 
     
@@ -3292,9 +3292,9 @@ applying the ``drop_na()`` function to the piped data set removes any observatio
 library(mosaicData)
 data(HELPrct)
 # Just focus on two variables
-HELPrct2 <- HELPrct %>% select(daysanysub, sex) 
+HELPrct2 <- HELPrct |> select(daysanysub, sex) 
 # Removes subjects (complete rows) with any missing values
-HELPrct3 <- HELPrct2 %>% drop_na() 
+HELPrct3 <- HELPrct2 |> drop_na() 
 favstats(daysanysub ~ sex, data = HELPrct2)
 favstats(daysanysub ~ sex, data = HELPrct3)
 ```

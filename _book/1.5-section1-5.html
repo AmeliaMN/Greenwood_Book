@@ -181,7 +181,7 @@ details > summary {
 <li><a href="1.1-section1-1.html#section1-1" id="toc-section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
 <li><a href="1.2-section1-2.html#section1-2" id="toc-section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
 <li><a href="1.3-section1-3.html#section1-3" id="toc-section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
-<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> R Markdown</a></li>
+<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> Quarto</a></li>
 <li><a href="1.5-section1-5.html#section1-5" id="toc-section1-5"><span class="toc-section-number">1.5</span> Grammar of Graphics</a></li>
 <li><a href="1.6-section1-6.html#section1-6" id="toc-section1-6"><span class="toc-section-number">1.6</span> Exiting RStudio</a></li>
 <li><a href="1.7-section1-7.html#section1-7" id="toc-section1-7"><span class="toc-section-number">1.7</span> Chapter summary</a></li>
@@ -314,9 +314,9 @@ details > summary {
 <div class="col-sm-12">
 <div id="section1-5" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Grammar of Graphics</h2>
-<p>The previous plots were made using what is called “base R” graphics. It is
+<p>The previous plots were made using what is called “lattice” graphics. It is
 possible to make versions of all the graphics we need in this material using
-single function calls like <code>boxplot</code> – and there are some places we will
+single function calls like <code>bwplot()</code> – and there are some places we will
 utilize these simple versions because they get us exactly what we want to see.
 But to make more complex displays and have complete control of the way the
 graphs look, we will utilize the <code>ggplot2</code> package <span class="citation">(<a href="#ref-R-ggplot2">Wickham et al. 2024</a>)</span> which was
@@ -328,8 +328,8 @@ worthwhile<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>.</
 <p>As opposed to base graphics, the ggplots will contain multiple components
 that are patched together with a <code>+</code>, with the general format of
 <code>ggplot(data = &lt;DATA&gt;, mapping = aes(&lt;VARIABLE MAPPINGS&gt;)) + &lt;GEOM_FUNCTION&gt;()</code>.
-Breaking this down, the <code>data = ...</code> tells the <code>ggplot</code> function where to look,
-the information inside the <code>aes</code> (or aesthetic) defines which variables in the
+Breaking this down, the <code>data = ...</code> tells the <code>ggplot()</code> function where to look,
+the information inside the <code>aes()</code> (or aesthetic) defines which variables in the
 data set to use and how to use them (often with <code>x = variable1</code>,
 <code>y = variable2</code>, etc., with <code>x = ...</code> for the variable on the x (horizontal)
 axis and <code>y = ...</code> for the variable on the y (vertical) axis), and the
@@ -341,8 +341,8 @@ the following line for better readability. Figure <a href="1.5-section1-5.html#f
 histogram of the <code>RunTime</code> variable made using the <code>+ geom_histogram()</code>.
 </p>
 
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="1.5-section1-5.html#cb23-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb23-2"><a href="1.5-section1-5.html#cb23-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> treadmill, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="1.5-section1-5.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb22-2"><a href="1.5-section1-5.html#cb22-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> treadmill, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 </code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure1-10"></span>
@@ -367,8 +367,8 @@ Figure <a href="1.5-section1-5.html#fig:Figure1-11">1.11</a>.</p>
 Figure 1.11: Histogram of Run Times using <code>ggplot</code> with 8 bins.
 </p>
 </div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="1.5-section1-5.html#cb25-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> treadmill, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime)) <span class="sc">+</span> </span>
-<span id="cb25-2"><a href="1.5-section1-5.html#cb25-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="1.5-section1-5.html#cb24-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> treadmill, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime)) <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="1.5-section1-5.html#cb24-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>)</span></code></pre></div>
 <div style="page-break-after: always;"></div>
 <p>The following chapters will explore further modifications for these
 plots, but there are a couple of additions to highlight. The first is that we
@@ -396,11 +396,11 @@ options there).
 Figure 1.12: Histogram with boxplot and rug of Run Times using <code>ggplot</code> with modified colors and theme.
 </p>
 </div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="1.5-section1-5.html#cb26-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> treadmill, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime)) <span class="sc">+</span> </span>
-<span id="cb26-2"><a href="1.5-section1-5.html#cb26-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">bins =</span> <span class="dv">8</span>) <span class="sc">+</span> </span>
-<span id="cb26-3"><a href="1.5-section1-5.html#cb26-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb26-4"><a href="1.5-section1-5.html#cb26-4" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="at">color =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">sides =</span> <span class="st">&quot;b&quot;</span>, <span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">0</span>), <span class="at">position =</span> <span class="st">&quot;jitter&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb26-5"><a href="1.5-section1-5.html#cb26-5" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="1.5-section1-5.html#cb25-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> treadmill, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime)) <span class="sc">+</span> </span>
+<span id="cb25-2"><a href="1.5-section1-5.html#cb25-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">bins =</span> <span class="dv">8</span>) <span class="sc">+</span> </span>
+<span id="cb25-3"><a href="1.5-section1-5.html#cb25-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb25-4"><a href="1.5-section1-5.html#cb25-4" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="at">color =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">sides =</span> <span class="st">&quot;b&quot;</span>, <span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">0</span>), <span class="at">position =</span> <span class="st">&quot;jitter&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb25-5"><a href="1.5-section1-5.html#cb25-5" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
 <div style="page-break-after: always;"></div>
 </div>
 <h3>References</h3>
@@ -421,9 +421,9 @@ to the <a href="https://datacarpentry.org/" class="uri">https://datacarpentry.or
 <li id="fn13"><p>Jittering typically involves adding random variability to each
 observation that is uniformly distributed in a range determined based on the
 spacing of the observations. The idea is to jitter just enough to see all the
-points but not too much. Because it is random noise being added, this also means that if you re-run the <code>jitter</code> function,
+points but not too much. Because it is random noise being added, this also means that if you re-run the <code>jitter()</code> function,
 the results will change if you do not set the random number seed using
-<code>set.seed</code> that is discussed more below. For more details, type <code>help(geom_rug)</code>
+<code>set.seed()</code> that is discussed more below. For more details, type <code>help(geom_rug)</code>
 in the console in RStudio. The code is unfortunately clumsy to add jittering to the rug, so a simpler option is to use <code>geom_rug(alpha = 0.3)</code> where the transparency is modified with the <code>alpha</code> option to help with identifying overplotting of lines in the rug.<a href="1.5-section1-5.html#fnref13" class="footnote-back">↩︎</a></p></li>
 <li id="fn14"><p>This certainly could have waited
 until later, but I have now seen enough base ggplot graphs that I really like

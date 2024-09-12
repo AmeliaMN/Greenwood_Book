@@ -113,7 +113,7 @@ BB <- read_csv("http://www.math.montana.edu/courses/s217/documents/beersbac.csv"
 
 
 ``` r
-BB %>% ggplot(mapping = aes(x = Beers, y = BAC)) +
+BB |> ggplot(mapping = aes(x = Beers, y = BAC)) +
   geom_point() +
   theme_bw()
 ```
@@ -383,10 +383,10 @@ mtfires <- read_csv("http://www.math.montana.edu/courses/s217/documents/climateR
 
 ``` r
 # natural log transformation of area burned
-mtfires <- mtfires %>% mutate(loghectares = log(hectares)) 
+mtfires <- mtfires |> mutate(loghectares = log(hectares)) 
 
 # Cuts the original hectares data so only log-scale version in tibble
-mtfiresR <- mtfires %>% 
+mtfiresR <- mtfires |> 
   select(-hectares) 
 cor(mtfiresR)
 ```
@@ -425,7 +425,7 @@ the second half of the data set.
 
 ``` r
 library(GGally) 
-mtfiresR %>% ggpairs() + theme_bw()
+mtfiresR |> ggpairs() + theme_bw()
 ```
 
 <div class="figure" style="text-align: center">
@@ -452,7 +452,7 @@ library(alr4)
 data(ais)
 library(tibble)
 ais <- as_tibble(ais)
-aisR <- ais %>%
+aisR <- ais |>
   select(Ht, Hc, Bfat)
 summary(aisR)
 ```
@@ -468,7 +468,7 @@ summary(aisR)
 ```
 
 ``` r
-aisR %>% ggpairs() + theme_bw()
+aisR |> ggpairs() + theme_bw()
 ```
 
 <div class="figure" style="text-align: center">
@@ -506,7 +506,7 @@ observations were found for individuals numbered 56 and 166 in the data set. To 
 
 
 ``` r
-aisR %>% slice(56, 166)
+aisR |> slice(56, 166)
 ```
 
 ```
@@ -523,8 +523,8 @@ We can create a reduced version of the data (``aisR2``) using the ``slice`` func
 
 
 ``` r
-aisR2 <- aisR %>% slice(-56, -166) #Removes observations in rows 56 and 166
-aisR2 %>% ggpairs() + theme_bw()
+aisR2 <- aisR |> slice(-56, -166) #Removes observations in rows 56 and 166
+aisR2 |> ggpairs() + theme_bw()
 ```
 
 <div class="figure" style="text-align: center">
@@ -624,13 +624,13 @@ legend to help to understand the plot. \index{\texttt{geom\_point()}}
 
 
 ``` r
-aisR2 <- ais %>%
-  slice(-c(56, 166)) %>%
-  select(Ht, Hc, Bfat, Sex) %>%
+aisR2 <- ais |>
+  slice(-c(56, 166)) |>
+  select(Ht, Hc, Bfat, Sex) |>
   mutate(Sex = factor(Sex))
 
 
-aisR2 %>% ggplot(mapping = aes(x = Ht, y = Hc)) +
+aisR2 |> ggplot(mapping = aes(x = Ht, y = Hc)) +
   geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
@@ -659,7 +659,7 @@ then running the ``cor`` function on each version of the data set:
 
 
 ``` r
-cor(Hc ~ Ht, data = aisR2 %>% filter(Sex == 0)) #Males only
+cor(Hc ~ Ht, data = aisR2 |> filter(Sex == 0)) #Males only
 ```
 
 ```
@@ -667,7 +667,7 @@ cor(Hc ~ Ht, data = aisR2 %>% filter(Sex == 0)) #Males only
 ```
 
 ``` r
-cor(Hc ~ Ht, data = aisR2 %>% filter(Sex == 1)) #Females only
+cor(Hc ~ Ht, data = aisR2 |> filter(Sex == 1)) #Females only
 ```
 
 ```
@@ -694,7 +694,7 @@ ignoring the group information.
 
 
 ``` r
-cor(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 0)) #Males only
+cor(Hc ~ Bfat, data = aisR2 |> filter(Sex == 0)) #Males only
 ```
 
 ```
@@ -702,7 +702,7 @@ cor(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 0)) #Males only
 ```
 
 ``` r
-cor(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1)) #Females only
+cor(Hc ~ Bfat, data = aisR2 |> filter(Sex == 1)) #Females only
 ```
 
 ```
@@ -720,7 +720,7 @@ cor(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1)) #Females only
 
 
 ``` r
-aisR2 %>% ggplot(mapping = aes(x = Bfat, y = Hc)) +
+aisR2 |> ggplot(mapping = aes(x = Bfat, y = Hc)) +
   geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
@@ -745,7 +745,7 @@ variability in *Body Fat* associated with taller athletes (each sort of
 
 
 ``` r
-cor(Bfat ~ Ht, data = aisR2 %>% filter(Sex == 0)) #Males only
+cor(Bfat ~ Ht, data = aisR2 |> filter(Sex == 0)) #Males only
 ```
 
 ```
@@ -753,7 +753,7 @@ cor(Bfat ~ Ht, data = aisR2 %>% filter(Sex == 0)) #Males only
 ```
 
 ``` r
-cor(Bfat ~ Ht, data = aisR2 %>% filter(Sex == 1)) #Females only
+cor(Bfat ~ Ht, data = aisR2 |> filter(Sex == 1)) #Females only
 ```
 
 ```
@@ -770,7 +770,7 @@ cor(Bfat ~ Ht, data = aisR2 %>% filter(Sex == 1)) #Females only
 
 
 ``` r
-aisR2 %>% ggplot(mapping = aes(x = Ht, y = Bfat)) +
+aisR2 |> ggplot(mapping = aes(x = Ht, y = Bfat)) +
   geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
@@ -914,7 +914,7 @@ quantiles
 ```
 
 ``` r
-tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
+tibble(Tstar) |> ggplot(aes(x = Tstar)) +
   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -999,7 +999,7 @@ library(spuRs) #install.packages("spuRs")
 data(ufc)
 ufc <- as_tibble(ufc)
 
-ufc %>% ggplot(mapping = aes(x = dbh.cm, y = height.m)) +
+ufc |> ggplot(mapping = aes(x = dbh.cm, y = height.m)) +
   geom_point() +
   geom_smooth(method = "lm") +
   theme_bw() 
@@ -1019,7 +1019,7 @@ recording error.
 
 
 ``` r
-ufc %>% slice(168)
+ufc |> slice(168)
 ```
 
 ```
@@ -1047,7 +1047,7 @@ cor(dbh.cm ~ height.m, data = ufc)
 ```
 
 ``` r
-cor(dbh.cm ~ height.m, data = ufc %>% slice(-168))
+cor(dbh.cm ~ height.m, data = ufc |> slice(-168))
 ```
 
 ```
@@ -1100,7 +1100,7 @@ quantiles
 ```
 
 ``` r
-p1 <- tibble(Tstar) %>%  ggplot(aes(x = Tstar)) +
+p1 <- tibble(Tstar) |>  ggplot(aes(x = Tstar)) +
   geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "skyblue", center = 0) +
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -1112,7 +1112,7 @@ p1 <- tibble(Tstar) %>%  ggplot(aes(x = Tstar)) +
   xlim(0.6, 0.85) +
   ylim(0, 1.1)
 
-Tobs <- cor(dbh.cm ~ height.m, data = ufc %>% slice(-168)); Tobs
+Tobs <- cor(dbh.cm ~ height.m, data = ufc |> slice(-168)); Tobs
 ```
 
 ```
@@ -1122,7 +1122,7 @@ Tobs <- cor(dbh.cm ~ height.m, data = ufc %>% slice(-168)); Tobs
 ``` r
 Tstar <- matrix(NA, nrow = B)
 for (b in (1:B)){
-  Tstar[b] <- cor(dbh.cm ~ height.m, data = resample(ufc %>% slice(-168)))
+  Tstar[b] <- cor(dbh.cm ~ height.m, data = resample(ufc |> slice(-168)))
 }
 quantiles <- qdata(Tstar, c(.025, .975)) #95% Confidence Interval
 quantiles
@@ -1134,7 +1134,7 @@ quantiles
 ```
 
 ``` r
-p2 <- tibble(Tstar) %>%  ggplot(aes(x = Tstar)) +
+p2 <- tibble(Tstar) |>  ggplot(aes(x = Tstar)) +
   geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "skyblue", center = 0) + 
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -1186,7 +1186,7 @@ explained differences in obesity.].
 
 
 ``` r
-BB %>% ggplot(mapping = aes(x = Beers, y = BAC)) +
+BB |> ggplot(mapping = aes(x = Beers, y = BAC)) +
   geom_smooth(method = "lm", col = "cyan4") +
   geom_point() +
   theme_bw() + 
@@ -1441,14 +1441,14 @@ using the ``lm`` function:
 
 
 ``` r
-m2 <- lm(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1)) #Results for Females 
+m2 <- lm(Hc ~ Bfat, data = aisR2 |> filter(Sex == 1)) #Results for Females 
 summary(m2)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1))
+## lm(formula = Hc ~ Bfat, data = filter(aisR2, Sex == 1))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -1470,7 +1470,7 @@ summary(m2)
 
 
 ``` r
-aisR2 %>% filter(Sex == 1) %>% ggplot(mapping = aes(x = Bfat, y = Hc)) +
+aisR2 |> filter(Sex == 1) |> ggplot(mapping = aes(x = Bfat, y = Hc)) +
   geom_point() +
   geom_smooth(method = "lm") +
   theme_bw() +
@@ -1686,7 +1686,7 @@ equation -- here between 54 and 60 degrees F seems reasonable.
 
 
 ``` r
-mtfires %>% ggplot(mapping = aes(x = Temperature, y = loghectares)) +
+mtfires |> ggplot(mapping = aes(x = Temperature, y = loghectares)) +
   geom_point(aes(color = Year), size = 2.5) +
   geom_smooth(method = "lm") +
   theme_bw() +
@@ -1907,14 +1907,14 @@ provides numerical and interpretable information that drives that point home.
 
 
 ``` r
-m2 <- lm(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1)) #Results for Females
+m2 <- lm(Hc ~ Bfat, data = aisR2 |> filter(Sex == 1)) #Results for Females
 summary(m2)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1))
+## lm(formula = Hc ~ Bfat, data = filter(aisR2, Sex == 1))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -2344,14 +2344,14 @@ between tree diameter and tree height.
 
 
 ``` r
-tree1 <- lm(height.m ~ dbh.cm, data = ufc %>% slice(-168))
+tree1 <- lm(height.m ~ dbh.cm, data = ufc |> slice(-168))
 summary(tree1)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = height.m ~ dbh.cm, data = ufc %>% slice(-168))
+## lm(formula = height.m ~ dbh.cm, data = slice(ufc, -168))
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -2416,7 +2416,7 @@ geyser <- as_tibble(geyser)
 # Aligns the duration with time to next eruption
 G2 <- tibble(Waiting = geyser$waiting[-1], Duration = geyser$duration[-299])
 
-G2 %>% ggplot(mapping = aes(x = Duration, y = Waiting)) +
+G2 |> ggplot(mapping = aes(x = Duration, y = Waiting)) +
   geom_point() +
   geom_smooth(method = "lm") +
   geom_smooth(lty = 2, col = "red", lwd = 1.5, se = F) + #Add smoothing line
@@ -2564,7 +2564,7 @@ The main components of the R code used in this chapter follow with the
 components to modify in lighter and/or ALL CAPS text where ``y`` is a response variable, 
 ``x`` is an explanatory variable, and the data are in ``DATASETNAME``.
 
-* **<font color = 'red'>DATASETNAME</font> %>% ggpairs()**
+* **<font color = 'red'>DATASETNAME</font> |> ggpairs()**
 
     * Requires the ``GGally`` package.
     
@@ -2583,7 +2583,7 @@ data = <font color = 'red'>DATASETNAME</font>)**
     * Provides a base R scatter plot.
     \index{\texttt{plot()}!\texttt{lm()}|textbf}
     
-* **<font color = 'red'>DATASETNAME</font> %>% ggplot(mapping = aes(x = <font color = 'red'>x</font>, y = <font color = 'red'>y</font>) +  
+* **<font color = 'red'>DATASETNAME</font> |> ggplot(mapping = aes(x = <font color = 'red'>x</font>, y = <font color = 'red'>y</font>) +  
 geom_point() +  
 geom_smooth(method = "lm")**
 
@@ -2627,7 +2627,7 @@ column and was removed by ``select(-1)``.
 ```r
 treadmill <- read_csv("http://www.math.montana.edu/courses/s217/documents/treadmill.csv")
 library(psych)
-treadmill %>% select(-1) %>% ggpairs()
+treadmill |> select(-1) |> ggpairs()
 ```
 
 6.1.1. First, 

@@ -181,7 +181,7 @@ details > summary {
 <li><a href="1.1-section1-1.html#section1-1" id="toc-section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
 <li><a href="1.2-section1-2.html#section1-2" id="toc-section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
 <li><a href="1.3-section1-3.html#section1-3" id="toc-section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
-<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> R Markdown</a></li>
+<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> Quarto</a></li>
 <li><a href="1.5-section1-5.html#section1-5" id="toc-section1-5"><span class="toc-section-number">1.5</span> Grammar of Graphics</a></li>
 <li><a href="1.6-section1-6.html#section1-6" id="toc-section1-6"><span class="toc-section-number">1.6</span> Exiting RStudio</a></li>
 <li><a href="1.7-section1-7.html#section1-7" id="toc-section1-7"><span class="toc-section-number">1.7</span> Chapter summary</a></li>
@@ -359,13 +359,13 @@ legend to help to understand the plot. </p>
 Figure 6.7: Scatterplot of athlete’s height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
 </p>
 </div>
-<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="6.3-section6-3.html#cb530-1" tabindex="-1"></a>aisR2 <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span></span>
-<span id="cb530-2"><a href="6.3-section6-3.html#cb530-2" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">56</span>, <span class="dv">166</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb530-3"><a href="6.3-section6-3.html#cb530-3" tabindex="-1"></a>  <span class="fu">select</span>(Ht, Hc, Bfat, Sex) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="6.3-section6-3.html#cb530-1" tabindex="-1"></a>aisR2 <span class="ot">&lt;-</span> ais <span class="sc">|&gt;</span></span>
+<span id="cb530-2"><a href="6.3-section6-3.html#cb530-2" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">56</span>, <span class="dv">166</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb530-3"><a href="6.3-section6-3.html#cb530-3" tabindex="-1"></a>  <span class="fu">select</span>(Ht, Hc, Bfat, Sex) <span class="sc">|&gt;</span></span>
 <span id="cb530-4"><a href="6.3-section6-3.html#cb530-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sex =</span> <span class="fu">factor</span>(Sex))</span>
 <span id="cb530-5"><a href="6.3-section6-3.html#cb530-5" tabindex="-1"></a></span>
 <span id="cb530-6"><a href="6.3-section6-3.html#cb530-6" tabindex="-1"></a></span>
-<span id="cb530-7"><a href="6.3-section6-3.html#cb530-7" tabindex="-1"></a>aisR2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Hc)) <span class="sc">+</span></span>
+<span id="cb530-7"><a href="6.3-section6-3.html#cb530-7" tabindex="-1"></a>aisR2 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Hc)) <span class="sc">+</span></span>
 <span id="cb530-8"><a href="6.3-section6-3.html#cb530-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Sex, <span class="at">color =</span> Sex), <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
 <span id="cb530-9"><a href="6.3-section6-3.html#cb530-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb530-10"><a href="6.3-section6-3.html#cb530-10" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
@@ -382,9 +382,9 @@ large group creates the misleading overall relationship<a href="#fn114" class="f
 logical inquiry on the <code>Sex</code> variable in the updated <code>aisR2</code> data set, using
 <code>Sex == 0</code> in the <code>filter</code> function to get a tibble with male subjects only and <code>Sex == 1</code> for the female subjects,
 then running the <code>cor</code> function on each version of the data set:</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="6.3-section6-3.html#cb531-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="6.3-section6-3.html#cb531-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
 <pre><code>## [1] -0.04756589</code></pre>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="6.3-section6-3.html#cb533-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="6.3-section6-3.html#cb533-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
 <pre><code>## [1] 0.02795272</code></pre>
 <p>These results show that <span class="math inline">\(\boldsymbol{r} = -0.05\)</span> for <em>Height</em> and <em>Hematocrit</em>
 for <em>males</em> and <span class="math inline">\(\boldsymbol{r} = 0.03\)</span> for <em>females</em>. The first suggests a
@@ -402,9 +402,9 @@ show weaker relationships that also appear to be in different directions
 (<span class="math inline">\(\boldsymbol{r} = 0.13\)</span> for men and <span class="math inline">\(\boldsymbol{r} = -0.17\)</span> for women). This
 doubly reinforces the dangers of aggregating different groups and
 ignoring the group information.</p>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="6.3-section6-3.html#cb535-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="6.3-section6-3.html#cb535-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
 <pre><code>## [1] 0.1269418</code></pre>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="6.3-section6-3.html#cb537-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="6.3-section6-3.html#cb537-1" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
 <pre><code>## [1] -0.1679751</code></pre>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-8"></span>
@@ -414,7 +414,7 @@ Figure 6.8: Scatterplot of athlete’s body fat and hematocrit by sex of athlete
 </p>
 </div>
 <!-- \newpage -->
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="6.3-section6-3.html#cb539-1" tabindex="-1"></a>aisR2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Bfat, <span class="at">y =</span> Hc)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="6.3-section6-3.html#cb539-1" tabindex="-1"></a>aisR2 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Bfat, <span class="at">y =</span> Hc)) <span class="sc">+</span></span>
 <span id="cb539-2"><a href="6.3-section6-3.html#cb539-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Sex, <span class="at">color =</span> Sex), <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
 <span id="cb539-3"><a href="6.3-section6-3.html#cb539-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb539-4"><a href="6.3-section6-3.html#cb539-4" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
@@ -434,9 +434,9 @@ another categorical variable
 we could incorporate… Both groups also seem to demonstrate slightly more
 variability in <em>Body Fat</em> associated with taller athletes (each sort of
 “fans out”).</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="6.3-section6-3.html#cb540-1" tabindex="-1"></a><span class="fu">cor</span>(Bfat <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="6.3-section6-3.html#cb540-1" tabindex="-1"></a><span class="fu">cor</span>(Bfat <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#Males only</span></span></code></pre></div>
 <pre><code>## [1] 0.1954609</code></pre>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="6.3-section6-3.html#cb542-1" tabindex="-1"></a><span class="fu">cor</span>(Bfat <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="6.3-section6-3.html#cb542-1" tabindex="-1"></a><span class="fu">cor</span>(Bfat <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
 <pre><code>## [1] 0.4476962</code></pre>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-9"></span>
@@ -445,7 +445,7 @@ variability in <em>Body Fat</em> associated with taller athletes (each sort of
 Figure 6.9: Scatterplot of athlete’s body fat and height by sex.
 </p>
 </div>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="6.3-section6-3.html#cb544-1" tabindex="-1"></a>aisR2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Bfat)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="6.3-section6-3.html#cb544-1" tabindex="-1"></a>aisR2 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Bfat)) <span class="sc">+</span></span>
 <span id="cb544-2"><a href="6.3-section6-3.html#cb544-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Sex, <span class="at">color =</span> Sex), <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
 <span id="cb544-3"><a href="6.3-section6-3.html#cb544-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb544-4"><a href="6.3-section6-3.html#cb544-4" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>

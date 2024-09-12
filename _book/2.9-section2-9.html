@@ -181,7 +181,7 @@ details > summary {
 <li><a href="1.1-section1-1.html#section1-1" id="toc-section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
 <li><a href="1.2-section1-2.html#section1-2" id="toc-section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
 <li><a href="1.3-section1-3.html#section1-3" id="toc-section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
-<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> R Markdown</a></li>
+<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> Quarto</a></li>
 <li><a href="1.5-section1-5.html#section1-5" id="toc-section1-5"><span class="toc-section-number">1.5</span> Grammar of Graphics</a></li>
 <li><a href="1.6-section1-6.html#section1-6" id="toc-section1-6"><span class="toc-section-number">1.6</span> Exiting RStudio</a></li>
 <li><a href="1.7-section1-7.html#section1-7" id="toc-section1-7"><span class="toc-section-number">1.7</span> Chapter summary</a></li>
@@ -360,10 +360,10 @@ multiple times and to do that it has to ignore some<a href="#fn54" class="footno
 <div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="2.9-section2-9.html#cb156-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">406</span>)</span>
 <span id="cb156-2"><a href="2.9-section2-9.html#cb156-2" tabindex="-1"></a>dsample_BTS <span class="ot">&lt;-</span> <span class="fu">resample</span>(dsample)</span></code></pre></div>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="2.9-section2-9.html#cb157-1" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">as.numeric</span>(dsample_BTS<span class="sc">$</span>orig.id))</span></code></pre></div>
-<pre><code>## 
-##  1  2  3  7  8  9 10 11 12 13 14 16 18 19 23 24 25 26 27 28 30 
-##  2  1  1  1  1  4  1  1  1  1  2  1  1  1  1  1  1  2  1  4  1</code></pre>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="2.9-section2-9.html#cb157-1" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>orig.id, <span class="at">data =</span> dsample_BTS)</span></code></pre></div>
+<pre><code>## orig.id
+##  1 10 11 12 13 14 16 18 19  2 23 24 25 26 27 28  3 30  7  8  9 
+##  2  1  1  1  1  2  1  1  1  1  1  1  1  2  1  4  1  1  1  1  4</code></pre>
 <p>Like in permutations, one randomization isn’t enough. A second bootstrap sample
 is also provided to help you get a sense of what bootstrap data sets contain.
 It did not select observations two through five but did select eight others more than once.
@@ -375,14 +375,14 @@ expect to see for an observation is the number of random draws times the probabl
 of selection on each so <span class="math inline">\(30*1/30 = 1\)</span>. So we expect to see each observation in the bootstrap sample on average once but random variability in the samples then creates the possibility of seeing it more than once or not all.</p>
 <!-- \newpage -->
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="2.9-section2-9.html#cb159-1" tabindex="-1"></a>dsample_BTS2 <span class="ot">&lt;-</span> <span class="fu">resample</span>(dsample)</span>
-<span id="cb159-2"><a href="2.9-section2-9.html#cb159-2" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">as.numeric</span>(dsample_BTS2<span class="sc">$</span>orig.id))</span></code></pre></div>
-<pre><code>## 
-##  1  6  7  8  9 10 11 12 13 16 17 20 22 23 24 25 26 28 30 
-##  2  2  1  1  2  1  4  1  3  1  1  1  2  2  1  1  2  1  1</code></pre>
+<span id="cb159-2"><a href="2.9-section2-9.html#cb159-2" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>orig.id, <span class="at">data =</span> dsample_BTS2)</span></code></pre></div>
+<pre><code>## orig.id
+##  1 10 11 12 13 16 17 20 22 23 24 25 26 28 30  6  7  8  9 
+##  2  1  4  1  3  1  1  1  2  2  1  1  2  1  1  2  1  1  2</code></pre>
 <p>We can use the two results to get an idea of distribution of results in terms
 of number of times observations might be re-sampled when sampling with
 replacement and the variation in those results, as shown in
-Figure <a href="2.9-section2-9.html#fig:Figure2-22">2.22</a>. We could also derive the expected counts for
+Figure <a href="2.9-section2-9.html#fig:Figure2-22">2.24</a>. We could also derive the expected counts for
 each number of times of re-sampling when we start with all observations having
 an equal chance and sampling with replacement but this isn’t important for
 using bootstrapping methods.</p>
@@ -390,7 +390,7 @@ using bootstrapping methods.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-22"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-22-1.png" alt="Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples." width="75%" />
 <p class="caption">
-Figure 2.22: Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples.
+Figure 2.24: Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples.
 </p>
 </div>
 <p>The main point of this exploration was to see that each run of the
@@ -427,10 +427,10 @@ function that was applied only to the explanatory variable.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-23"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-23-1.png" alt="Histogram and density curve of bootstrap distributions of difference in sample mean Distances with vertical line for the observed difference in the means of -25.933." width="75%" />
 <p class="caption">
-Figure 2.23: Histogram and density curve of bootstrap distributions of difference in sample mean <code>Distances</code> with vertical line for the observed difference in the means of -25.933.
+Figure 2.25: Histogram and density curve of bootstrap distributions of difference in sample mean <code>Distances</code> with vertical line for the observed difference in the means of -25.933.
 </p>
 </div>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="2.9-section2-9.html#cb166-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="2.9-section2-9.html#cb166-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
 <span id="cb166-2"><a href="2.9-section2-9.html#cb166-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
 <span id="cb166-3"><a href="2.9-section2-9.html#cb166-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
 <span id="cb166-4"><a href="2.9-section2-9.html#cb166-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -440,14 +440,14 @@ Figure 2.23: Histogram and density curve of bootstrap distributions of differenc
 <span id="cb166-8"><a href="2.9-section2-9.html#cb166-8" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
 <p>In this situation, the observed difference in the mean passing distances is -25.933 cm
 (<em>commute</em> - <em>casual</em>), which is the bold vertical line in Figure
-<a href="2.9-section2-9.html#fig:Figure2-23">2.23</a>.
+<a href="2.9-section2-9.html#fig:Figure2-23">2.25</a>.
 The bootstrap distribution
 shows the results for the difference in the sample
 means when fake data sets are re-constructed by sampling from the original data set with
 replacement. The bootstrap distribution is approximately centered at the observed
 value (difference in the sample means) and is relatively symmetric.</p>
 <p>The permutation distribution in the same situation (Figure
-<a href="2.4-section2-4.html#fig:Figure2-10">2.10</a>) had a similar shape but was centered at 0.
+<a href="2.4-section2-4.html#fig:Figure2-10">2.11</a>) had a similar shape but was centered at 0.
 Permutations create sampling
 distributions
 based on assuming the null hypothesis is true, which is useful for
@@ -482,15 +482,15 @@ of code using:</p>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="2.9-section2-9.html#cb172-1" tabindex="-1"></a>quantiles</span></code></pre></div>
 <pre><code>##       2.5%      97.5% 
 ## -50.005502  -2.248774</code></pre>
-<p>Figure <a href="2.9-section2-9.html#fig:Figure2-24">2.24</a> displays those same percentiles on the bootstrap distribution residing in <code>Tstar</code>.</p>
+<p>Figure <a href="2.9-section2-9.html#fig:Figure2-24">2.26</a> displays those same percentiles on the bootstrap distribution residing in <code>Tstar</code>.</p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-24"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-24-1.png" alt="Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold, dashed vertical lines)." width="75%" />
 <p class="caption">
-Figure 2.24: Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold, dashed vertical lines).
+Figure 2.26: Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold, dashed vertical lines).
 </p>
 </div>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="2.9-section2-9.html#cb174-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="2.9-section2-9.html#cb174-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
 <span id="cb174-2"><a href="2.9-section2-9.html#cb174-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
 <span id="cb174-3"><a href="2.9-section2-9.html#cb174-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
 <span id="cb174-4"><a href="2.9-section2-9.html#cb174-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -535,7 +535,7 @@ to form the interval with the degrees of freedom for the <span class="math inlin
 <pre><code>##                      2.5 %      97.5 %
 ## (Intercept)      117.64498 153.9550243
 ## Conditioncommute -51.60841  -0.2582517</code></pre>
-<p>The bootstrap interval was narrower by almost 4 cm and its upper limit was much further from 0. The bootstrap CI can vary depending on the random number seed used and additional runs of the code produced intervals of (-49.6, -2.8), (-48.3, -2.5), and (-50.9, -1.1) so the differences between the parametric and nonparametric approaches was not just due to an unusual bootstrap distribution. It is not entirely clear why the two intervals differ but there are slightly more results in the left tail of Figure <a href="2.9-section2-9.html#fig:Figure2-24">2.24</a> than in the right tail and this shifts the 95% confidence slightly away from 0 as compared to the parametric approach. All intervals have the same interpretation, only the methods for calculating the
+<p>The bootstrap interval was narrower by almost 4 cm and its upper limit was much further from 0. The bootstrap CI can vary depending on the random number seed used and additional runs of the code produced intervals of (-49.6, -2.8), (-48.3, -2.5), and (-50.9, -1.1) so the differences between the parametric and nonparametric approaches was not just due to an unusual bootstrap distribution. It is not entirely clear why the two intervals differ but there are slightly more results in the left tail of Figure <a href="2.9-section2-9.html#fig:Figure2-24">2.26</a> than in the right tail and this shifts the 95% confidence slightly away from 0 as compared to the parametric approach. All intervals have the same interpretation, only the methods for calculating the
 intervals and the assumptions differ. Specifically, the bootstrap interval can
 tolerate different distribution shapes other than normal and still provide
 intervals that work well<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a>. The other assumptions
@@ -552,14 +552,14 @@ that puts <span class="math inline">\(C\)</span>% in the middle of the distribut
 level. It is important to note that this <span class="math inline">\(t^*\)</span> has nothing to do with the previous
 test statistic <span class="math inline">\(t\)</span>. It is confusing and students first engaging these two options often happily
 take the result from a test statistic calculation and use it for a multiplier
-in a <span class="math inline">\(t\)</span>-based confidence interval – try to focus on which <span class="math inline">\(t\)</span> you are interested in before you use either. Figure <a href="2.9-section2-9.html#fig:Figure2-25">2.25</a> shows the
+in a <span class="math inline">\(t\)</span>-based confidence interval – try to focus on which <span class="math inline">\(t\)</span> you are interested in before you use either. Figure <a href="2.9-section2-9.html#fig:Figure2-25">2.27</a> shows the
 <span class="math inline">\(t\)</span>-distribution with 28 degrees of freedom and the cut-offs that put 95% of the
 area in the middle.</p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-25"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-25-1.png" alt="Plot of \(t(28)\) with cut-offs for putting 95% of distribution in the middle that delineate the \(t^*\) multiplier to make a 95% confidence interval." width="75%" />
 <p class="caption">
-Figure 2.25: Plot of <span class="math inline">\(t(28)\)</span> with cut-offs for putting 95% of distribution in the middle that delineate the <span class="math inline">\(t^*\)</span> multiplier to make a 95% confidence interval.
+Figure 2.27: Plot of <span class="math inline">\(t(28)\)</span> with cut-offs for putting 95% of distribution in the middle that delineate the <span class="math inline">\(t^*\)</span> multiplier to make a 95% confidence interval.
 </p>
 </div>
 <p>For 95% confidence intervals, the multiplier is going to be close to 2 and

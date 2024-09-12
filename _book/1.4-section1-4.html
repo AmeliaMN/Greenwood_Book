@@ -5,7 +5,7 @@
 <meta charset="utf-8" />
 <meta name="generator" content="pandoc" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="1.4 R Markdown | Intermediate Statistics with R" />
+<meta property="og:title" content="1.4 Quarto | Intermediate Statistics with R" />
 <meta property="og:type" content="book" />
 
 
@@ -21,9 +21,9 @@ MathJax.Hub.Config({
 </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta name="description" content="1.4 R Markdown | Intermediate Statistics with R">
+<meta name="description" content="1.4 Quarto | Intermediate Statistics with R">
 
-<title>1.4 R Markdown | Intermediate Statistics with R</title>
+<title>1.4 Quarto | Intermediate Statistics with R</title>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -181,7 +181,7 @@ details > summary {
 <li><a href="1.1-section1-1.html#section1-1" id="toc-section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
 <li><a href="1.2-section1-2.html#section1-2" id="toc-section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
 <li><a href="1.3-section1-3.html#section1-3" id="toc-section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
-<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> R Markdown</a></li>
+<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> Quarto</a></li>
 <li><a href="1.5-section1-5.html#section1-5" id="toc-section1-5"><span class="toc-section-number">1.5</span> Grammar of Graphics</a></li>
 <li><a href="1.6-section1-6.html#section1-6" id="toc-section1-6"><span class="toc-section-number">1.6</span> Exiting RStudio</a></li>
 <li><a href="1.7-section1-7.html#section1-7" id="toc-section1-7"><span class="toc-section-number">1.7</span> Chapter summary</a></li>
@@ -313,23 +313,23 @@ details > summary {
 <div class="row">
 <div class="col-sm-12">
 <div id="section1-4" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> R Markdown</h2>
+<h2><span class="header-section-number">1.4</span> Quarto</h2>
 <p>The previous results were created by running the R code and then copying the
 results from either the console or by copying the figure and then pasting the results
 into the typesetting program. There is another way
 to use RStudio where you can have it compile the results (both output and
 figures) directly into a document together with other writing and the code that generated it,
-using what is called R Markdown (<a href="http://shiny.rstudio.com/articles/rmarkdown.html" class="uri">http://shiny.rstudio.com/articles/rmarkdown.html</a>).
+using what is called Quarto (<a href="https://quarto.org/" class="uri">https://quarto.org/</a>).
 It is basically what we used to prepare this book and what you should learn to use to do your work.
 From here forward, you will see a
 change in formatting of the R code and output as you will no
 longer see the command prompt (“&gt;”) with the code. The output will be
 flagged by having two “##”’s before it. For example, the summary statistics for
-the <em>RunTime</em> variable from <code>favstats</code> function would look like when run using R Markdown:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="1.4-section1-4.html#cb21-1" tabindex="-1"></a><span class="fu">favstats</span>(treadmill<span class="sc">$</span>RunTime)</span></code></pre></div>
+the <em>RunTime</em> variable from <code>favstats()</code> function would look like when run using Wuarto:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="1.4-section1-4.html#cb20-1" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>RunTime, <span class="at">data =</span> treadmill)</span></code></pre></div>
 <pre><code>##   min   Q1 median    Q3   max     mean       sd  n missing
 ##  8.17 9.78  10.47 11.27 14.03 10.58613 1.387414 31       0</code></pre>
-<p>Statisticians (and other scientists) are starting to use R Markdown and
+<p>Statisticians (and other scientists) are starting to use Quarto and
 similar methods because they provide what is called “Reproducible
 research” <span class="citation">(<a href="#ref-Gandrud2015">Gandrud 2015</a>)</span> where all the code and output it produced are
 available in a single place. This allows different researchers to run and verify
@@ -341,27 +341,27 @@ repeated studies (with new, independent data collection stages and analyses)
 get the same result (also called <strong><em>replication</em></strong>) –
 further discussion of these terms and the implications for scientific research
 are discussed in Chapter <a href="2-chapter2.html#chapter2">2</a>.</p>
-<p>In order to get some practice using R Markdown, create a sample document
-in this format using File -&gt; New File -&gt; R Markdown… Choose a title for your
+<p>In order to get some practice using Quarto, create a sample document
+in this format using File -&gt; New File -&gt; Quarto… Choose a title for your
 file and select the “Word” option. This will create a new file in the upper left
 window where we stored our .R script. Save that file to your computer. Then you
-can use the “Knit” button to have RStudio run the code and create a word
-document with the results. R Markdown documents contain basically two
+can use the “Render” button to have RStudio run the code and create a word
+document with the results. Quarto documents contain basically two
 components, “code chunks” that contain your code and the rest of the document
 where you can write descriptions and interpretations of the results that code
 generates. The code chunks can be inserted using the “Insert” button by
 selecting the “R” option. Then write your code in between the
 <code>```{r}</code> and <code>```</code> lines (it should have grey highlights for those lines
-and white for the rest of the portions of the .Rmd document). Once you write
+and white for the rest of the portions of the .qmd document). Once you write
 some code inside a code chunk, you can test your code using the triangle on the
 upper right side of it to run all the code that resides in that chunk. Keep your
 write up outside of these code chunks to avoid code errors and failures to
-compile. Once you think your code and writing is done, you can use the “Knit”
+compile. Once you think your code and writing is done, you can use the “Render”
 button to try to compile the file. As you are learning, you may find this
-challenging, so start with trying to review the sample document and knit each
+challenging, so start with trying to review the sample document and render each
 time you get a line of code written so you know which line was responsible for
-preventing the knitting from being successful. Also look around for posted
-examples of .Rmd files to learn how others have incorporated code with
+preventing the rendering from being successful. Also look around for posted
+examples of .qmd files to learn how others have incorporated code with
 write-ups. You might even be given a template of homework or projects as .Rmd
 files from your instructor. After you do this a couple of times, you will find
 that the challenge of working with markdown files is more than matched by the
@@ -378,8 +378,7 @@ Gandrud, Christopher. 2015. <em>Reproducible Research with <span>R</span> and <s
 <hr />
 <ol start="11">
 <li id="fn11"><p>I recently
-had to revisit some work from almost a decade ago (before I switched to using R
-Markdown) as we were working on a journal article submission that re-used some
+had to revisit some work from almost a decade ago (before I switched to using these types of tools) as we were working on a journal article submission that re-used some
 of that work and it was unclear where some results came from, so I had to do
 some new work that could have been avoided if I had worked in a reproducible
 fashion.<a href="1.4-section1-4.html#fnref11" class="footnote-back">↩︎</a></p></li>

@@ -181,7 +181,7 @@ details > summary {
 <li><a href="1.1-section1-1.html#section1-1" id="toc-section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
 <li><a href="1.2-section1-2.html#section1-2" id="toc-section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
 <li><a href="1.3-section1-3.html#section1-3" id="toc-section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
-<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> R Markdown</a></li>
+<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> Quarto</a></li>
 <li><a href="1.5-section1-5.html#section1-5" id="toc-section1-5"><span class="toc-section-number">1.5</span> Grammar of Graphics</a></li>
 <li><a href="1.6-section1-6.html#section1-6" id="toc-section1-6"><span class="toc-section-number">1.6</span> Exiting RStudio</a></li>
 <li><a href="1.7-section1-7.html#section1-7" id="toc-section1-7"><span class="toc-section-number">1.7</span> Chapter summary</a></li>
@@ -464,10 +464,10 @@ be related to log-area burned but that the trend over time in both is less
 clear (at least the linear trends).</p>
 <div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="6.2-section6-2.html#cb517-1" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/climateR2.csv&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="6.2-section6-2.html#cb518-1" tabindex="-1"></a><span class="co"># natural log transformation of area burned</span></span>
-<span id="cb518-2"><a href="6.2-section6-2.html#cb518-2" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">loghectares =</span> <span class="fu">log</span>(hectares)) </span>
+<span id="cb518-2"><a href="6.2-section6-2.html#cb518-2" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> mtfires <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">loghectares =</span> <span class="fu">log</span>(hectares)) </span>
 <span id="cb518-3"><a href="6.2-section6-2.html#cb518-3" tabindex="-1"></a></span>
 <span id="cb518-4"><a href="6.2-section6-2.html#cb518-4" tabindex="-1"></a><span class="co"># Cuts the original hectares data so only log-scale version in tibble</span></span>
-<span id="cb518-5"><a href="6.2-section6-2.html#cb518-5" tabindex="-1"></a>mtfiresR <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> </span>
+<span id="cb518-5"><a href="6.2-section6-2.html#cb518-5" tabindex="-1"></a>mtfiresR <span class="ot">&lt;-</span> mtfires <span class="sc">|&gt;</span> </span>
 <span id="cb518-6"><a href="6.2-section6-2.html#cb518-6" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>hectares) </span>
 <span id="cb518-7"><a href="6.2-section6-2.html#cb518-7" tabindex="-1"></a><span class="fu">cor</span>(mtfiresR)</span></code></pre></div>
 <pre><code>##                   Year Temperature loghectares
@@ -495,7 +495,7 @@ decrease in summer temperatures between 1985 and 1995 and then an increase in
 the second half of the data set.</p>
 
 <div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="6.2-section6-2.html#cb520-1" tabindex="-1"></a><span class="fu">library</span>(GGally) </span>
-<span id="cb520-2"><a href="6.2-section6-2.html#cb520-2" tabindex="-1"></a>mtfiresR <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<span id="cb520-2"><a href="6.2-section6-2.html#cb520-2" tabindex="-1"></a>mtfiresR <span class="sc">|&gt;</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-3"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-3-1.png" alt="Scatterplot matrix of Montana fires data." width="75%" />
 <p class="caption">
@@ -516,7 +516,7 @@ based on the other variables, but for now the associations are of interest.</p>
 <span id="cb521-2"><a href="6.2-section6-2.html#cb521-2" tabindex="-1"></a><span class="fu">data</span>(ais)</span>
 <span id="cb521-3"><a href="6.2-section6-2.html#cb521-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb521-4"><a href="6.2-section6-2.html#cb521-4" tabindex="-1"></a>ais <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ais)</span>
-<span id="cb521-5"><a href="6.2-section6-2.html#cb521-5" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span></span>
+<span id="cb521-5"><a href="6.2-section6-2.html#cb521-5" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">|&gt;</span></span>
 <span id="cb521-6"><a href="6.2-section6-2.html#cb521-6" tabindex="-1"></a>  <span class="fu">select</span>(Ht, Hc, Bfat)</span>
 <span id="cb521-7"><a href="6.2-section6-2.html#cb521-7" tabindex="-1"></a><span class="fu">summary</span>(aisR)</span></code></pre></div>
 <pre><code>##        Ht              Hc             Bfat       
@@ -526,7 +526,7 @@ based on the other variables, but for now the associations are of interest.</p>
 ##  Mean   :180.1   Mean   :43.09   Mean   :13.507  
 ##  3rd Qu.:186.2   3rd Qu.:45.58   3rd Qu.:18.080  
 ##  Max.   :209.4   Max.   :59.70   Max.   :35.520</code></pre>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="6.2-section6-2.html#cb523-1" tabindex="-1"></a>aisR <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="6.2-section6-2.html#cb523-1" tabindex="-1"></a>aisR <span class="sc">|&gt;</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-4"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-4-1.png" alt="Scatterplot matrix of athlete data." width="75%" />
 <p class="caption">
@@ -552,7 +552,7 @@ also a high <code>Bfat</code> (<em>body fat</em>) athlete (35%) with a somewhat 
 <code>Hc</code> value. This also might be influencing our impressions so we will
 remove both “unusual” values and remake the plot. The two offending
 observations were found for individuals numbered 56 and 166 in the data set. To access those observations (and then remove them), we introduce the <code>slice</code> function that we can apply to a tibble as a way to use the row number to either select (as used here) or remove those rows: </p>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="6.2-section6-2.html#cb526-1" tabindex="-1"></a>aisR <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">56</span>, <span class="dv">166</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="6.2-section6-2.html#cb526-1" tabindex="-1"></a>aisR <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">56</span>, <span class="dv">166</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##      Ht    Hc  Bfat
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -560,8 +560,8 @@ observations were found for individuals numbered 56 and 166 in the data set. To 
 ## 2  175.  59.7  9.56</code></pre>
 <p>We can create a reduced version of the data (<code>aisR2</code>) using the <code>slice</code> function to slice “out” the rows we don’t want by passing a vector of the rows we don’t want to retain with a minus sign in front of each of them, <code>slice(-56, -166)</code>, or as vector of rows with a minus in front of the concatenated (<code>c(...)</code>) vector (<code>slice(-c(56, 166))</code>), and then remake the plot: </p>
 
-<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="6.2-section6-2.html#cb528-1" tabindex="-1"></a>aisR2 <span class="ot">&lt;-</span> aisR <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">56</span>, <span class="sc">-</span><span class="dv">166</span>) <span class="co">#Removes observations in rows 56 and 166</span></span>
-<span id="cb528-2"><a href="6.2-section6-2.html#cb528-2" tabindex="-1"></a>aisR2 <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="6.2-section6-2.html#cb528-1" tabindex="-1"></a>aisR2 <span class="ot">&lt;-</span> aisR <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">56</span>, <span class="sc">-</span><span class="dv">166</span>) <span class="co">#Removes observations in rows 56 and 166</span></span>
+<span id="cb528-2"><a href="6.2-section6-2.html#cb528-2" tabindex="-1"></a>aisR2 <span class="sc">|&gt;</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-5"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-5-1.png" alt="Scatterplot matrix of athlete data with two potential outliers removed. " width="75%" />
 <p class="caption">

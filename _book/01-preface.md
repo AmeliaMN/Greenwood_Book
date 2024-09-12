@@ -300,7 +300,7 @@ importantly!) where the results of your executed commands will show up. The
 most basic interaction with R is available once you get the cursor active at
 the command prompt ">" by clicking in that panel (look for a blinking
 vertical line). The upper left panel is for writing, saving, and running your R
-code either in .R script files or .Rmd (markdown) files, discussed below. Once 
+code either in .R script files or .qmd (markdown) files, discussed below. Once 
 you have code available in this window, the "Run" button will
 execute the code for the line that your cursor is on or for any text that you
 have highlighted with your mouse. The "data management" or environment panel is
@@ -344,8 +344,8 @@ observations for our subjects in *variables*.
 Basically, we need to store observations in named vectors (one dimensional 
 arrays) that contain a list of the observations. To create a vector containing
 the four numbers and assign it to a variable named *variable1*, we need to 
-create a vector using the concatenate function 
-``c`` which means "combine the items" that follow, if they are inside 
+create a vector using the combine function 
+``c()`` which means "combine the items" that follow, if they are inside 
 parentheses and have commas separating the values, 
 as follows:
 
@@ -378,8 +378,8 @@ for the variable name representing that vector.
 ```
 
 With the data stored in a variable, we can use functions such as
-``mean`` and
-``sd`` to find the mean and standard deviation of the observations contained in
+``mean()`` and
+``sd()`` to find the mean and standard deviation of the observations contained in
 ``variable1``: 
 \index{mean}
 \index{standard deviation}
@@ -434,7 +434,7 @@ doesn't, repeat the previous steps to install it.
 \newpage
 
 \indent After installing the package, we need to load it to make it active in a given work
-session. Go to the command prompt and type (or copy and paste) ``library(readr)`` or ``require(readr)``:
+session. Go to the command prompt and type (or copy and paste) ``library(readr)``:
 \index{R packages!\textbf{readr}}
 
 ```
@@ -445,7 +445,7 @@ With a data set converted to a CSV file and ``readr`` installed and loaded, we n
 \index{import data}
 There are two ways to do this, either using the point-and-click GUI in RStudio (click
 the "Import Dataset" button in the upper right "Environment" panel as
-indicated in Figure \@ref(fig:Figure1-2)) or modifying the ``read_csv`` 
+indicated in Figure \@ref(fig:Figure1-2)) or modifying the ``read_csv()`` 
 function to find the file of interest. To practice this, you can 
 download an Excel (.xls) file from
 http://www.math.montana.edu/courses/s217/documents/treadmill.xls 
@@ -515,7 +515,7 @@ code (``View(treadmill``)).
 \indent Just directly typing (or using) a line of code like this is actually the 
 other way that we can read in
 files. If you choose to use the text-only interface, then you need to tell R
-where to look in your computer to find the data file. ``read_csv`` is a 
+where to look in your computer to find the data file. ``read_csv()`` is a 
 function that takes a path as an argument. To use it, specify the path to 
 your data file, put quotes around it, and put it as the input to 
 ``read_csv(...)``. For some examples later in the book, you will be able to 
@@ -525,7 +525,7 @@ internet.
 
 \indent To verify that you read the data set in correctly, it is always good to check 
 its contents. We can view the first and last rows in the data set using the 
-``head`` and ``tail`` functions on the data set, which show the following 
+``head()`` and ``tail()`` functions on the data set, which show the following 
 results for the
 ``treadmill`` data. Note that you will sometimes need to resize the console
 window in RStudio to get all the columns to display
@@ -564,7 +564,7 @@ the panels.
 
 \newpage
 
-\indent When you load an installed package with ``library``, you may see a warning message about versions of the package and versions of 
+\indent When you load an installed package with ``library()``, you may see a warning message about versions of the package and versions of 
 R -- this is *usually* something you can ignore. Other warning messages could
 be more ominous for proceeding but before getting too concerned, there are 
 couple of basic things to check. 
@@ -617,35 +617,28 @@ summarize the results of the study. The ``treadmill`` object is what R calls a
 ***tibble***^[Tibbles are R objects that can contain both 
 categorical and quantitative variables on your $n$ subjects with a name for each
 variable that is also the name of each column in a matrix. \index{tibble} Each subject is a 
-row of the data set. The name (supposedly) is due to the way *table* sounds in the accent of a particularly influential developer at RStudio who is from New Zealand.] and contains columns corresponding to each variable in 
-the spreadsheet. Every
-function in R will involve specifying the variable(s) of interest and how you
-want to use them. To access a particular variable (column) in a tibble, you
-can use a $ between the name of the tibble and the name of the variable of
-interest, generically as ``tibblename$variablename``. You can think of this as *tibblename's variablename* where the *'s* is replaced by the dollar sign. To identify the 
-``RunTime`` variable here it would be ``treadmill$RunTime``. In the command line it would look like:
+row of the data set. The name (supposedly) is due to the way *table* sounds in the accent of a particularly influential developer at RStudio who is from New Zealand.] and contains columns corresponding to each variable in the spreadsheet. 
 
-```r
-> treadmill$RunTime
-[1]  8.63  8.17  8.92  8.65 10.33  9.93 10.13 10.08  9.22  8.95 10.85  9.40 11.50 10.50
-[15] 10.60 10.25 10.00 11.17 10.47 11.95  9.63 10.07 11.08 11.63 11.12 11.37 10.95 13.08
-[29] 12.63 12.88 14.03
-```
+Every function in R will involve specifying the variable(s) of interest and how you
+want to use them. In ``mosaic``, we use the tilde (`~`) to specify variables and relationships. The tilde is located in the upper left of your keyboard, usually above the tab key. 
 
-\indent Just as in the previous section, we can generate summary statistics using functions like ``mean`` and ``sd`` by running them on a specific variable:
+\indent Just as in the previous section, we can generate summary statistics using functions like ``mean()`` and ``sd()`` by running them on a specific variable:
 \index{mean}
 \index{standard deviation}
 
 ```r
-> mean(treadmill$RunTime)
+> mean(~RunTime, data = treadmill)
 [1] 10.58613
-> sd(treadmill$RunTime)
+> sd(~RunTime, data = treadmill)
 [1] 1.387414
 ```
+
+Notice how we have specified both the variable (``RunTime``) and the dataset it comes from (``treadmill``).
+
 And now we know that the average running time for 1.5 miles for the subjects in the study was 10.6 minutes with a standard deviation (SD) of 1.39 minutes. But you should remember that the
 mean and SD are only appropriate summaries if the distribution is roughly
 ***symmetric*** (both sides of the distribution are approximately the same shape and length). The 
-``mosaic`` package provides a useful function called ``favstats`` that provides 
+``mosaic`` package provides a useful function called ``favstats()`` that provides 
 the mean and SD as well as the ***5 number summary***: \index{5 number summary}
 the minimum (``min``), the first quartile (``Q1``, the 25^th^ percentile), 
 the median (50^th^ percentile), the third quartile (``Q3``, the 75^th^
@@ -656,7 +649,7 @@ subjects had measurements available on this variable.
 \index{favstats}
 
 ```r
-> favstats(treadmill$RunTime)
+> favstats(~RunTime, data = treadmill)
   min   Q1 median    Q3   max     mean       sd  n missing
  8.17 9.78  10.47 11.27 14.03 10.58613 1.387414 31       0
 ```
@@ -677,11 +670,11 @@ is more spread out than the right tail) \index{skew} and ***outliers*** \index{o
 (unusual observations). A ***histogram*** \index{histogram} is a good place to start.
 Histograms display connected bars with counts of observations defining
 the height of bars based on a set of bins of values of the quantitative variable. 
-We will apply the ``hist`` function to the ``RunTime`` variable, which produces 
+We will apply the ``histogram()`` function to the ``RunTime`` variable, which produces 
 Figure \@ref(fig:Figure1-5). 
 
 ```r
-> hist(treadmill$RunTime)
+> histogram(~RunTime, data = treadmill)
 ```
 
 (ref:fig1-5) Histogram of Run Times (minutes) of $n$ = 31 subjects in Treadmill study, bar heights are counts.
@@ -707,18 +700,16 @@ parts of this process in the screen grab in Figure \@ref(fig:Figure1-6). You can
 **Save as Image** or **Save as PDF** and then insert them into your word 
 processing documents. 
 
-\indent The function ``hist`` defaults into providing a histogram on the ***frequency***
-(count) scale. In most R functions, there are the default options that will 
+\indent The function ``histogram()`` defaults into providing a histogram on the ***density***
+ scale. In most R functions, there are the default options that will 
 occur if we don't make any specific choices but we
-can override the default options if we desire. One option we can modify here is
-to add labels to the bars to be able to see exactly how many observations fell
-into each bar. Specifically, we can turn the ``labels`` option "on" by making it true ("T") by adding ``labels = T`` to the previous call to the ``hist`` function, separated by a comma. Note that we will use the ``=`` sign only for changing options within functions. 
+can override the default options if we desire. One option we can modify here is to change to a histogram that shows us the count of observations in each bin. Specifically, we can turn the ``type`` option to ``count`` by using ``type = "count"`` to the previous call to the ``histogram()`` function, separated by a comma. Note that we will use the ``=`` sign only for changing options within functions. 
 
 ```r
-> hist(treadmill$RunTime, labels = T)
+> histogram(~RunTime, data = treadmill, type = "count)
 ```
 
-(ref:fig1-7) Histogram of Run Times with counts in bars labeled.
+(ref:fig1-7) Histogram of Run Times with counts in bars.
 
 <div class="figure" style="text-align: center">
 <img src="01-preface_files/figure-html/Figure1-7-1.png" alt="(ref:fig1-7)" width="75%" />
@@ -738,7 +729,7 @@ accurately from the plot.
 shape of the distribution as it displays the 5-number summary and will also indicate
 observations that are "far" above the middle of the observations. 
 \index{boxplot}
-R's ``boxplot`` function uses the standard rule to indicate an observation as a
+R's ``bwplot()`` function uses the standard rule to indicate an observation as a
 ***potential outlier*** if it falls more than 1.5 times the ***IQR*** 
 (Inter-Quartile Range, calculated as Q3 -- Q1) below Q1 or above Q3. 
 \index{outlier}
@@ -780,13 +771,13 @@ but worth noting.
 </div>
 
 ```r
-> boxplot(treadmill$RunTime)
+> bwplot(~RunTime, data = treadmill)
 ```
 
 \indent While the default boxplot is fine, it fails to provide good graphical labels, 
 especially on the y-axis. Additionally, there is no title on the plot. The
 following code provides some enhancements to the plot by using the ``ylab`` and 
-``main`` options in the call to ``boxplot``, with the results displayed in
+``main`` options in the call to ``bwplot()``, with the results displayed in
 Figure \@ref(fig:Figure1-9). When we add text to plots, it will be contained within quotes and
 be assigned into the options ``ylab`` (for y-axis) or ``main``
 (for the title) here to put it into those locations. 
@@ -799,8 +790,8 @@ be assigned into the options ``ylab`` (for y-axis) or ``main``
 </div>
 
 ```r
-> boxplot(treadmill$RunTime, ylab = "1.5 Mile Run Time (minutes)", 
-          main = "Boxplot of the Run Times of n = 31 participants")
+> bwplot(~RunTime, data = treadmill, ylab = "1.5 Mile Run Time (minutes)",
+        main = "Boxplot of the Run Times of n = 31 participants")
 ```
 
 \indent Throughout the book, we will often use extra options to make figures that
@@ -813,7 +804,7 @@ to think about the quality of the information that is being displayed,
 regardless of how pretty the graphic might be. So maybe it is better to say 
 "a picture can be worth a thousand words" if it is well-labeled?
 
-## R Markdown {#section1-4}
+## Quarto {#section1-4}
 
 
 The previous results were created by running the R code and then copying the
@@ -821,17 +812,17 @@ results from either the console or by copying the figure and then pasting the re
 into the typesetting program. There is another way
 to use RStudio where you can have it compile the results (both output and
 figures) directly into a document together with other writing and the code that generated it, 
-using what is called R Markdown (http://shiny.rstudio.com/articles/rmarkdown.html). 
+using what is called Quarto (https://quarto.org/). 
 It is basically what we used to prepare this book and what you should learn to use to do your work. 
 From here forward, you will see a
 change in formatting of the R code and output as you will no
 longer see the command prompt (">") with the code. The output will be
 flagged by having two "##"'s before it. For example, the summary statistics for
-the *RunTime* variable from ``favstats`` function would look like when run using R Markdown:
+the *RunTime* variable from ``favstats()`` function would look like when run using Wuarto:
 
 
 ``` r
-favstats(treadmill$RunTime)
+favstats(~RunTime, data = treadmill)
 ```
 
 ```
@@ -839,14 +830,13 @@ favstats(treadmill$RunTime)
 ##  8.17 9.78  10.47 11.27 14.03 10.58613 1.387414 31       0
 ```
 
-\indent Statisticians (and other scientists) are starting to use R Markdown and 
+\indent Statisticians (and other scientists) are starting to use Quarto and 
 similar methods because they provide what is called "Reproducible
 research" [@Gandrud2015] where all the code and output it produced are
 available in a single place. This allows different researchers to run and verify
 results (so "reproducible results") or the original researchers to revisit their 
 earlier work at a later date and recreate all their results exactly^[I recently 
-had to revisit some work from almost a decade ago (before I switched to using R 
-Markdown) as we were working on a journal article submission that re-used some 
+had to revisit some work from almost a decade ago (before I switched to using these types of tools) as we were working on a journal article submission that re-used some 
 of that work and it was unclear where some results came from, so I had to do 
 some new work that could have been avoided if I had worked in a reproducible 
 fashion.]. Scientific publications are currently
@@ -857,27 +847,27 @@ get the same result (also called ***replication***) \index{replication} --
 further discussion of these terms and the implications for scientific research 
 are discussed in Chapter \@ref(chapter2).
 
-\indent In order to get some practice using R Markdown, create a sample document 
-in this format using File -> New File -> R Markdown... Choose a title for your 
+\indent In order to get some practice using Quarto, create a sample document 
+in this format using File -> New File -> Quarto... Choose a title for your 
 file and select the "Word" option. This will create a new file in the upper left 
 window where we stored our .R script. Save that file to your computer. Then you 
-can use the "Knit" button to have RStudio run the code and create a word 
-document with the results. R Markdown documents contain basically two 
+can use the "Render" button to have RStudio run the code and create a word 
+document with the results. Quarto documents contain basically two 
 components, "code chunks" that contain your code and the rest of the document 
 where you can write descriptions and interpretations of the results that code 
 generates. The code chunks can be inserted using the "Insert" button by 
 selecting the "R" option. Then write your code in between the 
 `` ```{r} `` and `` ``` `` lines (it should have grey highlights for those lines 
-and white for the rest of the portions of the .Rmd document). Once you write 
+and white for the rest of the portions of the .qmd document). Once you write 
 some code inside a code chunk, you can test your code using the triangle on the 
 upper right side of it to run all the code that resides in that chunk. Keep your 
 write up outside of these code chunks to avoid code errors and failures to 
-compile. Once you think your code and writing is done, you can use the "Knit" 
+compile. Once you think your code and writing is done, you can use the "Render" 
 button to try to compile the file. As you are learning, you may find this 
-challenging, so start with trying to review the sample document and knit each 
+challenging, so start with trying to review the sample document and render each 
 time you get a line of code written so you know which line was responsible for 
-preventing the knitting from being successful. Also look around for posted 
-examples of .Rmd files to learn how others have incorporated code with 
+preventing the rendering from being successful. Also look around for posted 
+examples of .qmd files to learn how others have incorporated code with 
 write-ups. You might even be given a template of homework or projects as .Rmd 
 files from your instructor. After you do this a couple of times, you will find 
 that the challenge of working with markdown files is more than matched by the 
@@ -887,9 +877,9 @@ reproducibility and documentation of work that this way of working provides.
 
 ## Grammar of Graphics {#section1-5}
 
-The previous plots were made using what is called "base R" graphics. It is 
+The previous plots were made using what is called "lattice" graphics. It is 
 possible to make versions of all the graphics we need in this material using 
-single function calls like ``boxplot`` -- and there are some places we will 
+single function calls like ``bwplot()`` -- and there are some places we will 
 utilize these simple versions because they get us exactly what we want to see. 
 But to make more complex displays and have complete control of the way the 
 graphs look, we will utilize the `ggplot2` package [@R-ggplot2] which was 
@@ -904,8 +894,8 @@ to the https://datacarpentry.org/ workshops.].
 \indent As opposed to base graphics, the ggplots will contain multiple components 
 that are patched together with a `+`, with the general format of 
 `ggplot(data = <DATA>, mapping = aes(<VARIABLE MAPPINGS>)) + <GEOM_FUNCTION>()`. 
-Breaking this down, the `data = ...` tells the `ggplot` function where to look, 
-the information inside the `aes` (or aesthetic) defines which variables in the 
+Breaking this down, the `data = ...` tells the `ggplot()` function where to look, 
+the information inside the `aes()` (or aesthetic) defines which variables in the 
 data set to use and how to use them (often with `x = variable1`, 
 `y = variable2`, etc., with `x = ...` for the variable on the x (horizontal) 
 axis and `y = ...` for the variable on the y (vertical) axis), and the 
@@ -972,9 +962,9 @@ Rug plots can also use a graphical technique called ***jittering*** to add a lit
 noise using the options `geom_rug(sides = "b", aes(y = 0), position = "jitter")`^[Jittering typically involves adding random variability to each 
 observation that is uniformly distributed in a range determined based on the 
 spacing of the observations. The idea is to jitter just enough to see all the 
-points but not too much. Because it is random noise being added, this also means that if you re-run the ``jitter`` function, 
+points but not too much. Because it is random noise being added, this also means that if you re-run the ``jitter()`` function, 
 the results will change if you do not set the random number seed using 
-`set.seed` that is discussed more below. For more details, type ``help(geom_rug)`` 
+`set.seed()` that is discussed more below. For more details, type ``help(geom_rug)`` 
 in the console in RStudio. The code is unfortunately clumsy to add jittering to the rug, so a simpler option is to use `geom_rug(alpha = 0.3)` where the transparency is modified with the `alpha` option to help with identifying overplotting of lines in the rug.] to each observation so that multiple similar or 
 tied observations do not plot as a single line. \index{jitter} There are options 
 to control the color of individual components when we add them (the histogram is 
@@ -1015,11 +1005,10 @@ create a cluttered workspace and could even cause you to get incorrect results.
 
 \indent In fact, you should go into the Tools -> Global Options and then make sure that 
 "Save workspace to .RData on exit" option on the first screen you will see is 
-set to ***Never***. If you save your R code either as a .R or (better) an R 
-Markdown (.Rmd) file, you can re-create any results by simply
-re-running that code or re-knitting the file. If you find that you have lots of 
+set to ***Never***. If you save your R code either as a .R or (better) a Quarto (.qmd) file, you can re-create any results by simply
+re-running that code or re-rendering the file. If you find that you have lots of 
 "stuff" in your workspace because you accidentally saved your workspace, just 
-run ``rm(list = ls())``. It will delete all the data sets from your workspace. 
+run ``rm(list = ls())``, or hit the broom icon in your RStudio Environment pane. This will delete all the data sets from your workspace. 
 
 ## Chapter summary {#section1-7}
 
@@ -1065,10 +1054,6 @@ revisit the worked examples using each of the functions.
     
     * Imports a text file saved in the CSV format.
 
-* <font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>
-
-    * To access a particular variable in a tibble called DATASETNAME, use 
-    a $ and then the VARIABLENAME. 
 
 * **head(**<font color='red'>DATASETNAME</font>**)**
 
@@ -1080,17 +1065,17 @@ revisit the worked examples using each of the functions.
     * Provides a list of the last few rows of the data set for all the 
     variables in it. \index{\texttt{tail()}|textbf}
     
-* **mean(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
-
+**mean(**~ <font color='red'>DATASETNAME</font>, data = <font color='red'>VARIABLENAME</font>**)**
+    
     * Calculates the mean of the observations in a variable. 
     \index{\texttt{mean()}|textbf}
 
-* **sd(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **sd(**~ <font color='red'>DATASETNAME</font>, data = <font color='red'>VARIABLENAME</font>**)**
 
     * Calculates the standard deviation of the observations in a variable. 
     \index{\texttt{sd()}|textbf}
 
-* **favstats(**<font color='red'>DATASETNAME</font>$<font color='red'>VARIABLENAME</font>**)** 
+* **favstats(**~ <font color='red'>DATASETNAME</font>, data = <font color='red'>VARIABLENAME</font>**)** 
 
     * Requires the ``mosaic`` package to be loaded (``library(mosaic)``) after
     installing the package). 
@@ -1098,13 +1083,13 @@ revisit the worked examples using each of the functions.
     * Provides a suite of numerical summaries of the observations in a variable.
     \index{\texttt{favstats()}|textbf}
 
-* **hist(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **histogram(**~ <font color='red'>DATASETNAME</font>, data = <font color='red'>VARIABLENAME</font>**)**
 
-    * Makes a histogram. \index{\texttt{hist()}|textbf}
+    * Makes a histogram. \index{\texttt{histogram()}|textbf}
     
-* **boxplot(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **bwplot(**~ <font color='red'>DATASETNAME</font>, data = <font color='red'>VARIABLENAME</font>**)**
 
-    * Makes a boxplot. \index{\texttt{boxplot()}|textbf}
+    * Makes a boxplot. \index{\texttt{bwplot()}|textbf}
 
 * **ggplot(data = **<font color='red'>DATASETNAME</font>**, mapping = aes(**<font color='red'>VARIABLENAME</font>**)) +  
 geom_histogram(bins = **<font color='red'>10</font>**)**
@@ -1127,9 +1112,9 @@ These questions provide a great venue to check your learning, often to see the
 methods applied to another data set, and for something to discuss in study groups,
 with your instructor, and at the Math Learning Center. 
 
-1.1. Open RStudio and go to File -> New File -> R Markdown... to create a .Rmd. 
-Click on the "Knit" button and see what happens. Try to complete the following 
-questions in that document, clicking on the Knit button after you add a code
+1.1. Open RStudio and go to File -> New File -> Quarto... to create a .qmd. 
+Click on the "Render" button and see what happens. Try to complete the following 
+questions in that document, clicking on the Render button after you add a code
 chunk with code to complete each question. Part of the assignment on this 
 question is to not get frustrated the first time you are trying this and seek 
 out help to answer questions you have when practicing.
@@ -1159,7 +1144,7 @@ kilograms and you might prefer to see them in pounds. The conversion is
 tibble called *BWlb* using this code:
 
 ```r
-treadmill$BWlb <- 2.205*treadmill$BodyWeight
+treadmill <- transform(treadmill, BWlb = 2.205*BodyWeight)
 ```
  
 and find the mean and SD of the new variable (*BWlb*). 

@@ -181,7 +181,7 @@ details > summary {
 <li><a href="1.1-section1-1.html#section1-1" id="toc-section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
 <li><a href="1.2-section1-2.html#section1-2" id="toc-section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
 <li><a href="1.3-section1-3.html#section1-3" id="toc-section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
-<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> R Markdown</a></li>
+<li><a href="1.4-section1-4.html#section1-4" id="toc-section1-4"><span class="toc-section-number">1.4</span> Quarto</a></li>
 <li><a href="1.5-section1-5.html#section1-5" id="toc-section1-5"><span class="toc-section-number">1.5</span> Grammar of Graphics</a></li>
 <li><a href="1.6-section1-6.html#section1-6" id="toc-section1-6"><span class="toc-section-number">1.6</span> Exiting RStudio</a></li>
 <li><a href="1.7-section1-7.html#section1-7" id="toc-section1-7"><span class="toc-section-number">1.7</span> Chapter summary</a></li>
@@ -407,40 +407,48 @@ approaches.</p>
 <p>To be able to work just with the observations from two of the conditions (<em>casual</em> and <em>commute</em>) we could remove all the other observations in a spreadsheet program and read that new data set
 back into R, but it is actually pretty easy to use R to do data
 management once the data set is loaded. It is also a better scientific process to do as much of your data management within R as possible so that your steps in managing the data are fully documented and reproducible. Highlighting and clicking in spreadsheet programs is a dangerous way to work and can be impossible to recreate steps that were taken from initial data set to the version that was analyzed. In R, we could identify the rows that contain the observations we want to retain and just extract those rows, but this is hard with over five thousand observations. The <code>filter</code> function from the <code>dplyr</code> package (part of the <code>tidyverse</code> suite of packages) is the best way to be able to focus on observations that meet a particular condition; we can “filter” the data set to retain just those rows. The <code>filter</code> function takes the data set via the pipe operate and then we need to define the condition we want to meet to retain those rows. Here we need to define the variable we want to work with, <code>Condition</code>, and then request rows that meet a condition (are <code>%in%</code>) and the aspects that meet that condition (here by concatenating the two levels of “casual” and “commute”), leading to code of: </p>
-<pre><code>dd %&gt;% filter(Condition %in% c(&quot;casual&quot;, &quot;commute&quot;))</code></pre>
+<pre><code>dd |&gt; filter(Condition %in% c(&quot;casual&quot;, &quot;commute&quot;))</code></pre>
 <p>We want to save that new filtered data set into a new tibble for future work, so we can use the assignment operator (<code>&lt;-</code>) to save the reduced data set into <code>ddsub</code>:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="2.2-section2-2.html#cb56-1" tabindex="-1"></a>ddsub <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;casual&quot;</span>, <span class="st">&quot;commute&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="2.2-section2-2.html#cb56-1" tabindex="-1"></a>ddsub <span class="ot">&lt;-</span> dd <span class="sc">|&gt;</span> <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;casual&quot;</span>, <span class="st">&quot;commute&quot;</span>))</span></code></pre></div>
 <p>There is also the <code>select</code> function that we could also use with an additional pipe operator to just focus on certain columns in the data set, here to just retain the <code>Condition</code> and <code>Distance</code> variables using: </p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="2.2-section2-2.html#cb57-1" tabindex="-1"></a>ddsub <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> </span>
-<span id="cb57-2"><a href="2.2-section2-2.html#cb57-2" tabindex="-1"></a>  <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;casual&quot;</span>,<span class="st">&quot;commute&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="2.2-section2-2.html#cb57-1" tabindex="-1"></a>ddsub <span class="ot">&lt;-</span> dd <span class="sc">|&gt;</span> </span>
+<span id="cb57-2"><a href="2.2-section2-2.html#cb57-2" tabindex="-1"></a>  <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;casual&quot;</span>,<span class="st">&quot;commute&quot;</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb57-3"><a href="2.2-section2-2.html#cb57-3" tabindex="-1"></a>  <span class="fu">select</span>(Distance, Condition)</span></code></pre></div>
 <p>The <code>select</code> function shows up in multiple packages so you might need to use <code>dplyr::select()</code> which tells R to use the version of <code>select</code> that is in <code>dplyr</code>. When you are working to filter or subset your data set you should always check that the correct observations were dropped
-either using <code>View(ddsub)</code> or by doing a quick summary of the
+either using <code>View(ddsub)</code> or by doing a quick tally of the
 <code>Condition</code> variable in the new tibble.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="2.2-section2-2.html#cb58-1" tabindex="-1"></a><span class="fu">summary</span>(ddsub<span class="sc">$</span>Condition)</span></code></pre></div>
-<pre><code>##  casual commute   hiviz  novice  police  polite   racer 
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="2.2-section2-2.html#cb58-1" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>Condition, <span class="at">data =</span> ddsub)</span></code></pre></div>
+<pre><code>## Condition
+##  casual commute   hiviz  novice  police  polite   racer 
 ##     779     857       0       0       0       0       0</code></pre>
 <p>It ends up that R remembers the categories for observations that we removed even though there are
 0 observations in them now and that can cause us some problems. When we remove a
 group of observations, we sometimes need to clean up categorical variables to
-just reflect the categories that are present. The <code>factor</code>
-function
-creates categorical variables based on the levels of the variables that are
-observed and is useful to run here to clean up <code>Condition</code> to just reflect the categories that are now present.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="2.2-section2-2.html#cb60-1" tabindex="-1"></a>ddsub <span class="ot">&lt;-</span> ddsub <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Condition =</span> <span class="fu">factor</span>(Condition))</span>
-<span id="cb60-2"><a href="2.2-section2-2.html#cb60-2" tabindex="-1"></a><span class="fu">summary</span>(ddsub<span class="sc">$</span>Condition)</span></code></pre></div>
-<pre><code>##  casual commute 
+just reflect the categories that are present. The <code>fct_drop</code>
+function from the <code>forcats</code> package
+will drop any categories that have no observations,<br />
+and is useful to run here to clean up <code>Condition</code> to just reflect the categories that are now present.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="2.2-section2-2.html#cb60-1" tabindex="-1"></a>ddsub <span class="ot">&lt;-</span> ddsub <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Condition =</span> <span class="fu">fct_drop</span>(Condition))</span>
+<span id="cb60-2"><a href="2.2-section2-2.html#cb60-2" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>Condition, <span class="at">data =</span> ddsub)</span></code></pre></div>
+<pre><code>## Condition
+##  casual commute 
 ##     779     857</code></pre>
 <p>The two categories of interest now were selected because neither looks particularly “racey” or has high visibility but could present a common choice between getting fully “geared up” for the commute or just jumping on a bike to go to work. Now if we remake the boxplots and pirate-plots, they only contain results for
-the two groups of interest here as seen in Figure <a href="2.2-section2-2.html#fig:Figure2-5">2.5</a>. Note that these are available in the previous version of the plots, but now we will just focus on these two groups.</p>
+the two groups of interest here as seen in Figure <a href="#fig:Figure2-5"><strong>??</strong></a>. Note that these are available in the previous version of the plots, but now we will just focus on these two groups.</p>
 
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-5-1"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-5-1.png" alt="Boxplot and pirate-plot of the Distance responses on the reduced ddsub data set." width="75%" />
 <p class="caption">
 Figure 2.5: Boxplot and pirate-plot of the <em>Distance</em> responses on the reduced <code>ddsub</code> data set.
 </p>
 </div>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="2.2-section2-2.html#cb62-1" tabindex="-1"></a><span class="fu">boxplot</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> ddsub) </span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-5-2"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-5-2.png" alt="Boxplot and pirate-plot of the Distance responses on the reduced ddsub data set." width="75%" />
+<p class="caption">
+Figure 2.6: Boxplot and pirate-plot of the <em>Distance</em> responses on the reduced <code>ddsub</code> data set.
+</p>
+</div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="2.2-section2-2.html#cb62-1" tabindex="-1"></a><span class="fu">bwplot</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> ddsub) </span>
 <span id="cb62-2"><a href="2.2-section2-2.html#cb62-2" tabindex="-1"></a><span class="fu">pirateplot</span>(Distance <span class="sc">~</span> Condition, <span class="at">data =</span> ddsub, <span class="at">inf.method =</span> <span class="st">&quot;ci&quot;</span>, <span class="at">inf.disp =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
 <!-- \newpage -->
 <p>The two-sample mean techniques you learned in your previous course all
