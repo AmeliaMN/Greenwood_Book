@@ -314,7 +314,7 @@ details > summary {
 components to modify in lighter and/or ALL CAPS text where <code>y</code> is a response variable, <code>x</code> is an
 explanatory variable, and the data are in <code>DATASETNAME</code>.</p>
 <ul>
-<li><p><strong><font color='red'>DATASETNAME</font> %&gt;% ggplot(mapping = aes(x = <font color='red'>x</font>, y = <font color='red'>y</font>)) + geom_point() + geom_smooth(method = “lm”)</strong></p>
+<li><p><strong><font color='red'>DATASETNAME</font> |&gt; ggplot(mapping = aes(x = <font color='red'>x</font>, y = <font color='red'>y</font>)) + geom_point() + geom_smooth(method = “lm”)</strong></p>
 <ul>
 <li><p>Provides a scatter plot with a regression line.
 </p></li>
@@ -350,7 +350,7 @@ Chapter <a href="8-chapter8.html#chapter8">8</a> as well).
 <li><p>Provides a term-plot of the estimated regression line with 95% confidence
 interval for the mean. </p></li>
 </ul></li>
-<li><p><strong><font color='red'>DATASETNAME</font> <code>&lt;-</code> <font color='red'>DATASETNAME</font> %&gt;% mutate(log.<font color='red'>y</font> = log(<font color='red'>y</font>)</strong></p>
+<li><p><strong><font color='red'>DATASETNAME</font> <code>&lt;-</code> <font color='red'>DATASETNAME</font> |&gt; mutate(log.<font color='red'>y</font> = log(<font color='red'>y</font>)</strong></p>
 <ul>
 <li>Creates a transformed variable called log.y – change this to be more
 specific to your “<span class="math inline">\(y\)</span>” or “<span class="math inline">\(x\)</span>”.

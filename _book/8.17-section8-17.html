@@ -264,13 +264,12 @@ details > summary {
 <li><a href="7.1-section7-1.html#section7-1" id="toc-section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
 <li><a href="7.2-section7-2.html#section7-2" id="toc-section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li><a href="7.3-section7-3.html#section7-3" id="toc-section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
-<li><a href="7.4-section7-4.html#section7-4" id="toc-section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
-<li><a href="7.5-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
-<li><a href="7.6-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li><a href="7.7-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li><a href="7.8-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
-<li><a href="7.9-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
-<li><a href="7.10-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+<li><a href="7.4-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.4</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7.5-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.5</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7.6-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.6</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7.7-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.7</span> Chapter summary</a></li>
+<li><a href="7.8-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.8</span> Summary of important R code</a></li>
+<li><a href="7.9-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.9</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="8-chapter8.html#chapter8" id="toc-chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a>
 <ul>
@@ -317,8 +316,8 @@ measurement but there were actually quite a few variables measured when the
 run time was found – maybe we can replace the treadmill test result with a
 combined prediction built using a few variables using the MLR techniques. The
 following code will get us re-started in this situation.</p>
-<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="8.17-section8-17.html#cb811-1" tabindex="-1"></a>treadmill <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/treadmill.csv&quot;</span>)</span>
-<span id="cb811-2"><a href="8.17-section8-17.html#cb811-2" tabindex="-1"></a>tm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(TreadMillOx <span class="sc">~</span> RunTime, <span class="at">data =</span> treadmill)</span></code></pre></div>
+<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="8.17-section8-17.html#cb801-1" tabindex="-1"></a>treadmill <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/treadmill.csv&quot;</span>)</span>
+<span id="cb801-2"><a href="8.17-section8-17.html#cb801-2" tabindex="-1"></a>tm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(TreadMillOx <span class="sc">~</span> RunTime, <span class="at">data =</span> treadmill)</span></code></pre></div>
 <p>8.1.1. Fit the MLR that also includes the running pulse (<code>RunPulse</code>), the
 resting pulse (<code>RestPulse</code>), body weight (<code>BodyWeight</code>), and Age (<code>Age</code>)
 of the subjects. Report and interpret the <em>R</em><sup>2</sup> for
@@ -339,10 +338,10 @@ reduced models and report the top two models according to adjusted
 <strong><em>R</em></strong><sup>2</sup> values. What model had the highest <strong><em>R</em></strong><sup>2</sup>?
 Also discuss and compare the model selection results provided by the delta AICs
 here.</p>
-<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb812-1"><a href="8.17-section8-17.html#cb812-1" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
-<span id="cb812-2"><a href="8.17-section8-17.html#cb812-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
-<span id="cb812-3"><a href="8.17-section8-17.html#cb812-3" tabindex="-1"></a><span class="fu">dredge</span>(MODELNAMEFORFULLMODEL, <span class="at">rank =</span> <span class="st">&quot;AIC&quot;</span>, </span>
-<span id="cb812-4"><a href="8.17-section8-17.html#cb812-4" tabindex="-1"></a>       <span class="at">extra =</span> <span class="fu">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="at">adjRsq =</span> <span class="cf">function</span>(x) <span class="fu">summary</span>(x)<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="8.17-section8-17.html#cb802-1" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
+<span id="cb802-2"><a href="8.17-section8-17.html#cb802-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
+<span id="cb802-3"><a href="8.17-section8-17.html#cb802-3" tabindex="-1"></a><span class="fu">dredge</span>(MODELNAMEFORFULLMODEL, <span class="at">rank =</span> <span class="st">&quot;AIC&quot;</span>, </span>
+<span id="cb802-4"><a href="8.17-section8-17.html#cb802-4" tabindex="-1"></a>       <span class="at">extra =</span> <span class="fu">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="at">adjRsq =</span> <span class="cf">function</span>(x) <span class="fu">summary</span>(x)<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
 <p>8.1.8. For one of the models, interpret the <em>Age</em> slope coefficient. Remember that
 only male subjects between 38 and 57 participated in this study. Discuss how
 this might have impacted the results found as compared to a more general
@@ -351,15 +350,15 @@ population that could have been sampled from.</p>
 into low, middle, and high for those observed. The scatterplot lets you
 explore whether the relationship between treadmill oxygen and run time might
 differ across the age groups.</p>
-<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="8.17-section8-17.html#cb813-1" tabindex="-1"></a>treadmill <span class="ot">&lt;-</span> treadmill <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Ageb =</span> <span class="fu">factor</span>(<span class="fu">cut</span>(Age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">37</span>, <span class="fl">44.5</span>, <span class="fl">50.5</span>, <span class="dv">58</span>))))</span>
-<span id="cb813-2"><a href="8.17-section8-17.html#cb813-2" tabindex="-1"></a><span class="fu">summary</span>(treadmill<span class="sc">$</span>Ageb)</span>
-<span id="cb813-3"><a href="8.17-section8-17.html#cb813-3" tabindex="-1"></a>treadmill <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime, <span class="at">y =</span> TreadMillOx, </span>
-<span id="cb813-4"><a href="8.17-section8-17.html#cb813-4" tabindex="-1"></a>                                   <span class="at">color =</span> Ageb, <span class="at">shape =</span> Ageb)) <span class="sc">+</span> </span>
-<span id="cb813-5"><a href="8.17-section8-17.html#cb813-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb813-6"><a href="8.17-section8-17.html#cb813-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb813-7"><a href="8.17-section8-17.html#cb813-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb813-8"><a href="8.17-section8-17.html#cb813-8" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>) <span class="sc">+</span> </span>
-<span id="cb813-9"><a href="8.17-section8-17.html#cb813-9" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(Ageb))</span></code></pre></div>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="8.17-section8-17.html#cb803-1" tabindex="-1"></a>treadmill <span class="ot">&lt;-</span> treadmill <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Ageb =</span> <span class="fu">factor</span>(<span class="fu">cut</span>(Age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">37</span>, <span class="fl">44.5</span>, <span class="fl">50.5</span>, <span class="dv">58</span>))))</span>
+<span id="cb803-2"><a href="8.17-section8-17.html#cb803-2" tabindex="-1"></a><span class="fu">summary</span>(treadmill<span class="sc">$</span>Ageb)</span>
+<span id="cb803-3"><a href="8.17-section8-17.html#cb803-3" tabindex="-1"></a>treadmill <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime, <span class="at">y =</span> TreadMillOx, </span>
+<span id="cb803-4"><a href="8.17-section8-17.html#cb803-4" tabindex="-1"></a>                                   <span class="at">color =</span> Ageb, <span class="at">shape =</span> Ageb)) <span class="sc">+</span> </span>
+<span id="cb803-5"><a href="8.17-section8-17.html#cb803-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb803-6"><a href="8.17-section8-17.html#cb803-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb803-7"><a href="8.17-section8-17.html#cb803-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb803-8"><a href="8.17-section8-17.html#cb803-8" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>) <span class="sc">+</span> </span>
+<span id="cb803-9"><a href="8.17-section8-17.html#cb803-9" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(Ageb))</span></code></pre></div>
 <p>Based on the plot, do the lines look approximately parallel or not?</p>
 <p>8.1.10. Fit the MLR that contains a <code>RunTime</code> by <code>Ageb</code> interaction – do not
 include any other variables. Compare the <strong><em>R</em></strong><sup>2</sup> and adjusted

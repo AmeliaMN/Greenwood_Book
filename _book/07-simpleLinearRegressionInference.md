@@ -477,15 +477,15 @@ library(alr4)
 data(ais)
 library(tibble)
 ais <- as_tibble(ais)
-aisR <- ais %>% slice(-56, -166) #Removes observations in rows 56 and 166
-m2 <- lm(Hc ~ Bfat, data = aisR %>% filter(Sex == 1)) #Results for Females 
+aisR <- ais |> slice(-56, -166) #Removes observations in rows 56 and 166
+m2 <- lm(Hc ~ Bfat, data = aisR |> filter(Sex == 1)) #Results for Females 
 summary(m2)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = Hc ~ Bfat, data = aisR %>% filter(Sex == 1))
+## lm(formula = Hc ~ Bfat, data = filter(aisR, Sex == 1))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -526,7 +526,7 @@ mtfires <- read_csv("http://www.math.montana.edu/courses/s217/documents/climateR
 
 
 ``` r
-mtfires <- mtfires %>% mutate(loghectares = log(hectares))
+mtfires <- mtfires |> mutate(loghectares = log(hectares))
 fire1 <- lm(loghectares ~ Temperature, data = mtfires)
 summary(fire1)
 ```
@@ -701,15 +701,15 @@ summary(bozemantemps)
 ```
 
 ``` r
-length(bozemantemps$Year) #Some years are missing (1905, 1906, 1948, 1950, 1995)
+dim(bozemantemps) #Some years are missing (1905, 1906, 1948, 1950, 1995)
 ```
 
 ```
-## [1] 109
+## [1] 109   2
 ```
 
 ``` r
-bozemantemps %>% ggplot(mapping = aes(x = Year, y = meanmax)) +
+bozemantemps |> ggplot(mapping = aes(x = Year, y = meanmax)) +
   geom_point() +
   geom_smooth(method = "lm") +
   geom_smooth(lty = 2, col = "red", lwd = 1.5, se = F) + #Add smoothing line
@@ -1055,13 +1055,13 @@ accomplished by calculating $\text{Year2} = \text{Year}-1901$.
 
 
 ``` r
-bozemantemps <- bozemantemps %>% mutate(Year2 = Year - 1901)
-summary(bozemantemps$Year2)
+bozemantemps <- bozemantemps |> mutate(Year2 = Year - 1901)
+favstats(~Year2, data = bozemantemps)
 ```
 
 ```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.00   29.00   58.00   57.27   85.00  113.00
+##  min Q1 median Q3 max     mean       sd   n missing
+##    0 29     58 85 113 57.26606 32.83337 109       0
 ```
 
 The new estimated regression equation is
@@ -1125,180 +1125,167 @@ Sections \@ref(section7-5) and \@ref(section7-6).
 
 \newpage
 
-## Randomization-based inferences for the slope coefficient	{#section7-4}
+<!-- ## Randomization-based inferences for the slope coefficient	{#section7-4} -->
 
-Exploring permutation testing in SLR provides an opportunity to gauge the observed
-relationship against the sorts of relationships we would expect to see if there
-was no linear relationship between the variables. If the relationship is linear
-(not curvilinear) and the null hypothesis of $\beta_1 = 0$ is true, then any
-configuration of the responses relative to the
-predictor variable's values is as good as any other.
-\index{permutation!test}
-Consider the four scatterplots of
-the Bozeman temperature data versus ``Year`` and permuted versions of ``Year``
-in Figure \@ref(fig:Figure7-8). First, think about which of the panels you 
-think present the most
-evidence of a linear relationship between ``Year`` and ``Temperature``? 
+<!-- Exploring permutation testing in SLR provides an opportunity to gauge the observed -->
+<!-- relationship against the sorts of relationships we would expect to see if there -->
+<!-- was no linear relationship between the variables. If the relationship is linear -->
+<!-- (not curvilinear) and the null hypothesis of $\beta_1 = 0$ is true, then any -->
+<!-- configuration of the responses relative to the -->
+<!-- predictor variable's values is as good as any other. -->
+<!-- \index{permutation!test} -->
+<!-- Consider the four scatterplots of -->
+<!-- the Bozeman temperature data versus ``Year`` and permuted versions of ``Year`` -->
+<!-- in Figure \@ref(fig:Figure7-8). First, think about which of the panels you  -->
+<!-- think present the most -->
+<!-- evidence of a linear relationship between ``Year`` and ``Temperature``?  -->
 
-(ref:fig7-8) Plot of the ``Temperature`` responses versus four versions of ``Year``, three of which are permutations of the Year variable relative to the Temperatures.
+<!-- (ref:fig7-8) Plot of the ``Temperature`` responses versus four versions of ``Year``, three of which are permutations of the Year variable relative to the Temperatures. -->
 
-<div class="figure" style="text-align: center">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-8-1.png" alt="(ref:fig7-8)" width="75%" />
-<p class="caption">(\#fig:Figure7-8)(ref:fig7-8)</p>
-</div>
+<!-- ```{r Figure7-8,fig.cap="(ref:fig7-8)",echo=F} -->
+<!-- set.seed(1667) -->
 
-\indent Hopefully you can see that panel (c) contains the most clear linear 
-relationship among the choices. The plot in
-panel (c) is actually the real data set and pretty clearly presents itself as
-"different" from the other results. When we have small p-values, the real data
-set will be clearly different from the permuted results because it will be
-almost impossible to find a permuted data set that can attain as large a slope
-coefficient as was observed in the real data set^[It took many permutations
-to get competitor plots this close to the real data set and they really 
-aren't that close.]. This result ties back into our original interests 
-in this climate change research
-situation -- does our result look like it is different from what could have been
-observed just by chance if there were no linear relationship between $x$
-and $y$? It seems unlikely...
+<!-- par(mfrow = c(2,2)) -->
+<!-- d1 <- bozemantemps -->
+<!-- d1 <- d1 |> mutate(Year = shuffle(Year)) -->
+<!-- plot(meanmax ~ Year,data = d1,xlab = "Year",ylab = "Maximum Temperature",main = "(a)") -->
+<!-- abline(coefficients(lm(meanmax ~ Year,data = d1)),lwd = 2,col = "red") -->
 
-\indent Repeating this permutation process and tracking the estimated slope 
-coefficients, as $T^*$, provides another method to obtain a p-value in 
-SLR applications. This could also be performed on the $t$-statistic for 
-the slope coefficient and would provide the same p-values but the sampling
-distribution would have a
-different $x$-axis scaling. In this situation, the observed slope of 0.052 is
-really far from any possible values that can be obtained using permutations as
-shown in Figure \@ref(fig:Figure7-9). The p-value would be reported as 
-$<0.001$ for the two-sided permutation test. 
+<!-- d1 <- bozemantemps -->
+<!-- d1 <- d1 |> mutate(Year = shuffle(Year)) -->
+<!-- plot(meanmax ~ Year,data = d1,xlab = "Year",ylab = "Maximum Temperature",main = "(b)") -->
+<!-- abline(coefficients(lm(meanmax ~ Year,data = d1)),lwd = 2,col = "red") -->
 
+<!-- d1 <- bozemantemps -->
+<!-- d1 <- d1 |> mutate(Year = shuffle(Year)) -->
+<!-- plot(meanmax ~ Year,data = bozemantemps,xlab = "Year",ylab = "Maximum Temperature",main = "(c)") -->
+<!-- abline(coefficients(lm(meanmax ~ Year,data = bozemantemps)),lwd = 2,col = "red") -->
 
+<!-- set.seed(97531) -->
 
-<!-- \newpage -->
+<!-- d1 <- bozemantemps -->
+<!-- d1 <- d1 |> mutate(Year = shuffle(Year)) -->
+<!-- plot(meanmax ~ Year,data = d1,xlab = "Year",ylab = "Maximum Temperature",main = "(d)") -->
+<!-- abline(coefficients(lm(meanmax ~ Year,data = d1)),lwd = 2,col = "red") -->
+<!-- ``` -->
 
+<!-- \indent Hopefully you can see that panel (c) contains the most clear linear  -->
+<!-- relationship among the choices. The plot in -->
+<!-- panel (c) is actually the real data set and pretty clearly presents itself as -->
+<!-- "different" from the other results. When we have small p-values, the real data -->
+<!-- set will be clearly different from the permuted results because it will be -->
+<!-- almost impossible to find a permuted data set that can attain as large a slope -->
+<!-- coefficient as was observed in the real data set^[It took many permutations -->
+<!-- to get competitor plots this close to the real data set and they really  -->
+<!-- aren't that close.]. This result ties back into our original interests  -->
+<!-- in this climate change research -->
+<!-- situation -- does our result look like it is different from what could have been -->
+<!-- observed just by chance if there were no linear relationship between $x$ -->
+<!-- and $y$? It seems unlikely... -->
 
-``` r
-Tobs <- lm(meanmax ~ Year, data = bozemantemps)$coef[2]
-Tobs
-```
+<!-- \indent Repeating this permutation process and tracking the estimated slope  -->
+<!-- coefficients, as $T^*$, provides another method to obtain a p-value in  -->
+<!-- SLR applications. This could also be performed on the $t$-statistic for  -->
+<!-- the slope coefficient and would provide the same p-values but the sampling -->
+<!-- distribution would have a -->
+<!-- different $x$-axis scaling. In this situation, the observed slope of 0.052 is -->
+<!-- really far from any possible values that can be obtained using permutations as -->
+<!-- shown in Figure \@ref(fig:Figure7-9). The p-value would be reported as  -->
+<!-- $<0.001$ for the two-sided permutation test.  -->
 
-```
-##       Year 
-## 0.05244213
-```
+<!-- ```{r echo=F} -->
+<!-- set.seed(3456) -->
+<!-- ``` -->
 
-``` r
-B <- 1000
-Tstar <- matrix(NA, nrow = B)
+<!-- <!-- \newpage --> -->
 
-for (b in (1:B)){
-  Tstar[b] <- lm(meanmax ~ shuffle(Year), data = bozemantemps)$coef[2]
-}
-pdata(abs(Tstar), abs(Tobs), lower.tail = F)[[1]]
-```
+<!-- ```{r} -->
+<!-- Tobs <- coefficients(lm(meanmax ~ Year, data = bozemantemps))[2] -->
+<!-- Tobs -->
 
-```
-## [1] 0
-```
+<!-- B <- 1000 -->
+<!-- Tstar <- matrix(NA, nrow = B) -->
 
-
-
-(ref:fig7-9) Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at $\pm b_1 = 0.56$ based on the observed estimated slope.
-
-
-``` r
-tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") + 
-  geom_density(aes(y = ..scaled..)) +
-  theme_bw() +
-  labs(y = "Density") +
-  geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20,
-           geom = "text", vjust = -0.75)
-```
-
-<div class="figure" style="text-align: center">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-9-1.png" alt="(ref:fig7-9)" width="75%" />
-<p class="caption">(\#fig:Figure7-9)(ref:fig7-9)</p>
-</div>
-
-\indent One other interesting aspect of exploring the permuted data sets as in 
-Figure \@ref(fig:Figure7-8) is that the outlier
-in the late 1930s "disappears" in the permuted data sets because there were
-many other observations that were that warm, just none that happened around
-that time of the century in the real data set. This reinforces the evidence for
-changes over time that seem to be present in these data -- old unusual years
-don't look unusual in more recent years (which is a pretty concerning result). 
-
-\indent The permutation approach can be useful in situations where the normality assumption
-is compromised, but there are no influential points. In these situations, we
-might find more trustworthy p-values using permutations but only if we are
-working with an initial estimated regression equation that we generally trust. 
-I personally like the permutation approach as a way of explaining what a p-value
-is actually measuring -- the chance of seeing something like what we saw, or
-more extreme, if the null is true.
-\index{permutation!test!interpretation of}
-\index{p-value!interpretation of}
-And the previous scatterplots show what the
-"by chance" versions of this relationship might look like. 
-
-\indent In a similar situation where we want to focus on confidence intervals for slope
-coefficients but are not completely comfortable with the normality assumption, 
-it is also possible to generate bootstrap confidence intervals by sampling with
-replacement from the data set. This idea was introduced in 
-Sections \@ref(section2-8) and \@ref(section2-9). This provides a 95% 
-bootstrap confidence interval from 0.0433 to 0.061, 
-which almost exactly matches the parametric $t$-based confidence interval. The
-bootstrap distributions are very symmetric (Figure \@ref(fig:Figure7-10)).
-The interpretation is
-the same and this result reinforces the other assessments that the parametric
-approach is not unreasonable here except possibly for the independence assumption. These randomization approaches provide no robustness against violations of the independence assumption. \index{independence assumption!SLR}
+<!-- for (b in (1:B)){ -->
+<!--   Tstar[b] <- coefficients(lm(meanmax ~ shuffle(Year), data = bozemantemps))[2] -->
+<!-- } -->
+<!-- pdata(abs(Tstar), abs(Tobs), lower.tail = F)[[1]] -->
+<!-- ``` -->
 
 
 
-(ref:fig7-10) Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold dashed vertical lines delineating the 95% confidence interval and the bold solid line the observed slope of 0.052.
+<!-- (ref:fig7-9) Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at $\pm b_1 = 0.56$ based on the observed estimated slope. -->
 
+<!-- ```{r Figure7-9,fig.cap="(ref:fig7-9)"} -->
+<!-- tibble(Tstar) |>  ggplot(aes(x = Tstar)) +  -->
+<!--   geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") +  -->
+<!--   geom_density(aes(y = ..scaled..)) + -->
+<!--   theme_bw() + -->
+<!--   labs(y = "Density") + -->
+<!--   geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2) + -->
+<!--   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20, -->
+<!--            geom = "text", vjust = -0.75) -->
+<!-- ``` -->
 
-``` r
-Tobs <- lm(meanmax ~ Year, data = bozemantemps)$coef[2]
-Tobs
-```
+<!-- \indent One other interesting aspect of exploring the permuted data sets as in  -->
+<!-- Figure \@ref(fig:Figure7-8) is that the outlier -->
+<!-- in the late 1930s "disappears" in the permuted data sets because there were -->
+<!-- many other observations that were that warm, just none that happened around -->
+<!-- that time of the century in the real data set. This reinforces the evidence for -->
+<!-- changes over time that seem to be present in these data -- old unusual years -->
+<!-- don't look unusual in more recent years (which is a pretty concerning result).  -->
 
-```
-##       Year 
-## 0.05244213
-```
+<!-- \indent The permutation approach can be useful in situations where the normality assumption -->
+<!-- is compromised, but there are no influential points. In these situations, we -->
+<!-- might find more trustworthy p-values using permutations but only if we are -->
+<!-- working with an initial estimated regression equation that we generally trust.  -->
+<!-- I personally like the permutation approach as a way of explaining what a p-value -->
+<!-- is actually measuring -- the chance of seeing something like what we saw, or -->
+<!-- more extreme, if the null is true. -->
+<!-- \index{permutation!test!interpretation of} -->
+<!-- \index{p-value!interpretation of} -->
+<!-- And the previous scatterplots show what the -->
+<!-- "by chance" versions of this relationship might look like.  -->
 
-``` r
-B <- 1000
-Tstar <- matrix(NA, nrow = B)
-for (b in (1:B)){
-  Tstar[b] <- lm(meanmax ~ Year, data = resample(bozemantemps))$coef[2]
-}
-quantiles <- qdata(Tstar, c(0.025, 0.975))
-quantiles
-```
+<!-- \indent In a similar situation where we want to focus on confidence intervals for slope -->
+<!-- coefficients but are not completely comfortable with the normality assumption,  -->
+<!-- it is also possible to generate bootstrap confidence intervals by sampling with -->
+<!-- replacement from the data set. This idea was introduced in  -->
+<!-- Sections \@ref(section2-8) and \@ref(section2-9). This provides a 95%  -->
+<!-- bootstrap confidence interval from 0.0433 to 0.061,  -->
+<!-- which almost exactly matches the parametric $t$-based confidence interval. The -->
+<!-- bootstrap distributions are very symmetric (Figure \@ref(fig:Figure7-10)). -->
+<!-- The interpretation is -->
+<!-- the same and this result reinforces the other assessments that the parametric -->
+<!-- approach is not unreasonable here except possibly for the independence assumption. These randomization approaches provide no robustness against violations of the independence assumption. \index{independence assumption!SLR} -->
 
-```
-##       2.5%      97.5% 
-## 0.04326952 0.06131044
-```
+<!-- ```{r echo=F} -->
+<!-- set.seed(12345) -->
+<!-- ``` -->
 
-``` r
-tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) + 
-  geom_density(aes(y = ..scaled..)) +
-  theme_bw() +
-  labs(y = "Density") +
-  geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 3) +    
-  geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15,
-           geom = "text", vjust = -0.75)
-```
+<!-- (ref:fig7-10) Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold dashed vertical lines delineating the 95% confidence interval and the bold solid line the observed slope of 0.052. -->
 
-<div class="figure" style="text-align: center">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-10-1.png" alt="(ref:fig7-10)" width="75%" />
-<p class="caption">(\#fig:Figure7-10)(ref:fig7-10)</p>
-</div>
+<!-- ```{r Figure7-10,fig.cap="(ref:fig7-10)"} -->
+<!-- Tobs <- coefficients(lm(meanmax ~ Year, data = bozemantemps))[2] -->
+<!-- Tobs -->
+<!-- B <- 1000 -->
+<!-- Tstar <- matrix(NA, nrow = B) -->
+<!-- for (b in (1:B)){ -->
+<!--   Tstar[b] <- coefficients(lm(meanmax ~ Year, data = resample(bozemantemps)))[2] -->
+<!-- } -->
+<!-- quantiles <- qdata(Tstar, c(0.025, 0.975)) -->
+<!-- quantiles -->
+
+<!-- tibble(Tstar) |>  ggplot(aes(x = Tstar)) +  -->
+<!--   geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +  -->
+<!--   geom_density(aes(y = ..scaled..)) + -->
+<!--   theme_bw() + -->
+<!--   labs(y = "Density") + -->
+<!--   geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 3) +     -->
+<!--   geom_vline(xintercept = Tobs, col = "red", lwd = 2) + -->
+<!--   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, -->
+<!--            geom = "text", vjust = -0.75) -->
+<!-- ``` -->
 
 <!-- \newpage -->
 
@@ -1332,7 +1319,7 @@ one or both variables.
 \index{transformation}
 After applying this transformation, one hopes to have
 alleviated whatever issues encouraged its consideration. ***Linear transformation 
-functions***, of the form $z_{\text{new}} = a*x+b$, will never help us to fix
+functions***, of the form $z_{\text{new}} = a\cdot x+b$, will never help us to fix
 assumptions in regression situations; linear transformations change the scaling
 of the variables but not their shape or the relationship between two variables. 
 For example, in the Bozeman Temperature data example, we subtracted 1901 from
@@ -1362,7 +1349,7 @@ a 1 year increase, the slope coefficient is 0.052. More useful than this is the 
 
 
 ``` r
-bozemantemps <- bozemantemps %>% mutate(meanmaxC = (meanmax - 32)*(5/9))
+bozemantemps <- bozemantemps |> mutate(meanmaxC = (meanmax - 32)*(5/9))
 temp3 <- lm(meanmaxC ~ Year2, data = bozemantemps)
 summary(temp1)
 ```
@@ -1476,12 +1463,12 @@ log-hectares scale.
 
 
 ``` r
-p <- mtfires %>% ggplot(mapping = aes(x = Temperature, y = hectares)) +
+p <- mtfires |> ggplot(mapping = aes(x = Temperature, y = hectares)) +
   geom_point() +
   labs(title = "(a)", y = "Hectares") +
   theme_bw()
             
-plog <- mtfires %>% ggplot(mapping = aes(x = Temperature, y = loghectares)) +
+plog <- mtfires |> ggplot(mapping = aes(x = Temperature, y = loghectares)) +
   geom_point() +
   labs(title = "(b)", y = "log-Hectares") +
   theme_bw()
@@ -1523,14 +1510,14 @@ information with the response variable (height) log-transformed.
 library(spuRs)
 data(ufc)
 ufc <- as_tibble(ufc)
-ufc %>% slice(-168) %>% ggplot(mapping = aes(x = dbh.cm, y = height.m)) +
+ufc |> slice(-168) |> ggplot(mapping = aes(x = dbh.cm, y = height.m)) +
   geom_point() +
   geom_smooth(method = "lm") +
   geom_smooth(col = "red", lwd = 1, se = F, lty = 2) +
   theme_bw() +
   labs(title = "Tree height vs tree diameter")
 
-ufc %>% slice(-168) %>% ggplot(mapping = aes(x = dbh.cm, y = log(height.m))) +
+ufc |> slice(-168) |> ggplot(mapping = aes(x = dbh.cm, y = log(height.m))) +
   geom_point() +
   geom_smooth(method = "lm") +
   geom_smooth(col = "red", lwd = 1, se = F, lty = 2) +
@@ -1596,7 +1583,7 @@ model to the tree *height* vs *log(diameter)* versions of the variables
 
 
 ``` r
-ufc %>% slice(-168) %>% ggplot(mapping = aes(x = log(dbh.cm), y = log(height.m))) +
+ufc |> slice(-168) |> ggplot(mapping = aes(x = log(dbh.cm), y = log(height.m))) +
   geom_point() +
   geom_smooth(method = "lm") +
   geom_smooth(col = "red", lwd = 1, se = F, lty = 2) +
@@ -2450,10 +2437,10 @@ To visualize these results as shown in Figure \@ref(fig:Figure7-23), we need to 
 ``` r
 # Patch the beerf vector, fits (just one version), and intervals from BBCI and 
 # BBPI together with bind_cols:
-modelresB <- bind_cols(beerf = tibble(beerf), BBCI, BBPI %>% select(-fit))
+modelresB <- bind_cols(beerf = tibble(beerf), BBCI, BBPI |> select(-fit))
 
 # Rename CI and PI limits to have more explicit column names:
-modelresB <- modelresB %>% rename(lwr_CI = lwr...3, upr_CI = upr...4, 
+modelresB <- modelresB |> rename(lwr_CI = lwr...3, upr_CI = upr...4, 
                                   lwr_PI = lwr...5, upr_PI = upr...6)
 ```
 
@@ -2461,7 +2448,7 @@ modelresB <- modelresB %>% rename(lwr_CI = lwr...3, upr_CI = upr...4,
 
 
 ``` r
-modelresB %>% ggplot() + 
+modelresB |> ggplot() + 
   geom_line(aes(x = beerf, y = fit), lwd = 1) +
   geom_ribbon(aes(x = beerf, ymin = lwr_CI, ymax = upr_CI), alpha = .4, 
               fill = "beige", color = "darkred", lty = 2, lwd = 1) +
@@ -2506,13 +2493,13 @@ TPI <- as_tibble(predict(temp1, newdata = tibble(Year = Yearf), interval = "pred
 
 # Patch the Yearf vector, fits (just one version), and intervals from TCI and 
 # TPI together with bind_cols:
-modelresT <- bind_cols(Yearf = tibble(Yearf), TCI, TPI %>% select(-fit))
+modelresT <- bind_cols(Yearf = tibble(Yearf), TCI, TPI |> select(-fit))
 
 # Rename CI and PI limits to have more explicit column names:
-modelresT <- modelresT %>% rename(lwr_CI = lwr...3, upr_CI = upr...4, 
+modelresT <- modelresT |> rename(lwr_CI = lwr...3, upr_CI = upr...4, 
                                   lwr_PI = lwr...5, upr_PI = upr...6)
 
-modelresT %>% ggplot() + 
+modelresT |> ggplot() + 
   geom_line(aes(x = Yearf, y = fit), lwd = 1) +
   geom_ribbon(aes(x = Yearf, ymin = lwr_CI, ymax = upr_CI), alpha = .4, 
               fill = "beige", color = "darkred", lty = 2, lwd = 1) +
@@ -2638,7 +2625,7 @@ The main components of the R code used in this chapter follow with the
 components to modify in lighter and/or ALL CAPS text where ``y`` is a response variable, ``x`` is an
 explanatory variable, and the data are in ``DATASETNAME``. 
 
-* **<font color='red'>DATASETNAME</font> %>% ggplot(mapping = aes(x = <font color='red'>x</font>, y = <font color='red'>y</font>)) + geom_point() + geom_smooth(method = "lm")**
+* **<font color='red'>DATASETNAME</font> |> ggplot(mapping = aes(x = <font color='red'>x</font>, y = <font color='red'>y</font>)) + geom_point() + geom_smooth(method = "lm")**
 
     * Provides a scatter plot with a regression line.
     \index{\texttt{geom\_point()}|textbf}
@@ -2677,7 +2664,7 @@ explanatory variable, and the data are in ``DATASETNAME``.
     * Provides a term-plot of the estimated regression line with 95% confidence
     interval for the mean. \index{\texttt{allEffects()}|textbf}
     
-* **<font color='red'>DATASETNAME</font> ``<-`` <font color='red'>DATASETNAME</font> %>% mutate(log.<font color='red'>y</font> = log(<font color='red'>y</font>)**
+* **<font color='red'>DATASETNAME</font> ``<-`` <font color='red'>DATASETNAME</font> |> mutate(log.<font color='red'>y</font> = log(<font color='red'>y</font>)**
 
     * Creates a transformed variable called log.y -- change this to be more
     specific to your "$y$" or "$x$".
@@ -2721,7 +2708,7 @@ stopped at the end of Chapter \@ref(chapter6):
 
 ```r
 treadmill <- read_csv("http://www.math.montana.edu/courses/s217/documents/treadmill.csv")
-treadmill %>% ggplot(mapping = aes(x = RunTime, y = TreadMillOx)) +
+treadmill |> ggplot(mapping = aes(x = RunTime, y = TreadMillOx)) +
   geom_point(aes(color = Age)) +
   geom_smooth(method = "lm") +
   geom_smooth(se = F, lty = 2, col = "red") +

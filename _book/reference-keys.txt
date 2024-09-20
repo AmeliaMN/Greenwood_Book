@@ -146,9 +146,6 @@ fig:Figure7-4
 fig:Figure7-5
 fig:Figure7-6
 fig:Figure7-7
-fig:Figure7-8
-fig:Figure7-9
-fig:Figure7-10
 fig:Figure7-11
 tab:Table7-1
 fig:Figure7-12
@@ -304,7 +301,6 @@ chapter7
 section7-1
 section7-2
 section7-3
-section7-4
 section7-5
 section7-6
 section7-7

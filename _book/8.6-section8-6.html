@@ -264,13 +264,12 @@ details > summary {
 <li><a href="7.1-section7-1.html#section7-1" id="toc-section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
 <li><a href="7.2-section7-2.html#section7-2" id="toc-section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li><a href="7.3-section7-3.html#section7-3" id="toc-section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
-<li><a href="7.4-section7-4.html#section7-4" id="toc-section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
-<li><a href="7.5-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
-<li><a href="7.6-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li><a href="7.7-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li><a href="7.8-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
-<li><a href="7.9-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
-<li><a href="7.10-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+<li><a href="7.4-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.4</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7.5-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.5</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7.6-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.6</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7.7-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.7</span> Chapter summary</a></li>
+<li><a href="7.8-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.8</span> Summary of important R code</a></li>
+<li><a href="7.9-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.9</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="8-chapter8.html#chapter8" id="toc-chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a>
 <ul>
@@ -351,8 +350,8 @@ summary we’ve been working with. You can find the estimated slope
 <span class="math inline">\(t\)</span>-statistics (<code>t value</code> column), and the p-values (<code>Pr(&gt;|t|)</code> column).
 The degrees of freedom for the <span class="math inline">\(t\)</span>-distributions show up below the coefficients
 and the <span class="math inline">\(df = 20\)</span> here. This is because <span class="math inline">\(n = 23\)</span> and <span class="math inline">\(K = 2\)</span>, so <span class="math inline">\(df = 23-2-1 = 20\)</span>.</p>
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="8.6-section8-6.html#cb722-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
-<span id="cb722-2"><a href="8.6-section8-6.html#cb722-2" tabindex="-1"></a><span class="fu">summary</span>(m5)</span></code></pre></div>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="8.6-section8-6.html#cb712-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<span id="cb712-2"><a href="8.6-section8-6.html#cb712-2" tabindex="-1"></a><span class="fu">summary</span>(m5)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Elevation + Max.Temp, data = snotel_s %&gt;% 
@@ -383,7 +382,7 @@ the test statistic follows a <span class="math inline">\(t_{20}\)</span>-distrib
 <p>The output provides a p-value of <span class="math inline">\(0.0306\)</span> for this test. We can also find this
 using <code>pt</code>:
 </p>
-<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="8.6-section8-6.html#cb724-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fl">2.327</span>, <span class="at">df =</span> <span class="dv">20</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="8.6-section8-6.html#cb714-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fl">2.327</span>, <span class="at">df =</span> <span class="dv">20</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 0.03058319</code></pre>
 <p>The chance of observing a
 slope for <em>Max.Temp</em> as extreme or more extreme than assuming there really is no
@@ -414,7 +413,7 @@ educated statistics users even think this result is proof of something interesti
 or are disappointed when the p-value is not small. Unless you want to do some
 prediction and are interested in whether the mean response when all the
 predictors are set to 0 is different from 0, this test should not be reported
-or, if reported, is certainly not very interesting<a href="#fn136" class="footnote-ref" id="fnref136"><sup>136</sup></a>.
+or, if reported, is certainly not very interesting<a href="#fn135" class="footnote-ref" id="fnref135"><sup>135</sup></a>.
 But we should at least go through the motions on this
 test once so you don’t make the same mistakes:</p>
 <p><span class="math inline">\(\boldsymbol{H_0: \beta_0 = 0 \textbf{ vs } H_A: \beta_0\ne 0}\)</span> in a model with
@@ -461,7 +460,7 @@ adjusting for the other <span class="math inline">\(x\text{&#39;s}\)</span> <str
 </blockquote>
 <p>We can either calculate these intervals as we have many times before or
 rely on the <code>confint</code> function to do this:</p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="8.6-section8-6.html#cb726-1" tabindex="-1"></a><span class="fu">confint</span>(m5)</span></code></pre></div>
+<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="8.6-section8-6.html#cb716-1" tabindex="-1"></a><span class="fu">confint</span>(m5)</span></code></pre></div>
 <pre><code>##                     2.5 %       97.5 %
 ## (Intercept) -249.37903311 -85.67576239
 ## Elevation      0.01747878   0.03067123
@@ -475,12 +474,12 @@ after adjusting for the <em>Maximum Temperature</em> of the sites.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="136">
-<li id="fn136"><p>There are some social
+<ol start="135">
+<li id="fn135"><p>There are some social
 science models where the model is fit with the mean subtracted from each
 predictor so all have mean 0 and the precision of the <span class="math inline">\(y\)</span>-intercept is
 interesting. In some cases both the response and predictor variables are “standardized” to have means of 0 and standard deviations of 1. The interpretations of coefficients then relates to changes in standard deviations around the means. These coefficients are called “standardized betas”. But even in these models where the <span class="math inline">\(x\)</span>-values of 0 are of interest, the test for the <span class="math inline">\(y\)</span>-intercept being 0 is
-rarely of interest.<a href="8.6-section8-6.html#fnref136" class="footnote-back">↩︎</a></p></li>
+rarely of interest.<a href="8.6-section8-6.html#fnref135" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

@@ -264,13 +264,12 @@ details > summary {
 <li><a href="7.1-section7-1.html#section7-1" id="toc-section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
 <li><a href="7.2-section7-2.html#section7-2" id="toc-section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li><a href="7.3-section7-3.html#section7-3" id="toc-section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
-<li><a href="7.4-section7-4.html#section7-4" id="toc-section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
-<li><a href="7.5-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
-<li><a href="7.6-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li><a href="7.7-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li><a href="7.8-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
-<li><a href="7.9-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
-<li><a href="7.10-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+<li><a href="7.4-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.4</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7.5-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.5</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7.6-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.6</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7.7-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.7</span> Chapter summary</a></li>
+<li><a href="7.8-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.8</span> Summary of important R code</a></li>
+<li><a href="7.9-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.9</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="8-chapter8.html#chapter8" id="toc-chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a>
 <ul>
@@ -365,7 +364,7 @@ the true mean of <strong><em>Y</em></strong> will be between <strong>LL</strong>
 <p>This is really only interesting if the value of <span class="math inline">\(x = 0\)</span> is interesting –
 we’ll see a method for generating CIs
 for the true mean at potentially more interesting values of <span class="math inline">\(x\)</span> in
-Section <a href="7.7-section7-7.html#section7-7">7.7</a>. To trust the results from these
+Section <a href="7.6-section7-7.html#section7-7">7.6</a>. To trust the results from these
 confidence intervals, it is critical that any issues with the regression validity conditions are minor. </p>
 <p>The only hypothesis test of interest in this situation is for the slope
 coefficient.
@@ -537,12 +536,12 @@ but certainly would never say that this presents strong evidence.
 <span id="cb561-2"><a href="7.2-section7-2.html#cb561-2" tabindex="-1"></a><span class="fu">data</span>(ais)</span>
 <span id="cb561-3"><a href="7.2-section7-2.html#cb561-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb561-4"><a href="7.2-section7-2.html#cb561-4" tabindex="-1"></a>ais <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ais)</span>
-<span id="cb561-5"><a href="7.2-section7-2.html#cb561-5" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">56</span>, <span class="sc">-</span><span class="dv">166</span>) <span class="co">#Removes observations in rows 56 and 166</span></span>
-<span id="cb561-6"><a href="7.2-section7-2.html#cb561-6" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Results for Females </span></span>
+<span id="cb561-5"><a href="7.2-section7-2.html#cb561-5" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">56</span>, <span class="sc">-</span><span class="dv">166</span>) <span class="co">#Removes observations in rows 56 and 166</span></span>
+<span id="cb561-6"><a href="7.2-section7-2.html#cb561-6" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Results for Females </span></span>
 <span id="cb561-7"><a href="7.2-section7-2.html#cb561-7" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Hc ~ Bfat, data = aisR %&gt;% filter(Sex == 1))
+## lm(formula = Hc ~ Bfat, data = filter(aisR, Sex == 1))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -566,7 +565,7 @@ to how we are handling the units of the response variable, log-hectares, and to
 the changes to doing inferences with a 99% confidence
 level CI, and where you can find the needed results in the following output:</p>
 <div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="7.2-section7-2.html#cb565-1" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/climateR2.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="7.2-section7-2.html#cb566-1" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">loghectares =</span> <span class="fu">log</span>(hectares))</span>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="7.2-section7-2.html#cb566-1" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> mtfires <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">loghectares =</span> <span class="fu">log</span>(hectares))</span>
 <span id="cb566-2"><a href="7.2-section7-2.html#cb566-2" tabindex="-1"></a>fire1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(loghectares <span class="sc">~</span> Temperature, <span class="at">data =</span> mtfires)</span>
 <span id="cb566-3"><a href="7.2-section7-2.html#cb566-3" tabindex="-1"></a><span class="fu">summary</span>(fire1)</span></code></pre></div>
 <pre><code>## 

@@ -264,13 +264,12 @@ details > summary {
 <li><a href="7.1-section7-1.html#section7-1" id="toc-section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
 <li><a href="7.2-section7-2.html#section7-2" id="toc-section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li><a href="7.3-section7-3.html#section7-3" id="toc-section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
-<li><a href="7.4-section7-4.html#section7-4" id="toc-section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
-<li><a href="7.5-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
-<li><a href="7.6-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li><a href="7.7-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li><a href="7.8-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
-<li><a href="7.9-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
-<li><a href="7.10-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+<li><a href="7.4-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.4</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7.5-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.5</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7.6-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.6</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7.7-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.7</span> Chapter summary</a></li>
+<li><a href="7.8-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.8</span> Summary of important R code</a></li>
+<li><a href="7.9-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.9</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="8-chapter8.html#chapter8" id="toc-chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a>
 <ul>
@@ -572,7 +571,7 @@ but if you apply it to situations with p-values larger than your
 <em>a priori</em> significance level,
 you are unlikely to find any pairs that are detected as being different. Some
 statisticians suggest that you shouldn’t employ follow-up tests such as Tukey’s
-HSD when there is not much evidence against the overall null hypothesis. If you needed to use a permutation approach for your overall F-test, there are techniques for generating multiple-comparison adjusted permutation confidence intervals, but they are beyond the scope of this material. Using the tools here there are two options. First, you can subset the data set and do pairwise two-sample t-tests for all combinations of pairs of levels and apply a Bonferroni correction for the p-values that this would generate (this is more conservative than employing Tukey’s adjustments). Another alternative to be able to employ Tukey’s HSD as discussed here is to try to use a transformation on the response variable (things like logs or square-roots) so that the parametric approach is reasonable to use; transformations are discussed in Sections <a href="7.5-section7-5.html#section7-5">7.5</a> and <a href="7.6-section7-6.html#section7-6">7.6</a>.</p>
+HSD when there is not much evidence against the overall null hypothesis. If you needed to use a permutation approach for your overall F-test, there are techniques for generating multiple-comparison adjusted permutation confidence intervals, but they are beyond the scope of this material. Using the tools here there are two options. First, you can subset the data set and do pairwise two-sample t-tests for all combinations of pairs of levels and apply a Bonferroni correction for the p-values that this would generate (this is more conservative than employing Tukey’s adjustments). Another alternative to be able to employ Tukey’s HSD as discussed here is to try to use a transformation on the response variable (things like logs or square-roots) so that the parametric approach is reasonable to use; transformations are discussed in Sections <a href="7.4-section7-5.html#section7-5">7.4</a> and <a href="7.5-section7-6.html#section7-6">7.5</a>.</p>
 </div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">

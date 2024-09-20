@@ -264,13 +264,12 @@ details > summary {
 <li><a href="7.1-section7-1.html#section7-1" id="toc-section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
 <li><a href="7.2-section7-2.html#section7-2" id="toc-section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li><a href="7.3-section7-3.html#section7-3" id="toc-section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
-<li><a href="7.4-section7-4.html#section7-4" id="toc-section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
-<li><a href="7.5-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
-<li><a href="7.6-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li><a href="7.7-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li><a href="7.8-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
-<li><a href="7.9-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
-<li><a href="7.10-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+<li><a href="7.4-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.4</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7.5-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.5</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7.6-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.6</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7.7-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.7</span> Chapter summary</a></li>
+<li><a href="7.8-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.8</span> Summary of important R code</a></li>
+<li><a href="7.9-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.9</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="8-chapter8.html#chapter8" id="toc-chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a>
 <ul>
@@ -310,7 +309,7 @@ details > summary {
 <div class="col-sm-12">
 <div id="section8-5" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</h2>
-<p>There are some important issues to remember<a href="#fn135" class="footnote-ref" id="fnref135"><sup>135</sup></a> when interpreting
+<p>There are some important issues to remember<a href="#fn134" class="footnote-ref" id="fnref134"><sup>134</sup></a> when interpreting
 regression models that can result in common mistakes.</p>
 <ul>
 <li><p><strong>Don’t claim to “hold everything constant” for a single individual</strong>:</p>
@@ -375,11 +374,11 @@ Consider the correlations among the predictors in the SNOTEL data set or
 visually displayed in Figure <a href="8.5-section8-5.html#fig:Figure8-17">8.17</a>:
 </p>
 <p></p>
-<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="8.5-section8-5.html#cb710-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb710-2"><a href="8.5-section8-5.html#cb710-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
-<span id="cb710-3"><a href="8.5-section8-5.html#cb710-3" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), </span>
-<span id="cb710-4"><a href="8.5-section8-5.html#cb710-4" tabindex="-1"></a>               <span class="at">upper.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>), <span class="at">lower.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>))</span>
-<span id="cb710-5"><a href="8.5-section8-5.html#cb710-5" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="8.5-section8-5.html#cb700-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb700-2"><a href="8.5-section8-5.html#cb700-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
+<span id="cb700-3"><a href="8.5-section8-5.html#cb700-3" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), </span>
+<span id="cb700-4"><a href="8.5-section8-5.html#cb700-4" tabindex="-1"></a>               <span class="at">upper.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>), <span class="at">lower.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>))</span>
+<span id="cb700-5"><a href="8.5-section8-5.html#cb700-5" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-17"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-17-1.png" alt="Plot of correlation matrix in the snow depth data set with influential points removed" width="75%" />
 <p class="caption">
@@ -441,8 +440,8 @@ It has the advantage of also providing a reasonable
 result when we include categorical variables in models
 (Sections <a href="8.9-section8-9.html#section8-9">8.9</a> and <a href="8.11-section8-11.html#section8-11">8.11</a>). We apply the <code>vif</code>
 function directly to a model of interest and it generates values for each explanatory variable.</p>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="8.5-section8-5.html#cb712-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb712-2"><a href="8.5-section8-5.html#cb712-2" tabindex="-1"></a><span class="fu">vif</span>(m6)</span></code></pre></div>
+<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="8.5-section8-5.html#cb702-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb702-2"><a href="8.5-section8-5.html#cb702-2" tabindex="-1"></a><span class="fu">vif</span>(m6)</span></code></pre></div>
 <pre><code>## Elevation  Min.Temp  Max.Temp 
 ##  8.164201  5.995301  3.350914</code></pre>
 <p>Not surprisingly, there is an indication of problems with multicollinearity in
@@ -450,7 +449,7 @@ two of the three variables in the model with the largest issues identified for
 <em>Elevation</em> and <em>Min.Temp</em>. Both of their VIFs exceed 5 indicating high levels of
 multicollinearity impacting those terms in the model. On the square-root scale, the VIFs show more
 interpretation utility.</p>
-<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="8.5-section8-5.html#cb714-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vif</span>(m6))</span></code></pre></div>
+<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="8.5-section8-5.html#cb704-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vif</span>(m6))</span></code></pre></div>
 <pre><code>## Elevation  Min.Temp  Max.Temp 
 ##  2.857307  2.448530  1.830550</code></pre>
 <p>The result for <em>Elevation</em> of 2.86 suggests that the SE for <em>Elevation</em> is 2.86
@@ -464,9 +463,9 @@ regress <em>Elevation</em> on <em>Min.Temp</em> and <em>Max.Temp</em>. Note that
 fit to find the percentage of variation in elevation explained by the temperature
 variables. It ends up being 0.8775 – so a high percentage of <em>Elevation</em> can be
 explained by the linear model using min and max temperatures.</p>
-<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="8.5-section8-5.html#cb716-1" tabindex="-1"></a><span class="co"># VIF calc:</span></span>
-<span id="cb716-2"><a href="8.5-section8-5.html#cb716-2" tabindex="-1"></a>elev1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Elevation <span class="sc">~</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
-<span id="cb716-3"><a href="8.5-section8-5.html#cb716-3" tabindex="-1"></a><span class="fu">summary</span>(elev1)</span></code></pre></div>
+<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="8.5-section8-5.html#cb706-1" tabindex="-1"></a><span class="co"># VIF calc:</span></span>
+<span id="cb706-2"><a href="8.5-section8-5.html#cb706-2" tabindex="-1"></a>elev1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Elevation <span class="sc">~</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<span id="cb706-3"><a href="8.5-section8-5.html#cb706-3" tabindex="-1"></a><span class="fu">summary</span>(elev1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Elevation ~ Min.Temp + Max.Temp, data = snotel_s %&gt;% 
@@ -487,9 +486,9 @@ explained by the linear model using min and max temperatures.</p>
 ## F-statistic: 71.64 on 2 and 20 DF,  p-value: 7.601e-10</code></pre>
 <p>Using this result, we can calculate</p>
 <p><span class="math display">\[\text{VIF}_{\text{elevation}} = \dfrac{1}{1-R^2_{\text{elevation}}} = \dfrac{1}{1-0.8775} = \dfrac{1}{0.1225} = 8.16\]</span></p>
-<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="8.5-section8-5.html#cb718-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.8775</span></span></code></pre></div>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="8.5-section8-5.html#cb708-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.8775</span></span></code></pre></div>
 <pre><code>## [1] 0.1225</code></pre>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="8.5-section8-5.html#cb720-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fl">0.1225</span></span></code></pre></div>
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="8.5-section8-5.html#cb710-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fl">0.1225</span></span></code></pre></div>
 <pre><code>## [1] 8.163265</code></pre>
 <p>Note that when we observe small VIFs (close to 1), that provides us with confidence that
 multicollinearity is not causing problems under the surface of
@@ -511,9 +510,9 @@ Fox, John, Sanford Weisberg, and Brad Price. 2022. <em>carData: Companion to App
 </div>
 <div class="footnotes">
 <hr />
-<ol start="135">
-<li id="fn135"><p>This section was inspired by a
-similar section from <span class="citation">De Veaux, Velleman, and Bock (<a href="#ref-DeVeaux2011">2011</a>)</span>.<a href="8.5-section8-5.html#fnref135" class="footnote-back">↩︎</a></p></li>
+<ol start="134">
+<li id="fn134"><p>This section was inspired by a
+similar section from <span class="citation">De Veaux, Velleman, and Bock (<a href="#ref-DeVeaux2011">2011</a>)</span>.<a href="8.5-section8-5.html#fnref134" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

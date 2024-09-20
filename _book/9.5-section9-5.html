@@ -264,13 +264,12 @@ details > summary {
 <li><a href="7.1-section7-1.html#section7-1" id="toc-section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
 <li><a href="7.2-section7-2.html#section7-2" id="toc-section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li><a href="7.3-section7-3.html#section7-3" id="toc-section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
-<li><a href="7.4-section7-4.html#section7-4" id="toc-section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
-<li><a href="7.5-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
-<li><a href="7.6-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li><a href="7.7-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li><a href="7.8-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
-<li><a href="7.9-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
-<li><a href="7.10-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+<li><a href="7.4-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.4</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7.5-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.5</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7.6-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.6</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7.7-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.7</span> Chapter summary</a></li>
+<li><a href="7.8-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.8</span> Summary of important R code</a></li>
+<li><a href="7.9-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.9</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="8-chapter8.html#chapter8" id="toc-chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a>
 <ul>
@@ -342,20 +341,20 @@ observations on each subject). The plot allows us to go further and see that
 many subjects had similar Epworth scores from pre to post (high in pre,
 generally high in post) once we account for systematic changes in the treated
 subjects that seemed to drop a bit on average.</p>
-<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="9.5-section9-5.html#cb859-1" tabindex="-1"></a>epworthdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/epworthdata.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="9.5-section9-5.html#cb849-1" tabindex="-1"></a>epworthdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/epworthdata.csv&quot;</span>)</span></code></pre></div>
 
-<div class="sourceCode" id="cb860"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb860-1"><a href="9.5-section9-5.html#cb860-1" tabindex="-1"></a>epworthdata <span class="ot">&lt;-</span> epworthdata <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Time =</span> <span class="fu">factor</span>(Time),</span>
-<span id="cb860-2"><a href="9.5-section9-5.html#cb860-2" tabindex="-1"></a>                                      <span class="at">Group =</span> <span class="fu">factor</span>(Group)</span>
-<span id="cb860-3"><a href="9.5-section9-5.html#cb860-3" tabindex="-1"></a>                                      )</span>
-<span id="cb860-4"><a href="9.5-section9-5.html#cb860-4" tabindex="-1"></a><span class="fu">levels</span>(epworthdata<span class="sc">$</span>Time) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span> , <span class="st">&quot;Post&quot;</span>)</span>
-<span id="cb860-5"><a href="9.5-section9-5.html#cb860-5" tabindex="-1"></a><span class="fu">levels</span>(epworthdata<span class="sc">$</span>Group) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Control&quot;</span> , <span class="st">&quot;Didgeridoo&quot;</span>)</span>
-<span id="cb860-6"><a href="9.5-section9-5.html#cb860-6" tabindex="-1"></a></span>
-<span id="cb860-7"><a href="9.5-section9-5.html#cb860-7" tabindex="-1"></a>epworthdata <span class="sc">%&gt;%</span> </span>
-<span id="cb860-8"><a href="9.5-section9-5.html#cb860-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Epworth, <span class="at">group =</span> Subject, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
-<span id="cb860-9"><a href="9.5-section9-5.html#cb860-9" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb860-10"><a href="9.5-section9-5.html#cb860-10" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb860-11"><a href="9.5-section9-5.html#cb860-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb860-12"><a href="9.5-section9-5.html#cb860-12" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="9.5-section9-5.html#cb850-1" tabindex="-1"></a>epworthdata <span class="ot">&lt;-</span> epworthdata <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Time =</span> <span class="fu">factor</span>(Time),</span>
+<span id="cb850-2"><a href="9.5-section9-5.html#cb850-2" tabindex="-1"></a>                                      <span class="at">Group =</span> <span class="fu">factor</span>(Group)</span>
+<span id="cb850-3"><a href="9.5-section9-5.html#cb850-3" tabindex="-1"></a>                                      )</span>
+<span id="cb850-4"><a href="9.5-section9-5.html#cb850-4" tabindex="-1"></a><span class="fu">levels</span>(epworthdata<span class="sc">$</span>Time) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Pre&quot;</span> , <span class="st">&quot;Post&quot;</span>)</span>
+<span id="cb850-5"><a href="9.5-section9-5.html#cb850-5" tabindex="-1"></a><span class="fu">levels</span>(epworthdata<span class="sc">$</span>Group) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Control&quot;</span> , <span class="st">&quot;Didgeridoo&quot;</span>)</span>
+<span id="cb850-6"><a href="9.5-section9-5.html#cb850-6" tabindex="-1"></a></span>
+<span id="cb850-7"><a href="9.5-section9-5.html#cb850-7" tabindex="-1"></a>epworthdata <span class="sc">%&gt;%</span> </span>
+<span id="cb850-8"><a href="9.5-section9-5.html#cb850-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Epworth, <span class="at">group =</span> Subject, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb850-9"><a href="9.5-section9-5.html#cb850-9" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb850-10"><a href="9.5-section9-5.html#cb850-10" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb850-11"><a href="9.5-section9-5.html#cb850-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb850-12"><a href="9.5-section9-5.html#cb850-12" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-13"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-13-1.png" alt="Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time." width="75%" />
 <p class="caption">
@@ -377,9 +376,9 @@ in Figure <a href="9.5-section9-5.html#fig:Figure9-14">9.14</a>. The real data s
 relationships between the pre and post scores but this connection seems to
 disappear in responses simulated from the estimated Two-Way ANOVA model (that
 assumes all observations are independent).</p>
-<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="9.5-section9-5.html#cb861-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb861-2"><a href="9.5-section9-5.html#cb861-2" tabindex="-1"></a>lm_int <span class="ot">&lt;-</span> <span class="fu">lm</span>(Epworth <span class="sc">~</span> Time <span class="sc">*</span> Group, <span class="at">data =</span> epworthdata)</span>
-<span id="cb861-3"><a href="9.5-section9-5.html#cb861-3" tabindex="-1"></a><span class="fu">Anova</span>(lm_int)</span></code></pre></div>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="9.5-section9-5.html#cb851-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb851-2"><a href="9.5-section9-5.html#cb851-2" tabindex="-1"></a>lm_int <span class="ot">&lt;-</span> <span class="fu">lm</span>(Epworth <span class="sc">~</span> Time <span class="sc">*</span> Group, <span class="at">data =</span> epworthdata)</span>
+<span id="cb851-3"><a href="9.5-section9-5.html#cb851-3" tabindex="-1"></a><span class="fu">Anova</span>(lm_int)</span></code></pre></div>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-14"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-14-1.png" alt="Plot of simulated data from the Two-Way ANOVA model that does not assume observations are on repeated measures on subjects to compare to the real data set. Even though the treatment levels seem to decrease on average, there is a much less clear relationship between the starting and ending values in the individuals." width="75%" />
@@ -454,9 +453,9 @@ provides <span class="math inline">\(F(1,23) = 5.43\)</span> with a p-value of 0
 moderate evidence against the null hypothesis of no interaction of time and group once we account for subject. This is a
 notably different result from what we observed in the Two-Way ANOVA
 interaction model that didn’t account for repeated measures on the subjects and matches the results in the original paper closely.</p>
-<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb862-1"><a href="9.5-section9-5.html#cb862-1" tabindex="-1"></a>epworthdata <span class="ot">&lt;-</span> epworthdata <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Subject =</span> <span class="fu">factor</span>(Subject))</span>
-<span id="cb862-2"><a href="9.5-section9-5.html#cb862-2" tabindex="-1"></a>lm_int_wsub <span class="ot">&lt;-</span> <span class="fu">lm</span>(Epworth <span class="sc">~</span> Time <span class="sc">*</span> Group <span class="sc">+</span> Subject, <span class="at">data =</span> epworthdata)</span>
-<span id="cb862-3"><a href="9.5-section9-5.html#cb862-3" tabindex="-1"></a><span class="fu">Anova</span>(lm_int_wsub)</span></code></pre></div>
+<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="9.5-section9-5.html#cb852-1" tabindex="-1"></a>epworthdata <span class="ot">&lt;-</span> epworthdata <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Subject =</span> <span class="fu">factor</span>(Subject))</span>
+<span id="cb852-2"><a href="9.5-section9-5.html#cb852-2" tabindex="-1"></a>lm_int_wsub <span class="ot">&lt;-</span> <span class="fu">lm</span>(Epworth <span class="sc">~</span> Time <span class="sc">*</span> Group <span class="sc">+</span> Subject, <span class="at">data =</span> epworthdata)</span>
+<span id="cb852-3"><a href="9.5-section9-5.html#cb852-3" tabindex="-1"></a><span class="fu">Anova</span>(lm_int_wsub)</span></code></pre></div>
 
 <table>
 <caption><span id="tab:Table9-3">Table 9.3: </span>ANOVA table from Two-Way ANOVA interaction model.</caption>
@@ -522,15 +521,15 @@ able to detect this difference. While these results rely on more complex models
 than we have time to discuss here, hopefully the similarity of the results of
 interest should resonate with the methods we have been exploring while hinting
 at more possibilities if you learn more statistical methods.</p>
-<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="9.5-section9-5.html#cb863-1" tabindex="-1"></a><span class="fu">library</span>(nlme)</span>
-<span id="cb863-2"><a href="9.5-section9-5.html#cb863-2" tabindex="-1"></a>lme_int <span class="ot">&lt;-</span> <span class="fu">lme</span>(Epworth <span class="sc">~</span> Time <span class="sc">*</span> Group, <span class="at">random =</span> <span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Subject, <span class="at">data =</span> epworthdata)</span>
-<span id="cb863-3"><a href="9.5-section9-5.html#cb863-3" tabindex="-1"></a><span class="fu">anova</span>(lme_int)</span></code></pre></div>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="9.5-section9-5.html#cb853-1" tabindex="-1"></a><span class="fu">library</span>(nlme)</span>
+<span id="cb853-2"><a href="9.5-section9-5.html#cb853-2" tabindex="-1"></a>lme_int <span class="ot">&lt;-</span> <span class="fu">lme</span>(Epworth <span class="sc">~</span> Time <span class="sc">*</span> Group, <span class="at">random =</span> <span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Subject, <span class="at">data =</span> epworthdata)</span>
+<span id="cb853-3"><a href="9.5-section9-5.html#cb853-3" tabindex="-1"></a><span class="fu">anova</span>(lme_int)</span></code></pre></div>
 <pre><code>##             numDF denDF   F-value p-value
 ## (Intercept)     1    23 132.81354  &lt;.0001
 ## Time            1    23  22.41014  0.0001
 ## Group           1    23   0.23175  0.6348
 ## Time:Group      1    23   5.43151  0.0289</code></pre>
-<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb865-1"><a href="9.5-section9-5.html#cb865-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(lme_int), <span class="at">multiline =</span> T, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">ci.style =</span> <span class="st">&quot;bars&quot;</span>, <span class="at">grid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="9.5-section9-5.html#cb855-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(lme_int), <span class="at">multiline =</span> T, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">ci.style =</span> <span class="st">&quot;bars&quot;</span>, <span class="at">grid =</span> T)</span></code></pre></div>
 <!-- \newpage -->
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-15"></span>

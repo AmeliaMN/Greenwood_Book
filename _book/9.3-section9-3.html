@@ -264,13 +264,12 @@ details > summary {
 <li><a href="7.1-section7-1.html#section7-1" id="toc-section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
 <li><a href="7.2-section7-2.html#section7-2" id="toc-section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li><a href="7.3-section7-3.html#section7-3" id="toc-section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
-<li><a href="7.4-section7-4.html#section7-4" id="toc-section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
-<li><a href="7.5-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
-<li><a href="7.6-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li><a href="7.7-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li><a href="7.8-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
-<li><a href="7.9-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
-<li><a href="7.10-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+<li><a href="7.4-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.4</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7.5-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.5</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7.6-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.6</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7.7-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.7</span> Chapter summary</a></li>
+<li><a href="7.8-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.8</span> Summary of important R code</a></li>
+<li><a href="7.9-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.9</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="8-chapter8.html#chapter8" id="toc-chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a>
 <ul>
@@ -328,29 +327,29 @@ Once we recognize that there are two categorical variables being considered
 Chi-square testing framework. The random assignment of colonies (the subjects
 here) to treatment levels tells us that the <strong><em>Chi-square Homogeneity test</em></strong>
 is appropriate here and that we can make causal statements about the effects of the <em>Treatment</em> groups.</p>
-<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="9.3-section9-3.html#cb838-1" tabindex="-1"></a>sasakipratt <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/sasakipratt.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb828"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb828-1"><a href="9.3-section9-3.html#cb828-1" tabindex="-1"></a>sasakipratt <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/sasakipratt.csv&quot;</span>)</span></code></pre></div>
 
-<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="9.3-section9-3.html#cb839-1" tabindex="-1"></a>sasakipratt <span class="ot">&lt;-</span> sasakipratt <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">factor</span>(group),</span>
-<span id="cb839-2"><a href="9.3-section9-3.html#cb839-2" tabindex="-1"></a>                                      <span class="at">after =</span> <span class="fu">factor</span>(after),</span>
-<span id="cb839-3"><a href="9.3-section9-3.html#cb839-3" tabindex="-1"></a>                                      <span class="at">before =</span> <span class="fu">factor</span>(before)</span>
-<span id="cb839-4"><a href="9.3-section9-3.html#cb839-4" tabindex="-1"></a>                                      )</span>
-<span id="cb839-5"><a href="9.3-section9-3.html#cb839-5" tabindex="-1"></a><span class="fu">levels</span>(sasakipratt<span class="sc">$</span>group) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Light&quot;</span>, <span class="st">&quot;Entrance&quot;</span>)</span>
-<span id="cb839-6"><a href="9.3-section9-3.html#cb839-6" tabindex="-1"></a><span class="fu">levels</span>(sasakipratt<span class="sc">$</span>after) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SmallBright&quot;</span>, <span class="st">&quot;LargeDark&quot;</span>)</span>
-<span id="cb839-7"><a href="9.3-section9-3.html#cb839-7" tabindex="-1"></a><span class="fu">levels</span>(sasakipratt<span class="sc">$</span>before) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SmallBright&quot;</span>, <span class="st">&quot;LargeDark&quot;</span>)</span>
-<span id="cb839-8"><a href="9.3-section9-3.html#cb839-8" tabindex="-1"></a><span class="fu">plot</span>(after <span class="sc">~</span> group, <span class="at">data =</span> sasakipratt, <span class="at">col =</span> <span class="fu">cividis</span>(<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="9.3-section9-3.html#cb829-1" tabindex="-1"></a>sasakipratt <span class="ot">&lt;-</span> sasakipratt <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">factor</span>(group),</span>
+<span id="cb829-2"><a href="9.3-section9-3.html#cb829-2" tabindex="-1"></a>                                      <span class="at">after =</span> <span class="fu">factor</span>(after),</span>
+<span id="cb829-3"><a href="9.3-section9-3.html#cb829-3" tabindex="-1"></a>                                      <span class="at">before =</span> <span class="fu">factor</span>(before)</span>
+<span id="cb829-4"><a href="9.3-section9-3.html#cb829-4" tabindex="-1"></a>                                      )</span>
+<span id="cb829-5"><a href="9.3-section9-3.html#cb829-5" tabindex="-1"></a><span class="fu">levels</span>(sasakipratt<span class="sc">$</span>group) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Light&quot;</span>, <span class="st">&quot;Entrance&quot;</span>)</span>
+<span id="cb829-6"><a href="9.3-section9-3.html#cb829-6" tabindex="-1"></a><span class="fu">levels</span>(sasakipratt<span class="sc">$</span>after) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SmallBright&quot;</span>, <span class="st">&quot;LargeDark&quot;</span>)</span>
+<span id="cb829-7"><a href="9.3-section9-3.html#cb829-7" tabindex="-1"></a><span class="fu">levels</span>(sasakipratt<span class="sc">$</span>before) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SmallBright&quot;</span>, <span class="st">&quot;LargeDark&quot;</span>)</span>
+<span id="cb829-8"><a href="9.3-section9-3.html#cb829-8" tabindex="-1"></a><span class="fu">plot</span>(after <span class="sc">~</span> group, <span class="at">data =</span> sasakipratt, <span class="at">col =</span> <span class="fu">cividis</span>(<span class="dv">2</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-9"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-9-1.png" alt="Stacked bar chart for Ant Colony results." width="75%" />
 <p class="caption">
 Figure 9.9: Stacked bar chart for Ant Colony results.
 </p>
 </div>
-<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="9.3-section9-3.html#cb840-1" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
-<span id="cb840-2"><a href="9.3-section9-3.html#cb840-2" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span> group <span class="sc">+</span> after, <span class="at">data =</span> sasakipratt)</span></code></pre></div>
+<div class="sourceCode" id="cb830"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb830-1"><a href="9.3-section9-3.html#cb830-1" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb830-2"><a href="9.3-section9-3.html#cb830-2" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span> group <span class="sc">+</span> after, <span class="at">data =</span> sasakipratt)</span></code></pre></div>
 <pre><code>##           after
 ## group      SmallBright LargeDark
 ##   Light             19         9
 ##   Entrance           9        17</code></pre>
-<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="9.3-section9-3.html#cb842-1" tabindex="-1"></a>table1 <span class="ot">&lt;-</span> <span class="fu">tally</span>(<span class="sc">~</span> group <span class="sc">+</span> after, <span class="at">data =</span> sasakipratt, <span class="at">margins =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="9.3-section9-3.html#cb832-1" tabindex="-1"></a>table1 <span class="ot">&lt;-</span> <span class="fu">tally</span>(<span class="sc">~</span> group <span class="sc">+</span> after, <span class="at">data =</span> sasakipratt, <span class="at">margins =</span> F)</span></code></pre></div>
 <p>The null hypothesis of interest here is that there is no difference in the
 distribution of responses on <em>After</em> – the rates of their choice of den types
 – between the two treatment <em>groups</em> in the population of all ant colonies
@@ -361,14 +360,14 @@ we need all the expected cell counts to be larger than 5, so we should check
 that. Note that in the following, the <code>correct = F</code> option is used to keep the
 function from slightly modifying the statistic used that occurs when overall
 sample sizes are small.</p>
-<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="9.3-section9-3.html#cb843-1" tabindex="-1"></a><span class="fu">chisq.test</span>(table1, <span class="at">correct =</span> F)<span class="sc">$</span>expected</span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="9.3-section9-3.html#cb833-1" tabindex="-1"></a><span class="fu">chisq.test</span>(table1, <span class="at">correct =</span> F)<span class="sc">$</span>expected</span></code></pre></div>
 <pre><code>##           after
 ## group      SmallBright LargeDark
 ##   Light       14.51852  13.48148
 ##   Entrance    13.48148  12.51852</code></pre>
 <p>Our expected cell count condition is met, so we can proceed to explore the
 results of the parametric test:</p>
-<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb845-1"><a href="9.3-section9-3.html#cb845-1" tabindex="-1"></a><span class="fu">chisq.test</span>(table1, <span class="at">correct =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="9.3-section9-3.html#cb835-1" tabindex="-1"></a><span class="fu">chisq.test</span>(table1, <span class="at">correct =</span> F)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -385,7 +384,7 @@ colony choices. These results cannot be extended to ants beyond those being
 studied by these researchers because they were not randomly selected.</p>
 <p>Further exploration of the standardized residuals can provide more insights in
 some situations, although here they are similar for all the cells:</p>
-<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="9.3-section9-3.html#cb847-1" tabindex="-1"></a><span class="fu">chisq.test</span>(table1, <span class="at">correct =</span> F)<span class="sc">$</span>residuals</span></code></pre></div>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="9.3-section9-3.html#cb837-1" tabindex="-1"></a><span class="fu">chisq.test</span>(table1, <span class="at">correct =</span> F)<span class="sc">$</span>residuals</span></code></pre></div>
 <pre><code>##           after
 ## group      SmallBright LargeDark
 ##   Light       1.176144 -1.220542

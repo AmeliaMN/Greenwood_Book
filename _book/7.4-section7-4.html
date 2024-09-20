@@ -349,7 +349,7 @@ really far from any possible values that can be obtained using permutations as
 shown in Figure <a href="7.4-section7-4.html#fig:Figure7-9">7.9</a>. The p-value would be reported as
 <span class="math inline">\(&lt;0.001\)</span> for the two-sided permutation test.</p>
 <!-- \newpage -->
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="7.4-section7-4.html#cb592-1" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="7.4-section7-4.html#cb592-1" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">coefficients</span>(<span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps))[<span class="dv">2</span>]</span>
 <span id="cb592-2"><a href="7.4-section7-4.html#cb592-2" tabindex="-1"></a>Tobs</span></code></pre></div>
 <pre><code>##       Year 
 ## 0.05244213</code></pre>
@@ -357,12 +357,12 @@ shown in Figure <a href="7.4-section7-4.html#fig:Figure7-9">7.9</a>. The p-value
 <span id="cb594-2"><a href="7.4-section7-4.html#cb594-2" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
 <span id="cb594-3"><a href="7.4-section7-4.html#cb594-3" tabindex="-1"></a></span>
 <span id="cb594-4"><a href="7.4-section7-4.html#cb594-4" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
-<span id="cb594-5"><a href="7.4-section7-4.html#cb594-5" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> <span class="fu">shuffle</span>(Year), <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb594-5"><a href="7.4-section7-4.html#cb594-5" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">coefficients</span>(<span class="fu">lm</span>(meanmax <span class="sc">~</span> <span class="fu">shuffle</span>(Year), <span class="at">data =</span> bozemantemps))[<span class="dv">2</span>]</span>
 <span id="cb594-6"><a href="7.4-section7-4.html#cb594-6" tabindex="-1"></a>}</span>
 <span id="cb594-7"><a href="7.4-section7-4.html#cb594-7" tabindex="-1"></a><span class="fu">pdata</span>(<span class="fu">abs</span>(Tstar), <span class="fu">abs</span>(Tobs), <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="7.4-section7-4.html#cb596-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="7.4-section7-4.html#cb596-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">|&gt;</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
 <span id="cb596-2"><a href="7.4-section7-4.html#cb596-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb596-3"><a href="7.4-section7-4.html#cb596-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
 <span id="cb596-4"><a href="7.4-section7-4.html#cb596-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -404,20 +404,20 @@ The interpretation is
 the same and this result reinforces the other assessments that the parametric
 approach is not unreasonable here except possibly for the independence assumption. These randomization approaches provide no robustness against violations of the independence assumption. </p>
 
-<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="7.4-section7-4.html#cb597-1" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="7.4-section7-4.html#cb597-1" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">coefficients</span>(<span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps))[<span class="dv">2</span>]</span>
 <span id="cb597-2"><a href="7.4-section7-4.html#cb597-2" tabindex="-1"></a>Tobs</span></code></pre></div>
 <pre><code>##       Year 
 ## 0.05244213</code></pre>
 <div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="7.4-section7-4.html#cb599-1" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
 <span id="cb599-2"><a href="7.4-section7-4.html#cb599-2" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
 <span id="cb599-3"><a href="7.4-section7-4.html#cb599-3" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
-<span id="cb599-4"><a href="7.4-section7-4.html#cb599-4" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> <span class="fu">resample</span>(bozemantemps))<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb599-4"><a href="7.4-section7-4.html#cb599-4" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">coefficients</span>(<span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> <span class="fu">resample</span>(bozemantemps)))[<span class="dv">2</span>]</span>
 <span id="cb599-5"><a href="7.4-section7-4.html#cb599-5" tabindex="-1"></a>}</span>
 <span id="cb599-6"><a href="7.4-section7-4.html#cb599-6" tabindex="-1"></a>quantiles <span class="ot">&lt;-</span> <span class="fu">qdata</span>(Tstar, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
 <span id="cb599-7"><a href="7.4-section7-4.html#cb599-7" tabindex="-1"></a>quantiles</span></code></pre></div>
 <pre><code>##       2.5%      97.5% 
 ## 0.04326952 0.06131044</code></pre>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="7.4-section7-4.html#cb601-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="7.4-section7-4.html#cb601-1" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">|&gt;</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
 <span id="cb601-2"><a href="7.4-section7-4.html#cb601-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
 <span id="cb601-3"><a href="7.4-section7-4.html#cb601-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
 <span id="cb601-4"><a href="7.4-section7-4.html#cb601-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>

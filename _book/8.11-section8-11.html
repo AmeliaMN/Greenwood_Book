@@ -264,13 +264,12 @@ details > summary {
 <li><a href="7.1-section7-1.html#section7-1" id="toc-section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
 <li><a href="7.2-section7-2.html#section7-2" id="toc-section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li><a href="7.3-section7-3.html#section7-3" id="toc-section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
-<li><a href="7.4-section7-4.html#section7-4" id="toc-section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
-<li><a href="7.5-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
-<li><a href="7.6-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li><a href="7.7-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li><a href="7.8-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
-<li><a href="7.9-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
-<li><a href="7.10-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+<li><a href="7.4-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.4</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7.5-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.5</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7.6-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.6</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7.7-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.7</span> Chapter summary</a></li>
+<li><a href="7.8-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.8</span> Summary of important R code</a></li>
+<li><a href="7.9-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.9</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="8-chapter8.html#chapter8" id="toc-chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a>
 <ul>
@@ -316,7 +315,7 @@ groups may not look parallel or it may just be hard to tell visually if there
 really is a difference in the slopes.
 Unless you are <strong>very sure</strong> that there
 is not an interaction between the grouping variable and the quantitative
-predictor, you should<a href="#fn146" class="footnote-ref" id="fnref146"><sup>146</sup></a> start by fitting a model containing an
+predictor, you should<a href="#fn145" class="footnote-ref" id="fnref145"><sup>145</sup></a> start by fitting a model containing an
 interaction and then see if you can drop it.
 It may be the case that you end up
 with the simpler additive model from the previous sections, but you don’t want
@@ -363,7 +362,7 @@ Figure <a href="8.11-section8-11.html#fig:Figure8-31">8.31</a> seems to indicate
 <em>dys</em> = 1 (dyslexic) students (code below makes these levels more explicit in the data set). Note that the IQ is standardized to have mean 0
 and standard deviation of 1 which means that
 a 1 unit change in IQ score is a 1 SD change and that the <em>y</em>-intercept (for
-<span class="math inline">\(x = 0\)</span>) is right in the center of the plot and actually interesting<a href="#fn147" class="footnote-ref" id="fnref147"><sup>147</sup></a>.</p>
+<span class="math inline">\(x = 0\)</span>) is right in the center of the plot and actually interesting<a href="#fn146" class="footnote-ref" id="fnref146"><sup>146</sup></a>.</p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-31"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-31-1.png" alt="Scatterplot for reading score versus nonverbal IQ by dyslexia group." width="75%" />
@@ -371,20 +370,20 @@ a 1 unit change in IQ score is a 1 SD change and that the <em>y</em>-intercept (
 Figure 8.31: Scatterplot for reading score versus nonverbal IQ by dyslexia group.
 </p>
 </div>
-<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb773-1"><a href="8.11-section8-11.html#cb773-1" tabindex="-1"></a><span class="fu">library</span>(smdata)</span>
-<span id="cb773-2"><a href="8.11-section8-11.html#cb773-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;dyslexic3&quot;</span>)</span>
-<span id="cb773-3"><a href="8.11-section8-11.html#cb773-3" tabindex="-1"></a>dyslexic3 <span class="ot">&lt;-</span> dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">dys =</span> <span class="fu">factor</span>(dys))</span>
-<span id="cb773-4"><a href="8.11-section8-11.html#cb773-4" tabindex="-1"></a><span class="fu">levels</span>(dyslexic3<span class="sc">$</span>dys) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>)</span>
-<span id="cb773-5"><a href="8.11-section8-11.html#cb773-5" tabindex="-1"></a></span>
-<span id="cb773-6"><a href="8.11-section8-11.html#cb773-6" tabindex="-1"></a>dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ziq, <span class="at">y =</span> score, <span class="at">color =</span> dys, <span class="at">shape =</span> dys)) <span class="sc">+</span></span>
-<span id="cb773-7"><a href="8.11-section8-11.html#cb773-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb773-8"><a href="8.11-section8-11.html#cb773-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb773-9"><a href="8.11-section8-11.html#cb773-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb773-10"><a href="8.11-section8-11.html#cb773-10" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.7</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>) <span class="sc">+</span></span>
-<span id="cb773-11"><a href="8.11-section8-11.html#cb773-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Plot of IQ vs Reading by dyslexia status&quot;</span>,</span>
-<span id="cb773-12"><a href="8.11-section8-11.html#cb773-12" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Standardized nonverbal IQ scores&quot;</span>,</span>
-<span id="cb773-13"><a href="8.11-section8-11.html#cb773-13" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Reading score&quot;</span>) <span class="sc">+</span></span>
-<span id="cb773-14"><a href="8.11-section8-11.html#cb773-14" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(dys))</span></code></pre></div>
+<div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb763-1"><a href="8.11-section8-11.html#cb763-1" tabindex="-1"></a><span class="fu">library</span>(smdata)</span>
+<span id="cb763-2"><a href="8.11-section8-11.html#cb763-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;dyslexic3&quot;</span>)</span>
+<span id="cb763-3"><a href="8.11-section8-11.html#cb763-3" tabindex="-1"></a>dyslexic3 <span class="ot">&lt;-</span> dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">dys =</span> <span class="fu">factor</span>(dys))</span>
+<span id="cb763-4"><a href="8.11-section8-11.html#cb763-4" tabindex="-1"></a><span class="fu">levels</span>(dyslexic3<span class="sc">$</span>dys) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>)</span>
+<span id="cb763-5"><a href="8.11-section8-11.html#cb763-5" tabindex="-1"></a></span>
+<span id="cb763-6"><a href="8.11-section8-11.html#cb763-6" tabindex="-1"></a>dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ziq, <span class="at">y =</span> score, <span class="at">color =</span> dys, <span class="at">shape =</span> dys)) <span class="sc">+</span></span>
+<span id="cb763-7"><a href="8.11-section8-11.html#cb763-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb763-8"><a href="8.11-section8-11.html#cb763-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb763-9"><a href="8.11-section8-11.html#cb763-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb763-10"><a href="8.11-section8-11.html#cb763-10" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.7</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>) <span class="sc">+</span></span>
+<span id="cb763-11"><a href="8.11-section8-11.html#cb763-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Plot of IQ vs Reading by dyslexia status&quot;</span>,</span>
+<span id="cb763-12"><a href="8.11-section8-11.html#cb763-12" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Standardized nonverbal IQ scores&quot;</span>,</span>
+<span id="cb763-13"><a href="8.11-section8-11.html#cb763-13" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Reading score&quot;</span>) <span class="sc">+</span></span>
+<span id="cb763-14"><a href="8.11-section8-11.html#cb763-14" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(dys))</span></code></pre></div>
 <p>To allow for both different <span class="math inline">\(y\)</span>-intercepts and slope coefficients on the
 quantitative predictor, we need to include a “modification” of the slope
 coefficient. This is performed using an <strong><em>interaction</em></strong> between the two
@@ -434,8 +433,8 @@ now <span class="math inline">\(\beta_0+\beta_2\)</span>, <strong>and</strong> a
 <p>We can make this more concrete by applying this to the dyslexia data with
 <code>dys</code> as a categorical variable for dyslexia status of subjects (levels of
 <em>no</em> and <em>yes</em>) and <code>ziq</code> the standardized IQ. The model is estimated as:</p>
-<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb774-1"><a href="8.11-section8-11.html#cb774-1" tabindex="-1"></a>dys_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> ziq <span class="sc">*</span> dys, <span class="at">data =</span> dyslexic3)</span>
-<span id="cb774-2"><a href="8.11-section8-11.html#cb774-2" tabindex="-1"></a><span class="fu">summary</span>(dys_model)</span></code></pre></div>
+<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="8.11-section8-11.html#cb764-1" tabindex="-1"></a>dys_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> ziq <span class="sc">*</span> dys, <span class="at">data =</span> dyslexic3)</span>
+<span id="cb764-2"><a href="8.11-section8-11.html#cb764-2" tabindex="-1"></a><span class="fu">summary</span>(dys_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = score ~ ziq * dys, data = dyslexic3)
@@ -518,9 +517,9 @@ happen if we simulated from a normal distribution, so is not clear evidence of a
 violation of the normality assumption. The influence diagnostics do not suggest
 any influential points because no points have Cook’s D over 0.5. </p>
 
-<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="8.11-section8-11.html#cb776-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb776-2"><a href="8.11-section8-11.html#cb776-2" tabindex="-1"></a><span class="fu">plot</span>(dys_model, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb776-3"><a href="8.11-section8-11.html#cb776-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Plot of diagnostics for Dyslexia Interaction model&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="8.11-section8-11.html#cb766-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb766-2"><a href="8.11-section8-11.html#cb766-2" tabindex="-1"></a><span class="fu">plot</span>(dys_model, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb766-3"><a href="8.11-section8-11.html#cb766-3" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Plot of diagnostics for Dyslexia Interaction model&quot;</span>, <span class="at">outer=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-32"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-32-1.png" alt="Diagnostic plots for interaction model for reading scores." width="75%" />
 <p class="caption">
@@ -543,15 +542,15 @@ non-dyslexic group, possibly suggesting that variability in the reading test is
 higher for higher scoring individuals even though we couldn’t observe all of
 that variability because there were so many perfect scores in this group.</p>
 
-<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb777-1"><a href="8.11-section8-11.html#cb777-1" tabindex="-1"></a>dyslexic3 <span class="ot">&lt;-</span> dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">resids =</span> <span class="fu">residuals</span>(dys_model),</span>
-<span id="cb777-2"><a href="8.11-section8-11.html#cb777-2" tabindex="-1"></a>                                  <span class="at">fits =</span> <span class="fu">fitted</span>(dys_model)</span>
-<span id="cb777-3"><a href="8.11-section8-11.html#cb777-3" tabindex="-1"></a>                                  )</span>
-<span id="cb777-4"><a href="8.11-section8-11.html#cb777-4" tabindex="-1"></a>dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fits, <span class="at">y =</span> resids, <span class="at">color =</span> dys, <span class="at">shape =</span> dys)) <span class="sc">+</span></span>
-<span id="cb777-5"><a href="8.11-section8-11.html#cb777-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb777-6"><a href="8.11-section8-11.html#cb777-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
-<span id="cb777-7"><a href="8.11-section8-11.html#cb777-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb777-8"><a href="8.11-section8-11.html#cb777-8" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.7</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>) <span class="sc">+</span></span>
-<span id="cb777-9"><a href="8.11-section8-11.html#cb777-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Residuals vs Fitted by Group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb767-1"><a href="8.11-section8-11.html#cb767-1" tabindex="-1"></a>dyslexic3 <span class="ot">&lt;-</span> dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">resids =</span> <span class="fu">residuals</span>(dys_model),</span>
+<span id="cb767-2"><a href="8.11-section8-11.html#cb767-2" tabindex="-1"></a>                                  <span class="at">fits =</span> <span class="fu">fitted</span>(dys_model)</span>
+<span id="cb767-3"><a href="8.11-section8-11.html#cb767-3" tabindex="-1"></a>                                  )</span>
+<span id="cb767-4"><a href="8.11-section8-11.html#cb767-4" tabindex="-1"></a>dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fits, <span class="at">y =</span> resids, <span class="at">color =</span> dys, <span class="at">shape =</span> dys)) <span class="sc">+</span></span>
+<span id="cb767-5"><a href="8.11-section8-11.html#cb767-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb767-6"><a href="8.11-section8-11.html#cb767-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb767-7"><a href="8.11-section8-11.html#cb767-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb767-8"><a href="8.11-section8-11.html#cb767-8" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.7</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>) <span class="sc">+</span></span>
+<span id="cb767-9"><a href="8.11-section8-11.html#cb767-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Residuals vs Fitted by Group&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-33"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-33-1.png" alt="Plot of Residuals vs Fitted from interaction dyslexia data model with groups indicated." width="75%" />
 <p class="caption">
@@ -592,13 +591,13 @@ testing for differences in intercepts between groups is not very interesting
 when there are different slopes because if you change the slope, you have to
 change the intercept. The plot shows that there are clear differences in the
 means even though we don’t have a test to directly assess that in this
-complicated of a model<a href="#fn148" class="footnote-ref" id="fnref148"><sup>148</sup></a>.
+complicated of a model<a href="#fn147" class="footnote-ref" id="fnref147"><sup>147</sup></a>.
 Figure <a href="8.11-section8-11.html#fig:Figure8-35">8.35</a> splits the plots up and adds partial residuals to
 the plots. The impact on the estimated model for the perfect scores in the
 non-dyslexic subjects is very prominent as well as the difference in the
 relationships between the two variables in the two groups.</p>
 
-<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="8.11-section8-11.html#cb778-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(dys_model), <span class="at">ci.style =</span> <span class="st">&quot;bands&quot;</span>, <span class="at">multiline =</span> T, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">grid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="8.11-section8-11.html#cb768-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(dys_model), <span class="at">ci.style =</span> <span class="st">&quot;bands&quot;</span>, <span class="at">multiline =</span> T, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">grid =</span> T)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-34"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-34-1.png" alt="Term-plots for interaction model for reading scores using the multiline = T option to overlay the results for the two groups on one plot." width="75%" />
 <p class="caption">
@@ -606,7 +605,7 @@ Figure 8.34: Term-plots for interaction model for reading scores using the <code
 </p>
 </div>
 
-<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb779-1"><a href="8.11-section8-11.html#cb779-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(dys_model, <span class="at">residuals =</span> T), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">grid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb769-1"><a href="8.11-section8-11.html#cb769-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(dys_model, <span class="at">residuals =</span> T), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">grid =</span> T)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-35"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-35-1.png" alt="Term-plots for interaction model for reading scores with partial residuals and the results for the two groups in different panels of the plot." width="75%" />
 <p class="caption">
@@ -622,9 +621,9 @@ same slope. The following model summary and term-plots
 (Figure <a href="8.11-section8-11.html#fig:Figure8-36">8.36</a>) suggest the potentially dangerous conclusion that
 can come from assuming a common slope when that might not be the case.</p>
 
-<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="8.11-section8-11.html#cb780-1" tabindex="-1"></a>dys_modelR <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> ziq <span class="sc">+</span> dys, <span class="at">data =</span> dyslexic3)</span>
-<span id="cb780-2"><a href="8.11-section8-11.html#cb780-2" tabindex="-1"></a></span>
-<span id="cb780-3"><a href="8.11-section8-11.html#cb780-3" tabindex="-1"></a><span class="fu">summary</span>(dys_modelR)</span></code></pre></div>
+<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="8.11-section8-11.html#cb770-1" tabindex="-1"></a>dys_modelR <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> ziq <span class="sc">+</span> dys, <span class="at">data =</span> dyslexic3)</span>
+<span id="cb770-2"><a href="8.11-section8-11.html#cb770-2" tabindex="-1"></a></span>
+<span id="cb770-3"><a href="8.11-section8-11.html#cb770-3" tabindex="-1"></a><span class="fu">summary</span>(dys_modelR)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = score ~ ziq + dys, data = dyslexic3)
@@ -642,7 +641,7 @@ can come from assuming a common slope when that might not be the case.</p>
 ## Residual standard error: 0.1049 on 41 degrees of freedom
 ## Multiple R-squared:  0.6858, Adjusted R-squared:  0.6705 
 ## F-statistic: 44.75 on 2 and 41 DF,  p-value: 4.917e-11</code></pre>
-<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb782-1"><a href="8.11-section8-11.html#cb782-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(dys_modelR, <span class="at">residuals =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb772-1"><a href="8.11-section8-11.html#cb772-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(dys_modelR, <span class="at">residuals =</span> T))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-36"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-36-1.png" alt="Term-plots for additive model for reading scores." width="75%" />
 <p class="caption">
@@ -656,8 +655,8 @@ null hypothesis of no difference in the true <span class="math inline">\(y\)</sp
 p-value <span class="math inline">\(&lt;0.00001\)</span>) after adjusting for the verbal IQ score.</p>
 <p>Since the IQ term has a large p-value, we could drop it from the
 model – leaving a model that only includes the grouping variable:</p>
-<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb783-1"><a href="8.11-section8-11.html#cb783-1" tabindex="-1"></a>dys_modelR2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> dys, <span class="at">data =</span> dyslexic3)</span>
-<span id="cb783-2"><a href="8.11-section8-11.html#cb783-2" tabindex="-1"></a><span class="fu">summary</span>(dys_modelR2)</span></code></pre></div>
+<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb773-1"><a href="8.11-section8-11.html#cb773-1" tabindex="-1"></a>dys_modelR2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> dys, <span class="at">data =</span> dyslexic3)</span>
+<span id="cb773-2"><a href="8.11-section8-11.html#cb773-2" tabindex="-1"></a><span class="fu">summary</span>(dys_modelR2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = score ~ dys, data = dyslexic3)
@@ -675,7 +674,7 @@ model – leaving a model that only includes the grouping variable:</p>
 ## Multiple R-squared:  0.6721, Adjusted R-squared:  0.6643 
 ## F-statistic: 86.08 on 1 and 42 DF,  p-value: 1e-11</code></pre>
 
-<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="8.11-section8-11.html#cb785-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(dys_modelR2, <span class="at">residuals =</span> T), <span class="at">grid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb775"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb775-1"><a href="8.11-section8-11.html#cb775-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(dys_modelR2, <span class="at">residuals =</span> T), <span class="at">grid =</span> T)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-37"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-37-1.png" alt="Term-plot for dyslexia status only model for reading scores." width="75%" />
 <p class="caption">
@@ -691,7 +690,7 @@ model with the categorical and quantitative predictor variables.
 Either or both of those
 variables could also be considered for removal, usually starting with the
 variable with the larger p-value, leaving a string of ever-simpler models
-possible if large p-values are continually encountered<a href="#fn149" class="footnote-ref" id="fnref149"><sup>149</sup></a>.</p>
+possible if large p-values are continually encountered<a href="#fn148" class="footnote-ref" id="fnref148"><sup>148</sup></a>.</p>
 <p>It is useful to note that the last model has returned us to the first
 model we encountered in Chapter <a href="2-chapter2.html#chapter2">2</a> where we were just comparing
 the means for two groups.
@@ -743,8 +742,8 @@ the indicators with 0. For example, for the <em>T1</em> group:</p>
 Figure 8.38: Term-plot for decibel tolerance interaction model with partial residuals (version 1).
 </p>
 </div>
-<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="8.11-section8-11.html#cb786-1" tabindex="-1"></a>head2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(du2 <span class="sc">~</span> du1 <span class="sc">*</span> treatment, <span class="at">data =</span> Headache)</span>
-<span id="cb786-2"><a href="8.11-section8-11.html#cb786-2" tabindex="-1"></a><span class="fu">summary</span>(head2)</span></code></pre></div>
+<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="8.11-section8-11.html#cb776-1" tabindex="-1"></a>head2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(du2 <span class="sc">~</span> du1 <span class="sc">*</span> treatment, <span class="at">data =</span> Headache)</span>
+<span id="cb776-2"><a href="8.11-section8-11.html#cb776-2" tabindex="-1"></a><span class="fu">summary</span>(head2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = du2 ~ du1 * treatment, data = Headache)
@@ -788,9 +787,9 @@ captures the results best.</p>
 Figure 8.39: Term-plot for decibel tolerance interaction model (version 2). This plot is not printed in color because it is impossible to distinguish the four groups whether in color or black and white, although the <code>lty = c(1:4)</code> that provides four different line types does help a bit.
 </p>
 </div>
-<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb788-1"><a href="8.11-section8-11.html#cb788-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(head2, <span class="at">residuals =</span> T), <span class="at">grid =</span> T) <span class="co">#version 1</span></span>
-<span id="cb788-2"><a href="8.11-section8-11.html#cb788-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(head2), <span class="at">multiline =</span> T, <span class="at">ci.style =</span> <span class="st">&quot;bands&quot;</span>, <span class="at">grid =</span> T, </span>
-<span id="cb788-3"><a href="8.11-section8-11.html#cb788-3" tabindex="-1"></a>     <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="at">lwd =</span> <span class="dv">2</span>) <span class="co">#version 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="8.11-section8-11.html#cb778-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(head2, <span class="at">residuals =</span> T), <span class="at">grid =</span> T) <span class="co">#version 1</span></span>
+<span id="cb778-2"><a href="8.11-section8-11.html#cb778-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(head2), <span class="at">multiline =</span> T, <span class="at">ci.style =</span> <span class="st">&quot;bands&quot;</span>, <span class="at">grid =</span> T, </span>
+<span id="cb778-3"><a href="8.11-section8-11.html#cb778-3" tabindex="-1"></a>     <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="at">lwd =</span> <span class="dv">2</span>) <span class="co">#version 2</span></span></code></pre></div>
 <p>In situations with more than 2 levels, the <span class="math inline">\(t\)</span>-tests for the interaction
 or changing <span class="math inline">\(y\)</span>-intercepts are not informative for deciding if you really need
 different slopes or intercepts for all the groups.
@@ -809,16 +808,16 @@ Merkle, Ed, and Michael Smithson. 2018. <em>Smdata: Data to Accompany Smithson &
 </div>
 <div class="footnotes">
 <hr />
-<ol start="146">
-<li id="fn146"><p>The strength of this recommendation drops when you have many predictors as you can’t do this for every variable, but the concern remains about an assumption of no interaction whenever you fit models without them. In more complex situations, think about variables that are most likely to interact in their impacts on the response based on the situation being studied and try to explore those.<a href="8.11-section8-11.html#fnref146" class="footnote-back">↩︎</a></p></li>
-<li id="fn147"><p>Standardizing quantitative predictor variables is popular in social sciences, often where the response variable is also standardized. In those situations, they generate what are called “standardized betas” (<a href="https://en.wikipedia.org/wiki/Standardized_coefficient" class="uri">https://en.wikipedia.org/wiki/Standardized_coefficient</a>) that estimate the change in SDs in the response for a 1 SD increase in the explanatory variable.<a href="8.11-section8-11.html#fnref147" class="footnote-back">↩︎</a></p></li>
-<li id="fn148"><p>There is a way to test for a difference in the two lines
-at a particular <span class="math inline">\(x\)</span> value but it is beyond the scope of this material.<a href="8.11-section8-11.html#fnref148" class="footnote-back">↩︎</a></p></li>
-<li id="fn149"><p>This is an example of
+<ol start="145">
+<li id="fn145"><p>The strength of this recommendation drops when you have many predictors as you can’t do this for every variable, but the concern remains about an assumption of no interaction whenever you fit models without them. In more complex situations, think about variables that are most likely to interact in their impacts on the response based on the situation being studied and try to explore those.<a href="8.11-section8-11.html#fnref145" class="footnote-back">↩︎</a></p></li>
+<li id="fn146"><p>Standardizing quantitative predictor variables is popular in social sciences, often where the response variable is also standardized. In those situations, they generate what are called “standardized betas” (<a href="https://en.wikipedia.org/wiki/Standardized_coefficient" class="uri">https://en.wikipedia.org/wiki/Standardized_coefficient</a>) that estimate the change in SDs in the response for a 1 SD increase in the explanatory variable.<a href="8.11-section8-11.html#fnref146" class="footnote-back">↩︎</a></p></li>
+<li id="fn147"><p>There is a way to test for a difference in the two lines
+at a particular <span class="math inline">\(x\)</span> value but it is beyond the scope of this material.<a href="8.11-section8-11.html#fnref147" class="footnote-back">↩︎</a></p></li>
+<li id="fn148"><p>This is an example of
 what is called “step down” testing for model refinement which is a commonly
 used technique for arriving at a final model to describe response variables.
 Note that each step in the process should be reported, not just the final model
-that only has variables with small p-values remaining in it.<a href="8.11-section8-11.html#fnref149" class="footnote-back">↩︎</a></p></li>
+that only has variables with small p-values remaining in it.<a href="8.11-section8-11.html#fnref148" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

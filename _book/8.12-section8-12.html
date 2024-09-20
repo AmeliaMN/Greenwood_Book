@@ -264,13 +264,12 @@ details > summary {
 <li><a href="7.1-section7-1.html#section7-1" id="toc-section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
 <li><a href="7.2-section7-2.html#section7-2" id="toc-section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li><a href="7.3-section7-3.html#section7-3" id="toc-section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
-<li><a href="7.4-section7-4.html#section7-4" id="toc-section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
-<li><a href="7.5-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
-<li><a href="7.6-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li><a href="7.7-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li><a href="7.8-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
-<li><a href="7.9-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
-<li><a href="7.10-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+<li><a href="7.4-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.4</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7.5-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.5</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7.6-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.6</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7.7-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.7</span> Chapter summary</a></li>
+<li><a href="7.8-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.8</span> Summary of important R code</a></li>
+<li><a href="7.9-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.9</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="8-chapter8.html#chapter8" id="toc-chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a>
 <ul>
@@ -370,7 +369,7 @@ considered.</p>
 <div style="page-break-after: always;"></div>
 <p>To perform the first test (after checking that assumptions are not
 problematic, of course), we can apply the <code>Anova</code> function from the <code>car</code>
-package to an interaction model<a href="#fn150" class="footnote-ref" id="fnref150"><sup>150</sup></a>.
+package to an interaction model<a href="#fn149" class="footnote-ref" id="fnref149"><sup>149</sup></a>.
 It will provide three tests, one for each variable by
 themselves, which are not too interesting, and then the interaction test. This
 will result in an <span class="math inline">\(F\)</span>-statistic that, if the assumptions are true, will follow
@@ -428,7 +427,7 @@ The p-value from this
 distribution is 0.515, showing little to no evidence against
 the null hypothesis, so does not suggest that the slope coefficient for <em>du1</em> in explaining <em>du2</em> is different for
 at least one of the <em>Treatment</em> groups in the population.</p>
-<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb789-1"><a href="8.12-section8-12.html#cb789-1" tabindex="-1"></a><span class="fu">Anova</span>(head2)</span></code></pre></div>
+<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb779-1"><a href="8.12-section8-12.html#cb779-1" tabindex="-1"></a><span class="fu">Anova</span>(head2)</span></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: du2
@@ -479,8 +478,8 @@ initially in MLR by stating this result as: there is little evidence against the
 null hypothesis of no difference in the mean <em>du2</em> for the <em>Treatment</em> groups
 after controlling for <em>du1</em> so we would conclude that there is possibly no
 difference between the groups controlled for <em>du1</em>.</p>
-<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="8.12-section8-12.html#cb791-1" tabindex="-1"></a>head1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(du2 <span class="sc">~</span> du1 <span class="sc">+</span> treatment, <span class="at">data =</span> Headache)</span>
-<span id="cb791-2"><a href="8.12-section8-12.html#cb791-2" tabindex="-1"></a><span class="fu">Anova</span>(head1)</span></code></pre></div>
+<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb781-1"><a href="8.12-section8-12.html#cb781-1" tabindex="-1"></a>head1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(du2 <span class="sc">~</span> du1 <span class="sc">+</span> treatment, <span class="at">data =</span> Headache)</span>
+<span id="cb781-2"><a href="8.12-section8-12.html#cb781-2" tabindex="-1"></a><span class="fu">Anova</span>(head1)</span></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: du2
@@ -504,11 +503,11 @@ important.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="150">
-<li id="fn150"><p>We could also use the <code>anova</code> function to do
+<ol start="149">
+<li id="fn149"><p>We could also use the <code>anova</code> function to do
 this but using <code>Anova</code> throughout this material provides the answers we want
 in the additive model and it has no impact for the only test of interest in the
-interaction model since the interaction is the last component in the model.<a href="8.12-section8-12.html#fnref150" class="footnote-back">↩︎</a></p></li>
+interaction model since the interaction is the last component in the model.<a href="8.12-section8-12.html#fnref149" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

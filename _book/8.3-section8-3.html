@@ -264,13 +264,12 @@ details > summary {
 <li><a href="7.1-section7-1.html#section7-1" id="toc-section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
 <li><a href="7.2-section7-2.html#section7-2" id="toc-section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li><a href="7.3-section7-3.html#section7-3" id="toc-section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
-<li><a href="7.4-section7-4.html#section7-4" id="toc-section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
-<li><a href="7.5-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
-<li><a href="7.6-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li><a href="7.7-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li><a href="7.8-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
-<li><a href="7.9-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
-<li><a href="7.10-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+<li><a href="7.4-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.4</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7.5-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.5</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7.6-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.6</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7.7-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.7</span> Chapter summary</a></li>
+<li><a href="7.8-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.8</span> Summary of important R code</a></li>
+<li><a href="7.9-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.9</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="8-chapter8.html#chapter8" id="toc-chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a>
 <ul>
@@ -313,7 +312,7 @@ details > summary {
 <p>Since these results (finally) do not contain any highly influential points,
 we can formally discuss interpretations of the slope coefficients and how the
 term-plots (Figure <a href="8.2-section8-2.html#fig:Figure8-10">8.10</a>) aid our interpretations. Term-plots
-in MLR are constructed by holding all the other quantitative variables<a href="#fn131" class="footnote-ref" id="fnref131"><sup>131</sup></a> at
+in MLR are constructed by holding all the other quantitative variables<a href="#fn130" class="footnote-ref" id="fnref130"><sup>130</sup></a> at
 their mean and generating predictions and 95% CIs for the mean response across
 the levels of observed values for each predictor variable. This idea also help
 us to work towards interpretations of each term in an MLR model. For example,
@@ -342,9 +341,9 @@ term-plot. To do this, we first need the mean of the “other” predictors,
 <em>Min.Temp</em> and <em>Max.Temp</em>.</p>
 <div style="page-break-after: always;"></div>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="8.3-section8-3.html#cb694-1" tabindex="-1"></a><span class="fu">mean</span>(snotel_final<span class="sc">$</span>Min.Temp)</span></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="8.3-section8-3.html#cb684-1" tabindex="-1"></a><span class="fu">mean</span>(snotel_final<span class="sc">$</span>Min.Temp)</span></code></pre></div>
 <pre><code>## [1] 27.82609</code></pre>
-<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="8.3-section8-3.html#cb696-1" tabindex="-1"></a><span class="fu">mean</span>(snotel_final<span class="sc">$</span>Max.Temp)</span></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="8.3-section8-3.html#cb686-1" tabindex="-1"></a><span class="fu">mean</span>(snotel_final<span class="sc">$</span>Max.Temp)</span></code></pre></div>
 <pre><code>## [1] 36.3913</code></pre>
 <p>We can put these values into the MLR equation and simplify it by combining like
 terms, to an equation that is in terms of just <em>Elevation</em> given that we are
@@ -382,18 +381,18 @@ used to make the points a little easier to see.</p>
 Figure 8.12: Term-plot for Elevation “by-hand”, holding temperature variables constant at their means.
 </p>
 </div>
-<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="8.3-section8-3.html#cb698-1" tabindex="-1"></a><span class="co"># Making own effect plot:</span></span>
-<span id="cb698-2"><a href="8.3-section8-3.html#cb698-2" tabindex="-1"></a>modelres2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">elevs =</span> <span class="fu">c</span>(<span class="dv">5000</span>, <span class="dv">6000</span>, <span class="dv">8000</span>), <span class="at">snowdepths =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">6.19</span>, <span class="fl">20.71</span>, <span class="fl">74.51</span>))</span>
-<span id="cb698-3"><a href="8.3-section8-3.html#cb698-3" tabindex="-1"></a>modelres2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> elevs, <span class="at">y =</span> snowdepths)) <span class="sc">+</span></span>
-<span id="cb698-4"><a href="8.3-section8-3.html#cb698-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb698-5"><a href="8.3-section8-3.html#cb698-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> .<span class="dv">75</span>, <span class="at">col =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span></span>
-<span id="cb698-6"><a href="8.3-section8-3.html#cb698-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb698-7"><a href="8.3-section8-3.html#cb698-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Effect plot of elevation by hand&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="8.3-section8-3.html#cb688-1" tabindex="-1"></a><span class="co"># Making own effect plot:</span></span>
+<span id="cb688-2"><a href="8.3-section8-3.html#cb688-2" tabindex="-1"></a>modelres2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">elevs =</span> <span class="fu">c</span>(<span class="dv">5000</span>, <span class="dv">6000</span>, <span class="dv">8000</span>), <span class="at">snowdepths =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">6.19</span>, <span class="fl">20.71</span>, <span class="fl">74.51</span>))</span>
+<span id="cb688-3"><a href="8.3-section8-3.html#cb688-3" tabindex="-1"></a>modelres2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> elevs, <span class="at">y =</span> snowdepths)) <span class="sc">+</span></span>
+<span id="cb688-4"><a href="8.3-section8-3.html#cb688-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb688-5"><a href="8.3-section8-3.html#cb688-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> .<span class="dv">75</span>, <span class="at">col =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span></span>
+<span id="cb688-6"><a href="8.3-section8-3.html#cb688-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb688-7"><a href="8.3-section8-3.html#cb688-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Effect plot of elevation by hand&quot;</span>)</span></code></pre></div>
 <p>Note that we only needed 2 points to
 define the line but need a denser grid of elevations if we want to add the 95%
 CIs for the true mean snow depth across the different elevations since they
 vary as a function of the distance from the mean of the explanatory variables.</p>
-<p>The partial residuals in MLR models<a href="#fn132" class="footnote-ref" id="fnref132"><sup>132</sup></a> highlight the relationship between each predictor and the
+<p>The partial residuals in MLR models<a href="#fn131" class="footnote-ref" id="fnref131"><sup>131</sup></a> highlight the relationship between each predictor and the
 response after the impacts of the other variables are incorporated. To do this,
 we start with the raw residuals, <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>, which is the left-over
 part of the responses after accounting for all the predictors. If we add the
@@ -418,16 +417,16 @@ using the <code>predict</code> function for the MLR, again holding the temperatu
 their mean values. The <code>predict</code> function is sensitive and needs the same
 variable names as used in the original model fitting to work. First we create a
 “new” data set using the <code>seq</code> function to generate the desired grid of
-elevations and the <code>rep</code> function<a href="#fn133" class="footnote-ref" id="fnref133"><sup>133</sup></a> to repeat the means of the
+elevations and the <code>rep</code> function<a href="#fn132" class="footnote-ref" id="fnref132"><sup>132</sup></a> to repeat the means of the
 temperatures for each of elevation values we need to make the plot. The code
 creates a specific version of the predictor variables that is stored in
 <code>newdata1</code> that is provided to the <code>predict</code> function so that it will
 provide fitted values and CIs across different elevations with temperatures held
 constant. </p>
-<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="8.3-section8-3.html#cb699-1" tabindex="-1"></a>elevs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">5000</span>, <span class="at">to =</span> <span class="dv">8000</span>, <span class="at">length.out =</span> <span class="dv">30</span>)</span>
-<span id="cb699-2"><a href="8.3-section8-3.html#cb699-2" tabindex="-1"></a>newdata1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Elevation =</span> elevs, <span class="at">Min.Temp =</span> <span class="fu">rep</span>(<span class="fl">27.826</span>,<span class="dv">30</span>),</span>
-<span id="cb699-3"><a href="8.3-section8-3.html#cb699-3" tabindex="-1"></a>                   <span class="at">Max.Temp =</span> <span class="fu">rep</span>(<span class="fl">36.3913</span>,<span class="dv">30</span>))</span>
-<span id="cb699-4"><a href="8.3-section8-3.html#cb699-4" tabindex="-1"></a>newdata1</span></code></pre></div>
+<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="8.3-section8-3.html#cb689-1" tabindex="-1"></a>elevs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">5000</span>, <span class="at">to =</span> <span class="dv">8000</span>, <span class="at">length.out =</span> <span class="dv">30</span>)</span>
+<span id="cb689-2"><a href="8.3-section8-3.html#cb689-2" tabindex="-1"></a>newdata1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Elevation =</span> elevs, <span class="at">Min.Temp =</span> <span class="fu">rep</span>(<span class="fl">27.826</span>,<span class="dv">30</span>),</span>
+<span id="cb689-3"><a href="8.3-section8-3.html#cb689-3" tabindex="-1"></a>                   <span class="at">Max.Temp =</span> <span class="fu">rep</span>(<span class="fl">36.3913</span>,<span class="dv">30</span>))</span>
+<span id="cb689-4"><a href="8.3-section8-3.html#cb689-4" tabindex="-1"></a>newdata1</span></code></pre></div>
 <pre><code>## # A tibble: 30 × 3
 ##    Elevation Min.Temp Max.Temp
 ##        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -444,7 +443,7 @@ constant. </p>
 ## # ℹ 20 more rows</code></pre>
 <p>The first 10 predicted snow depths along with 95% confidence intervals for the mean,
 holding temperatures at their means, are:</p>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="8.3-section8-3.html#cb701-1" tabindex="-1"></a><span class="fu">predict</span>(m6, <span class="at">newdata =</span> newdata1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="8.3-section8-3.html#cb691-1" tabindex="-1"></a><span class="fu">predict</span>(m6, <span class="at">newdata =</span> newdata1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##           fit        lwr      upr
 ## 1  -6.3680312 -24.913607 12.17754
 ## 2  -3.5898846 -21.078518 13.89875
@@ -497,24 +496,24 @@ perfect, but we hope that it helps us learn something about our research
 question(s) and, to trust its results, we hope it matches the data fairly well.</p>
 <p>To both illustrate the calculation of partial residuals and demonstrate their potential utility, a small simulated example is considered. These are simulated data to help to highlight these patterns but are not too different than results that can be seen in some real applications. This situation has a response of simulated cholesterol levels with (also simulated) predictors of age, exercise level, and healthiness level with a sample size of <span class="math inline">\(n = 100\)</span>. First, consider the plot of the response versus each of the predictors in Figure <a href="8.3-section8-3.html#fig:Figure8-13">8.13</a>. It appears that age might be positively related to the response, but exercise and healthiness levels do not appear to be related to the response. But it is important to remember that the response is made up of potential contributions that can be explained by each predictor and unexplained variation, and so plotting the response versus each predictor may not allow us to see the real relationship with each predictor.</p>
 
-<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="8.3-section8-3.html#cb703-1" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
-<span id="cb703-2"><a href="8.3-section8-3.html#cb703-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb703-3"><a href="8.3-section8-3.html#cb703-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb703-4"><a href="8.3-section8-3.html#cb703-4" tabindex="-1"></a>e1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ExAmount, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
-<span id="cb703-5"><a href="8.3-section8-3.html#cb703-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb703-6"><a href="8.3-section8-3.html#cb703-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb703-7"><a href="8.3-section8-3.html#cb703-7" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> HealthLevel, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
-<span id="cb703-8"><a href="8.3-section8-3.html#cb703-8" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb703-9"><a href="8.3-section8-3.html#cb703-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb703-10"><a href="8.3-section8-3.html#cb703-10" tabindex="-1"></a><span class="fu">grid.arrange</span>(a1, e1, h1, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="8.3-section8-3.html#cb693-1" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
+<span id="cb693-2"><a href="8.3-section8-3.html#cb693-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb693-3"><a href="8.3-section8-3.html#cb693-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb693-4"><a href="8.3-section8-3.html#cb693-4" tabindex="-1"></a>e1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ExAmount, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
+<span id="cb693-5"><a href="8.3-section8-3.html#cb693-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb693-6"><a href="8.3-section8-3.html#cb693-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb693-7"><a href="8.3-section8-3.html#cb693-7" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> HealthLevel, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
+<span id="cb693-8"><a href="8.3-section8-3.html#cb693-8" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb693-9"><a href="8.3-section8-3.html#cb693-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb693-10"><a href="8.3-section8-3.html#cb693-10" tabindex="-1"></a><span class="fu">grid.arrange</span>(a1, e1, h1, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-13"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-13-1.png" alt="Scatterplot of Cholesterol level versus three predictors (simulated data)." width="75%" />
 <p class="caption">
 Figure 8.13: Scatterplot of Cholesterol level versus three predictors (simulated data).
 </p>
 </div>
-<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="8.3-section8-3.html#cb704-1" tabindex="-1"></a>sim1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(CholLevel <span class="sc">~</span> Age <span class="sc">+</span> ExAmount <span class="sc">+</span> HealthLevel, <span class="at">data =</span> d1)</span>
-<span id="cb704-2"><a href="8.3-section8-3.html#cb704-2" tabindex="-1"></a><span class="fu">summary</span>(sim1)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="8.3-section8-3.html#cb694-1" tabindex="-1"></a>sim1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(CholLevel <span class="sc">~</span> Age <span class="sc">+</span> ExAmount <span class="sc">+</span> HealthLevel, <span class="at">data =</span> d1)</span>
+<span id="cb694-2"><a href="8.3-section8-3.html#cb694-2" tabindex="-1"></a><span class="fu">summary</span>(sim1)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##                Estimate Std. Error    t value     Pr(&gt;|t|)
 ## (Intercept) 94.54572326 4.63863859  20.382214 1.204735e-36
 ## Age          3.50787191 0.14967450  23.436670 1.679060e-41
@@ -535,7 +534,7 @@ the power of MLR methods to adjust/control for other variables to help us
 potentially more clearly see relationships between individual predictors and the
 response, or at least their part of the response.</p>
 
-<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="8.3-section8-3.html#cb706-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(sim1, <span class="at">residuals =</span> T), <span class="at">grid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="8.3-section8-3.html#cb696-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(sim1, <span class="at">residuals =</span> T), <span class="at">grid =</span> T)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-14"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-14-1.png" alt="Term-plots with partial residuals for Cholesterol level versus three predictors (simulated data)." width="75%" />
 <p class="caption">
@@ -561,13 +560,13 @@ assess the linearity assumption with each quantitative predictor and if you see
 a pattern like this, seek out additional statistical resources such as the
 <em>Statistical Sleuth</em> (<span class="citation">Ramsey and Schafer (<a href="#ref-Ramsey2012">2012</a>)</span>) or a statistician for help.</p>
 
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="8.3-section8-3.html#cb707-1" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">partres =</span> <span class="fu">residuals</span>(sim1) <span class="sc">+</span> ExAmount <span class="sc">*</span> <span class="fl">0.07447965</span>)</span>
-<span id="cb707-2"><a href="8.3-section8-3.html#cb707-2" tabindex="-1"></a>d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ExAmount, <span class="at">y =</span> partres)) <span class="sc">+</span></span>
-<span id="cb707-3"><a href="8.3-section8-3.html#cb707-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb707-4"><a href="8.3-section8-3.html#cb707-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb707-5"><a href="8.3-section8-3.html#cb707-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb707-6"><a href="8.3-section8-3.html#cb707-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb707-7"><a href="8.3-section8-3.html#cb707-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Partial Residual&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="8.3-section8-3.html#cb697-1" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">partres =</span> <span class="fu">residuals</span>(sim1) <span class="sc">+</span> ExAmount <span class="sc">*</span> <span class="fl">0.07447965</span>)</span>
+<span id="cb697-2"><a href="8.3-section8-3.html#cb697-2" tabindex="-1"></a>d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ExAmount, <span class="at">y =</span> partres)) <span class="sc">+</span></span>
+<span id="cb697-3"><a href="8.3-section8-3.html#cb697-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb697-4"><a href="8.3-section8-3.html#cb697-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb697-5"><a href="8.3-section8-3.html#cb697-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb697-6"><a href="8.3-section8-3.html#cb697-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb697-7"><a href="8.3-section8-3.html#cb697-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Partial Residual&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-15"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-15-1.png" alt="Plot of partial residual for ExAmount with the solid line for the MLR fit for this model component and the dashed line for the smoothing line that highlights the curvilinear relationship that the model failed to account for." width="75%" />
 <p class="caption">
@@ -583,16 +582,16 @@ Ramsey, Fred, and Daniel Schafer. 2012. <em>The Statistical Sleuth: A Course in 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="131">
-<li id="fn131"><p>Term-plots
+<ol start="130">
+<li id="fn130"><p>Term-plots
 with additive factor variables use the weighted (based on percentage of the
 responses in each category) average of their predicted mean responses across
-their levels but we don’t have any factor variables in the MLR models, yet.<a href="8.3-section8-3.html#fnref131" class="footnote-back">↩︎</a></p></li>
-<li id="fn132"><p>This also applies to the additive
-two-way ANOVA model.<a href="8.3-section8-3.html#fnref132" class="footnote-back">↩︎</a></p></li>
-<li id="fn133"><p>The <code>seq</code> function has syntax of
+their levels but we don’t have any factor variables in the MLR models, yet.<a href="8.3-section8-3.html#fnref130" class="footnote-back">↩︎</a></p></li>
+<li id="fn131"><p>This also applies to the additive
+two-way ANOVA model.<a href="8.3-section8-3.html#fnref131" class="footnote-back">↩︎</a></p></li>
+<li id="fn132"><p>The <code>seq</code> function has syntax of
 <code>seq(from = startingpoint, to = endingpoint,  length.out = #ofvalues_between_start_and_end)</code> and the <code>rep</code> function has
-syntax of <code>rep(numbertorepeat, #oftimes).</code><a href="8.3-section8-3.html#fnref133" class="footnote-back">↩︎</a></p></li>
+syntax of <code>rep(numbertorepeat, #oftimes).</code><a href="8.3-section8-3.html#fnref132" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

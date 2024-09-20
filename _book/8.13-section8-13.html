@@ -264,13 +264,12 @@ details > summary {
 <li><a href="7.1-section7-1.html#section7-1" id="toc-section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
 <li><a href="7.2-section7-2.html#section7-2" id="toc-section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li><a href="7.3-section7-3.html#section7-3" id="toc-section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
-<li><a href="7.4-section7-4.html#section7-4" id="toc-section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
-<li><a href="7.5-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
-<li><a href="7.6-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li><a href="7.7-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li><a href="7.8-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
-<li><a href="7.9-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
-<li><a href="7.10-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+<li><a href="7.4-section7-5.html#section7-5" id="toc-section7-5"><span class="toc-section-number">7.4</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7.5-section7-6.html#section7-6" id="toc-section7-6"><span class="toc-section-number">7.5</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7.6-section7-7.html#section7-7" id="toc-section7-7"><span class="toc-section-number">7.6</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7.7-section7-8.html#section7-8" id="toc-section7-8"><span class="toc-section-number">7.7</span> Chapter summary</a></li>
+<li><a href="7.8-section7-9.html#section7-9" id="toc-section7-9"><span class="toc-section-number">7.8</span> Summary of important R code</a></li>
+<li><a href="7.9-section7-10.html#section7-10" id="toc-section7-10"><span class="toc-section-number">7.9</span> Practice problems</a></li>
 </ul></li>
 <li class="has-sub"><a href="8-chapter8.html#chapter8" id="toc-chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a>
 <ul>
@@ -319,9 +318,9 @@ Diagnostics should play a role in the models
 considered and in selecting among models that might appear to be similar on a
 model comparison criterion. In this section, a new model selection method is
 introduced that has stronger theoretical underpinnings, a slightly more
-interpretable scale, and, often, better performance in picking an optimal<a href="#fn151" class="footnote-ref" id="fnref151"><sup>151</sup></a>
+interpretable scale, and, often, better performance in picking an optimal<a href="#fn150" class="footnote-ref" id="fnref150"><sup>150</sup></a>
 model than the <strong><em>adjusted</em></strong> <strong><em>R</em></strong><sup>2</sup>. The measure is called the <strong><em>AIC</em></strong>
-(Akaike’s An Information Criterion<a href="#fn152" class="footnote-ref" id="fnref152"><sup>152</sup></a>, <span class="citation">(<a href="#ref-Akaike1974">Akaike 1974</a>)</span>). It is extremely
+(Akaike’s An Information Criterion<a href="#fn151" class="footnote-ref" id="fnref151"><sup>151</sup></a>, <span class="citation">(<a href="#ref-Akaike1974">Akaike 1974</a>)</span>). It is extremely
 popular, but sometimes misused, in some fields such as Ecology, and has been
 applied in almost every other potential application area where statistical
 models can be compared. <span class="citation">Burnham and Anderson (<a href="#ref-Burnham2002">2002</a>)</span> have been responsible for popularizing the
@@ -350,7 +349,7 @@ parameters are estimated. Note that it is a
 different measure of <em>degrees of freedom</em> than used in ANOVA <span class="math inline">\(F\)</span>-tests. The main
 things to understand about the formula for the AIC is that as <span class="math inline">\(m\)</span> increases, the
 AIC will go up and that as the fit improves, the <em>likelihood</em> will increase (so
--2<em>log-likelihood</em> will get smaller)<a href="#fn153" class="footnote-ref" id="fnref153"><sup>153</sup></a>.</p>
+-2<em>log-likelihood</em> will get smaller)<a href="#fn152" class="footnote-ref" id="fnref152"><sup>152</sup></a>.</p>
 <p>There are some facets of this discussion to keep in mind when comparing
 models. More complicated models always fit better (we saw this for the
 <strong><em>R</em></strong><sup>2</sup> measure, as the proportion of variation explained always goes
@@ -399,7 +398,7 @@ $%#%-mountain, which is not necessarily a good thing.</li>
 </ul></li>
 <li><p>Report a table with the models considered, sorted from smallest to largest
 AICs (<span class="math inline">\(\Delta\text{AICs}\)</span> from smaller to larger) that includes a count of
-number of parameters estimated<a href="#fn154" class="footnote-ref" id="fnref154"><sup>154</sup></a>, the
+number of parameters estimated<a href="#fn153" class="footnote-ref" id="fnref153"><sup>153</sup></a>, the
 AICs, and <span class="math inline">\(\Delta\text{AICs}\)</span>.</p>
 <ul>
 <li>Remember to incorporate the mean-only model in the model selection results.
@@ -454,7 +453,7 @@ quantitative predictors, the estimated slope is reported when that predictor is
 in the model. For categorical variables and interactions with them, it just
 puts a “+” in the table to let you know that the term is in the models. Note
 that you must run the <code>options(na.action = "na.fail")</code> code to get <code>dredge</code>
-to work<a href="#fn155" class="footnote-ref" id="fnref155"><sup>155</sup></a>.</p>
+to work<a href="#fn154" class="footnote-ref" id="fnref154"><sup>154</sup></a>.</p>
 <p>To explore the AICs and compare their results to the adjusted <strong><em>R</em></strong><sup>2</sup>
 that we used before for model selection, we can revisit the <em>Snow Depth</em> data set
 with related results found in Section <a href="8.4-section8-4.html#section8-4">8.4</a> and
@@ -462,14 +461,14 @@ Table <a href="8.4-section8-4.html#tab:Table8-1">8.1</a>. In that situation we w
 that included <em>Elevation</em>, <em>Min.Temp</em>, and <em>Max.Temp</em> as potential predictor
 variables after removing two influential points.
 And we considered all possible reduced models from that
-“full”<a href="#fn156" class="footnote-ref" id="fnref156"><sup>156</sup></a> model. Note
+“full”<a href="#fn155" class="footnote-ref" id="fnref155"><sup>155</sup></a> model. Note
 that the <code>dredge</code> output adds one more model that adjusted <strong><em>R</em></strong><sup>2</sup>
 can’t consider – the mean-only model that contains no predictor variables. In
 the following output it is the last model in the output (worst ranked on AIC).
 Including the mean-only model in these results helps us “prove” that there is
 support for having something in the model, but only if there is better support for
 other models than this simplest possible model.</p>
-<p>In reading <code>dredge</code> output<a href="#fn157" class="footnote-ref" id="fnref157"><sup>157</sup></a> as it is constructed
+<p>In reading <code>dredge</code> output<a href="#fn156" class="footnote-ref" id="fnref156"><sup>156</sup></a> as it is constructed
 here, the models are sorted by top to bottom AIC values (smallest AIC to
 largest). The column <code>delta</code> is for the <span class="math inline">\(\Delta\text{AICs}\)</span> and shows a 0 for
 the first row, which is the top-ranked AIC model. Here it is for the model with
@@ -480,11 +479,11 @@ and <code>logLik</code> columns. The <code>df</code> is also a useful column for
 as it helps you see how complex each model is. For example, the top model used
 up 4 <em>model df</em> (three <span class="math inline">\(\beta\text{&#39;s}\)</span> and the residual error variance) and the
 most complex model that included four predictor variables used up 5 <em>model df</em>.</p>
-<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="8.13-section8-13.html#cb793-1" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
-<span id="cb793-2"><a href="8.13-section8-13.html#cb793-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
-<span id="cb793-3"><a href="8.13-section8-13.html#cb793-3" tabindex="-1"></a>snotel2R <span class="ot">&lt;-</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>))</span>
-<span id="cb793-4"><a href="8.13-section8-13.html#cb793-4" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel2R)</span>
-<span id="cb793-5"><a href="8.13-section8-13.html#cb793-5" tabindex="-1"></a><span class="fu">dredge</span>(m6, <span class="at">rank =</span> <span class="st">&quot;AIC&quot;</span>, <span class="at">extra =</span> <span class="fu">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="at">adjRsq =</span> <span class="cf">function</span>(x) <span class="fu">summary</span>(x)<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
+<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb783-1"><a href="8.13-section8-13.html#cb783-1" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
+<span id="cb783-2"><a href="8.13-section8-13.html#cb783-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
+<span id="cb783-3"><a href="8.13-section8-13.html#cb783-3" tabindex="-1"></a>snotel2R <span class="ot">&lt;-</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>))</span>
+<span id="cb783-4"><a href="8.13-section8-13.html#cb783-4" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel2R)</span>
+<span id="cb783-5"><a href="8.13-section8-13.html#cb783-5" tabindex="-1"></a><span class="fu">dredge</span>(m6, <span class="at">rank =</span> <span class="st">&quot;AIC&quot;</span>, <span class="at">extra =</span> <span class="fu">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="at">adjRsq =</span> <span class="cf">function</span>(x) <span class="fu">summary</span>(x)<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
 <pre><code>## Global model call: lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel2R)
 ## ---
 ## Model selection table 
@@ -554,35 +553,35 @@ Burnham, Kenneth P., and David R. Anderson. 2002. <em>Model Selection and Multim
 </div>
 <div class="footnotes">
 <hr />
-<ol start="151">
-<li id="fn151"><p>In
+<ol start="150">
+<li id="fn150"><p>In
 most situations, it would be crazy to assume that the true model for a process
 has been obtained so we can never pick the “correct” model. In fact, we won’t
 even know if we are picking a “good” model, but just the best from a set of the
 candidate models on a criterion. But we can study the general performance of
 methods using simulations where we know the true model and the AIC has some
 useful properties in identifying the correct model when it is in the candidate
-set of models. No such similar theory exists for the adjusted <strong><em>R</em></strong><sup>2</sup>.<a href="8.13-section8-13.html#fnref151" class="footnote-back">↩︎</a></p></li>
-<li id="fn152"><p>Most people now call this Akaike’s
+set of models. No such similar theory exists for the adjusted <strong><em>R</em></strong><sup>2</sup>.<a href="8.13-section8-13.html#fnref150" class="footnote-back">↩︎</a></p></li>
+<li id="fn151"><p>Most people now call this Akaike’s
 (pronounced <strong>ah-kah-ee-kay</strong>) Information Criterion, but he used the
 AIC nomenclature to mean An Information Criterion – he was not so vain as to
 name the method after himself in the original paper that proposed it. But it is
-now common to use “A” for his last name.<a href="8.13-section8-13.html#fnref152" class="footnote-back">↩︎</a></p></li>
-<li id="fn153"><p>More details on these components of the
+now common to use “A” for his last name.<a href="8.13-section8-13.html#fnref151" class="footnote-back">↩︎</a></p></li>
+<li id="fn152"><p>More details on these components of the
 methods will be left for more advanced material – we will focus on an
-introduction to using the AIC measure here.<a href="8.13-section8-13.html#fnref153" class="footnote-back">↩︎</a></p></li>
-<li id="fn154"><p>Although sometimes excluded, the count of
-parameters should include counting the residual variance as a parameter.<a href="8.13-section8-13.html#fnref154" class="footnote-back">↩︎</a></p></li>
-<li id="fn155"><p>It makes it impossible to fit models with any missing values in the data
+introduction to using the AIC measure here.<a href="8.13-section8-13.html#fnref152" class="footnote-back">↩︎</a></p></li>
+<li id="fn153"><p>Although sometimes excluded, the count of
+parameters should include counting the residual variance as a parameter.<a href="8.13-section8-13.html#fnref153" class="footnote-back">↩︎</a></p></li>
+<li id="fn154"><p>It makes it impossible to fit models with any missing values in the data
 set and this prevents you from making incorrect comparisons of AICs to models
-with different observations.<a href="8.13-section8-13.html#fnref155" class="footnote-back">↩︎</a></p></li>
-<li id="fn156"><p>We put quotes on “full” or sometimes call it the “fullish” model because
+with different observations.<a href="8.13-section8-13.html#fnref154" class="footnote-back">↩︎</a></p></li>
+<li id="fn155"><p>We put quotes on “full” or sometimes call it the “fullish” model because
 we could always add more to the model, like interactions or other explanatory
 variables. So we rarely have a completely full model but
-we do have our “most complicated that we are considering” model.<a href="8.13-section8-13.html#fnref156" class="footnote-back">↩︎</a></p></li>
-<li id="fn157"><p>The options in <code>extra = ...</code> are to get
+we do have our “most complicated that we are considering” model.<a href="8.13-section8-13.html#fnref155" class="footnote-back">↩︎</a></p></li>
+<li id="fn156"><p>The options in <code>extra = ...</code> are to get
 extra information displayed that you do not necessarily need. You can simply run
-<code>dredge(m6, rank = "AIC")</code> to get just the AIC results.<a href="8.13-section8-13.html#fnref157" class="footnote-back">↩︎</a></p></li>
+<code>dredge(m6, rank = "AIC")</code> to get just the AIC results.<a href="8.13-section8-13.html#fnref156" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">
