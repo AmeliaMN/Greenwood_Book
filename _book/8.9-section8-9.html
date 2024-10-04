@@ -351,23 +351,22 @@ using a model that does not differentiate the two groups. We could also just
 subset the data set and do two analyses, but that approach will not allow us
 to assess whether things are “really” different between the two groups.</p>
 <div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="8.9-section8-9.html#cb737-1" tabindex="-1"></a><span class="co"># Make 1,2 coded gender into factor GENDER</span></span>
-<span id="cb737-2"><a href="8.9-section8-9.html#cb737-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">GENDER =</span> <span class="fu">factor</span>(gender)) </span>
-<span id="cb737-3"><a href="8.9-section8-9.html#cb737-3" tabindex="-1"></a><span class="co"># Make category names clear but note that level names might be wrong</span></span>
-<span id="cb737-4"><a href="8.9-section8-9.html#cb737-4" tabindex="-1"></a><span class="fu">levels</span>(satgpa<span class="sc">$</span>GENDER) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MALE&quot;</span>, <span class="st">&quot;FEMALE&quot;</span>) </span>
-<span id="cb737-5"><a href="8.9-section8-9.html#cb737-5" tabindex="-1"></a></span>
-<span id="cb737-6"><a href="8.9-section8-9.html#cb737-6" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
-<span id="cb737-7"><a href="8.9-section8-9.html#cb737-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb737-8"><a href="8.9-section8-9.html#cb737-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb737-9"><a href="8.9-section8-9.html#cb737-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb737-10"><a href="8.9-section8-9.html#cb737-10" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>) <span class="sc">+</span></span>
-<span id="cb737-11"><a href="8.9-section8-9.html#cb737-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span>
-<span id="cb737-12"><a href="8.9-section8-9.html#cb737-12" tabindex="-1"></a></span>
-<span id="cb737-13"><a href="8.9-section8-9.html#cb737-13" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
-<span id="cb737-14"><a href="8.9-section8-9.html#cb737-14" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb737-15"><a href="8.9-section8-9.html#cb737-15" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb737-16"><a href="8.9-section8-9.html#cb737-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb737-17"><a href="8.9-section8-9.html#cb737-17" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span></span>
-<span id="cb737-18"><a href="8.9-section8-9.html#cb737-18" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span></code></pre></div>
+<span id="cb737-2"><a href="8.9-section8-9.html#cb737-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">GENDER =</span> <span class="fu">as_factor</span>(gender)) <span class="sc">|&gt;</span></span>
+<span id="cb737-3"><a href="8.9-section8-9.html#cb737-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GENDER =</span> <span class="fu">fct_recode</span>(GENDER, <span class="at">MALE =</span> <span class="st">&quot;1&quot;</span>, <span class="at">FEMALE =</span> <span class="st">&quot;2&quot;</span>)) <span class="co"># Make category names clear but note that level names might be wrong</span></span>
+<span id="cb737-4"><a href="8.9-section8-9.html#cb737-4" tabindex="-1"></a></span>
+<span id="cb737-5"><a href="8.9-section8-9.html#cb737-5" tabindex="-1"></a>satgpa <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
+<span id="cb737-6"><a href="8.9-section8-9.html#cb737-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb737-7"><a href="8.9-section8-9.html#cb737-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb737-8"><a href="8.9-section8-9.html#cb737-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb737-9"><a href="8.9-section8-9.html#cb737-9" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>) <span class="sc">+</span></span>
+<span id="cb737-10"><a href="8.9-section8-9.html#cb737-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span>
+<span id="cb737-11"><a href="8.9-section8-9.html#cb737-11" tabindex="-1"></a></span>
+<span id="cb737-12"><a href="8.9-section8-9.html#cb737-12" tabindex="-1"></a>satgpa <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
+<span id="cb737-13"><a href="8.9-section8-9.html#cb737-13" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb737-14"><a href="8.9-section8-9.html#cb737-14" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb737-15"><a href="8.9-section8-9.html#cb737-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb737-16"><a href="8.9-section8-9.html#cb737-16" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span></span>
+<span id="cb737-17"><a href="8.9-section8-9.html#cb737-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span></code></pre></div>
 <p>To fit one model to a data set that contains multiple groups, we need a way of
 entering categorical variable information in an MLR model. Regression models
 require quantitative predictor variables for the <span class="math inline">\(x\text{&#39;s}\)</span> so we can’t
@@ -383,8 +382,7 @@ It sets up the indicator
 variables using a baseline category (which gets coded as a 0) and the deviation
 category for the other level of the variable (which gets coded as a 1). We can see how this works by
 exploring what happens when we put <code>GENDER</code> into our <code>lm</code> with <code>satm</code>, after first making sure it is categorical using
-the <code>factor</code> function and making the factor <code>levels</code> explicit instead of 1s
-and 2s.
+the <code>as_factor()</code> function and making the factor levels explicit instead of 1s and 2s with <code>fct_recode()</code>.
 </p>
 <div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="8.9-section8-9.html#cb738-1" tabindex="-1"></a>SATGENDER1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fygpa <span class="sc">~</span> satm <span class="sc">+</span> GENDER, <span class="at">data =</span> satgpa) <span class="co">#Fit lm with satm and GENDER</span></span>
 <span id="cb738-2"><a href="8.9-section8-9.html#cb738-2" tabindex="-1"></a><span class="fu">summary</span>(SATGENDER1)</span></code></pre></div>
@@ -426,9 +424,9 @@ two-level categorical variable, we can create our own “numerical” predictor 
 is 0 for <em>males</em> and 1 for <em>females</em> that we called <code>GENDERINDICATOR</code>, displayed
 for the first 10 observations:</p>
 <div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="8.9-section8-9.html#cb740-1" tabindex="-1"></a><span class="co"># Convert logical to 1 for female, 0 for male using ifelse function</span></span>
-<span id="cb740-2"><a href="8.9-section8-9.html#cb740-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">GENDERINDICATOR =</span> <span class="fu">ifelse</span>(GENDER <span class="sc">==</span> <span class="st">&quot;FEMALE&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)) </span>
+<span id="cb740-2"><a href="8.9-section8-9.html#cb740-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">GENDERINDICATOR =</span> <span class="fu">ifelse</span>(GENDER <span class="sc">==</span> <span class="st">&quot;FEMALE&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)) </span>
 <span id="cb740-3"><a href="8.9-section8-9.html#cb740-3" tabindex="-1"></a><span class="co"># Explore first 10 observations on the two versions of GENDER using the head() function</span></span>
-<span id="cb740-4"><a href="8.9-section8-9.html#cb740-4" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">select</span>(GENDER, GENDERINDICATOR) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<span id="cb740-4"><a href="8.9-section8-9.html#cb740-4" tabindex="-1"></a>satgpa <span class="sc">|&gt;</span> <span class="fu">select</span>(GENDER, GENDERINDICATOR) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 2
 ##    GENDER GENDERINDICATOR
 ##    &lt;fct&gt;            &lt;dbl&gt;

@@ -384,7 +384,7 @@ some preliminary assessment of the pairwise relationships.</p>
 
 <div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="chapter8.html#cb651-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
 <span id="cb651-2"><a href="chapter8.html#cb651-2" tabindex="-1"></a><span class="co"># Reorder columns slightly and only plot quantitative variables using &quot;columns = ...&quot;</span></span>
-<span id="cb651-3"><a href="chapter8.html#cb651-3" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">3</span>)) <span class="sc">+</span> </span>
+<span id="cb651-3"><a href="chapter8.html#cb651-3" tabindex="-1"></a>snotel_s <span class="sc">|&gt;</span> <span class="fu">ggpairs</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">3</span>)) <span class="sc">+</span> </span>
 <span id="cb651-4"><a href="chapter8.html#cb651-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-1"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-1-1.png" alt="Scatterplot matrix of data from a sample of SNOTEL sites in April on four variables. " width="75%" />
@@ -878,7 +878,7 @@ these sites. For the Northeast Entrance, the <em>Max.Temp</em> was 45, the <em>M
 was 28, and the <em>Elevation</em> was 7350 as you can see in this printout of just the
 two rows of the data set available by slicing rows 9 and 10 from <code>snotel_s</code>:</p>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="chapter8.html#cb663-1" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">9</span>,<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="chapter8.html#cb663-1" tabindex="-1"></a>snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">9</span>,<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 6
 ##      ID Station            Snow.Depth Max.Temp Min.Temp Elevation
 ##   &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -932,14 +932,14 @@ on the model’s estimated slope coefficients based on the small Cook’s D valu
 trustworthy, but
 the large Cook’s D on one observation suggests we should consider the model
 after removing that observation. We can re-run the model without the
-9<sup>th</sup> observation using the data set <code>snotel_s %&gt;% slice(-9)</code>.</p>
+9<sup>th</sup> observation using the data set <code>snotel_s |&gt; slice(-9)</code>.</p>
 <!-- \newpage -->
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="chapter8.html#cb673-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">9</span>))</span>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="chapter8.html#cb673-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">9</span>))</span>
 <span id="cb673-2"><a href="chapter8.html#cb673-2" tabindex="-1"></a><span class="fu">summary</span>(m5)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %&gt;% 
-##     slice(-9))
+## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -9))
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -1035,8 +1035,8 @@ Figure 8.8: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp
 
 <pre><code>## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %&gt;% 
-##     slice(-c(9, 22)))
+## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -1061,7 +1061,7 @@ Figure 8.9: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp
 <!-- \newpage -->
 <p>This worry-some observation is located in the 22<sup>nd</sup> row of the
 original data set:</p>
-<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="chapter8.html#cb678-1" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">22</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="chapter8.html#cb678-1" tabindex="-1"></a>snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">22</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 6
 ##      ID Station          Snow.Depth Max.Temp Min.Temp Elevation
 ##   &lt;dbl&gt; &lt;fct&gt;                 &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -1070,7 +1070,7 @@ original data set:</p>
 <span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span>” sites, there are <span class="math inline">\(n = 23\)</span> observations
 remaining. This model (<code>m6</code>) seems to contain residual diagnostics (Figure
 <a href="chapter8.html#fig:Figure8-9">8.9</a>) that are finally generally reasonable.</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="chapter8.html#cb680-1" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="chapter8.html#cb680-1" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
 <span id="cb680-2"><a href="chapter8.html#cb680-2" tabindex="-1"></a><span class="fu">summary</span>(m6)</span>
 <span id="cb680-3"><a href="chapter8.html#cb680-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
 <span id="cb680-4"><a href="chapter8.html#cb680-4" tabindex="-1"></a><span class="fu">plot</span>(m6, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
@@ -1113,49 +1113,49 @@ original ones reinforces those previous assessments. When the match is not so
 close, it can reinforce or create concern about the way that the assumptions
 have been assessed using other tools.</p>
 <div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="chapter8.html#cb682-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">307</span>)</span>
-<span id="cb682-2"><a href="chapter8.html#cb682-2" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>))</span>
-<span id="cb682-3"><a href="chapter8.html#cb682-3" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> </span>
+<span id="cb682-2"><a href="chapter8.html#cb682-2" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>))</span>
+<span id="cb682-3"><a href="chapter8.html#cb682-3" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> </span>
 <span id="cb682-4"><a href="chapter8.html#cb682-4" tabindex="-1"></a>  <span class="co">#Creates first and second set of simulated responses</span></span>
 <span id="cb682-5"><a href="chapter8.html#cb682-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SimulatedSnow =</span> <span class="fu">simulate</span>(m6)[[<span class="dv">1</span>]],</span>
 <span id="cb682-6"><a href="chapter8.html#cb682-6" tabindex="-1"></a>         <span class="at">SimulatedSnow2 =</span> <span class="fu">simulate</span>(m6)[[<span class="dv">1</span>]]</span>
 <span id="cb682-7"><a href="chapter8.html#cb682-7" tabindex="-1"></a>         ) </span></code></pre></div>
 
-<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="chapter8.html#cb683-1" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="chapter8.html#cb683-1" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
 <span id="cb683-2"><a href="chapter8.html#cb683-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb683-3"><a href="chapter8.html#cb683-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-4"><a href="chapter8.html#cb683-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
-<span id="cb683-5"><a href="chapter8.html#cb683-5" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
+<span id="cb683-5"><a href="chapter8.html#cb683-5" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
 <span id="cb683-6"><a href="chapter8.html#cb683-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb683-7"><a href="chapter8.html#cb683-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-8"><a href="chapter8.html#cb683-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
-<span id="cb683-9"><a href="chapter8.html#cb683-9" tabindex="-1"></a>r3 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
+<span id="cb683-9"><a href="chapter8.html#cb683-9" tabindex="-1"></a>r3 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
 <span id="cb683-10"><a href="chapter8.html#cb683-10" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb683-11"><a href="chapter8.html#cb683-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-12"><a href="chapter8.html#cb683-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
 <span id="cb683-13"><a href="chapter8.html#cb683-13" tabindex="-1"></a></span>
-<span id="cb683-14"><a href="chapter8.html#cb683-14" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
+<span id="cb683-14"><a href="chapter8.html#cb683-14" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
 <span id="cb683-15"><a href="chapter8.html#cb683-15" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-16"><a href="chapter8.html#cb683-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-17"><a href="chapter8.html#cb683-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
 <span id="cb683-18"><a href="chapter8.html#cb683-18" tabindex="-1"></a></span>
-<span id="cb683-19"><a href="chapter8.html#cb683-19" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
+<span id="cb683-19"><a href="chapter8.html#cb683-19" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
 <span id="cb683-20"><a href="chapter8.html#cb683-20" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-21"><a href="chapter8.html#cb683-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-22"><a href="chapter8.html#cb683-22" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
-<span id="cb683-23"><a href="chapter8.html#cb683-23" tabindex="-1"></a>s3 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
+<span id="cb683-23"><a href="chapter8.html#cb683-23" tabindex="-1"></a>s3 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
 <span id="cb683-24"><a href="chapter8.html#cb683-24" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-25"><a href="chapter8.html#cb683-25" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-26"><a href="chapter8.html#cb683-26" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
 <span id="cb683-27"><a href="chapter8.html#cb683-27" tabindex="-1"></a></span>
-<span id="cb683-28"><a href="chapter8.html#cb683-28" tabindex="-1"></a>s12 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
+<span id="cb683-28"><a href="chapter8.html#cb683-28" tabindex="-1"></a>s12 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
 <span id="cb683-29"><a href="chapter8.html#cb683-29" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-30"><a href="chapter8.html#cb683-30" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-31"><a href="chapter8.html#cb683-31" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>
-<span id="cb683-32"><a href="chapter8.html#cb683-32" tabindex="-1"></a>s22 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
+<span id="cb683-32"><a href="chapter8.html#cb683-32" tabindex="-1"></a>s22 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
 <span id="cb683-33"><a href="chapter8.html#cb683-33" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-34"><a href="chapter8.html#cb683-34" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-35"><a href="chapter8.html#cb683-35" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>
-<span id="cb683-36"><a href="chapter8.html#cb683-36" tabindex="-1"></a>s32 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
+<span id="cb683-36"><a href="chapter8.html#cb683-36" tabindex="-1"></a>s32 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
 <span id="cb683-37"><a href="chapter8.html#cb683-37" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-38"><a href="chapter8.html#cb683-38" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-39"><a href="chapter8.html#cb683-39" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>
@@ -1202,9 +1202,9 @@ term-plot. To do this, we first need the mean of the “other” predictors,
 <em>Min.Temp</em> and <em>Max.Temp</em>.</p>
 <div style="page-break-after: always;"></div>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="chapter8.html#cb684-1" tabindex="-1"></a><span class="fu">mean</span>(snotel_final<span class="sc">$</span>Min.Temp)</span></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="chapter8.html#cb684-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>Min.Temp, <span class="at">data =</span> snotel_final)</span></code></pre></div>
 <pre><code>## [1] 27.82609</code></pre>
-<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="chapter8.html#cb686-1" tabindex="-1"></a><span class="fu">mean</span>(snotel_final<span class="sc">$</span>Max.Temp)</span></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="chapter8.html#cb686-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>Max.Temp, <span class="at">data =</span> snotel_final)</span></code></pre></div>
 <pre><code>## [1] 36.3913</code></pre>
 <p>We can put these values into the MLR equation and simplify it by combining like
 terms, to an equation that is in terms of just <em>Elevation</em> given that we are
@@ -1244,7 +1244,7 @@ Figure 8.12: Term-plot for Elevation “by-hand”, holding temperature variable
 </div>
 <div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="chapter8.html#cb688-1" tabindex="-1"></a><span class="co"># Making own effect plot:</span></span>
 <span id="cb688-2"><a href="chapter8.html#cb688-2" tabindex="-1"></a>modelres2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">elevs =</span> <span class="fu">c</span>(<span class="dv">5000</span>, <span class="dv">6000</span>, <span class="dv">8000</span>), <span class="at">snowdepths =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">6.19</span>, <span class="fl">20.71</span>, <span class="fl">74.51</span>))</span>
-<span id="cb688-3"><a href="chapter8.html#cb688-3" tabindex="-1"></a>modelres2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> elevs, <span class="at">y =</span> snowdepths)) <span class="sc">+</span></span>
+<span id="cb688-3"><a href="chapter8.html#cb688-3" tabindex="-1"></a>modelres2 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> elevs, <span class="at">y =</span> snowdepths)) <span class="sc">+</span></span>
 <span id="cb688-4"><a href="chapter8.html#cb688-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb688-5"><a href="chapter8.html#cb688-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> .<span class="dv">75</span>, <span class="at">col =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span></span>
 <span id="cb688-6"><a href="chapter8.html#cb688-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -1304,7 +1304,7 @@ constant. </p>
 ## # ℹ 20 more rows</code></pre>
 <p>The first 10 predicted snow depths along with 95% confidence intervals for the mean,
 holding temperatures at their means, are:</p>
-<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="chapter8.html#cb691-1" tabindex="-1"></a><span class="fu">predict</span>(m6, <span class="at">newdata =</span> newdata1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="chapter8.html#cb691-1" tabindex="-1"></a><span class="fu">predict</span>(m6, <span class="at">newdata =</span> newdata1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##           fit        lwr      upr
 ## 1  -6.3680312 -24.913607 12.17754
 ## 2  -3.5898846 -21.078518 13.89875
@@ -1357,13 +1357,13 @@ perfect, but we hope that it helps us learn something about our research
 question(s) and, to trust its results, we hope it matches the data fairly well.</p>
 <p>To both illustrate the calculation of partial residuals and demonstrate their potential utility, a small simulated example is considered. These are simulated data to help to highlight these patterns but are not too different than results that can be seen in some real applications. This situation has a response of simulated cholesterol levels with (also simulated) predictors of age, exercise level, and healthiness level with a sample size of <span class="math inline">\(n = 100\)</span>. First, consider the plot of the response versus each of the predictors in Figure <a href="chapter8.html#fig:Figure8-13">8.13</a>. It appears that age might be positively related to the response, but exercise and healthiness levels do not appear to be related to the response. But it is important to remember that the response is made up of potential contributions that can be explained by each predictor and unexplained variation, and so plotting the response versus each predictor may not allow us to see the real relationship with each predictor.</p>
 
-<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="chapter8.html#cb693-1" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="chapter8.html#cb693-1" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> d1 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
 <span id="cb693-2"><a href="chapter8.html#cb693-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb693-3"><a href="chapter8.html#cb693-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb693-4"><a href="chapter8.html#cb693-4" tabindex="-1"></a>e1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ExAmount, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
+<span id="cb693-4"><a href="chapter8.html#cb693-4" tabindex="-1"></a>e1 <span class="ot">&lt;-</span> d1 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ExAmount, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
 <span id="cb693-5"><a href="chapter8.html#cb693-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb693-6"><a href="chapter8.html#cb693-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb693-7"><a href="chapter8.html#cb693-7" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> HealthLevel, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
+<span id="cb693-7"><a href="chapter8.html#cb693-7" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> d1 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> HealthLevel, <span class="at">y =</span> CholLevel)) <span class="sc">+</span></span>
 <span id="cb693-8"><a href="chapter8.html#cb693-8" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb693-9"><a href="chapter8.html#cb693-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
 <span id="cb693-10"><a href="chapter8.html#cb693-10" tabindex="-1"></a><span class="fu">grid.arrange</span>(a1, e1, h1, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
@@ -1374,7 +1374,7 @@ Figure 8.13: Scatterplot of Cholesterol level versus three predictors (simulated
 </p>
 </div>
 <div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="chapter8.html#cb694-1" tabindex="-1"></a>sim1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(CholLevel <span class="sc">~</span> Age <span class="sc">+</span> ExAmount <span class="sc">+</span> HealthLevel, <span class="at">data =</span> d1)</span>
-<span id="cb694-2"><a href="chapter8.html#cb694-2" tabindex="-1"></a><span class="fu">summary</span>(sim1)<span class="sc">$</span>coefficients</span></code></pre></div>
+<span id="cb694-2"><a href="chapter8.html#cb694-2" tabindex="-1"></a><span class="fu">coefficients</span>(<span class="fu">summary</span>(sim1))</span></code></pre></div>
 <pre><code>##                Estimate Std. Error    t value     Pr(&gt;|t|)
 ## (Intercept) 94.54572326 4.63863859  20.382214 1.204735e-36
 ## Age          3.50787191 0.14967450  23.436670 1.679060e-41
@@ -1421,8 +1421,8 @@ assess the linearity assumption with each quantitative predictor and if you see
 a pattern like this, seek out additional statistical resources such as the
 <em>Statistical Sleuth</em> (<span class="citation">Ramsey and Schafer (<a href="#ref-Ramsey2012">2012</a>)</span>) or a statistician for help.</p>
 
-<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="chapter8.html#cb697-1" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">partres =</span> <span class="fu">residuals</span>(sim1) <span class="sc">+</span> ExAmount <span class="sc">*</span> <span class="fl">0.07447965</span>)</span>
-<span id="cb697-2"><a href="chapter8.html#cb697-2" tabindex="-1"></a>d1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ExAmount, <span class="at">y =</span> partres)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="chapter8.html#cb697-1" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> d1 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">partres =</span> <span class="fu">residuals</span>(sim1) <span class="sc">+</span> ExAmount <span class="sc">*</span> <span class="fl">0.07447965</span>)</span>
+<span id="cb697-2"><a href="chapter8.html#cb697-2" tabindex="-1"></a>d1 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ExAmount, <span class="at">y =</span> partres)) <span class="sc">+</span></span>
 <span id="cb697-3"><a href="chapter8.html#cb697-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb697-4"><a href="chapter8.html#cb697-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
 <span id="cb697-5"><a href="chapter8.html#cb697-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
@@ -1554,12 +1554,12 @@ are available. Make sure you are able to pick out the correct one. For the
 reduced data set (<span class="math inline">\(n = 23\)</span>) <em>Snow Depth</em> models, the pertinent part of the model
 summary for the model with all three predictors is in the last three lines:</p>
 <div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="chapter8.html#cb698-1" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, </span>
-<span id="cb698-2"><a href="chapter8.html#cb698-2" tabindex="-1"></a>         <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<span id="cb698-2"><a href="chapter8.html#cb698-2" tabindex="-1"></a>         <span class="at">data =</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
 <span id="cb698-3"><a href="chapter8.html#cb698-3" tabindex="-1"></a><span class="fu">summary</span>(m6)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %&gt;% 
-##     slice(-c(9, 22)))
+## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -1743,9 +1743,9 @@ visually displayed in Figure <a href="chapter8.html#fig:Figure8-17">8.17</a>:
 <p></p>
 <div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="chapter8.html#cb700-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
 <span id="cb700-2"><a href="chapter8.html#cb700-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
-<span id="cb700-3"><a href="chapter8.html#cb700-3" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), </span>
+<span id="cb700-3"><a href="chapter8.html#cb700-3" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), </span>
 <span id="cb700-4"><a href="chapter8.html#cb700-4" tabindex="-1"></a>               <span class="at">upper.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>), <span class="at">lower.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>))</span>
-<span id="cb700-5"><a href="chapter8.html#cb700-5" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb700-5"><a href="chapter8.html#cb700-5" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-17"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-17-1.png" alt="Plot of correlation matrix in the snow depth data set with influential points removed" width="75%" />
 <p class="caption">
@@ -1831,12 +1831,12 @@ fit to find the percentage of variation in elevation explained by the temperatur
 variables. It ends up being 0.8775 – so a high percentage of <em>Elevation</em> can be
 explained by the linear model using min and max temperatures.</p>
 <div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="chapter8.html#cb706-1" tabindex="-1"></a><span class="co"># VIF calc:</span></span>
-<span id="cb706-2"><a href="chapter8.html#cb706-2" tabindex="-1"></a>elev1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Elevation <span class="sc">~</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<span id="cb706-2"><a href="chapter8.html#cb706-2" tabindex="-1"></a>elev1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Elevation <span class="sc">~</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
 <span id="cb706-3"><a href="chapter8.html#cb706-3" tabindex="-1"></a><span class="fu">summary</span>(elev1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Elevation ~ Min.Temp + Max.Temp, data = snotel_s %&gt;% 
-##     slice(-c(9, 22)))
+## lm(formula = Elevation ~ Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -1906,12 +1906,12 @@ summary we’ve been working with. You can find the estimated slope
 <span class="math inline">\(t\)</span>-statistics (<code>t value</code> column), and the p-values (<code>Pr(&gt;|t|)</code> column).
 The degrees of freedom for the <span class="math inline">\(t\)</span>-distributions show up below the coefficients
 and the <span class="math inline">\(df = 20\)</span> here. This is because <span class="math inline">\(n = 23\)</span> and <span class="math inline">\(K = 2\)</span>, so <span class="math inline">\(df = 23-2-1 = 20\)</span>.</p>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="chapter8.html#cb712-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="chapter8.html#cb712-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
 <span id="cb712-2"><a href="chapter8.html#cb712-2" tabindex="-1"></a><span class="fu">summary</span>(m5)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Max.Temp, data = snotel_s %&gt;% 
-##     slice(-c(9, 22)))
+## lm(formula = Snow.Depth ~ Elevation + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -2111,12 +2111,12 @@ addressed with these data but this will keep us focused.
 <div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="chapter8.html#cb719-1" tabindex="-1"></a><span class="fu">library</span>(openintro)</span>
 <span id="cb719-2"><a href="chapter8.html#cb719-2" tabindex="-1"></a><span class="fu">data</span>(satgpa)</span>
 <span id="cb719-3"><a href="chapter8.html#cb719-3" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(satgpa)</span>
-<span id="cb719-4"><a href="chapter8.html#cb719-4" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">gender =</span> sex , <span class="co">#Renaming variables </span></span>
+<span id="cb719-4"><a href="chapter8.html#cb719-4" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">gender =</span> sex , <span class="co">#Renaming variables </span></span>
 <span id="cb719-5"><a href="chapter8.html#cb719-5" tabindex="-1"></a>                            <span class="at">satv =</span> sat_v, <span class="at">satm =</span> sat_m, <span class="at">satsum =</span> sat_sum, </span>
 <span id="cb719-6"><a href="chapter8.html#cb719-6" tabindex="-1"></a>                            <span class="at">hsgpa =</span> hs_gpa, </span>
 <span id="cb719-7"><a href="chapter8.html#cb719-7" tabindex="-1"></a>                            <span class="at">fygpa =</span> fy_gpa) </span>
-<span id="cb719-8"><a href="chapter8.html#cb719-8" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> </span>
-<span id="cb719-9"><a href="chapter8.html#cb719-9" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb719-8"><a href="chapter8.html#cb719-8" tabindex="-1"></a>satgpa <span class="sc">|&gt;</span> </span>
+<span id="cb719-9"><a href="chapter8.html#cb719-9" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">4</span>) <span class="sc">|&gt;</span></span>
 <span id="cb719-10"><a href="chapter8.html#cb719-10" tabindex="-1"></a>  <span class="fu">ggpairs</span>() <span class="sc">+</span> </span>
 <span id="cb719-11"><a href="chapter8.html#cb719-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-18"></span>
@@ -2455,13 +2455,13 @@ their means. </p>
 <span id="cb736-4"><a href="chapter8.html#cb736-4" tabindex="-1"></a>mv1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dv1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
 <span id="cb736-5"><a href="chapter8.html#cb736-5" tabindex="-1"></a>pv1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dv1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
 <span id="cb736-6"><a href="chapter8.html#cb736-6" tabindex="-1"></a></span>
-<span id="cb736-7"><a href="chapter8.html#cb736-7" tabindex="-1"></a>mres_GPA_v <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dv1, mv1, pv1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
+<span id="cb736-7"><a href="chapter8.html#cb736-7" tabindex="-1"></a>mres_GPA_v <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dv1, mv1, pv1 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
 <span id="cb736-8"><a href="chapter8.html#cb736-8" tabindex="-1"></a></span>
 <span id="cb736-9"><a href="chapter8.html#cb736-9" tabindex="-1"></a><span class="co"># Rename CI and PI limits to have more explicit column names:</span></span>
-<span id="cb736-10"><a href="chapter8.html#cb736-10" tabindex="-1"></a>mres_GPA_v <span class="ot">&lt;-</span> mres_GPA_v <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">4</span>, <span class="at">upr_CI =</span> upr...<span class="dv">5</span>, </span>
+<span id="cb736-10"><a href="chapter8.html#cb736-10" tabindex="-1"></a>mres_GPA_v <span class="ot">&lt;-</span> mres_GPA_v <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">4</span>, <span class="at">upr_CI =</span> upr...<span class="dv">5</span>, </span>
 <span id="cb736-11"><a href="chapter8.html#cb736-11" tabindex="-1"></a>                                    <span class="at">lwr_PI =</span> lwr...<span class="dv">6</span>, <span class="at">upr_PI =</span> upr...<span class="dv">7</span>)</span>
 <span id="cb736-12"><a href="chapter8.html#cb736-12" tabindex="-1"></a></span>
-<span id="cb736-13"><a href="chapter8.html#cb736-13" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> mres_GPA_v <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb736-13"><a href="chapter8.html#cb736-13" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> mres_GPA_v <span class="sc">|&gt;</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb736-14"><a href="chapter8.html#cb736-14" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb736-15"><a href="chapter8.html#cb736-15" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
 <span id="cb736-16"><a href="chapter8.html#cb736-16" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
@@ -2476,13 +2476,13 @@ their means. </p>
 <span id="cb736-25"><a href="chapter8.html#cb736-25" tabindex="-1"></a>mm1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dm1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
 <span id="cb736-26"><a href="chapter8.html#cb736-26" tabindex="-1"></a>pm1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dm1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
 <span id="cb736-27"><a href="chapter8.html#cb736-27" tabindex="-1"></a></span>
-<span id="cb736-28"><a href="chapter8.html#cb736-28" tabindex="-1"></a>mres_GPA_m <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dm1, mm1, pm1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
+<span id="cb736-28"><a href="chapter8.html#cb736-28" tabindex="-1"></a>mres_GPA_m <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dm1, mm1, pm1 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
 <span id="cb736-29"><a href="chapter8.html#cb736-29" tabindex="-1"></a></span>
 <span id="cb736-30"><a href="chapter8.html#cb736-30" tabindex="-1"></a><span class="co">#Rename CI and PI limits to have more explicit column names:</span></span>
-<span id="cb736-31"><a href="chapter8.html#cb736-31" tabindex="-1"></a>mres_GPA_m <span class="ot">&lt;-</span> mres_GPA_m <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">4</span>, <span class="at">upr_CI =</span> upr...<span class="dv">5</span>, </span>
+<span id="cb736-31"><a href="chapter8.html#cb736-31" tabindex="-1"></a>mres_GPA_m <span class="ot">&lt;-</span> mres_GPA_m <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">4</span>, <span class="at">upr_CI =</span> upr...<span class="dv">5</span>, </span>
 <span id="cb736-32"><a href="chapter8.html#cb736-32" tabindex="-1"></a>                                    <span class="at">lwr_PI =</span> lwr...<span class="dv">6</span>, <span class="at">upr_PI =</span> upr...<span class="dv">7</span>)</span>
 <span id="cb736-33"><a href="chapter8.html#cb736-33" tabindex="-1"></a></span>
-<span id="cb736-34"><a href="chapter8.html#cb736-34" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> mres_GPA_m <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb736-34"><a href="chapter8.html#cb736-34" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> mres_GPA_m <span class="sc">|&gt;</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb736-35"><a href="chapter8.html#cb736-35" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb736-36"><a href="chapter8.html#cb736-36" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
 <span id="cb736-37"><a href="chapter8.html#cb736-37" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
@@ -2546,23 +2546,22 @@ using a model that does not differentiate the two groups. We could also just
 subset the data set and do two analyses, but that approach will not allow us
 to assess whether things are “really” different between the two groups.</p>
 <div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="chapter8.html#cb737-1" tabindex="-1"></a><span class="co"># Make 1,2 coded gender into factor GENDER</span></span>
-<span id="cb737-2"><a href="chapter8.html#cb737-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">GENDER =</span> <span class="fu">factor</span>(gender)) </span>
-<span id="cb737-3"><a href="chapter8.html#cb737-3" tabindex="-1"></a><span class="co"># Make category names clear but note that level names might be wrong</span></span>
-<span id="cb737-4"><a href="chapter8.html#cb737-4" tabindex="-1"></a><span class="fu">levels</span>(satgpa<span class="sc">$</span>GENDER) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MALE&quot;</span>, <span class="st">&quot;FEMALE&quot;</span>) </span>
-<span id="cb737-5"><a href="chapter8.html#cb737-5" tabindex="-1"></a></span>
-<span id="cb737-6"><a href="chapter8.html#cb737-6" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
-<span id="cb737-7"><a href="chapter8.html#cb737-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb737-8"><a href="chapter8.html#cb737-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb737-9"><a href="chapter8.html#cb737-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb737-10"><a href="chapter8.html#cb737-10" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>) <span class="sc">+</span></span>
-<span id="cb737-11"><a href="chapter8.html#cb737-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span>
-<span id="cb737-12"><a href="chapter8.html#cb737-12" tabindex="-1"></a></span>
-<span id="cb737-13"><a href="chapter8.html#cb737-13" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
-<span id="cb737-14"><a href="chapter8.html#cb737-14" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb737-15"><a href="chapter8.html#cb737-15" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb737-16"><a href="chapter8.html#cb737-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb737-17"><a href="chapter8.html#cb737-17" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span></span>
-<span id="cb737-18"><a href="chapter8.html#cb737-18" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span></code></pre></div>
+<span id="cb737-2"><a href="chapter8.html#cb737-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">GENDER =</span> <span class="fu">as_factor</span>(gender)) <span class="sc">|&gt;</span></span>
+<span id="cb737-3"><a href="chapter8.html#cb737-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GENDER =</span> <span class="fu">fct_recode</span>(GENDER, <span class="at">MALE =</span> <span class="st">&quot;1&quot;</span>, <span class="at">FEMALE =</span> <span class="st">&quot;2&quot;</span>)) <span class="co"># Make category names clear but note that level names might be wrong</span></span>
+<span id="cb737-4"><a href="chapter8.html#cb737-4" tabindex="-1"></a></span>
+<span id="cb737-5"><a href="chapter8.html#cb737-5" tabindex="-1"></a>satgpa <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satv, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
+<span id="cb737-6"><a href="chapter8.html#cb737-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb737-7"><a href="chapter8.html#cb737-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb737-8"><a href="chapter8.html#cb737-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb737-9"><a href="chapter8.html#cb737-9" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>) <span class="sc">+</span></span>
+<span id="cb737-10"><a href="chapter8.html#cb737-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span>
+<span id="cb737-11"><a href="chapter8.html#cb737-11" tabindex="-1"></a></span>
+<span id="cb737-12"><a href="chapter8.html#cb737-12" tabindex="-1"></a>satgpa <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> satm, <span class="at">y =</span> fygpa, <span class="at">color =</span> GENDER, <span class="at">shape =</span> GENDER)) <span class="sc">+</span></span>
+<span id="cb737-13"><a href="chapter8.html#cb737-13" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb737-14"><a href="chapter8.html#cb737-14" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb737-15"><a href="chapter8.html#cb737-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb737-16"><a href="chapter8.html#cb737-16" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span></span>
+<span id="cb737-17"><a href="chapter8.html#cb737-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of GPA vs satv by gender&quot;</span>)</span></code></pre></div>
 <p>To fit one model to a data set that contains multiple groups, we need a way of
 entering categorical variable information in an MLR model. Regression models
 require quantitative predictor variables for the <span class="math inline">\(x\text{&#39;s}\)</span> so we can’t
@@ -2578,8 +2577,7 @@ It sets up the indicator
 variables using a baseline category (which gets coded as a 0) and the deviation
 category for the other level of the variable (which gets coded as a 1). We can see how this works by
 exploring what happens when we put <code>GENDER</code> into our <code>lm</code> with <code>satm</code>, after first making sure it is categorical using
-the <code>factor</code> function and making the factor <code>levels</code> explicit instead of 1s
-and 2s.
+the <code>as_factor()</code> function and making the factor levels explicit instead of 1s and 2s with <code>fct_recode()</code>.
 </p>
 <div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="chapter8.html#cb738-1" tabindex="-1"></a>SATGENDER1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fygpa <span class="sc">~</span> satm <span class="sc">+</span> GENDER, <span class="at">data =</span> satgpa) <span class="co">#Fit lm with satm and GENDER</span></span>
 <span id="cb738-2"><a href="chapter8.html#cb738-2" tabindex="-1"></a><span class="fu">summary</span>(SATGENDER1)</span></code></pre></div>
@@ -2621,9 +2619,9 @@ two-level categorical variable, we can create our own “numerical” predictor 
 is 0 for <em>males</em> and 1 for <em>females</em> that we called <code>GENDERINDICATOR</code>, displayed
 for the first 10 observations:</p>
 <div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="chapter8.html#cb740-1" tabindex="-1"></a><span class="co"># Convert logical to 1 for female, 0 for male using ifelse function</span></span>
-<span id="cb740-2"><a href="chapter8.html#cb740-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">GENDERINDICATOR =</span> <span class="fu">ifelse</span>(GENDER <span class="sc">==</span> <span class="st">&quot;FEMALE&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)) </span>
+<span id="cb740-2"><a href="chapter8.html#cb740-2" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">GENDERINDICATOR =</span> <span class="fu">ifelse</span>(GENDER <span class="sc">==</span> <span class="st">&quot;FEMALE&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)) </span>
 <span id="cb740-3"><a href="chapter8.html#cb740-3" tabindex="-1"></a><span class="co"># Explore first 10 observations on the two versions of GENDER using the head() function</span></span>
-<span id="cb740-4"><a href="chapter8.html#cb740-4" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">select</span>(GENDER, GENDERINDICATOR) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<span id="cb740-4"><a href="chapter8.html#cb740-4" tabindex="-1"></a>satgpa <span class="sc">|&gt;</span> <span class="fu">select</span>(GENDER, GENDERINDICATOR) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 2
 ##    GENDER GENDERINDICATOR
 ##    &lt;fct&gt;            &lt;dbl&gt;
@@ -2851,11 +2849,11 @@ set had set <code>T1</code> as the baseline in the <code>treatment</code> variab
 ## # ℹ 88 more rows</code></pre>
 <!-- \newpage -->
 
-<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="chapter8.html#cb752-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">factor</span>(treatment),</span>
+<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="chapter8.html#cb752-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">factor</span>(treatment),</span>
 <span id="cb752-2"><a href="chapter8.html#cb752-2" tabindex="-1"></a>                                <span class="at">treatment =</span> <span class="fu">fct_relevel</span>(treatment, <span class="st">&quot;Control&quot;</span>)</span>
 <span id="cb752-3"><a href="chapter8.html#cb752-3" tabindex="-1"></a>                                )</span>
 <span id="cb752-4"><a href="chapter8.html#cb752-4" tabindex="-1"></a><span class="co"># Make treatment a factor and Control the baseline category</span></span>
-<span id="cb752-5"><a href="chapter8.html#cb752-5" tabindex="-1"></a>Headache <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> du1, <span class="at">y =</span> du2, <span class="at">color =</span> treatment, </span>
+<span id="cb752-5"><a href="chapter8.html#cb752-5" tabindex="-1"></a>Headache <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> du1, <span class="at">y =</span> du2, <span class="at">color =</span> treatment, </span>
 <span id="cb752-6"><a href="chapter8.html#cb752-6" tabindex="-1"></a>                                  <span class="at">shape =</span> treatment)) <span class="sc">+</span></span>
 <span id="cb752-7"><a href="chapter8.html#cb752-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span> </span>
 <span id="cb752-8"><a href="chapter8.html#cb752-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
@@ -3148,10 +3146,10 @@ this example, there are no additional patterns identified by making this plot
 although we do see some minor deviations in the fitted lines for each group,
 but it is a good additional check in these multi-group situations.</p>
 
-<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="chapter8.html#cb757-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">resids =</span> <span class="fu">residuals</span>(head1),</span>
+<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="chapter8.html#cb757-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">resids =</span> <span class="fu">residuals</span>(head1),</span>
 <span id="cb757-2"><a href="chapter8.html#cb757-2" tabindex="-1"></a>                                <span class="at">fits =</span> <span class="fu">fitted</span>(head1)</span>
 <span id="cb757-3"><a href="chapter8.html#cb757-3" tabindex="-1"></a>                                )</span>
-<span id="cb757-4"><a href="chapter8.html#cb757-4" tabindex="-1"></a>Headache <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fits, <span class="at">y =</span> resids, </span>
+<span id="cb757-4"><a href="chapter8.html#cb757-4" tabindex="-1"></a>Headache <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fits, <span class="at">y =</span> resids, </span>
 <span id="cb757-5"><a href="chapter8.html#cb757-5" tabindex="-1"></a>                                  <span class="at">color =</span> treatment, <span class="at">shape =</span> treatment)) <span class="sc">+</span></span>
 <span id="cb757-6"><a href="chapter8.html#cb757-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
 <span id="cb757-7"><a href="chapter8.html#cb757-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
@@ -3276,10 +3274,10 @@ Figure 8.31: Scatterplot for reading score versus nonverbal IQ by dyslexia group
 </div>
 <div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb763-1"><a href="chapter8.html#cb763-1" tabindex="-1"></a><span class="fu">library</span>(smdata)</span>
 <span id="cb763-2"><a href="chapter8.html#cb763-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;dyslexic3&quot;</span>)</span>
-<span id="cb763-3"><a href="chapter8.html#cb763-3" tabindex="-1"></a>dyslexic3 <span class="ot">&lt;-</span> dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">dys =</span> <span class="fu">factor</span>(dys))</span>
-<span id="cb763-4"><a href="chapter8.html#cb763-4" tabindex="-1"></a><span class="fu">levels</span>(dyslexic3<span class="sc">$</span>dys) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>)</span>
+<span id="cb763-3"><a href="chapter8.html#cb763-3" tabindex="-1"></a>dyslexic3 <span class="ot">&lt;-</span> dyslexic3 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">dys =</span> <span class="fu">as_factor</span>(dys)) </span>
+<span id="cb763-4"><a href="chapter8.html#cb763-4" tabindex="-1"></a>dyslexic3 <span class="ot">&lt;-</span> dyslexic3 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">dys =</span> <span class="fu">fct_recode</span>(dys, <span class="at">no =</span> <span class="st">&quot;0&quot;</span>, <span class="at">yes =</span> <span class="st">&quot;1&quot;</span>))</span>
 <span id="cb763-5"><a href="chapter8.html#cb763-5" tabindex="-1"></a></span>
-<span id="cb763-6"><a href="chapter8.html#cb763-6" tabindex="-1"></a>dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ziq, <span class="at">y =</span> score, <span class="at">color =</span> dys, <span class="at">shape =</span> dys)) <span class="sc">+</span></span>
+<span id="cb763-6"><a href="chapter8.html#cb763-6" tabindex="-1"></a>dyslexic3 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ziq, <span class="at">y =</span> score, <span class="at">color =</span> dys, <span class="at">shape =</span> dys)) <span class="sc">+</span></span>
 <span id="cb763-7"><a href="chapter8.html#cb763-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb763-8"><a href="chapter8.html#cb763-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb763-9"><a href="chapter8.html#cb763-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -3446,10 +3444,10 @@ non-dyslexic group, possibly suggesting that variability in the reading test is
 higher for higher scoring individuals even though we couldn’t observe all of
 that variability because there were so many perfect scores in this group.</p>
 
-<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb767-1"><a href="chapter8.html#cb767-1" tabindex="-1"></a>dyslexic3 <span class="ot">&lt;-</span> dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">resids =</span> <span class="fu">residuals</span>(dys_model),</span>
+<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb767-1"><a href="chapter8.html#cb767-1" tabindex="-1"></a>dyslexic3 <span class="ot">&lt;-</span> dyslexic3 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">resids =</span> <span class="fu">residuals</span>(dys_model),</span>
 <span id="cb767-2"><a href="chapter8.html#cb767-2" tabindex="-1"></a>                                  <span class="at">fits =</span> <span class="fu">fitted</span>(dys_model)</span>
 <span id="cb767-3"><a href="chapter8.html#cb767-3" tabindex="-1"></a>                                  )</span>
-<span id="cb767-4"><a href="chapter8.html#cb767-4" tabindex="-1"></a>dyslexic3 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fits, <span class="at">y =</span> resids, <span class="at">color =</span> dys, <span class="at">shape =</span> dys)) <span class="sc">+</span></span>
+<span id="cb767-4"><a href="chapter8.html#cb767-4" tabindex="-1"></a>dyslexic3 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fits, <span class="at">y =</span> resids, <span class="at">color =</span> dys, <span class="at">shape =</span> dys)) <span class="sc">+</span></span>
 <span id="cb767-5"><a href="chapter8.html#cb767-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
 <span id="cb767-6"><a href="chapter8.html#cb767-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
 <span id="cb767-7"><a href="chapter8.html#cb767-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -4072,7 +4070,7 @@ up 4 <em>model df</em> (three <span class="math inline">\(\beta\text{&#39;s}\)</
 most complex model that included four predictor variables used up 5 <em>model df</em>.</p>
 <div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb783-1"><a href="chapter8.html#cb783-1" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
 <span id="cb783-2"><a href="chapter8.html#cb783-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
-<span id="cb783-3"><a href="chapter8.html#cb783-3" tabindex="-1"></a>snotel2R <span class="ot">&lt;-</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>))</span>
+<span id="cb783-3"><a href="chapter8.html#cb783-3" tabindex="-1"></a>snotel2R <span class="ot">&lt;-</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>))</span>
 <span id="cb783-4"><a href="chapter8.html#cb783-4" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel2R)</span>
 <span id="cb783-5"><a href="chapter8.html#cb783-5" tabindex="-1"></a><span class="fu">dredge</span>(m6, <span class="at">rank =</span> <span class="st">&quot;AIC&quot;</span>, <span class="at">extra =</span> <span class="fu">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="at">adjRsq =</span> <span class="cf">function</span>(x) <span class="fu">summary</span>(x)<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
 <pre><code>## Global model call: lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel2R)
@@ -4170,13 +4168,13 @@ Figure 8.42: Scatterplot of log(FEV) vs Age by smoking status, with both combine
 <div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="chapter8.html#cb785-1" tabindex="-1"></a><span class="fu">library</span>(coneproj)</span>
 <span id="cb785-2"><a href="chapter8.html#cb785-2" tabindex="-1"></a><span class="fu">data</span>(FEV)</span>
 <span id="cb785-3"><a href="chapter8.html#cb785-3" tabindex="-1"></a>FEV <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(FEV)</span>
-<span id="cb785-4"><a href="chapter8.html#cb785-4" tabindex="-1"></a>FEV <span class="ot">&lt;-</span> FEV <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">factor</span>(sex), <span class="co">#Make sex and smoke factors, log.FEV</span></span>
-<span id="cb785-5"><a href="chapter8.html#cb785-5" tabindex="-1"></a>                      <span class="at">smoke =</span> <span class="fu">factor</span>(smoke),</span>
-<span id="cb785-6"><a href="chapter8.html#cb785-6" tabindex="-1"></a>                      <span class="at">log.FEV =</span> <span class="fu">log</span>(FEV))</span>
-<span id="cb785-7"><a href="chapter8.html#cb785-7" tabindex="-1"></a><span class="fu">levels</span>(FEV<span class="sc">$</span>sex) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Female&quot;</span>,<span class="st">&quot;Male&quot;</span>) <span class="co">#Make sex labels explicit</span></span>
-<span id="cb785-8"><a href="chapter8.html#cb785-8" tabindex="-1"></a><span class="fu">levels</span>(FEV<span class="sc">$</span>smoke) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Nonsmoker&quot;</span>,<span class="st">&quot;Smoker&quot;</span>) <span class="co">#Make smoking status labels explicit</span></span>
+<span id="cb785-4"><a href="chapter8.html#cb785-4" tabindex="-1"></a>FEV <span class="ot">&lt;-</span> FEV <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">as_factor</span>(sex), <span class="co">#Make sex and smoke factors, log.FEV</span></span>
+<span id="cb785-5"><a href="chapter8.html#cb785-5" tabindex="-1"></a>                      <span class="at">smoke =</span> <span class="fu">as_factor</span>(smoke),</span>
+<span id="cb785-6"><a href="chapter8.html#cb785-6" tabindex="-1"></a>                      <span class="at">log.FEV =</span> <span class="fu">log</span>(FEV)) <span class="sc">|&gt;</span></span>
+<span id="cb785-7"><a href="chapter8.html#cb785-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">fct_recode</span>(sex, <span class="at">Female =</span> <span class="st">&quot;0&quot;</span>, <span class="at">Male =</span> <span class="st">&quot;1&quot;</span>), <span class="co">#Make sex labels explicit</span></span>
+<span id="cb785-8"><a href="chapter8.html#cb785-8" tabindex="-1"></a>         <span class="at">smoke =</span> <span class="fu">fct_recode</span>(smoke, <span class="at">Nonsmoker =</span> <span class="st">&quot;0&quot;</span>, <span class="at">Smoker =</span> <span class="st">&quot;1&quot;</span>)) <span class="co">#Make smoking status labels explicit</span></span>
 <span id="cb785-9"><a href="chapter8.html#cb785-9" tabindex="-1"></a></span>
-<span id="cb785-10"><a href="chapter8.html#cb785-10" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> FEV <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> log.FEV, <span class="at">color =</span> smoke, <span class="at">shape =</span> smoke)) <span class="sc">+</span></span>
+<span id="cb785-10"><a href="chapter8.html#cb785-10" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> FEV <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> log.FEV, <span class="at">color =</span> smoke, <span class="at">shape =</span> smoke)) <span class="sc">+</span></span>
 <span id="cb785-11"><a href="chapter8.html#cb785-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb785-12"><a href="chapter8.html#cb785-12" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb785-13"><a href="chapter8.html#cb785-13" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -4184,7 +4182,7 @@ Figure 8.42: Scatterplot of log(FEV) vs Age by smoking status, with both combine
 <span id="cb785-15"><a href="chapter8.html#cb785-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Plot of log(FEV) vs Age of children by smoking  status&quot;</span>,</span>
 <span id="cb785-16"><a href="chapter8.html#cb785-16" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;log(FEV)&quot;</span>) </span>
 <span id="cb785-17"><a href="chapter8.html#cb785-17" tabindex="-1"></a></span>
-<span id="cb785-18"><a href="chapter8.html#cb785-18" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> FEV <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> log.FEV, <span class="at">color =</span> smoke, <span class="at">shape =</span> smoke)) <span class="sc">+</span></span>
+<span id="cb785-18"><a href="chapter8.html#cb785-18" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> FEV <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> log.FEV, <span class="at">color =</span> smoke, <span class="at">shape =</span> smoke)) <span class="sc">+</span></span>
 <span id="cb785-19"><a href="chapter8.html#cb785-19" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb785-20"><a href="chapter8.html#cb785-20" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb785-21"><a href="chapter8.html#cb785-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -4393,7 +4391,7 @@ from Section</strong> <a href="chapter7.html#section7-6">7.5</a> <strong>when wo
 we have to note that the model used to generate the slope coefficient had other
 components and so this estimate is after adjusting for them.</strong></p>
 
-<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="chapter8.html#cb794-1" tabindex="-1"></a>fm1R<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="chapter8.html#cb794-1" tabindex="-1"></a><span class="fu">coefficients</span>(fm1R)</span></code></pre></div>
 <pre><code>## (Intercept)      height         age smokeSmoker     sexMale 
 ## -1.94399818  0.04279579  0.02338721 -0.04606754  0.02931936</code></pre>
 <div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="chapter8.html#cb796-1" tabindex="-1"></a><span class="fu">vif</span>(fm1R)</span></code></pre></div>
@@ -4497,7 +4495,7 @@ response variable, <code>x1</code>, <code>x2</code>, …, <code>xK</code> are qu
 explanatory variables, <code>groupfactor</code> is a factor variable and the data are
 in <code>DATASETNAME</code>.</p>
 <ul>
-<li><p><strong><font color='red'>DATASETNAME</font> %&gt;% ggplot(mapping = aes(x = <font color='red'>x</font>, y = <font color='red'>y</font>)) +<br />
+<li><p><strong><font color='red'>DATASETNAME</font> |&gt; ggplot(mapping = aes(x = <font color='red'>x</font>, y = <font color='red'>y</font>)) +<br />
 geom_point() +<br />
 geom_smooth(method = “lm”)</strong></p>
 <ul>
@@ -4649,9 +4647,9 @@ population that could have been sampled from.</p>
 into low, middle, and high for those observed. The scatterplot lets you
 explore whether the relationship between treadmill oxygen and run time might
 differ across the age groups.</p>
-<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="chapter8.html#cb803-1" tabindex="-1"></a>treadmill <span class="ot">&lt;-</span> treadmill <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Ageb =</span> <span class="fu">factor</span>(<span class="fu">cut</span>(Age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">37</span>, <span class="fl">44.5</span>, <span class="fl">50.5</span>, <span class="dv">58</span>))))</span>
-<span id="cb803-2"><a href="chapter8.html#cb803-2" tabindex="-1"></a><span class="fu">summary</span>(treadmill<span class="sc">$</span>Ageb)</span>
-<span id="cb803-3"><a href="chapter8.html#cb803-3" tabindex="-1"></a>treadmill <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime, <span class="at">y =</span> TreadMillOx, </span>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="chapter8.html#cb803-1" tabindex="-1"></a>treadmill <span class="ot">&lt;-</span> treadmill <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Ageb =</span> <span class="fu">factor</span>(<span class="fu">cut</span>(Age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">37</span>, <span class="fl">44.5</span>, <span class="fl">50.5</span>, <span class="dv">58</span>))))</span>
+<span id="cb803-2"><a href="chapter8.html#cb803-2" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>Ageb, <span class="at">data =</span> Ageb)</span>
+<span id="cb803-3"><a href="chapter8.html#cb803-3" tabindex="-1"></a>treadmill <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime, <span class="at">y =</span> TreadMillOx, </span>
 <span id="cb803-4"><a href="chapter8.html#cb803-4" tabindex="-1"></a>                                   <span class="at">color =</span> Ageb, <span class="at">shape =</span> Ageb)) <span class="sc">+</span> </span>
 <span id="cb803-5"><a href="chapter8.html#cb803-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb803-6"><a href="chapter8.html#cb803-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>

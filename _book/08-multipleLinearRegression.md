@@ -112,7 +112,7 @@ snotel_s <- read_csv("http://www.math.montana.edu/courses/s217/documents/snotel_
 ``` r
 library(GGally)
 # Reorder columns slightly and only plot quantitative variables using "columns = ..."
-snotel_s %>% ggpairs(columns = c(4:6,3)) + 
+snotel_s |> ggpairs(columns = c(4:6,3)) + 
   theme_bw()
 ```
 
@@ -685,7 +685,7 @@ two rows of the data set available by slicing rows 9 and 10 from ``snotel_s``:
 
 
 ``` r
-snotel_s %>% slice(9,10)
+snotel_s |> slice(9,10)
 ```
 
 ```
@@ -786,21 +786,21 @@ on the model's estimated slope coefficients based on the small Cook's D value.
 trustworthy, but
 the large Cook's D on one observation suggests we should consider the model
 after removing that observation. We can re-run the model without the 
-9^th^ observation using the data set ``snotel_s %>% slice(-9)``. 
+9^th^ observation using the data set ``snotel_s |> slice(-9)``. 
 
 <!-- \newpage -->
 
 
 ``` r
-m5 <- lm(Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %>% slice(-9))
+m5 <- lm(Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s |> slice(-9))
 summary(m5)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %>% 
-##     slice(-9))
+## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -9))
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -921,8 +921,8 @@ title(main="Diagnostics for m5", outer=TRUE)
 ```
 ## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %>% 
-##     slice(-c(9, 22)))
+## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -952,7 +952,7 @@ original data set:
 
 
 ``` r
-snotel_s %>% slice(22)
+snotel_s |> slice(22)
 ```
 
 ```
@@ -969,7 +969,7 @@ remaining. This model (``m6``) seems to contain residual diagnostics (Figure
 
 
 ``` r
-m6 <- lm(Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %>% slice(-c(9,22)))
+m6 <- lm(Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s |> slice(-c(9,22)))
 summary(m6)
 par(mfrow = c(2,2), oma = c(0,0,2,0))
 plot(m6, pch = 16, sub.caption = "")
@@ -1023,8 +1023,8 @@ have been assessed using other tools.
 
 ``` r
 set.seed(307)
-snotel_final <- snotel_s %>% slice(-c(9,22))
-snotel_final <- snotel_final %>% 
+snotel_final <- snotel_s |> slice(-c(9,22))
+snotel_final <- snotel_final |> 
   #Creates first and second set of simulated responses
   mutate(SimulatedSnow = simulate(m6)[[1]],
          SimulatedSnow2 = simulate(m6)[[1]]
@@ -1035,42 +1035,42 @@ snotel_final <- snotel_final %>%
 
 
 ``` r
-r1 <- snotel_final %>% ggplot(aes(x = Elevation, y = Snow.Depth)) + 
+r1 <- snotel_final |> ggplot(aes(x = Elevation, y = Snow.Depth)) + 
   geom_point() + 
   theme_bw() + 
   labs(title = "Real Responses")
-r2 <- snotel_final %>% ggplot(aes(x = Max.Temp, y = Snow.Depth)) + 
+r2 <- snotel_final |> ggplot(aes(x = Max.Temp, y = Snow.Depth)) + 
   geom_point() + 
   theme_bw() + 
   labs(title = "Real Responses")
-r3 <- snotel_final %>% ggplot(aes(x = Min.Temp, y = Snow.Depth)) + 
+r3 <- snotel_final |> ggplot(aes(x = Min.Temp, y = Snow.Depth)) + 
   geom_point() + 
   theme_bw() + 
   labs(title = "Real Responses")
 
-s1 <- snotel_final %>% ggplot(aes(x = Elevation, y = SimulatedSnow)) + 
+s1 <- snotel_final |> ggplot(aes(x = Elevation, y = SimulatedSnow)) + 
   geom_point(col = "forestgreen") + 
   theme_bw() + 
   labs(title = "First Simulated Responses")
 
-s2 <- snotel_final %>% ggplot(aes(x = Max.Temp, y = SimulatedSnow)) + 
+s2 <- snotel_final |> ggplot(aes(x = Max.Temp, y = SimulatedSnow)) + 
   geom_point(col = "forestgreen") + 
   theme_bw() + 
   labs(title = "First Simulated Responses")
-s3 <- snotel_final %>% ggplot(aes(x = Min.Temp, y = SimulatedSnow)) + 
+s3 <- snotel_final |> ggplot(aes(x = Min.Temp, y = SimulatedSnow)) + 
   geom_point(col = "forestgreen") + 
   theme_bw() + 
   labs(title = "First Simulated Responses")
 
-s12 <- snotel_final %>% ggplot(aes(x = Elevation, y = SimulatedSnow2)) + 
+s12 <- snotel_final |> ggplot(aes(x = Elevation, y = SimulatedSnow2)) + 
   geom_point(col = "skyblue") + 
   theme_bw() + 
   labs(title = "Second Simulated Responses")
-s22 <- snotel_final %>% ggplot(aes(x = Max.Temp, y = SimulatedSnow2)) + 
+s22 <- snotel_final |> ggplot(aes(x = Max.Temp, y = SimulatedSnow2)) + 
   geom_point(col = "skyblue") + 
   theme_bw() + 
   labs(title = "Second Simulated Responses")
-s32 <- snotel_final %>% ggplot(aes(x = Min.Temp, y = SimulatedSnow2)) + 
+s32 <- snotel_final |> ggplot(aes(x = Min.Temp, y = SimulatedSnow2)) + 
   geom_point(col = "skyblue") + 
   theme_bw() + 
   labs(title = "Second Simulated Responses")
@@ -1131,7 +1131,7 @@ term-plot. To do this, we first need the mean of the "other" predictors,
 
 
 ``` r
-mean(snotel_final$Min.Temp)
+mean(~Min.Temp, data = snotel_final)
 ```
 
 ```
@@ -1141,7 +1141,7 @@ mean(snotel_final$Min.Temp)
 
 
 ``` r
-mean(snotel_final$Max.Temp)
+mean(~Max.Temp, data = snotel_final)
 ```
 
 ```
@@ -1193,7 +1193,7 @@ used to make the points a little easier to see.
 ``` r
 # Making own effect plot:
 modelres2 <- tibble(elevs = c(5000, 6000, 8000), snowdepths = c(-6.19, 20.71, 74.51))
-modelres2 %>% ggplot(mapping = aes(x = elevs, y = snowdepths)) +
+modelres2 |> ggplot(mapping = aes(x = elevs, y = snowdepths)) +
   geom_point(size = 2) +
   geom_line(lwd = 1, alpha = .75, col = "tomato") +
   theme_bw() +
@@ -1274,7 +1274,7 @@ holding temperatures at their means, are:
 
 
 ``` r
-predict(m6, newdata = newdata1, interval = "confidence") %>% head(10)
+predict(m6, newdata = newdata1, interval = "confidence") |> head(10)
 ```
 
 ```
@@ -1342,13 +1342,13 @@ question(s) and, to trust its results, we hope it matches the data fairly well.
 
 
 ``` r
-a1 <- d1 %>% ggplot(mapping = aes(x = Age, y = CholLevel)) +
+a1 <- d1 |> ggplot(mapping = aes(x = Age, y = CholLevel)) +
   geom_point() +
   theme_bw()
-e1 <- d1 %>% ggplot(mapping = aes(x = ExAmount, y = CholLevel)) +
+e1 <- d1 |> ggplot(mapping = aes(x = ExAmount, y = CholLevel)) +
   geom_point() +
   theme_bw()
-h1 <- d1 %>% ggplot(mapping = aes(x = HealthLevel, y = CholLevel)) +
+h1 <- d1 |> ggplot(mapping = aes(x = HealthLevel, y = CholLevel)) +
   geom_point() +
   theme_bw()
 grid.arrange(a1, e1, h1, ncol = 3)
@@ -1361,7 +1361,7 @@ grid.arrange(a1, e1, h1, ncol = 3)
 
 ``` r
 sim1 <- lm(CholLevel ~ Age + ExAmount + HealthLevel, data = d1)
-summary(sim1)$coefficients
+coefficients(summary(sim1))
 ```
 
 ```
@@ -1424,8 +1424,8 @@ _Statistical Sleuth_ (@Ramsey2012) or a statistician for help.
 
 
 ``` r
-d1 <- d1 %>% mutate(partres = residuals(sim1) + ExAmount * 0.07447965)
-d1 %>% ggplot(mapping = aes(x = ExAmount, y = partres)) +
+d1 <- d1 |> mutate(partres = residuals(sim1) + ExAmount * 0.07447965)
+d1 |> ggplot(mapping = aes(x = ExAmount, y = partres)) +
   geom_point() +
   geom_smooth(method = "lm", se = F) +
   geom_smooth(se = F, col = "darkred", lty = 2, lwd = 1) +
@@ -1576,15 +1576,15 @@ summary for the model with all three predictors is in the last three lines:
 
 ``` r
 m6 <- lm(Snow.Depth ~ Elevation + Min.Temp + Max.Temp, 
-         data = snotel_s %>% slice(-c(9,22)))
+         data = snotel_s |> slice(-c(9,22)))
 summary(m6)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %>% 
-##     slice(-c(9, 22)))
+## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -1738,9 +1738,9 @@ regression models that can result in common mistakes.
     ``` r
     library(corrplot)
     par(mfrow = c(1,1), oma = c(0,0,1,0))
-    corrplot.mixed(cor(snotel_s %>% slice(-c(9,22)) %>% select(3:6)), 
+    corrplot.mixed(cor(snotel_s |> slice(-c(9,22)) |> select(3:6)), 
                    upper.col = c(1, "orange"), lower.col = c(1, "orange"))
-    round(cor(snotel_s %>% slice(-c(9,22)) %>% select(3:6)), 2)
+    round(cor(snotel_s |> slice(-c(9,22)) |> select(3:6)), 2)
     ```
     
     <div class="figure" style="text-align: center">
@@ -1854,15 +1854,15 @@ explained by the linear model using min and max temperatures.
 
 ``` r
 # VIF calc:
-elev1 <- lm(Elevation ~ Min.Temp + Max.Temp, data = snotel_s %>% slice(-c(9,22)))
+elev1 <- lm(Elevation ~ Min.Temp + Max.Temp, data = snotel_s |> slice(-c(9,22)))
 summary(elev1)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = Elevation ~ Min.Temp + Max.Temp, data = snotel_s %>% 
-##     slice(-c(9, 22)))
+## lm(formula = Elevation ~ Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -1961,15 +1961,15 @@ and the $df = 20$ here. This is because $n = 23$ and $K = 2$, so $df = 23-2-1 = 
 
 
 ``` r
-m5 <- lm(Snow.Depth ~ Elevation + Max.Temp, data = snotel_s %>% slice(-c(9,22)))
+m5 <- lm(Snow.Depth ~ Elevation + Max.Temp, data = snotel_s |> slice(-c(9,22)))
 summary(m5)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Max.Temp, data = snotel_s %>% 
-##     slice(-c(9, 22)))
+## lm(formula = Snow.Depth ~ Elevation + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -2235,12 +2235,12 @@ addressed with these data but this will keep us focused.
 library(openintro)
 data(satgpa)
 satgpa <- as_tibble(satgpa)
-satgpa <- satgpa %>% rename(gender = sex , #Renaming variables 
+satgpa <- satgpa |> rename(gender = sex , #Renaming variables 
                             satv = sat_v, satm = sat_m, satsum = sat_sum, 
                             hsgpa = hs_gpa, 
                             fygpa = fy_gpa) 
-satgpa %>% 
-  select(-4) %>%
+satgpa |> 
+  select(-4) |>
   ggpairs() + 
   theme_bw()
 ```
@@ -2663,13 +2663,13 @@ dv1 <- tibble(satv = seq(from = 24, to = 76, length.out = 50), satm = rep(54.4, 
 mv1 <- as_tibble(predict(gpa1, newdata = dv1, interval = "confidence"))
 pv1 <- as_tibble(predict(gpa1, newdata = dv1, interval = "prediction"))
 
-mres_GPA_v <- bind_cols(dv1, mv1, pv1 %>% select(-fit))
+mres_GPA_v <- bind_cols(dv1, mv1, pv1 |> select(-fit))
 
 # Rename CI and PI limits to have more explicit column names:
-mres_GPA_v <- mres_GPA_v %>% rename(lwr_CI = lwr...4, upr_CI = upr...5, 
+mres_GPA_v <- mres_GPA_v |> rename(lwr_CI = lwr...4, upr_CI = upr...5, 
                                     lwr_PI = lwr...6, upr_PI = upr...7)
 
-v1 <- mres_GPA_v %>% ggplot() + 
+v1 <- mres_GPA_v |> ggplot() + 
   geom_line(aes(x = satv, y = fit), lwd = 1) +
   geom_ribbon(aes(x = satv, ymin = lwr_CI, ymax = upr_CI), alpha = .4, 
               fill = "beige", color = "darkred", lty = 2, lwd = 1) +
@@ -2684,13 +2684,13 @@ dm1 <- tibble(satv = rep(48.93, 50), satm = seq(from = 29, to = 77, length.out =
 mm1 <- as_tibble(predict(gpa1, newdata = dm1, interval = "confidence"))
 pm1 <- as_tibble(predict(gpa1, newdata = dm1, interval = "prediction"))
 
-mres_GPA_m <- bind_cols(dm1, mm1, pm1 %>% select(-fit))
+mres_GPA_m <- bind_cols(dm1, mm1, pm1 |> select(-fit))
 
 #Rename CI and PI limits to have more explicit column names:
-mres_GPA_m <- mres_GPA_m %>% rename(lwr_CI = lwr...4, upr_CI = upr...5, 
+mres_GPA_m <- mres_GPA_m |> rename(lwr_CI = lwr...4, upr_CI = upr...5, 
                                     lwr_PI = lwr...6, upr_PI = upr...7)
 
-m1 <- mres_GPA_m %>% ggplot() + 
+m1 <- mres_GPA_m |> ggplot() + 
   geom_line(aes(x = satm, y = fit), lwd = 1) +
   geom_ribbon(aes(x = satm, ymin = lwr_CI, ymax = upr_CI), alpha = .4, 
               fill = "beige", color = "darkred", lty = 2, lwd = 1) +
@@ -2767,18 +2767,17 @@ to assess whether things are "really" different between the two groups.
 
 ``` r
 # Make 1,2 coded gender into factor GENDER
-satgpa <- satgpa %>% mutate(GENDER = factor(gender)) 
-# Make category names clear but note that level names might be wrong
-levels(satgpa$GENDER) <- c("MALE", "FEMALE") 
+satgpa <- satgpa |> mutate(GENDER = as_factor(gender)) |>
+  mutate(GENDER = fct_recode(GENDER, MALE = "1", FEMALE = "2")) # Make category names clear but note that level names might be wrong
 
-satgpa %>% ggplot(mapping = aes(x = satv, y = fygpa, color = GENDER, shape = GENDER)) +
+satgpa |> ggplot(mapping = aes(x = satv, y = fygpa, color = GENDER, shape = GENDER)) +
   geom_smooth(method = "lm") + 
   geom_point(alpha = 0.7) +
   theme_bw() +
   scale_color_viridis_d(end = 0.8, option = "plasma") +
   labs(title = "Scatterplot of GPA vs satv by gender")
 
-satgpa %>% ggplot(mapping = aes(x = satm, y = fygpa, color = GENDER, shape = GENDER)) +
+satgpa |> ggplot(mapping = aes(x = satm, y = fygpa, color = GENDER, shape = GENDER)) +
   geom_smooth(method = "lm") + 
   geom_point(alpha = 0.7) +
   theme_bw() +
@@ -2802,10 +2801,9 @@ It sets up the indicator
 variables using a baseline category (which gets coded as a 0) and the deviation
 category for the other level of the variable (which gets coded as a 1). We can see how this works by
 exploring what happens when we put ``GENDER`` into our ``lm`` with ``satm``, after first making sure it is categorical using
-the ``factor`` function and making the factor ``levels`` explicit instead of 1s
-and 2s. 
-\index{\texttt{factor()}}
-\index{\texttt{levels()}}
+the ``as_factor()`` function and making the factor levels explicit instead of 1s and 2s with `fct_recode()`. 
+\index{\texttt{as\_factor()}}
+\index{\texttt{fct\_recode()}}
 
 
 
@@ -2860,9 +2858,9 @@ for the first 10 observations:
 
 ``` r
 # Convert logical to 1 for female, 0 for male using ifelse function
-satgpa <- satgpa %>% mutate(GENDERINDICATOR = ifelse(GENDER == "FEMALE", 1, 0)) 
+satgpa <- satgpa |> mutate(GENDERINDICATOR = ifelse(GENDER == "FEMALE", 1, 0)) 
 # Explore first 10 observations on the two versions of GENDER using the head() function
-satgpa %>% select(GENDER, GENDERINDICATOR) %>% head(10)
+satgpa |> select(GENDER, GENDERINDICATOR) |> head(10)
 ```
 
 ```
@@ -3160,11 +3158,11 @@ Headache
 
 
 ``` r
-Headache <- Headache %>% mutate(treatment = factor(treatment),
+Headache <- Headache |> mutate(treatment = factor(treatment),
                                 treatment = fct_relevel(treatment, "Control")
                                 )
 # Make treatment a factor and Control the baseline category
-Headache %>% ggplot(mapping = aes(x = du1, y = du2, color = treatment, 
+Headache |> ggplot(mapping = aes(x = du1, y = du2, color = treatment, 
                                   shape = treatment)) +
   geom_smooth(method = "lm", se = F) + 
   geom_point(size = 2.5) +
@@ -3411,10 +3409,10 @@ but it is a good additional check in these multi-group situations.
 
 
 ``` r
-Headache <- Headache %>% mutate(resids = residuals(head1),
+Headache <- Headache |> mutate(resids = residuals(head1),
                                 fits = fitted(head1)
                                 )
-Headache %>% ggplot(mapping = aes(x = fits, y = resids, 
+Headache |> ggplot(mapping = aes(x = fits, y = resids, 
                                   color = treatment, shape = treatment)) +
   geom_smooth(method = "lm", se = F) +
   geom_point(size = 2.5) +
@@ -3574,10 +3572,10 @@ $x = 0$) is right in the center of the plot and actually interesting^[Standardiz
 ``` r
 library(smdata)
 data("dyslexic3")
-dyslexic3 <- dyslexic3 %>% mutate(dys = factor(dys))
-levels(dyslexic3$dys) <- c("no", "yes")
+dyslexic3 <- dyslexic3 |> mutate(dys = as_factor(dys)) 
+dyslexic3 <- dyslexic3 |> mutate(dys = fct_recode(dys, no = "0", yes = "1"))
 
-dyslexic3 %>% ggplot(mapping = aes(x = ziq, y = score, color = dys, shape = dys)) +
+dyslexic3 |> ggplot(mapping = aes(x = ziq, y = score, color = dys, shape = dys)) +
   geom_smooth(method = "lm") +
   geom_point(size = 2, alpha = 0.5) +
   theme_bw() +
@@ -3783,10 +3781,10 @@ that variability because there were so many perfect scores in this group.
 
 
 ``` r
-dyslexic3 <- dyslexic3 %>% mutate(resids = residuals(dys_model),
+dyslexic3 <- dyslexic3 |> mutate(resids = residuals(dys_model),
                                   fits = fitted(dys_model)
                                   )
-dyslexic3 %>% ggplot(mapping = aes(x = fits, y = resids, color = dys, shape = dys)) +
+dyslexic3 |> ggplot(mapping = aes(x = fits, y = resids, color = dys, shape = dys)) +
   geom_smooth(method = "lm", se = F) +
   geom_point(size = 2.5) +
   theme_bw() +
@@ -4565,7 +4563,7 @@ most complex model that included four predictor variables used up 5 *model df*.
 ``` r
 library(MuMIn)
 options(na.action = "na.fail") #Must run this code once to use dredge
-snotel2R <- snotel_s %>% slice(-c(9,22))
+snotel2R <- snotel_s |> slice(-c(9,22))
 m6 <- lm(Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel2R)
 dredge(m6, rank = "AIC", extra = c("R^2", adjRsq = function(x) summary(x)$adj.r.squared))
 ```
@@ -4680,13 +4678,13 @@ involved in the interaction if we don't need the interaction.
 library(coneproj)
 data(FEV)
 FEV <- as_tibble(FEV)
-FEV <- FEV %>% mutate(sex = factor(sex), #Make sex and smoke factors, log.FEV
-                      smoke = factor(smoke),
-                      log.FEV = log(FEV))
-levels(FEV$sex) <- c("Female","Male") #Make sex labels explicit
-levels(FEV$smoke) <- c("Nonsmoker","Smoker") #Make smoking status labels explicit
+FEV <- FEV |> mutate(sex = as_factor(sex), #Make sex and smoke factors, log.FEV
+                      smoke = as_factor(smoke),
+                      log.FEV = log(FEV)) |>
+  mutate(sex = fct_recode(sex, Female = "0", Male = "1"), #Make sex labels explicit
+         smoke = fct_recode(smoke, Nonsmoker = "0", Smoker = "1")) #Make smoking status labels explicit
 
-p1 <- FEV %>% ggplot(mapping = aes(x = age, y = log.FEV, color = smoke, shape = smoke)) +
+p1 <- FEV |> ggplot(mapping = aes(x = age, y = log.FEV, color = smoke, shape = smoke)) +
   geom_point(size = 1.5, alpha = 0.5) +
   geom_smooth(method = "lm") +
   theme_bw() +
@@ -4694,7 +4692,7 @@ p1 <- FEV %>% ggplot(mapping = aes(x = age, y = log.FEV, color = smoke, shape = 
   labs(title = "Plot of log(FEV) vs Age of children by smoking  status",
        y = "log(FEV)") 
 
-p2 <- FEV %>% ggplot(mapping = aes(x = age, y = log.FEV, color = smoke, shape = smoke)) +
+p2 <- FEV |> ggplot(mapping = aes(x = age, y = log.FEV, color = smoke, shape = smoke)) +
   geom_point(size = 1.5, alpha = 0.5) +
   geom_smooth(method = "lm") +
   theme_bw() +
@@ -4960,7 +4958,7 @@ components and so this estimate is after adjusting for them.**
 
 
 ``` r
-fm1R$coefficients
+coefficients(fm1R)
 ```
 
 ```
@@ -5087,7 +5085,7 @@ response variable, ``x1``, ``x2``, ..., ``xK`` are quantitative
 explanatory variables, ``groupfactor`` is a factor variable and the data are
 in ``DATASETNAME``. 
 
-* **<font color='red'>DATASETNAME</font> %>% ggplot(mapping = aes(x = <font color='red'>x</font>, y = <font color='red'>y</font>)) +  
+* **<font color='red'>DATASETNAME</font> |> ggplot(mapping = aes(x = <font color='red'>x</font>, y = <font color='red'>y</font>)) +  
 geom_point() +  
 geom_smooth(method = "lm")**
 
@@ -5263,9 +5261,9 @@ explore whether the relationship between treadmill oxygen and run time might
 differ across the age groups. 
 
 ```r
-treadmill <- treadmill %>% mutate(Ageb = factor(cut(Age, breaks = c(37, 44.5, 50.5, 58))))
-summary(treadmill$Ageb)
-treadmill %>% ggplot(mapping = aes(x = RunTime, y = TreadMillOx, 
+treadmill <- treadmill |> mutate(Ageb = factor(cut(Age, breaks = c(37, 44.5, 50.5, 58))))
+favstats(~Ageb, data = Ageb)
+treadmill |> ggplot(mapping = aes(x = RunTime, y = TreadMillOx, 
                                    color = Ageb, shape = Ageb)) + 
   geom_point(size = 1.5, alpha = 0.5) +
   geom_smooth(method = "lm") +

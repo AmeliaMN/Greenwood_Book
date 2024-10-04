@@ -376,9 +376,9 @@ visually displayed in Figure <a href="8.5-section8-5.html#fig:Figure8-17">8.17</
 <p></p>
 <div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="8.5-section8-5.html#cb700-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
 <span id="cb700-2"><a href="8.5-section8-5.html#cb700-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
-<span id="cb700-3"><a href="8.5-section8-5.html#cb700-3" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), </span>
+<span id="cb700-3"><a href="8.5-section8-5.html#cb700-3" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), </span>
 <span id="cb700-4"><a href="8.5-section8-5.html#cb700-4" tabindex="-1"></a>               <span class="at">upper.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>), <span class="at">lower.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>))</span>
-<span id="cb700-5"><a href="8.5-section8-5.html#cb700-5" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb700-5"><a href="8.5-section8-5.html#cb700-5" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure8-17"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-17-1.png" alt="Plot of correlation matrix in the snow depth data set with influential points removed" width="75%" />
 <p class="caption">
@@ -464,12 +464,12 @@ fit to find the percentage of variation in elevation explained by the temperatur
 variables. It ends up being 0.8775 – so a high percentage of <em>Elevation</em> can be
 explained by the linear model using min and max temperatures.</p>
 <div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="8.5-section8-5.html#cb706-1" tabindex="-1"></a><span class="co"># VIF calc:</span></span>
-<span id="cb706-2"><a href="8.5-section8-5.html#cb706-2" tabindex="-1"></a>elev1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Elevation <span class="sc">~</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<span id="cb706-2"><a href="8.5-section8-5.html#cb706-2" tabindex="-1"></a>elev1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Elevation <span class="sc">~</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
 <span id="cb706-3"><a href="8.5-section8-5.html#cb706-3" tabindex="-1"></a><span class="fu">summary</span>(elev1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Elevation ~ Min.Temp + Max.Temp, data = snotel_s %&gt;% 
-##     slice(-c(9, 22)))
+## lm(formula = Elevation ~ Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 

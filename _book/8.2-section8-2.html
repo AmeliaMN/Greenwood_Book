@@ -559,7 +559,7 @@ these sites. For the Northeast Entrance, the <em>Max.Temp</em> was 45, the <em>M
 was 28, and the <em>Elevation</em> was 7350 as you can see in this printout of just the
 two rows of the data set available by slicing rows 9 and 10 from <code>snotel_s</code>:</p>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="8.2-section8-2.html#cb663-1" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">9</span>,<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="8.2-section8-2.html#cb663-1" tabindex="-1"></a>snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">9</span>,<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 6
 ##      ID Station            Snow.Depth Max.Temp Min.Temp Elevation
 ##   &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -613,14 +613,14 @@ on the model’s estimated slope coefficients based on the small Cook’s D valu
 trustworthy, but
 the large Cook’s D on one observation suggests we should consider the model
 after removing that observation. We can re-run the model without the
-9<sup>th</sup> observation using the data set <code>snotel_s %&gt;% slice(-9)</code>.</p>
+9<sup>th</sup> observation using the data set <code>snotel_s |&gt; slice(-9)</code>.</p>
 <!-- \newpage -->
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="8.2-section8-2.html#cb673-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">9</span>))</span>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="8.2-section8-2.html#cb673-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">9</span>))</span>
 <span id="cb673-2"><a href="8.2-section8-2.html#cb673-2" tabindex="-1"></a><span class="fu">summary</span>(m5)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %&gt;% 
-##     slice(-9))
+## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -9))
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -716,8 +716,8 @@ Figure 8.8: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp
 
 <pre><code>## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %&gt;% 
-##     slice(-c(9, 22)))
+## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -742,7 +742,7 @@ Figure 8.9: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp
 <!-- \newpage -->
 <p>This worry-some observation is located in the 22<sup>nd</sup> row of the
 original data set:</p>
-<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="8.2-section8-2.html#cb678-1" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">22</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="8.2-section8-2.html#cb678-1" tabindex="-1"></a>snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">22</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 6
 ##      ID Station          Snow.Depth Max.Temp Min.Temp Elevation
 ##   &lt;dbl&gt; &lt;fct&gt;                 &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -751,7 +751,7 @@ original data set:</p>
 <span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span>” sites, there are <span class="math inline">\(n = 23\)</span> observations
 remaining. This model (<code>m6</code>) seems to contain residual diagnostics (Figure
 <a href="8.2-section8-2.html#fig:Figure8-9">8.9</a>) that are finally generally reasonable.</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="8.2-section8-2.html#cb680-1" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="8.2-section8-2.html#cb680-1" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
 <span id="cb680-2"><a href="8.2-section8-2.html#cb680-2" tabindex="-1"></a><span class="fu">summary</span>(m6)</span>
 <span id="cb680-3"><a href="8.2-section8-2.html#cb680-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
 <span id="cb680-4"><a href="8.2-section8-2.html#cb680-4" tabindex="-1"></a><span class="fu">plot</span>(m6, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
@@ -794,49 +794,49 @@ original ones reinforces those previous assessments. When the match is not so
 close, it can reinforce or create concern about the way that the assumptions
 have been assessed using other tools.</p>
 <div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="8.2-section8-2.html#cb682-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">307</span>)</span>
-<span id="cb682-2"><a href="8.2-section8-2.html#cb682-2" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>))</span>
-<span id="cb682-3"><a href="8.2-section8-2.html#cb682-3" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> </span>
+<span id="cb682-2"><a href="8.2-section8-2.html#cb682-2" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>))</span>
+<span id="cb682-3"><a href="8.2-section8-2.html#cb682-3" tabindex="-1"></a>snotel_final <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> </span>
 <span id="cb682-4"><a href="8.2-section8-2.html#cb682-4" tabindex="-1"></a>  <span class="co">#Creates first and second set of simulated responses</span></span>
 <span id="cb682-5"><a href="8.2-section8-2.html#cb682-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SimulatedSnow =</span> <span class="fu">simulate</span>(m6)[[<span class="dv">1</span>]],</span>
 <span id="cb682-6"><a href="8.2-section8-2.html#cb682-6" tabindex="-1"></a>         <span class="at">SimulatedSnow2 =</span> <span class="fu">simulate</span>(m6)[[<span class="dv">1</span>]]</span>
 <span id="cb682-7"><a href="8.2-section8-2.html#cb682-7" tabindex="-1"></a>         ) </span></code></pre></div>
 
-<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="8.2-section8-2.html#cb683-1" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="8.2-section8-2.html#cb683-1" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
 <span id="cb683-2"><a href="8.2-section8-2.html#cb683-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb683-3"><a href="8.2-section8-2.html#cb683-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-4"><a href="8.2-section8-2.html#cb683-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
-<span id="cb683-5"><a href="8.2-section8-2.html#cb683-5" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
+<span id="cb683-5"><a href="8.2-section8-2.html#cb683-5" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
 <span id="cb683-6"><a href="8.2-section8-2.html#cb683-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb683-7"><a href="8.2-section8-2.html#cb683-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-8"><a href="8.2-section8-2.html#cb683-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
-<span id="cb683-9"><a href="8.2-section8-2.html#cb683-9" tabindex="-1"></a>r3 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
+<span id="cb683-9"><a href="8.2-section8-2.html#cb683-9" tabindex="-1"></a>r3 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> Snow.Depth)) <span class="sc">+</span> </span>
 <span id="cb683-10"><a href="8.2-section8-2.html#cb683-10" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb683-11"><a href="8.2-section8-2.html#cb683-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-12"><a href="8.2-section8-2.html#cb683-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Real Responses&quot;</span>)</span>
 <span id="cb683-13"><a href="8.2-section8-2.html#cb683-13" tabindex="-1"></a></span>
-<span id="cb683-14"><a href="8.2-section8-2.html#cb683-14" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
+<span id="cb683-14"><a href="8.2-section8-2.html#cb683-14" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
 <span id="cb683-15"><a href="8.2-section8-2.html#cb683-15" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-16"><a href="8.2-section8-2.html#cb683-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-17"><a href="8.2-section8-2.html#cb683-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
 <span id="cb683-18"><a href="8.2-section8-2.html#cb683-18" tabindex="-1"></a></span>
-<span id="cb683-19"><a href="8.2-section8-2.html#cb683-19" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
+<span id="cb683-19"><a href="8.2-section8-2.html#cb683-19" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
 <span id="cb683-20"><a href="8.2-section8-2.html#cb683-20" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-21"><a href="8.2-section8-2.html#cb683-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-22"><a href="8.2-section8-2.html#cb683-22" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
-<span id="cb683-23"><a href="8.2-section8-2.html#cb683-23" tabindex="-1"></a>s3 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
+<span id="cb683-23"><a href="8.2-section8-2.html#cb683-23" tabindex="-1"></a>s3 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow)) <span class="sc">+</span> </span>
 <span id="cb683-24"><a href="8.2-section8-2.html#cb683-24" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-25"><a href="8.2-section8-2.html#cb683-25" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-26"><a href="8.2-section8-2.html#cb683-26" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;First Simulated Responses&quot;</span>)</span>
 <span id="cb683-27"><a href="8.2-section8-2.html#cb683-27" tabindex="-1"></a></span>
-<span id="cb683-28"><a href="8.2-section8-2.html#cb683-28" tabindex="-1"></a>s12 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
+<span id="cb683-28"><a href="8.2-section8-2.html#cb683-28" tabindex="-1"></a>s12 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Elevation, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
 <span id="cb683-29"><a href="8.2-section8-2.html#cb683-29" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-30"><a href="8.2-section8-2.html#cb683-30" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-31"><a href="8.2-section8-2.html#cb683-31" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>
-<span id="cb683-32"><a href="8.2-section8-2.html#cb683-32" tabindex="-1"></a>s22 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
+<span id="cb683-32"><a href="8.2-section8-2.html#cb683-32" tabindex="-1"></a>s22 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Max.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
 <span id="cb683-33"><a href="8.2-section8-2.html#cb683-33" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-34"><a href="8.2-section8-2.html#cb683-34" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-35"><a href="8.2-section8-2.html#cb683-35" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>
-<span id="cb683-36"><a href="8.2-section8-2.html#cb683-36" tabindex="-1"></a>s32 <span class="ot">&lt;-</span> snotel_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
+<span id="cb683-36"><a href="8.2-section8-2.html#cb683-36" tabindex="-1"></a>s32 <span class="ot">&lt;-</span> snotel_final <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Min.Temp, <span class="at">y =</span> SimulatedSnow2)) <span class="sc">+</span> </span>
 <span id="cb683-37"><a href="8.2-section8-2.html#cb683-37" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb683-38"><a href="8.2-section8-2.html#cb683-38" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb683-39"><a href="8.2-section8-2.html#cb683-39" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Second Simulated Responses&quot;</span>)</span>

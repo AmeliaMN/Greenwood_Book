@@ -350,12 +350,12 @@ summary we’ve been working with. You can find the estimated slope
 <span class="math inline">\(t\)</span>-statistics (<code>t value</code> column), and the p-values (<code>Pr(&gt;|t|)</code> column).
 The degrees of freedom for the <span class="math inline">\(t\)</span>-distributions show up below the coefficients
 and the <span class="math inline">\(df = 20\)</span> here. This is because <span class="math inline">\(n = 23\)</span> and <span class="math inline">\(K = 2\)</span>, so <span class="math inline">\(df = 23-2-1 = 20\)</span>.</p>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="8.6-section8-6.html#cb712-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="8.6-section8-6.html#cb712-1" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
 <span id="cb712-2"><a href="8.6-section8-6.html#cb712-2" tabindex="-1"></a><span class="fu">summary</span>(m5)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Max.Temp, data = snotel_s %&gt;% 
-##     slice(-c(9, 22)))
+## lm(formula = Snow.Depth ~ Elevation + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 

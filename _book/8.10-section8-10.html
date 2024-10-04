@@ -353,11 +353,11 @@ set had set <code>T1</code> as the baseline in the <code>treatment</code> variab
 ## # ℹ 88 more rows</code></pre>
 <!-- \newpage -->
 
-<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="8.10-section8-10.html#cb752-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">factor</span>(treatment),</span>
+<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="8.10-section8-10.html#cb752-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">factor</span>(treatment),</span>
 <span id="cb752-2"><a href="8.10-section8-10.html#cb752-2" tabindex="-1"></a>                                <span class="at">treatment =</span> <span class="fu">fct_relevel</span>(treatment, <span class="st">&quot;Control&quot;</span>)</span>
 <span id="cb752-3"><a href="8.10-section8-10.html#cb752-3" tabindex="-1"></a>                                )</span>
 <span id="cb752-4"><a href="8.10-section8-10.html#cb752-4" tabindex="-1"></a><span class="co"># Make treatment a factor and Control the baseline category</span></span>
-<span id="cb752-5"><a href="8.10-section8-10.html#cb752-5" tabindex="-1"></a>Headache <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> du1, <span class="at">y =</span> du2, <span class="at">color =</span> treatment, </span>
+<span id="cb752-5"><a href="8.10-section8-10.html#cb752-5" tabindex="-1"></a>Headache <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> du1, <span class="at">y =</span> du2, <span class="at">color =</span> treatment, </span>
 <span id="cb752-6"><a href="8.10-section8-10.html#cb752-6" tabindex="-1"></a>                                  <span class="at">shape =</span> treatment)) <span class="sc">+</span></span>
 <span id="cb752-7"><a href="8.10-section8-10.html#cb752-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span> </span>
 <span id="cb752-8"><a href="8.10-section8-10.html#cb752-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
@@ -650,10 +650,10 @@ this example, there are no additional patterns identified by making this plot
 although we do see some minor deviations in the fitted lines for each group,
 but it is a good additional check in these multi-group situations.</p>
 
-<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="8.10-section8-10.html#cb757-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">resids =</span> <span class="fu">residuals</span>(head1),</span>
+<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="8.10-section8-10.html#cb757-1" tabindex="-1"></a>Headache <span class="ot">&lt;-</span> Headache <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">resids =</span> <span class="fu">residuals</span>(head1),</span>
 <span id="cb757-2"><a href="8.10-section8-10.html#cb757-2" tabindex="-1"></a>                                <span class="at">fits =</span> <span class="fu">fitted</span>(head1)</span>
 <span id="cb757-3"><a href="8.10-section8-10.html#cb757-3" tabindex="-1"></a>                                )</span>
-<span id="cb757-4"><a href="8.10-section8-10.html#cb757-4" tabindex="-1"></a>Headache <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fits, <span class="at">y =</span> resids, </span>
+<span id="cb757-4"><a href="8.10-section8-10.html#cb757-4" tabindex="-1"></a>Headache <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fits, <span class="at">y =</span> resids, </span>
 <span id="cb757-5"><a href="8.10-section8-10.html#cb757-5" tabindex="-1"></a>                                  <span class="at">color =</span> treatment, <span class="at">shape =</span> treatment)) <span class="sc">+</span></span>
 <span id="cb757-6"><a href="8.10-section8-10.html#cb757-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
 <span id="cb757-7"><a href="8.10-section8-10.html#cb757-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>

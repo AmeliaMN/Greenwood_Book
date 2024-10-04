@@ -426,12 +426,12 @@ are available. Make sure you are able to pick out the correct one. For the
 reduced data set (<span class="math inline">\(n = 23\)</span>) <em>Snow Depth</em> models, the pertinent part of the model
 summary for the model with all three predictors is in the last three lines:</p>
 <div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="8.4-section8-4.html#cb698-1" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, </span>
-<span id="cb698-2"><a href="8.4-section8-4.html#cb698-2" tabindex="-1"></a>         <span class="at">data =</span> snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
+<span id="cb698-2"><a href="8.4-section8-4.html#cb698-2" tabindex="-1"></a>         <span class="at">data =</span> snotel_s <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)))</span>
 <span id="cb698-3"><a href="8.4-section8-4.html#cb698-3" tabindex="-1"></a><span class="fu">summary</span>(m6)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel_s %&gt;% 
-##     slice(-c(9, 22)))
+## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = slice(snotel_s, 
+##     -c(9, 22)))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
