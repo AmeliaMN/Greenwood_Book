@@ -1089,7 +1089,7 @@ revisit the worked examples using each of the functions.
     * Calculates the standard deviation of the observations in a variable. 
     \index{\texttt{sd()}|textbf}
 
-* **favstats(**~ `r colFmt("DATASETNAME","red")`, data = `r colFmt("VARIABLENAME","red")`**)** 
+* **favstats(**~ `r colFmt("VARIABLENAME","red")`, data = `r colFmt("DATASETNAME" ,"red")`**)** 
 
     * Requires the ``mosaic`` package to be loaded (``library(mosaic)``) after
     installing the package). 
@@ -1097,11 +1097,11 @@ revisit the worked examples using each of the functions.
     * Provides a suite of numerical summaries of the observations in a variable.
     \index{\texttt{favstats()}|textbf}
 
-* **histogram(**~ `r colFmt("DATASETNAME","red")`, data = `r colFmt("VARIABLENAME","red")`**)**
+* **histogram(**~ `r colFmt("VARIABLENAME","red")`, data = `r colFmt("DATASETNAME" ,"red")`**)**
 
     * Makes a histogram. \index{\texttt{histogram()}|textbf}
     
-* **bwplot(**~ `r colFmt("DATASETNAME","red")`, data = `r colFmt("VARIABLENAME","red")`**)**
+* **bwplot(**~ `r colFmt("VARIABLENAME","red")`, data = `r colFmt("DATASETNAME" ,"red")`**)**
 
     * Makes a boxplot. \index{\texttt{bwplot()}|textbf}
 

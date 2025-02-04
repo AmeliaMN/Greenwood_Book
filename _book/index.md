@@ -29,9 +29,9 @@ biblio-style: plainnat
 
 
 
-# Cover {-}
 
-![](frontMatter/titlepage_summer_2022.png)<!-- -->
+
+
 
 <!-- \frontmatter -->
 
@@ -53,7 +53,8 @@ We have made every attempt to keep costs for the book as low as possible by maki
 
 Enjoy your journey from introductory to intermediate statistics!
  
-<img src="frontMatter/creative_commons_license.png" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{frontMatter/creative_commons_license} \end{center}
 
 This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 

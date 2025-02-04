@@ -82,10 +82,14 @@ types of conclusions that are appropriate based on the design of the study.
 
 (ref:fig1-1) Flow chart of methods.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/decisiontree.jpg" alt="(ref:fig1-1)" width="75%" />
-<p class="caption">(\#fig:Figure1-1)(ref:fig1-1)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{chapter1_files/decisiontree} 
+
+}
+
+\caption{(ref:fig1-1)}(\#fig:Figure1-1)
+\end{figure}
 
 \indent We will be spending most of the semester working on methods for quantitative
 response variables (the
@@ -278,10 +282,14 @@ it has been revised in nine years...]
  
 (ref:fig1-2) Initial RStudio layout.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/fig1-2.png" alt="(ref:fig1-2)" width="100%" />
-<p class="caption">(\#fig:Figure1-2)(ref:fig1-2)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1-2} 
+
+}
+
+\caption{(ref:fig1-2)}(\#fig:Figure1-2)
+\end{figure}
 
 \newpage
 
@@ -507,10 +515,14 @@ code (``View(treadmill``)).
 
 (ref:fig1-3) RStudio with initial data set loaded.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/fig1-3.png" alt="(ref:fig1-3)" width="100%" />
-<p class="caption">(\#fig:Figure1-3)(ref:fig1-3)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1-3} 
+
+}
+
+\caption{(ref:fig1-3)}(\#fig:Figure1-3)
+\end{figure}
 
 \indent Just directly typing (or using) a line of code like this is actually the 
 other way that we can read in
@@ -596,10 +608,14 @@ section of code using the "Run" button.
 
 (ref:fig1-4) RStudio with highlighted code run.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/fig1-4.png" alt="(ref:fig1-4)" width="100%" />
-<p class="caption">(\#fig:Figure1-4)(ref:fig1-4)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1-4} 
+
+}
+
+\caption{(ref:fig1-4)}(\#fig:Figure1-4)
+\end{figure}
 
 ## Basic summary statistics, histograms, and boxplots using R {#section1-3}
 
@@ -679,17 +695,25 @@ Figure \@ref(fig:Figure1-5).
 
 (ref:fig1-5) Histogram of Run Times (minutes) of $n$ = 31 subjects in Treadmill study, bar heights are counts.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-5-1.png" alt="(ref:fig1-5)" width="75%" />
-<p class="caption">(\#fig:Figure1-5)(ref:fig1-5)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-5-1} 
+
+}
+
+\caption{(ref:fig1-5)}(\#fig:Figure1-5)
+\end{figure}
 
 (ref:fig1-6) RStudio while in the process of copying the histogram.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/Fig1-6.png" alt="(ref:fig1-6)" width="100%" />
-<p class="caption">(\#fig:Figure1-6)(ref:fig1-6)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/Fig1-6} 
+
+}
+
+\caption{(ref:fig1-6)}(\#fig:Figure1-6)
+\end{figure}
 
 \indent You can save this plot by clicking on the **Export** button found above 
 the plot, followed by **Copy to Clipboard** and clicking on the 
@@ -711,10 +735,14 @@ can override the default options if we desire. One option we can modify here is 
 
 (ref:fig1-7) Histogram of Run Times with counts in bars.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-7-1.png" alt="(ref:fig1-7)" width="75%" />
-<p class="caption">(\#fig:Figure1-7)(ref:fig1-7)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-7-1} 
+
+}
+
+\caption{(ref:fig1-7)}(\#fig:Figure1-7)
+\end{figure}
 
 
 \indent Based on this histogram (Figure \@ref(fig:Figure1-8)), it does not appear that there any outliers in the responses
@@ -765,10 +793,14 @@ but worth noting.
 
 (ref:fig1-8) Boxplot of 1.5 mile Run Times.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-8-1.png" alt="(ref:fig1-8)" width="75%" />
-<p class="caption">(\#fig:Figure1-8)(ref:fig1-8)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-8-1} 
+
+}
+
+\caption{(ref:fig1-8)}(\#fig:Figure1-8)
+\end{figure}
 
 ```r
 > bwplot(~RunTime, data = treadmill)
@@ -784,10 +816,14 @@ be assigned into the options ``ylab`` (for y-axis) or ``main``
 
 (ref:fig1-9) Boxplot of Run Times with improved labels.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-9-1.png" alt="(ref:fig1-9)" width="75%" />
-<p class="caption">(\#fig:Figure1-9)(ref:fig1-9)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-9-1} 
+
+}
+
+\caption{(ref:fig1-9)}(\#fig:Figure1-9)
+\end{figure}
 
 ```r
 > bwplot(~RunTime, data = treadmill, ylab = "1.5 Mile Run Time (minutes)",
@@ -919,10 +955,14 @@ ggplot(data = treadmill, mapping = aes(x = RunTime)) + geom_histogram()
 
 ```
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-10-1.png" alt="(ref:fig1-10)" width="75%" />
-<p class="caption">(\#fig:Figure1-10)(ref:fig1-10)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-10-1} 
+
+}
+
+\caption{(ref:fig1-10)}(\#fig:Figure1-10)
+\end{figure}
 
 \newpage
 
@@ -938,10 +978,14 @@ Figure \@ref(fig:Figure1-11).
 
 (ref:fig1-11) Histogram of Run Times using `ggplot` with 8 bins.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-11-1.png" alt="(ref:fig1-11)" width="75%" />
-<p class="caption">(\#fig:Figure1-11)(ref:fig1-11)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-11-1} 
+
+}
+
+\caption{(ref:fig1-11)}(\#fig:Figure1-11)
+\end{figure}
 
 
 ```r
@@ -982,10 +1026,14 @@ options there). \index{themes} \index{\texttt{theme\_bw()}}
 
 (ref:fig1-12) Histogram with boxplot and rug of Run Times using `ggplot` with modified colors and theme.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-12-1.png" alt="(ref:fig1-12)" width="75%" />
-<p class="caption">(\#fig:Figure1-12)(ref:fig1-12)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-12-1} 
+
+}
+
+\caption{(ref:fig1-12)}(\#fig:Figure1-12)
+\end{figure}
 
 ```r
 ggplot(data = treadmill, mapping = aes(x = RunTime)) + 
@@ -1045,7 +1093,7 @@ required. You can use this as a guide to finding the function names and some
 hints about options that will help you to get the code to work. You can also
 revisit the worked examples using each of the functions. 
 
-* <font color='red'>FILENAME</font> ``<-`` **read_csv(**<font color='red'>"path to csv file/FILENAME.csv"</font>**)**
+* \textcolor{red}{FILENAME} ``<-`` **read_csv(**\textcolor{red}{"path to csv file/FILENAME.csv"}**)**
 
     * Can be generated using "Import Dataset" button or by modifying this text. 
     
@@ -1055,27 +1103,27 @@ revisit the worked examples using each of the functions.
     * Imports a text file saved in the CSV format.
 
 
-* **head(**<font color='red'>DATASETNAME</font>**)**
+* **head(**\textcolor{red}{DATASETNAME}**)**
 
     * Provides a list of the first few rows of the data set for all the 
     variables in it. \index{\texttt{head()}|textbf}
 
-* **tail(**<font color='red'>DATASETNAME</font>**)**
+* **tail(**\textcolor{red}{DATASETNAME}**)**
 
     * Provides a list of the last few rows of the data set for all the 
     variables in it. \index{\texttt{tail()}|textbf}
     
-**mean(**~ <font color='red'>DATASETNAME</font>, data = <font color='red'>VARIABLENAME</font>**)**
+**mean(**~ \textcolor{red}{DATASETNAME}, data = \textcolor{red}{VARIABLENAME}**)**
     
     * Calculates the mean of the observations in a variable. 
     \index{\texttt{mean()}|textbf}
 
-* **sd(**~ <font color='red'>DATASETNAME</font>, data = <font color='red'>VARIABLENAME</font>**)**
+* **sd(**~ \textcolor{red}{DATASETNAME}, data = \textcolor{red}{VARIABLENAME}**)**
 
     * Calculates the standard deviation of the observations in a variable. 
     \index{\texttt{sd()}|textbf}
 
-* **favstats(**~ <font color='red'>DATASETNAME</font>, data = <font color='red'>VARIABLENAME</font>**)** 
+* **favstats(**~ \textcolor{red}{VARIABLENAME}, data = \textcolor{red}{DATASETNAME}**)** 
 
     * Requires the ``mosaic`` package to be loaded (``library(mosaic)``) after
     installing the package). 
@@ -1083,16 +1131,16 @@ revisit the worked examples using each of the functions.
     * Provides a suite of numerical summaries of the observations in a variable.
     \index{\texttt{favstats()}|textbf}
 
-* **histogram(**~ <font color='red'>DATASETNAME</font>, data = <font color='red'>VARIABLENAME</font>**)**
+* **histogram(**~ \textcolor{red}{VARIABLENAME}, data = \textcolor{red}{DATASETNAME}**)**
 
     * Makes a histogram. \index{\texttt{histogram()}|textbf}
     
-* **bwplot(**~ <font color='red'>DATASETNAME</font>, data = <font color='red'>VARIABLENAME</font>**)**
+* **bwplot(**~ \textcolor{red}{VARIABLENAME}, data = \textcolor{red}{DATASETNAME}**)**
 
     * Makes a boxplot. \index{\texttt{bwplot()}|textbf}
 
-* **ggplot(data = **<font color='red'>DATASETNAME</font>**, mapping = aes(**<font color='red'>VARIABLENAME</font>**)) +  
-geom_histogram(bins = **<font color='red'>10</font>**)**
+* **ggplot(data = **\textcolor{red}{DATASETNAME}**, mapping = aes(**\textcolor{red}{VARIABLENAME}**)) +  
+geom_histogram(bins = **\textcolor{red}{10}**)**
 
     * Makes a histogram with 10 bins using `ggplot`, requires the `ggplot2` 
     library is installed and loaded. \index{\texttt{geom\_histogram()}|textbf}
