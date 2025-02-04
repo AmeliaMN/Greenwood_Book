@@ -1102,6 +1102,9 @@ revisit the worked examples using each of the functions.
     
     * Imports a text file saved in the CSV format.
 
+* **data(**\textcolor{red}{DATASETNAME}**)**
+
+    * Loads in a dataset that comes with an R package.
 
 * **head(**\textcolor{red}{DATASETNAME}**)**
 
@@ -1113,12 +1116,12 @@ revisit the worked examples using each of the functions.
     * Provides a list of the last few rows of the data set for all the 
     variables in it. \index{\texttt{tail()}|textbf}
     
-**mean(**~ \textcolor{red}{DATASETNAME}, data = \textcolor{red}{VARIABLENAME}**)**
+* **mean(**~ \textcolor{red}{VARIABLENAME}, data = \textcolor{red}{DATASETNAME}**)**
     
     * Calculates the mean of the observations in a variable. 
     \index{\texttt{mean()}|textbf}
 
-* **sd(**~ \textcolor{red}{DATASETNAME}, data = \textcolor{red}{VARIABLENAME}**)**
+* **sd(**~ \textcolor{red}{VARIABLENAME}, data = \textcolor{red}{DATASETNAME}**)**
 
     * Calculates the standard deviation of the observations in a variable. 
     \index{\texttt{sd()}|textbf}
